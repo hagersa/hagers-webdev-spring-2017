@@ -14,6 +14,7 @@ if(process.env.MLAB_USERNAME) {
 	process.env.MLAB_PORT + '/' +
 	process.env.MLAB_APP_NAME;
 }
+console.log(connectionString);
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
