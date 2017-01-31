@@ -3,5 +3,78 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+
 }
+
+/*
+ul.list-group {
+    border-style: none;
+}*/
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.navbar-default {
+    background-color: #337ab7;
+}
+
+.navbar-text a {
+    color: white;
+}
+a.navbar-brand {
+    color: white !important;
+}
+
+a.navbar-link {
+    color: white !important;
+}
+
+.wbdv-left-pane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    overflow: auto;
+}
+.wbdv-right-pane {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-bottom: 52px;
+    margin-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: auto;
+}
+
+/*
+
+ padding-right: 15px;
+    padding-left: 10px;
+
+.navbar-header {
+    width : 100%;
+    padding-left: 20px;
+}*/
+
+/*
+.navbar-footer {
+    padding-right: 10px;
+}
+*/
+/*#padded-container {
+    padding-top: 36px;
+}*/
+
+/* From profile
+style="float: right!important;"
+ */
+/*
+.page-custom-color {
+    navbar-default!important;
+}*/

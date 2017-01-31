@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
@@ -10,40 +10,37 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Top
+        <div class="navbar-text pull-right">
+            <a>
+                <span class="glyphicon glyphicon-ok" href="profile.html"></span>
             </a>
-            <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
-                </a>
-            </p>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Profile
+            </a>
         </div>
     </div>
 </nav>
 
-
-    <div class="container">
-        <h1>Profile</h1>
+<div id="padded-container" class="container-fluid">
 
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" placeholder="hagers">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+                <input type="email" class="form-control" id="email" placeholder="hager.s@husky.neu.edu">
             </div>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="Alice">
+                <input type="text" class="form-control" id="first-name" placeholder="Sarah">
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
+                <input type="text" class="form-control" id="last-name" placeholder="Hager">
             </div>
         </form>
 
@@ -54,26 +51,11 @@
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
+    <div class="container-fluid">
+        <div class="navbar-footer">
+            <div class="navbar-text pull-right">
+                <a href="profile.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
         </div>
