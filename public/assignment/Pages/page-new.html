@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>New Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
@@ -28,8 +28,8 @@
                     Pages
                 </a>
             </div>
-
         </div>
+
         <div class="col-sm-8 col-xs-12">
             <div class="hidden-sm hidden-md hidden-lg navbar-text pull-left">
                 <a href="page-list.html" class="navbar-link">
@@ -37,7 +37,7 @@
                     </span>
                 </a>
             </div>
-            <div class="navbar-text pull-right">
+            <div class="navbar-text pull-right sah-navbar-text-padding">
                 <a href="page-list.html" class="navbar-link">
                     <span class="glyphicon glyphicon-ok">
                     </span>
@@ -97,31 +97,32 @@
             </li>
         </ul>
     </div>
+</div>
 
-    <div class="col-sm-8 col-xs-12 sah-right-pane">
-        <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Page Name">
-            </div>
-            <div class="form-group">
-                <label for="description">Title</label>
-                <textarea class="form-control" id="description" rows="4" placeholder="Page Title" required></textarea>
-            </div>
-        </form>
-    </div>
+<div class="col-sm-8 col-xs-12 sah-right-pane">
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Page Name">
+        </div>
+        <div class="form-group">
+            <label for="description">Title</label>
+            <textarea class="form-control" id="description" rows="4" placeholder="Page Title" required></textarea>
+        </div>
+    </form>
+</div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
-        <div class="container-fluid">
-            <div class="navbar-footer">
-                <div class="navbar-text pull-right">
-                    <a href="../User/profile.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </a>
-                </div>
+<nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
+    <div class="container-fluid">
+        <div class="navbar-footer">
+            <div class="navbar-text pull-right">
+                <a href="../User/profile.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
 </body>
 </html>

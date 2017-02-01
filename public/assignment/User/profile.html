@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Profile</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
@@ -25,31 +25,28 @@
 </nav>
 
 <div id="padded-container" class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="hagers">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="hager.s@husky.neu.edu">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" class="form-control" id="first-name" placeholder="Sarah">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" class="form-control" id="last-name" placeholder="Hager">
+        </div>
+    </form>
 
-        <form>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="hagers">
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="hager.s@husky.neu.edu">
-            </div>
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="Sarah">
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Hager">
-            </div>
-        </form>
-
-        <a class="btn btn-primary btn-block"
-           href="../Websites/website-list.html">Websites</a>
-        <a class="btn btn-danger  btn-block"
-           href="login.html">Logout</a>
-    </div>
+    <a class="btn btn-primary btn-block" href="../Websites/website-list.html">Websites</a>
+    <a class="btn btn-danger  btn-block" href="login.html">Logout</a>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
