@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Widget Edit</title>
+    <title>Choose Widget</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
@@ -16,43 +16,40 @@
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
-        <div class="navbar-text pull-right">
-            <a href="widget-list.html" class="navbar-link">
-                <span class="glyphicon glyphicon-ok"></span>
-            </a>
-        </div>
         <div class="navbar-header">
             <a class="navbar-brand">
-                Widget Edit
+                Choose Widget
             </a>
         </div>
     </div>
 </nav>
 
-<div class="sah-form-padding">
-    <form>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name your widget.">
-        </div>
-        <div class="form-group">
-            <label for="description">Text</label>
-            <textarea class="form-control" id="description" rows="4" placeholder="Add your text here." required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="size">Size</label>
-            <input type="number" class="form-control" id="size" placeholder="Enter your heading size.">
-        </div>
-    </form>
 
-    <a class="btn btn-danger  btn-block" href="widget-list.html">Delete</a>
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="widget-heading.html">
+                Header
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="widget-image.html">
+                Image
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="widget-youtube.html">
+                Youtube
+            </a>
+        </li>
+    </ul>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../User/profile.html" class="navbar-link">
+                <a href="../Views/User/profile.html" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

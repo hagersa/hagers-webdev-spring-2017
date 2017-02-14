@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>New Website</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.html" class="navbar-link">
+                <a href="website-list.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a  href="website-new.html" class="navbar-link">
+                <a href="website-new.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -32,20 +21,20 @@
         </div>
         <div class="col-sm-8 col-xs-12">
             <div class="hidden-sm hidden-md hidden-lg navbar-text pull-left">
-                <a href="website-list.html" class="navbar-link">
+                <a href="website-list.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right sah-navbar-text-padding">
-                <a href="website-list.html" class="navbar-link">
+                <a href="website-list.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-ok">
                     </span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand">
-                    New Website
+                    Edit Website
                 </a>
             </div>
         </div>
@@ -56,63 +45,63 @@
     <div class="col-sm-4 hidden-xs sah-left-pane">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="../Pages/page-list.html">
+                <a href="../Views/Pages/page-list.html">
                     Choral Music App
                 </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="website-edit.view.client.html" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="../Pages/page-list.html">
+                <a href="../Views/Pages/page-list.html">
                     Blogging App
                 </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="website-edit.view.client.html" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
             <li class="list-group-item">
-            <a href="../Pages/page-list.html">
-                Calendar App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+                <a href="../Views/Pages/page-list.html">
+                    Calendar App
+                </a>
+                <a href="website-edit.view.client.html" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
             </li>
             <li class="list-group-item">
-            <a href="../Pages/page-list.html">
-                Test App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+                <a href="../Views/Pages/page-list.html">
+                    Test App
+                </a>
+                <a href="website-edit.view.client.html" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
             </li>
         </ul>
     </div>
-    <div class="col-sm-8 col-xs-12 sah-right-pane">
-        <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name your new app!">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="4" placeholder="Describe your app here." required></textarea>
-            </div>
-        </form>
+</div>
+
+<div class="col-sm-8 col-xs-12 sah-right-pane">
+    <form>
+        <div class="form-group">
+            <label for="name">Website Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Rename your app.">
+        </div>
+        <div class="form-group">
+            <label for="description">Website Description</label>
+            <textarea class="form-control" id="description" rows="4" placeholder="App description." required></textarea>
+        </div>
+    </form>
+    <a class="btn btn-danger  btn-block" href="website-list.view.client.html">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../User/profile.html" class="navbar-link">
+                <a href="../Views/User/profile.html" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
         </div>
     </div>
 </nav>
-
-</body>
-</html>

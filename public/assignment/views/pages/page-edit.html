@@ -2,49 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Edit Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.html" class="navbar-link">
+                <a href="page-list.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
-            <div class="navbar-text pull-right">
-                <a href="website-new.html" class="navbar-link">
+            <div class="navbar-text pull-right ">
+                <a href="page-new.html" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand">
-                    Websites
+                    Pages
                 </a>
             </div>
 
         </div>
         <div class="col-sm-8 col-xs-12">
             <div class="hidden-sm hidden-md hidden-lg navbar-text pull-left">
-                <a href="website-list.html" class="navbar-link">
+                <a href="page-list.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right sah-navbar-text-padding">
-                <a href="website-list.html" class="navbar-link">
+                <a href="page-list.html" class="navbar-link">
                     <span class="glyphicon glyphicon-ok">
                     </span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand">
-                    Edit Website
+                    Edit Page
                 </a>
             </div>
         </div>
@@ -55,34 +56,42 @@
     <div class="col-sm-4 hidden-xs sah-left-pane">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="../Pages/page-list.html">
-                    Choral Music App
+                <a href="../widgets/templates/widget-list.html">
+                    Blog Post
                 </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="page-edit.html" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="../Pages/page-list.html">
-                    Blogging App
+                <a href="../widgets/templates/widget-list.html">
+                    Blogs
                 </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="page-edit.html" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="../Pages/page-list.html">
-                    Calendar App
+                <a href="../widgets/templates/widget-list.html">
+                    Home
                 </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="page-edit.html" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="../Pages/page-list.html">
-                    Test App
+                <a href="../widgets/templates/widget-list.html">
+                    About
                 </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="page-edit.html" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="../widgets/templates/widget-list.html">
+                    Contact Us
+                </a>
+                <a href="page-edit.html" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
@@ -93,22 +102,22 @@
 <div class="col-sm-8 col-xs-12 sah-right-pane">
     <form>
         <div class="form-group">
-            <label for="name">Website Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Rename your app.">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Page Name">
         </div>
         <div class="form-group">
-            <label for="description">Website Description</label>
-            <textarea class="form-control" id="description" rows="4" placeholder="App description." required></textarea>
+            <label for="description">Title</label>
+            <textarea class="form-control" id="description" rows="4" placeholder="Page Title" required></textarea>
         </div>
     </form>
-    <a class="btn btn-danger  btn-block" href="website-list.html">Delete</a>
+    <a class="btn btn-danger  btn-block" href="page-list.html">Delete</a>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../User/profile.html" class="navbar-link">
+                <a href="../Views/User/profile.html" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
