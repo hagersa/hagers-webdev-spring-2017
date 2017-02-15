@@ -16,30 +16,17 @@
             "createUser": createUser,
             "findUserByUserName": findUserByUserName,
             "findUserByCredentials": findUserByCredentials,
-            "findUserById": findUserById
+            "findUserById": findUserById,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
         };
         return api;
 
         function createUser(user) {
-            // do I need a line before this?
             user._id = (new Date()).getTime();
-            userId = user._id; // do I need to do this?
-            // how to set username and password from page?
             users.push(user);
-            for(var u in users) {
-                var user = users[u];
-                if( user._id === userId ) {
-                    users[u].username = newUser.username;
-                    users[u].password = newUser.password;
-                    return user;
-                }
-            }
-            return null;
+            return user._id;
         }
-
-
 
         function findUserById(userId) {
             for(var u in users) {
@@ -51,10 +38,10 @@
             return null;
         }
 
-        function findUserByUsername(username) {
+        function findUserByUserName(username) {
             for(var u in users) {
                 var user = users[u];
-                if( user._id === username) {
+                if(user._id === username) {
                     return angular.copy(user);
                 }
             }
@@ -72,13 +59,15 @@
             return null;
         }
 
-        function updateUser(userId, user) { // newUser or user as param?
+        function updateUser(userId, newUser) {
             for(var u in users) {
                 var user = users[u];
-                if( user._id === userId ) {
+                if(user._id === userId ) {
                     users[u].firstName = newUser.firstName;
                     users[u].lastName = newUser.lastName;
                     users[u].email = newUser.email;
+                    users[u].username = newUser.username;
+                    users[u].password = newUser.password;
                     return angular.copy(user); // or return user??
                 }
             }
@@ -90,9 +79,10 @@
                 var user = users[u];
                 if( user._id === userId) {
                     users.splice(u, 1);
+                    // do I need to return something??
                 }
             }
-            return null;
+            // return null;
         }
 
 

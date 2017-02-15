@@ -1,9 +1,10 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("WidgetListController", WidgetListController);
+        .controller("WidgetNewController", WidgetNewController);
 
-    function WidgetListController($sce, $routeParams, WidgetService) {
+    function WidgetNewController($sce, $routeParams, WidgetService) {
+        // update all this
         var vm = this;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
