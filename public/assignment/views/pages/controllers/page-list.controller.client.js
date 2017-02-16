@@ -6,6 +6,6 @@
     function PageListController($routeParams, PageService) {
         var vm = this;
         vm.userId = $routeParams.uid;
-        vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
+        vm.pages = WebsiteService.findAllPagesForUser(vm.userId);
     }
 })();

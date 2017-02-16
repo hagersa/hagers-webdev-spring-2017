@@ -1,14 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
+<nav ng-controller="PageEditController as model" class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="page-list.view.client.html" class="navbar-link">
+                <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right ">
-                <a href="page-new.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -21,13 +21,13 @@
         </div>
         <div class="col-sm-8 col-xs-12">
             <div class="hidden-sm hidden-md hidden-lg navbar-text pull-left">
-                <a href="page-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right sah-navbar-text-padding">
-                <a href="page-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                     <span class="glyphicon glyphicon-ok">
                     </span>
                 </a>
@@ -41,72 +41,66 @@
     </div>
 </nav>
 
-<div class="row container-fluid">
+<div ng-controller="PageEditController as model" class="row container-fluid">
     <div class="col-sm-4 hidden-xs sah-left-pane">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="../widgets/templates/widget-list.html">
-                    Blog Post
-                </a>
-                <a href="page-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
+                <div class="row">
+                    <div class="col-sm-10">
+                        Name
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}" class="pull-right">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </div>
+                </div>
             </li>
-            <li class="list-group-item">
-                <a href="../widgets/templates/widget-list.html">
-                    Blogs
-                </a>
-                <a href="page-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../widgets/templates/widget-list.html">
-                    Home
-                </a>
-                <a href="page-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../widgets/templates/widget-list.html">
-                    About
-                </a>
-                <a href="page-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../widgets/templates/widget-list.html">
-                    Contact Us
-                </a>
-                <a href="page-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
+            <li ng-repeat="page in model.pages" class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}">{{page.name}}</a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
-</div>
 
-<div class="col-sm-8 col-xs-12 sah-right-pane">
+    <div class="col-sm-8 col-xs-12 sah-right-pane">
     <form>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Page Name">
+            <input ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Page Name">
         </div>
         <div class="form-group">
             <label for="description">Title</label>
-            <textarea class="form-control" id="description" rows="4" placeholder="Page Title" required></textarea>
+            <textarea ng-model="model.page.description" class="form-control" id="description" rows="4" placeholder="Page Title" required></textarea>
         </div>
     </form>
-    <a class="btn btn-danger  btn-block" href="page-list.view.client.html">Delete</a>
+
+    <a ng-click="model.updatePage(model.page)"
+       class="btn btn-danger  btn-block" >
+        Update
+    </a>
+
+    <a ng-click="model.deletePage(model.page)"
+       class="btn btn-danger  btn-block"
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+        Delete
+    </a>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
     <div class="container-fluid">
-        <div class="navbar-footer">
+        <div ng-controller="PageEditController as model" class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../Views/User/profile.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

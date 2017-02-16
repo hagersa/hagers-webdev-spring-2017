@@ -4,20 +4,19 @@
         .controller("PageNewController", PageNewController);
 
     function PageNewController($routeParams, $location, PageService) {
-        // update all this
         var vm = this;
         vm.userId = $routeParams.uid;
-        vm.createWebsite = createWebsite;
+        vm.websiteId = $routeParams.wid;
+        vm.createPage = createPage;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
+            vm.pages = PageService.findAllPagesForUser(vm.userId);
         }
         init();
 
-        function createWebsite (website) {
-            WebsiteService.createWebsite(vm.userId, website);
-            //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website");
+        function createPage (page) {
+            PageService.createPage(vm.websiteId, page);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
         };
     }
 })();

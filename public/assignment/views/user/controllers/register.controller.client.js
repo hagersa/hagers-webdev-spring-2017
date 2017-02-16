@@ -9,6 +9,7 @@
 
             function register(newUser) {
                 var user = UserService.createUser(newUser);
+
                 $location.url('/profile/' + user._id);
             }
     }

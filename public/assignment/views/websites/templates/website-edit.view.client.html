@@ -1,14 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav ng-controller="WebsiteEditController as model" class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-new.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -21,13 +21,13 @@
         </div>
         <div class="col-sm-8 col-xs-12">
             <div class="hidden-sm hidden-md hidden-lg navbar-text pull-left">
-                <a href="website-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
             </div>
             <div class="navbar-text pull-right sah-navbar-text-padding">
-                <a href="website-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
                     <span class="glyphicon glyphicon-ok">
                     </span>
                 </a>
@@ -41,64 +41,77 @@
     </div>
 </nav>
 
-<div class="row container-fluid">
+<div ng-controller="WebsiteEditController as model" class="row container-fluid">
     <div class="col-sm-4 hidden-xs sah-left-pane">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="../Views/Pages/page-list.html">
-                    Choral Music App
-                </a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
+                <div class="row">
+                    <div class="col-sm-10">
+                        Name
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#/user/{{model.userId}}/website/new" class="pull-right">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </div>
+                </div>
             </li>
-            <li class="list-group-item">
-                <a href="../Views/Pages/page-list.html">
-                    Blogging App
-                </a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../Views/Pages/page-list.html">
-                    Calendar App
-                </a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../Views/Pages/page-list.html">
-                    Test App
-                </a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
+            <li ng-repeat="website in model.websites" class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">{{website.name}}</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
-</div>
 
-<div class="col-sm-8 col-xs-12 sah-right-pane">
-    <form>
-        <div class="form-group">
-            <label for="name">Website Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Rename your app.">
-        </div>
-        <div class="form-group">
-            <label for="description">Website Description</label>
-            <textarea class="form-control" id="description" rows="4" placeholder="App description." required></textarea>
-        </div>
-    </form>
-    <a class="btn btn-danger  btn-block" href="website-list.view.client.html">Delete</a>
+    <div class="col-sm-8 col-xs-12 sah-right-pane">
+        <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+        <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+        <form>
+            <div class="form-group">
+                <label for="name">Website Name</label>
+                <input ng-model="model.website.name"
+                       type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Rename your app.">
+            </div>
+            <div class="form-group">
+                <label for="description">Website Description</label>
+                <textarea ng-model="model.website.description"
+                      class="form-control"
+                      id="description"
+                      rows="4"
+                      placeholder="App description."
+                      required></textarea>
+            </div>
+        </form>
+
+        <a ng-click="model.updateWebsite(model.website)"
+           class="btn btn-danger  btn-block" >
+            Update
+        </a>
+
+        <a ng-click="model.deleteWebsite(model.website)"
+           class="btn btn-danger btn-block"
+           href="#/user/{{model.userId}}/website">Delete</a>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="navbar-footer">
+        <div ng-controller="WebsiteEditController as model" class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../Views/User/profile.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

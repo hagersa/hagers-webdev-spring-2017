@@ -23,9 +23,9 @@
         return api;
 
         function createUser(user) {
-            user._id = (new Date()).getTime();
+            user._id = (new Date()).getTime()+"";
             users.push(user);
-            return user._id;
+            return user;
         }
 
         function findUserById(userId) {

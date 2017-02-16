@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
+<nav ng-controller="WidgetListController as model" class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../Views/Pages/page-list.html" class="navbar-link">
+            <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="widget-choose.view.client.html" class="navbar-link">
+            <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -18,77 +18,43 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div>
+// this is not working, need to fix
+<div ng-controller="WidgetListController as model" class="container-fluid">
+
         <div class="sah-toolbar">
-            <a href="widget-HEADER.view.client.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-        <h1>TODAY'S TOP STORIES</h1>
+
+        <!--<ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>-->
+    <div ng-repeat="widget in model.widgets">
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADER">
+                <ng-include src="'views/widget/templates/widget-HEADER.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <ng-include src="'views/widget/templates/widget-IMAGE.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="HTML">
+                <ng-include src="'views/widget/templates/widget-HTML.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <ng-include src="'views/widget/templates/widget-YOUTUBE.view.client.html'"></ng-include>
+            </div>
+        </div>
     </div>
-    <div class="sah-toolbar">
-        <a href="widget-HEADER.view.client.html">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <div>
-        <h3>Spy in the Wild: An Ocean-going Robotic Otter</h3>
-    </div>
-    <div>
-        <div class="sah-toolbar">
-            <a href="widget-IMAGE.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <img width="100%" src="http://cdn.images.express.co.uk/img/dynamic/128/590x/secondary/Spy-In-The-Wild-BBC-795760.jpg">
-    </div>
-    <div>
-        <div class="sah-toolbar">
-            <a href="widget-HEADER.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <p>By sending Spy Otter out into the cold waters of Alaska's Kachemak Bay, television producers were able to achieve unique footage of an animal almost hunted to extinction because of the silky softness of its coat.<br></p>
-    </div>
-    <div>
-        <div class="sah-toolbar">
-            <a href="widget-HEADER.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div>
-            <h3>Shiba Inu puppies appear on national TV</h3>
-        </div>
-        <div class="sah-toolbar">
-            <a href="widget-YOUTUBE.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div class="videoWrapper">
-            <iframe  width="560" height="315"  src="https://www.youtube.com/embed/aRT37r1yuO4" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="sah-toolbar">
-            <a href="widget-HEADER.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div><a href="https://www.youtube.com/user/SFShiba" target="_blank">Watch more Shiba Inu puppies here.</a></div>
-    </div>
+
+    {{model.widgets}}
+
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
+<nav ng-controller="WidgetListController as model" class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../Views/User/profile.html" class="navbar-link">
+                <a href="/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

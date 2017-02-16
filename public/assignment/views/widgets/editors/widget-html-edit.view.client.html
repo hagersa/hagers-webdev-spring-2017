@@ -1,0 +1,24 @@
+<div ng-controller="WidgetEditController as model" class="sah-form-padding">
+    <form>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <textarea ng-model="model.widget.text"
+                      class="form-control"
+                      id="text"
+                      rows="4"
+                      placeholder="Add your text here."required>
+            </textarea>
+        </div>
+    </form>
+
+    <a ng-click="model.updateWidget(model.widget)"
+       class="btn btn-danger  btn-block" >
+        Update
+    </a>
+
+    <a ng-click="model.deleteWidget(model.widget)"
+       class="btn btn-danger btn-block"
+       href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+        Delete
+    </a>
+</div>

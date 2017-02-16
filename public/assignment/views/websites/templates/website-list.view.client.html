@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav ng-controller="WebsiteListController as model" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../Views/User/profile.html" class="navbar-link">
+            <a href="#/profile/{{model.userId}}" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="website-new.view.client.html" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -18,49 +18,52 @@
     </div>
 </nav>
 
-
-<div class="container-fluid">
+<div ng-controller="WebsiteListController as model" class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="../Views/Pages/page-list.html">
-                Choral Music App
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+            <div class="row">
+                <div class="col-xs-11 col-sm-6">
+                    Name
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    Last Modified
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    Owner
+                </div>
+                <div class="col-xs-1">
+                    <a href="#/user/{{model.userId}}/website/new" class="pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
         </li>
-        <li class="list-group-item">
-            <a href="../Views/Pages/page-list.html">
-                Blogging App
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../Views/Pages/page-list.html">
-                Calendar App
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../Views/Pages/page-list.html">
-                Test App
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-11 col-sm-6">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    {{website.created | date}}
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    {{website.developerId}}
+                </div>
+                <div class="col-xs-1">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
         </li>
     </ul>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="navbar-footer">
+        <div ng-controller="WebsiteListController as model" class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../Views/User/profile.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

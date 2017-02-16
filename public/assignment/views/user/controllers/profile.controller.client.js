@@ -5,7 +5,13 @@
 
     function profileController($routeParams, UserService) {
         var vm = this;
-        var userId = $routeParams['uid'];
+        var userId = $routeParams.uid;
+        function init() {
+            vm.user = UserService.findUserById(userId);
+            console.log(vm.user);
+        }
+        init();
+
         vm.update = function (newUser) {
           var user = UserService.updateUser(userId, newUser);
           if(user == null) {
@@ -14,10 +20,5 @@
               vm.message = "user successfully updated"
           }
         };
-
-        var user = UserService.findUserById(userId);
-        vm.user = angular.copy(user)
-
-        console.log(user);
     }
 })();

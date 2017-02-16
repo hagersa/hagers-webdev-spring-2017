@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
+<nav ng-controller="PageListController as model" class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../../websites/templates/website-list.view.client.html" class="navbar-link">
+            <a href="/user/{{model.userId}}/website" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="page-new.view.client.html" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -18,57 +18,46 @@
     </div>
 </nav>
 
-
-<div class="container-fluid">
+<div ng-controller="PageListController as model" class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="../widgets/templates/widget-list.html">
-                Blog Post
-            </a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+            <div class="row">
+                <div class="col-xs-11 col-sm-7">
+                    Name
+                </div>
+                <div class="col-sm-4 hidden-xs">
+                    Page
+                </div>
+                <div class="col-xs-1">
+                    <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
         </li>
-        <li class="list-group-item">
-            <a href="../widgets/templates/widget-list.html">
-                Blogs
-            </a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widgets/templates/widget-list.html">
-                Home
-            </a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widgets/templates/widget-list.html">
-                About
-            </a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widgets/templates/widget-list.html">
-                Contact Us
-            </a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-11 col-sm-7">
+                    {{page.name}}
+                </div>
+                <div class="col-sm-4 hidden-xs">
+                    {{page.websiteId}}
+                </div>
+                <div class="col-xs-1">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
         </li>
     </ul>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
+<nav ng-controller="PageListController as model" class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../Views/User/profile.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

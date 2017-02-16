@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav ng-controller="profileController as model" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/profile/:uid">
+            <a href="#/profile/{{model.userId}}">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -63,7 +63,7 @@
                placeholder="Password"/>
     </form>
 
-    <a href="#/user/{{model.user._id}}/website" class="btn btn-success btn-block">
+    <a href="#/user/{{model.userId}}/website" class="btn btn-success btn-block">
         Websites
     </a>
 
@@ -77,11 +77,11 @@
     </a>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom" ng-controller="profileController">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div ng-controller="profileController as model" class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="#/profile" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

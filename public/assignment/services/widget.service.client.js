@@ -22,13 +22,14 @@
         this.findWidgetById = findWidgetById;
         this.updateWidget = updateWidget;
         this.deleteWidget = deleteWidget;
+        this.findAllWidgets = findAllWidgets;
 
         function createWidget(pageId, widget) {
+            widget._id = (new Data()).getTime()+"";
             widget.pageId = pageId;
-            widget._id = (new Date()).getTime();
-            widgets.push(widget);
-            return widget._id;
 
+            widgets.push(widget);
+            return widget;
         }
 
         function findWidgetsByPageId(pageId) {
@@ -85,6 +86,16 @@
                 }
             }
             // return null;
+        }
+
+        function findAllWidgets(pageId) {
+            var widgets = [];
+            for(var w in widgets) {
+                if(widgets[w].pageId === pageId) {
+                    sites.push(widgets[w]);
+                }
+            }
+            return widgets;
         }
     }
 })();

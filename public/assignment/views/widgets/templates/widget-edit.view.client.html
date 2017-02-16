@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav ng-controller="WidgetEditController as model" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../user/profile.html">
+            <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="website-new.html">
+            <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -16,14 +16,18 @@
     </div>
 </nav>
 
-<div class="container-fluid"
+<div ng-controller="WidgetEditController as model" class="container-fluid"
      ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav ng-controller="WidgetEditController as model" class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Footer</a>
+        <div class="navbar-footer">
+            <div class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
         </div>
     </div>
 </nav>

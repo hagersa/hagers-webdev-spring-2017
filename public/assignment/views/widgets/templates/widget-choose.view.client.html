@@ -1,7 +1,8 @@
-<nav class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
+<nav ng-controller="WidgetNewController as model" class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.html" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+               class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -14,31 +15,36 @@
 </nav>
 
 
-<div class="container-fluid">
+<div ng-controller="WidgetNewController as model" class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="widget-HEADER.view.client.html">
+            <a ng-click="model.createWidget('HEADER')">
                 Header
             </a>
         </li>
         <li class="list-group-item">
-            <a href="widget-IMAGE.view.client.html">
+            <a ng-click="model.createWidget('IMAGE')">
                 Image
             </a>
         </li>
         <li class="list-group-item">
-            <a href="widget-YOUTUBE.view.client.html">
+            <a ng-click="model.createWidget('YOUTUBE')">
                 Youtube
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a ng-click="model.createWidget('HTML')">
+                HTML
             </a>
         </li>
     </ul>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
+<nav ng-controller="WidgetNewController as model" class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="navbar-text pull-right">
-                <a href="../Views/User/profile.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

@@ -4,21 +4,31 @@
         .controller("PageEditController", PageEditController);
 
     function PageEditController($routeParams, $location, PageService) {
-        // update all this
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
-        vm.deleteWebsite = deleteWebsite;
+        vm.pageId = $routeParams.pid;
+        vm.deletePage = deletePage;
+        vm.updatePage = updatePage;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            vm.pages = PageService.findAllPagesForUser(vm.userId);
+            vm.page = PageService.findPageById(vm.pageId);
         }
         init();
 
-        function deleteWebsite () {
-            WebsiteService.deleteWebsite(vm.websiteId);
-            $location.url("/user/"+vm.userId+"/website");
+        function deletePage () {
+            PageService.deletePage(vm.pageId);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
         };
+
+        function updatePage () {
+            var page = PageService.updatePage(pageId, newPage);
+            if(page == null) {
+                vm.error = "unable to update page";
+            } else {
+                vm.message = "pagesuccessfully updated"
+            }
+        }
     }
 })();

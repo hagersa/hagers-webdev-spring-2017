@@ -3,8 +3,7 @@
         .module("WebAppMaker")
         .controller("WidgetNewController", WidgetNewController);
 
-    function WidgetNewController($sce, $routeParams, WidgetService) {
-        // update all this
+    function WidgetNewController($sce, $routeParams, $location, WidgetService) {
         var vm = this;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
@@ -13,6 +12,18 @@
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
         vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+        vm.createWidget = createWidget;
+
+        function createWidget(type) {
+            var newWidget = {
+                widgetType: type
+            };
+
+            var widget = WidgetService.createWidget(vm.pageId, newWidget);
+
+            $location.url('/user/'+ widget.userId + '/website/' + widget.websiteId
+                + '/page/' + widget.pageId + '/widget/' + widget.widgetId);
+        }
 
         function getWidgetTemplateUrl(widgetType) {
             var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
