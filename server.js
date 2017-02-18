@@ -21,6 +21,9 @@ app.use(express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
 
+//var assignment = require("./assigment/app.js");
+//assignment(app); // is this correct??
+
 var port = process.env.PORT || 3000;
 
 app.listen(port);

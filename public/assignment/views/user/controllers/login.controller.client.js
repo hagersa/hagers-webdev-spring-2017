@@ -18,3 +18,17 @@
         }
     }
 })();
+
+
+// Notes from class 2/17/2017
+// function login(user) {
+//    var promise = UserService.findUserByCredentials(user.username, user.password);
+//   promise.success(function (response) {
+//     var loginUser = response;
+//  })
+//if(loginUser != null) {
+//    $location.url('/profile/' + loginUser._id);
+//}
+//else {
+//    vm.error = 'user not found';
+//}

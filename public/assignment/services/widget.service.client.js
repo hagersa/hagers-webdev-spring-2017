@@ -25,9 +25,8 @@
         this.findAllWidgets = findAllWidgets;
 
         function createWidget(pageId, widget) {
-            widget._id = (new Data()).getTime()+"";
             widget.pageId = pageId;
-
+            widget._id = (new Date()).getTime()+"";
             widgets.push(widget);
             return widget;
         }
@@ -49,30 +48,28 @@
                 }
             }
             return null;
-
         }
 
         function updateWidget(widgetId, newWidget) {
             for(var w in widgets) {
-                var widget = widgets[w];
-                if(widget._id === widgetId) {
-                    if(widget.type === "HEADER") {
-                        widget.size = newWidgets.size;
-                        widget.text = newWidgets.text;
+                if(widgets[w]._id === widgetId) {
+                    if(widgets[w].widgetType === "HEADER") {
+                        widgets[w].size = newWidget.size;
+                        widgets[w].text = newWidget.text;
                     }
-                    else if(widget.type === "IMAGE") {
-                        widget.width = newWidgets.width;
-                        widget.url = newWidgets.url;
+                    else if(widgets[w].widgetType === "IMAGE") {
+                        widgets[w].width = newWidget.width;
+                        widgets[w].url = newWidget.url;
                     }
-                    else if(widget.type === "YOUTUBE") {
-                        widget.width = newWidgets.width;
-                        widget.url = newWidgets.url;
+                    else if(widgets[w].widgetType === "YOUTUBE") {
+                        widgets[w].width = newWidget.width;
+                        widgets[w].url = newWidget.url;
                     }
-                    else if(widget.type === "HTML") {
-                        widget.text = newWidgets.text;
+                    else if(widgets[w].widgetType === "HTML") {
+                        widgets[w].text = newWidget.text;
 
                     }
-                    return angular.copy(widget);
+                    return angular.copy(widgets[w]);
                 }
             }
             return null;
@@ -82,20 +79,19 @@
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
                     widgets.splice(w, 1);
-                    return angular.copy(widgets); // return this?
-                }
-            }
-            // return null;
-        }
-
-        function findAllWidgets(pageId) {
-            var widgets = [];
-            for(var w in widgets) {
-                if(widgets[w].pageId === pageId) {
-                    sites.push(widgets[w]);
                 }
             }
             return widgets;
+        }
+
+        function findAllWidgets(pageId) {
+            var _widgets = [];
+            for(var w in widgets) {
+                if(widgets[w].pageId === pageId) {
+                    _widgets.push(widgets[w]);
+                }
+            }
+            return _widgets;
         }
     }
 })();

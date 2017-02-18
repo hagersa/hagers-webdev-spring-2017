@@ -1,0 +1,26 @@
+<div ng-controller="WidgetEditController as model" class="sah-form-padding">
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+    <form>
+        <div class="form-group">
+            <label for="width">Width</label>
+            <input ng-model="model.widget.width" type="number" class="form-control" id="width" placeholder="Enter your video width.">
+        </div>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input ng-model="model.widget.url" type="url" class="form-control" id="url">
+        </div>
+    </form>
+
+    <a ng-click="model.updateWidget(model.widget)"
+       class="btn btn-danger  btn-block" >
+        Update
+    </a>
+
+    <a ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>

@@ -14,16 +14,16 @@
             "findPageByWebsiteId": findPageByWebsiteId,
             "findPageById": findPageById,
             "updatePage": updatePage,
-            "deleteWebsite": deletePage,
+            "deletePage": deletePage,
             "findAllPagesForUser": findAllPagesForUser
         };
         return api;
 
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
-            page._id = (new Date()).getTime();
+            page._id = (new Date()).getTime()+"";
             pages.push(page);
-            return page._id;
+            return page;
         }
 
         function findPageByWebsiteId(websiteId) {
@@ -48,8 +48,8 @@
             for(var p in pages) {
                 var page = pages[p];
                 if(page._id === pageId ) {
-                    pages[w].name = newPage.name;
-                    pages[w].description = newPage.description;
+                    pages[p].name = newPage.name;
+                    pages[p].description = newPage.description;
 
                     return angular.copy(page);
                 }
@@ -61,20 +61,19 @@
             for(var p in pages) {
                 if(pages[p]._id === pageId) {
                     pages.splice(p, 1);
-                    return angular.copy(pages); // return this?
-                }
-            }
-            // return null;
-        }
-
-        function findAllPagesForUser(websiteId) {
-            var pages = [];
-            for(var p in pages) {
-                if(pages[p].websiteId === websiteId) {
-                    pages.push(pages[p]);
                 }
             }
             return pages;
+        }
+
+        function findAllPagesForUser(websiteId) {
+            var _pages = [];
+            for(var p in pages) {
+                if(pages[p].websiteId === websiteId) {
+                    _pages.push(pages[p]);
+                }
+            }
+            return _pages;
         }
     }
 })();

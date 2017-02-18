@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .factory('UserService', userService);
 
-    function userService() {
+    function userService() { // Note from class: function userService($https) {
         var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
             {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -59,6 +59,12 @@
             return null;
         }
 
+        // Notes from class
+        // reimplementation using server
+        //function findUserByCredentials(username, password) {
+        //    return $https.get("/api/user?username="+username+"&password+"+password); // insert morning??
+        //} // returns a Promise
+
         function updateUser(userId, newUser) {
             for(var u in users) {
                 var user = users[u];
@@ -79,10 +85,8 @@
                 var user = users[u];
                 if( user._id === userId) {
                     users.splice(u, 1);
-                    // do I need to return something??
                 }
             }
-            // return null;
         }
 
 

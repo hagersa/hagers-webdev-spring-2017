@@ -49,7 +49,7 @@
 
         function updateWebsite(websiteId, newWebsite) {
             for(var w in websites) {
-                var website = websites[u];
+                var website = websites[w];
                 if(website._id === websiteId ) {
                     websites[w].name = newWebsite.name;
                     websites[w].description = newWebsite.description;
@@ -64,21 +64,20 @@
             for(var w in websites) {
                 if(websites[w]._id === websiteId) {
                     websites.splice(w, 1);
-                    return angular.copy(websites); // is this correct?
                 }
             }
-            // return null;
+            return websites;
         }
 
 
         function findAllWebsitesForUser(userId) {
-            var sites = [];
+            var _sites = [];
             for(var w in websites) {
                 if(websites[w].developerId === userId) {
-                    sites.push(websites[w]);
+                    _sites.push(websites[w]);
                 }
             }
-            return sites;
+            return _sites;
         }
     }
 })();

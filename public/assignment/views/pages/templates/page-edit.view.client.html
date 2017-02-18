@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
                 </a>
@@ -50,7 +50,7 @@
                         Name
                     </div>
                     <div class="col-sm-2">
-                        <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}" class="pull-right">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="pull-right">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
                     </div>
@@ -59,10 +59,10 @@
             <li ng-repeat="page in model.pages" class="list-group-item">
                 <div class="row">
                     <div class="col-sm-10">
-                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}">{{page.name}}</a>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
                     </div>
                     <div class="col-xs-1">
-                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -72,6 +72,11 @@
     </div>
 
     <div class="col-sm-8 col-xs-12 sah-right-pane">
+
+        <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+        <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
     <form>
         <div class="form-group">
             <label for="name">Name</label>
@@ -88,9 +93,8 @@
         Update
     </a>
 
-    <a ng-click="model.deletePage(model.page)"
-       class="btn btn-danger  btn-block"
-       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+    <a ng-click="model.deletePage(model.pageId)"
+       class="btn btn-danger  btn-block">
         Delete
     </a>
     </div>

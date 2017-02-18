@@ -1,4 +1,8 @@
 <div ng-controller="WidgetEditController as model" class="sah-form-padding">
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
     <form>
         <div class="form-group">
             <label for="text">Text</label>
@@ -6,8 +10,7 @@
                       class="form-control"
                       id="text"
                       rows="4"
-                      placeholder="Add your text here."required>
-            </textarea>
+                      placeholder="Add your text here."required></textarea>
         </div>
     </form>
 
@@ -16,9 +19,8 @@
         Update
     </a>
 
-    <a ng-click="model.deleteWidget(model.widget)"
-       class="btn btn-danger btn-block"
-       href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+    <a ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-danger btn-block">
         Delete
     </a>
 </div>

@@ -59,10 +59,10 @@
             <li ng-repeat="website in model.websites" class="list-group-item">
                 <div class="row">
                     <div class="col-sm-10">
-                        <a href="#/user/{{model.userId}}/website/{{model.website._id}}/page">{{website.name}}</a>
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
                     </div>
                     <div class="col-sm-2">
-                        <a href="#/user/{{model.userId}}/website/{{model.website._id}}">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -70,6 +70,7 @@
             </li>
         </ul>
     </div>
+
     <div class="col-sm-8 col-xs-12 sah-right-pane">
 
         <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>

@@ -7,7 +7,7 @@
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
-        vm.deleteWebsiste = deleteWebsite;
+        vm.deleteWebsite = deleteWebsite;
         vm.updateWebsite = updateWebsite;
 
         function init() {
@@ -16,18 +16,19 @@
         }
         init();
 
-        function deleteWebsite () {
-            WebsiteService.deleteWebsite(vm.websiteId);
-            $location.url("/user/"+vm.userId+"/website");
+        function deleteWebsite (newId) {
+            vm.websites = WebsiteService.deleteWebsite(newId);
+            $location.url("/user/" + vm.userId + "/website");
         };
 
-        function updateWebsite () {
+        function updateWebsite (newWebsite) {
             var website = WebsiteService.updateWebsite(vm.websiteId, newWebsite);
             if(website == null) {
                 vm.error = "unable to update website";
             } else {
                 vm.message = "website successfully updated"
             }
+            $location.url("/user/" + vm.userId + "/website");
         }
     }
 })();

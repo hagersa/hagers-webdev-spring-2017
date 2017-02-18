@@ -5,24 +5,33 @@
 
     function WidgetNewController($sce, $routeParams, $location, WidgetService) {
         var vm = this;
-        vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        vm.getTrustedHtml = getTrustedHtml;
-        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+        vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        vm.getTrustedHtml = getTrustedHtml;
+        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
         vm.createWidget = createWidget;
+        vm.getEditorTemplateUrl = getEditorTemplateUrl;
+
+        function init() {
+            vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+        }
+        init();
+
+        function getEditorTemplateUrl(type) {
+            return 'views/widgets/editors/widget-'+type+'-edit.view.client.html';
+        }
 
         function createWidget(type) {
-            var newWidget = {
-                widgetType: type
-            };
+            var newWidget = { widgetType : type};
 
             var widget = WidgetService.createWidget(vm.pageId, newWidget);
 
-            $location.url('/user/'+ widget.userId + '/website/' + widget.websiteId
-                + '/page/' + widget.pageId + '/widget/' + widget.widgetId);
+            var url = "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id;
+
+            console.log(url);
+            $location.url(url);
         }
 
         function getWidgetTemplateUrl(widgetType) {

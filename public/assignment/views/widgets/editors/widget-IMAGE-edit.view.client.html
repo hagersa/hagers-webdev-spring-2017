@@ -1,12 +1,16 @@
 <div ng-controller="WidgetEditController as model" class="sah-form-padding">
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
     <form>
         <div class="form-group">
             <label for="width">Width</label>
             <input ng-model="model.widget.width" type="number" class="form-control" id="width" placeholder="Enter your image width.">
         </div>
         <div class="form-group">
-            <label for="upload">Upload</label>
-            <input type="file" class="form-control" id="upload">
+            <label for="url">URL</label>
+            <input ng-model="model.widget.url" type="url" class="form-control" id="url">
         </div>
     </form>
 
@@ -22,7 +26,8 @@
         Update
     </a>
 
-    <a ng-click="model.deleteWidget(model.widget)"
-       class="btn btn-danger btn-block"
-       href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
+    <a ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-danger btn-block">
+        Delete
+    </a>
 </div>
