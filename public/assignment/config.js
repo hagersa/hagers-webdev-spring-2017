@@ -4,6 +4,9 @@
         .config(configuration);
 
     function configuration($routeProvider) {
+        // may need to add this, and add to function params: , $httpsProvider
+        // $httpsProvider.defualts.headers.post['Content-Type'] = 'application/json'
+
         $routeProvider
             .when("/login",{
                 templateUrl: 'views/user/templates/login.view.client.html',
@@ -74,7 +77,6 @@
                 controller: 'loginController',
                 controllerAs: 'model'
             })
-            // why are pages redirecting to here???
             .otherwise ( {
                 redirectTo: "/"
             })

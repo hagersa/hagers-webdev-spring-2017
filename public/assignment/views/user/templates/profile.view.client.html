@@ -68,12 +68,17 @@
     </a>
 
     <a ng-click="model.update(model.user)"
-       class="btn btn-danger  btn-block" >
+       class="btn btn-warning  btn-block" >
         Update
     </a>
 
-    <a href="#/login" class="btn btn-danger  btn-block">
+    <a href="#/login" class="btn btn-warning  btn-block">
         Logout
+    </a>
+
+    <a ng-click="model.unregisterUser(model.user)"
+       class="btn btn-danger  btn-block" >
+        Delete Account
     </a>
 </div>
 

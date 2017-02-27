@@ -12,6 +12,10 @@
         vm.getTrustedHtml = getTrustedHtml;
         vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
 
+        // bad way to make widget list sortable
+        //$(".widget-list").sortable({
+        //    axis: "y"
+        //});
 
         function init() {
             vm.widgets = WidgetService.findAllWidgets(vm.pageId);

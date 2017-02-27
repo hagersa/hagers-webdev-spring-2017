@@ -3,32 +3,38 @@
         .module("WebAppMaker")
         .controller("loginController", loginController);
 
+
+
     function loginController(UserService, $location) {
         var vm = this;
         vm.login = login;
 
         function login(user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if(loginUser != null) {
-                $location.url('/profile/' + loginUser._id);
-            }
-            else {
-                vm.error = 'user not found';
-            }
+            // show waiting gif
+            var promise = UserService.findUserByCredentials(user.username, user.password);
+            promise
+                .success(function (user) {
+                    // hide waiting gif
+                    var loginUser = user;
+                    if(loginUser != null) {
+                        $location.url('/profile/' + loginUser._id);
+                    } else {
+                        vm.error = 'user not found';
+                    }
+                })
+                .error(function(err) {
+                    vm.error = 'user does not exist';
+                });
         }
     }
 })();
 
-
-// Notes from class 2/17/2017
-// function login(user) {
-//    var promise = UserService.findUserByCredentials(user.username, user.password);
-//   promise.success(function (response) {
-//     var loginUser = response;
-//  })
-//if(loginUser != null) {
-//    $location.url('/profile/' + loginUser._id);
-//}
-//else {
-//    vm.error = 'user not found';
-//}
+// client-side login function
+//    function login(user) {
+//        var loginUser = UserService.findUserByCredentials(user.username, user.password);
+//        if(loginUser != null) {
+//            $location.url('/profile/' + loginUser._id);
+//        }
+//        else {
+//            vm.error = 'user not found';
+//        }

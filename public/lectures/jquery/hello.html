@@ -1,0 +1,67 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title<</title>
+
+
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script>
+
+
+
+    // embed JQuery code in a function
+    $(init);
+
+    // event handler executes once document has loaded
+    function init() {
+        // remove an item
+        //jQuery('h1').remove;
+        // use JavaScript to change elements
+        jQuery('h1').html('Hello Again!');
+        // generate an element
+        jQuery('<ul>');
+        // dynamic header
+        var h2=jQuery('<h2>This is dynamic header</h2>');
+        var body=jQuery('body');
+        body.append(h2);
+        // note $ is shorthand for jQuery
+        var paragraph = $('<p>Lorem Ipsum...</p>');
+        body.prepend(paragraph);
+
+        // Another example
+        var movies = ['Terminator', 'Aliens', 'Titanic', 'Avatar'];
+
+        var list = $('<ul>');
+        for(var m in movies) {
+            // var li = $('<li>'+movies[m]+'</li>');
+            var li = $('<li>');
+            li.append(movies[m]);
+            list.append(li);
+        }
+        body.append(list);
+
+        // use draggable from jQuery
+        $('h1').draggable();
+        $('p').draggable();
+        $('list').sortable();
+        $('.myList').sortable();
+    }
+
+</script>
+
+</head>
+<body>
+
+<div class="myList">
+    <div>123</div>
+    <div>234</div>
+    <div>345</div>
+    <div>456</div>
+    <div>567</div>
+</div>
+
+<h1>Hello World!</h1>
+
+</body>
+</html>
