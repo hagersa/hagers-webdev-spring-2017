@@ -48,4 +48,4 @@
             link: linkFunc
         };
     }
-}
+});

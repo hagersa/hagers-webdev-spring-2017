@@ -73,7 +73,7 @@ module.exports = function (app) {
          if(user) {
              res.send(user);
          } else {
-             res.sendStatus(404).send('user not found for username: ' + username);
+             res.sendStatus(404); // .send('user not found for username: ' + username)
          }
      }
 
@@ -86,7 +86,7 @@ module.exports = function (app) {
         if (user) {
             res.send(user);
         } else {
-            res.sendStatus(404).send('user not found for username: ' + username + 'and password: ' + password);
+            res.sendStatus(404); //.send('user not found for username: ' + username + 'and password: ' + password)
         }
     }
 
@@ -100,7 +100,7 @@ module.exports = function (app) {
                 return
             }
         }
-        res.sendStatus(404).send({});
+        res.sendStatus(404);
 
         // OR
         // var user = users.find(function(u) {

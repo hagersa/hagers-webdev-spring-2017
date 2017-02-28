@@ -9,9 +9,18 @@
         vm.websiteId = $routeParams.wid;
 
         function init() {
-            vm.pages = PageService.findAllPagesForUser(vm.websiteId);
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(renderPages);
         }
         init();
 
+        function renderPages(pages) {
+            vm.pages = pages;
+            console.log(pages);
+        }
     }
 })();
+
+// client-side init function
+// vm.pages = PageService.findAllPagesForUser(vm.websiteId);

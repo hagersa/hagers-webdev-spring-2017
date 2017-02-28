@@ -13,14 +13,21 @@
         vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
 
         // bad way to make widget list sortable
-        //$(".widget-list").sortable({
-        //    axis: "y"
-        //});
+        // $(".widget-list").sortable({
+        //     axis: "y"
+        // });
 
         function init() {
-            vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+            WidgetService
+                .findAllWidgetsForPage(vm.pageId)
+                .success(renderWidgets);
         }
         init();
+
+        function renderWidgets(widgets) {
+            vm.widgets = widgets;
+            console.log(widgets);
+        }
 
         function getWidgetTemplateUrl(widgetType) {
             var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
@@ -39,3 +46,9 @@
         }
     }
 })();
+
+// client-side init function
+// function init() {
+//     vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+// }
+// init();

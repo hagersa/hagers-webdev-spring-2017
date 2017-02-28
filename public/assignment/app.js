@@ -1,5 +1,5 @@
 (function () {
     angular
-        .module("WebAppMaker", ["ngRoute"]); // has dependencies
+        .module("WebAppMaker", ["ngRoute"]); // has dependencies // will add textAngular
 
 })();

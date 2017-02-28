@@ -1,17 +1,16 @@
 (function () {
     angular
-        .module('WebAppMaker', [])
-        .directive('sortableDirective', sortableDirective)
+        .module('WebAppMaker')
+        .directive('sortableDirective', sortableDir)
 
-    function sortableDirective () {
+    function sortableDir () {
         // scope lets this talk to the outside world
         // element is a JQuery element
         function linkFunc(scope, element) {
-            element.sortable({});
+            element.sortable({axis: 'y'}); // {axis: y} doesn't work
         }
-
         return {
             link: linkFunc
         };
     }
-}();
+})();

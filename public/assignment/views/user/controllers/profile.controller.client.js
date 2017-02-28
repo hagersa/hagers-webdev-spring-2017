@@ -49,6 +49,7 @@
     }
 })();
 
+
 // alternate init() function
 // function init() {
 //     UserService
@@ -60,7 +61,7 @@
 // }
 // init();
 
-// client-side update function
+// client-side update functions
 // var user = UserService.updateUser(userId, newUser);
 // if(user == null) {
 //     vm.error = "unable to update user";

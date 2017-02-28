@@ -19,6 +19,7 @@
 </nav>
 
 <div ng-controller="WidgetListController as model" class="container-fluid">
+    <div class="widget-list" sortable-directive="">
     <div ng-repeat="widget in model.widgets">
         <div class="sah-toolbar">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
@@ -41,6 +42,7 @@
                 <div ng-include = "'views/widgets/templates/widget-YOUTUBE.view.client.html'"></div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
