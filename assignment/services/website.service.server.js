@@ -1,5 +1,4 @@
 module.exports = function (app) {
-    console.log("Hello World from app.js module and website service.server");
 
     app.post("/api/user/:userId/website", createWebsite);
     app.get("/api/user/:userId/website", findAllWebsitesForUser);
@@ -16,10 +15,17 @@ module.exports = function (app) {
         { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem", created: new Date() }
     ];
 
-    // unclear if this is working correctly or not
+    function createWebsite(req, res) {
+        var newWebsite = req.body;
+        newWebsite.developerId = req.params.userId;
+        newWebsite._id = (new Date()).getTime()+"";
+        newWebsite.created = (new Date());
+        websites.push(newWebsite);
+        res.send(newWebsite);
+    }
+
     function findAllWebsitesForUser(req, res){
         var userId = req.params.userId;
-
         var _sites = [];
 
         for(var w in websites) {
@@ -31,12 +37,10 @@ module.exports = function (app) {
             res.send(_sites);
             return
         } else {
-            res.sendStatus(404); // .send('websites not found')
+            res.sendStatus(404);
         }
-        // return
     }
 
-    // this may not be working correctly
     function findWebsiteById(req, res){
         var websiteId = req.params.websiteId;
 
@@ -52,15 +56,12 @@ module.exports = function (app) {
 
     function updateWebsite(req, res) {
         var websiteId = req.params.websiteId;
-        console.log(websiteId);
 
         for(var w in websites) {
             var website = websites[w];
 
             if(website._id === websiteId ) {
                 var newWebsite = req.body;
-                console.log(newWebsite);
-
                 website.name = newWebsite.name;
                 website.description = newWebsite.description;
 
@@ -69,15 +70,6 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
-    }
-
-    function createWebsite(req, res) {
-        var newWebsite = req.body;
-        newWebsite.developerId = req.params.userId;
-        newWebsite._id = (new Date()).getTime()+"";
-        websites.push(newWebsite);
-        res.send(newWebsite);
-        // OR res.json(newWebsite);
     }
 
     function deleteWebsite(req, res) {

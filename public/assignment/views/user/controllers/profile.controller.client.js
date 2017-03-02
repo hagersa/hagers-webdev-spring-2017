@@ -48,23 +48,3 @@
         }
     }
 })();
-
-
-// alternate init() function
-// function init() {
-//     UserService
-//         .findUserById(userId)
-//         .success(function (response) {
-//         vm.user = response;
-//         console.log(vm.user);
-//         })
-// }
-// init();
-
-// client-side update functions
-// var user = UserService.updateUser(userId, newUser);
-// if(user == null) {
-//     vm.error = "unable to update user";
-// } else {
-//     vm.message = "user successfully updated"
-// }

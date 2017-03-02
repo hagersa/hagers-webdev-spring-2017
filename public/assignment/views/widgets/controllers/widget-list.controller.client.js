@@ -10,12 +10,6 @@
         vm.pageId = $routeParams.pid;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
-        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
-
-        // bad way to make widget list sortable
-        // $(".widget-list").sortable({
-        //     axis: "y"
-        // });
 
         function init() {
             WidgetService
@@ -26,12 +20,6 @@
 
         function renderWidgets(widgets) {
             vm.widgets = widgets;
-            console.log(widgets);
-        }
-
-        function getWidgetTemplateUrl(widgetType) {
-            var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
-            return url;
         }
 
         function getTrustedHtml(html) {
@@ -46,9 +34,3 @@
         }
     }
 })();
-
-// client-side init function
-// function init() {
-//     vm.widgets = WidgetService.findAllWidgets(vm.pageId);
-// }
-// init();

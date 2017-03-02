@@ -23,17 +23,14 @@
 
         function renderPages(pages) {
             vm.pages = pages;
-            //console.log(pages);
         }
 
         function renderPage(page) {
             vm.page = page;
-            console.log(page);
         }
 
         function deletePage (pageId) {
             var answer = confirm("Are you sure?");
-            //console.log(answer);
             if(answer) {
                 PageService
                     .deletePage(pageId)
@@ -51,7 +48,6 @@
                 .updatePage(vm.pageId, newPage)
                 .success(function (response) {
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
-                    //vm.message = "page successfully updated"
                 })
                 .error(function () {
                     vm.error = "unable to update page";

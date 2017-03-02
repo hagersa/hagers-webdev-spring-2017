@@ -1,5 +1,4 @@
 module.exports = function (app) {
-    console.log("Hello World from app.js module and page service.server");
 
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
@@ -12,6 +11,14 @@ module.exports = function (app) {
         { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
         { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
     ];
+
+    function createPage(req, res) {
+        var newPage = req.body;
+        newPage.websiteId = req.params.websiteId;
+        newPage._id = (new Date()).getTime()+"";
+        pages.push(newPage);
+        res.send(newPage);
+    }
 
     function findAllPagesForWebsite(req, res){
         var websiteId = req.params.websiteId;
@@ -30,14 +37,6 @@ module.exports = function (app) {
             res.sendStatus(404); // .send('pages not found')
         }
         return
-    }
-
-    function createPage(req, res) {
-        var newPage = req.body;
-        newPage.websiteId = req.params.websiteId;
-        newPage._id = (new Date()).getTime()+"";
-        pages.push(newPage);
-        res.send(newPage);
     }
 
     function findPageById(req, res){

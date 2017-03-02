@@ -22,25 +22,17 @@
 
         function renderWidget(widget) {
             vm.widget = widget;
-            console.log(vm.widget);
         }
 
         function upload() {
 
         }
 
-        // function getEditorTemplateUrl(type) {
-        //     console.log(type);
-        //     console.log('views/widgets/editors/widget-'+type+'-edit.view.client.html');
-        //     return 'views/widgets/editors/widget-'+type+'-edit.view.client.html';
-        // }
-
         function updateWidget(newWidget) {
             WidgetService
                 .updateWidget(vm.widgetId, newWidget)
                 .success(function (response) {
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
-                    //vm.message = "widget successfully updated"
                 })
                 .error(function () {
                     vm.error = "unable to update widget";
@@ -49,7 +41,6 @@
 
         function deleteWidget(widgetId) {
             var answer = confirm("Are you sure?");
-            console.log(answer);
             if(answer) {
                 WidgetService
                     .deleteWidget(widgetId)
@@ -63,14 +54,3 @@
         }
     }
 })();
-
-// function updateWidget(newWidget) {
-//     var widget = WidgetService.updateWidget(vm.widgetId, newWidget);
-//     console.log(widget);
-//     if(widget == null) {
-//         vm.error = "unable to update widget";
-//     } else {
-//         vm.message = "widget successfully updated"
-//     }
-//     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
-// }

@@ -17,10 +17,6 @@
 
         function renderPages(pages) {
             vm.pages = pages;
-            //console.log(pages);
         }
     }
 })();
-
-// client-side init function
-// vm.pages = PageService.findAllPagesForUser(vm.websiteId);

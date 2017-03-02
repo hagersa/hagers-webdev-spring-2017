@@ -18,7 +18,6 @@
 
         function renderPages(pages) {
             vm.pages = pages;
-            //console.log(pages);
         }
 
         function createPage(page) {

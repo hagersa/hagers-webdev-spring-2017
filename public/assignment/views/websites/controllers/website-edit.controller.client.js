@@ -22,17 +22,15 @@
 
         function renderWebsites(websites) {
             vm.websites = websites;
-            console.log(websites);
         }
 
         function renderWebsite(website) {
             vm.website = website;
-            console.log(website);
         }
 
         function deleteWebsite (websiteId) {
             var answer = confirm("Are you sure?");
-            console.log(answer);
+
             if(answer) {
                 WebsiteService
                     .deleteWebsite(websiteId)
@@ -50,7 +48,6 @@
                 .updateWebsite(vm.websiteId, newWebsite)
                 .success(function (response) {
                     $location.url("/user/" + vm.userId + "/website");
-                    //vm.message = "website successfully updated"
                 })
                 .error(function () {
                     vm.error = "unable to update website";

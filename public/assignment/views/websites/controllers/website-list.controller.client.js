@@ -17,7 +17,6 @@
 
         function renderWebsites(websites) {
             vm.websites = websites;
-            console.log(websites);
         }
     }
 })();

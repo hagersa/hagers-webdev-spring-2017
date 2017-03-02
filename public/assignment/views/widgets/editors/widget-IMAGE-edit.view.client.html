@@ -14,13 +14,7 @@
         </div>
     </form>
 
-    <!--<div class="form-group">-->
-        <!--<label for="upload">Upload</label>-->
-        <!--<input type="file" class="form-control" id="upload">-->
-    <!--</div>-->
-
-    <!--<a class="btn btn-primary btn-block">Upload</a>-->
-    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+    <form action="/api/upload"  method="post" enctype="multipart/form-data" class="sah-button-padding">
             <input  name="myFile"   type="file" class="form-control"/>
             <input  name="userId" value="{{model.userId}}" style="display: none"/>
             <input  name="pageId" value="{{model.pageId}}" style="display: none"/>
@@ -32,7 +26,7 @@
     </form>
 
     <a ng-click="model.updateWidget(model.widget)"
-       class="btn btn-danger  btn-block">
+       class="btn btn-warning  btn-block">
         Update
     </a>
 

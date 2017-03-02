@@ -17,7 +17,6 @@
 
         function renderWebsites(websites) {
             vm.websites = websites;
-            console.log(websites);
         }
 
         function createWebsite(website) {
@@ -32,8 +31,3 @@
         }
     }
 })();
-
-// client-side createWebsite
-// var website = WebsiteService.createWebsite(vm.userId, website);
-// $location.url("/user/" + vm.userId + "/website");
-
