@@ -43,10 +43,10 @@ module.exports = function (app) {
             if (user._id == userId) {
                 var newUser = req.body;
                 console.log(newUser);
-                users[u].firstName = newUser.firstName;
-                users[u].lastName = newUser.lastName;
-                users[u].password = newUser.password;
-                users[u].email = newUser.email;
+                user.firstName = newUser.firstName;
+                user.lastName = newUser.lastName;
+                user.password = newUser.password;
+                user.email = newUser.email;
                 res.sendStatus(200);
                 return
             }
@@ -101,15 +101,16 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
-
-        // OR
-        // var user = users.find(function(u) {
-        //     return u._id == userId;
-        // });
-        // res.send(user);
-        // return
     }
 };
+
+// alternate for findUserById
+// OR
+// var user = users.find(function(u) {
+//     return u._id == userId;
+// });
+// res.send(user);
+// return
 
 // four ways to connect to server:
 // get (fetch),

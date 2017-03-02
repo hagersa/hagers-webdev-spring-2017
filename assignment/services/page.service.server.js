@@ -1,11 +1,11 @@
 module.exports = function (app) {
     console.log("Hello World from app.js module and page service.server");
 
-    //app.post("/api/website/:websiteId/page", createPage);
+    app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
-    //app.get("/api/page/:pageId", findPageById);
-    //app.put("/api/page/:pageId", updatePage);
-    //app.delete("/api/page/:pageId", deletePage);
+    app.get("/api/page/:pageId", findPageById);
+    app.put("/api/page/:pageId", updatePage);
+    app.delete("/api/page/:pageId", deletePage);
 
     var pages = [
         { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -30,5 +30,59 @@ module.exports = function (app) {
             res.sendStatus(404); // .send('pages not found')
         }
         return
+    }
+
+    function createPage(req, res) {
+        var newPage = req.body;
+        newPage.websiteId = req.params.websiteId;
+        newPage._id = (new Date()).getTime()+"";
+        pages.push(newPage);
+        res.send(newPage);
+    }
+
+    function findPageById(req, res){
+        var pageId = req.params.pageId;
+
+        for(var p in pages) {
+            var page = pages[p];
+            if(pages[p]._id === pageId) {
+                res.send(page);
+                return
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function updatePage(req, res) {
+        var pageId = req.params.pageId;
+        //console.log(pageId);
+
+        for(var p in pages) {
+            var page = pages[p];
+
+            if(page._id === pageId ) {
+                var newPage = req.body;
+                //console.log(newPage);
+
+                page.name = newPage.name;
+                page.description = newPage.description;
+
+                res.sendStatus(200);
+                return
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function deletePage(req, res) {
+        var pageId = req.params.pageId;
+        for (var p in pages) {
+            if(pages[p]._id === pageId) {
+                pages.splice(p, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
     }
 };

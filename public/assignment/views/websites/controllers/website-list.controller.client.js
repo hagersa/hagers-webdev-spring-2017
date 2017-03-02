@@ -21,6 +21,3 @@
         }
     }
 })();
-
-// client-side init()
-// vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);

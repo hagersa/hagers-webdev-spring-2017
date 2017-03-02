@@ -17,7 +17,7 @@
 
         function renderPages(pages) {
             vm.pages = pages;
-            console.log(pages);
+            //console.log(pages);
         }
     }
 })();

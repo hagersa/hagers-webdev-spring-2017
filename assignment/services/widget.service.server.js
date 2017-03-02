@@ -1,11 +1,14 @@
 module.exports = function (app) {
     console.log("Hello World from app.js module and widget service.server");
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads'});
 
-    //app.post("/api/page/:pageId/widget", createWidget);
+    app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
-    //app.get("/api/widget/:widgetId", findWidgetById);
-    //app.put("/api/widget/:widgetId", updateWidget);
-    //app.delete("/api/widget/:widgetId", deleteWidget);
+    app.get("/api/widget/:widgetId", findWidgetById);
+    app.put("/api/widget/:widgetId", updateWidget);
+    app.delete("/api/widget/:widgetId", deleteWidget);
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -18,6 +21,47 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
+
+    function uploadImage(req, res) {
+        var widget        = req.body;
+        var widgetType    = req.body.widgetType;
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var userId         = req.body.userId;
+        var pageId         = req.body.pageId;
+        var websiteId         = req.body.websiteId;
+        var myFile        = req.file;
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        //widget.url = filename;
+
+        console.log(req.body);
+        console.log(myFile);
+
+        for(var w in widgets) {
+            var widget = widgets[w];
+            if(widgets[w]._id === widgetId) {
+                widget.url = '/uploads/'+filename;
+                break;
+            }
+        }
+
+        //res.send(widget);
+        res.redirect('/assignment/#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId);
+    }
+
+    function createWidget(req, res) {
+        var newWidget = req.body;
+        newWidget.pageId = req.params.pageId;
+        newWidget._id = (new Date()).getTime()+"";
+        widgets.push(newWidget);
+        res.send(newWidget);
+    }
 
     function findAllWidgetsForPage(req, res){
         var pageId = req.params.pageId;
@@ -36,5 +80,65 @@ module.exports = function (app) {
             res.sendStatus(404); //.send('widgets not found')
         }
         return
+    }
+
+    // this may not be working correctly
+    function findWidgetById(req, res){
+        var widgetId = req.params.widgetId;
+
+        for(var w in widgets) {
+            var widget = widgets[w];
+            if(widgets[w]._id === widgetId) {
+                res.send(widget);
+                return
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function deleteWidget(req, res) {
+        var widgetId = req.params.widgetId;
+        for(var w in widgets) {
+            if(widgets[w]._id === widgetId) {
+                widgets.splice(w, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function updateWidget(req, res) {
+        var widgetId = req.params.widgetId;
+
+        for(var w in widgets) {
+            if(widgets[w]._id === widgetId) {
+                var newWidget = req.body;
+                if(widgets[w].widgetType === "HEADER") {
+                    widgets[w].size = newWidget.size;
+                    widgets[w].text = newWidget.text;
+                    res.sendStatus(200);
+                    return;
+                }
+                else if(widgets[w].widgetType === "IMAGE") {
+                    widgets[w].width = newWidget.width;
+                    widgets[w].url = newWidget.url;
+                    res.sendStatus(200);
+                    return;
+                }
+                else if(widgets[w].widgetType === "YOUTUBE") {
+                    widgets[w].width = newWidget.width;
+                    widgets[w].url = newWidget.url;
+                    res.sendStatus(200);
+                    return;
+                }
+                else if(widgets[w].widgetType === "HTML") {
+                    widgets[w].text = newWidget.text;
+                    res.sendStatus(200);
+                    return;
+                }
+            }
+        }
+        res.sendStatus(404);
     }
 };

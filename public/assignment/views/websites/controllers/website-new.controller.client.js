@@ -10,13 +10,30 @@
         vm.createWebsite = createWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-        }
-        init();
+            WebsiteService
+                .findAllWebsitesForUser(vm.userId)
+                .success(renderWebsites);
+        } init();
 
-        function createWebsite (website) {
-            var website = WebsiteService.createWebsite(vm.userId, website);
-            $location.url("/user/" + vm.userId + "/website");
-        };
+        function renderWebsites(websites) {
+            vm.websites = websites;
+            console.log(websites);
+        }
+
+        function createWebsite(website) {
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .success(function (website) {
+                    $location.url("/user/" + vm.userId + "/website");
+                })
+                .error(function () {
+                    vm.error = "could not create website";
+                });
+        }
     }
 })();
+
+// client-side createWebsite
+// var website = WebsiteService.createWebsite(vm.userId, website);
+// $location.url("/user/" + vm.userId + "/website");
+

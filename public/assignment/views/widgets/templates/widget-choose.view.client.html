@@ -1,11 +1,21 @@
 <nav ng-controller="WidgetNewController as model" class="navbar navbar-default navbar-fixed-top sah-page-custom-color">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+        <!--<div class="navbar-text pull-left">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
                class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-        </div>
+        </div>-->
         <div class="navbar-header">
             <a class="navbar-brand">
                 Choose Widget

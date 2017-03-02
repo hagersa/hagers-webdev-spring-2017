@@ -4,14 +4,14 @@
         .factory('WebsiteService', websiteService);
 
     function websiteService($http) {
-        var websites = [
-            { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem", created: new Date() },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem", created: new Date() },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem", created: new Date() },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem", created: new Date() },
-            { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem", created: new Date() },
-            { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem", created: new Date() }
-        ];
+        // var websites = [
+        //     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem", created: new Date() },
+        //     { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem", created: new Date() },
+        //     { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem", created: new Date() },
+        //     { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem", created: new Date() },
+        //     { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem", created: new Date() },
+        //     { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem", created: new Date() }
+        // ];
         var api = {
             "createWebsite": createWebsite,
             "findWebsitesByUser": findWebsitesByUser,
@@ -23,12 +23,26 @@
         return api;
 
         function createWebsite(userId, website) {
-            website.developerId = userId;
-            website._id = (new Date()).getTime()+"";
-            websites.push(website);
-            return website;
+            return $http.post("/api/user/"+userId+"/website", website);
         }
 
+        function deleteWebsite(websiteId) {
+            return $http.delete("/api/website/"+websiteId);
+        }
+
+        function findAllWebsitesForUser(userId) {
+            return $http.get("/api/user/"+userId+"/website");
+        }
+
+        function findWebsiteById(websiteId) {
+            return $http.get("/api/website/"+websiteId);
+        }
+
+        function updateWebsite(websiteId, newWebsite) {
+            return $http.put("/api/website/"+websiteId, newWebsite);
+        }
+
+        // this seems unneccessary
         function findWebsitesByUser(userId) {
             for(var w in websites) {
                 if(websites[w].developerId === userId) {
@@ -36,41 +50,6 @@
                 }
             }
             return null;
-        }
-
-        function findWebsiteById(wid) {
-            for(var w in websites) {
-                if(websites[w]._id === wid) {
-                    return angular.copy(websites[w]);
-                }
-            }
-            return null;
-        }
-
-        function updateWebsite(websiteId, newWebsite) {
-            for(var w in websites) {
-                var website = websites[w];
-                if(website._id === websiteId ) {
-                    websites[w].name = newWebsite.name;
-                    websites[w].description = newWebsite.description;
-
-                    return angular.copy(website);
-                }
-            }
-            return null;
-        }
-
-        function deleteWebsite(websiteId) {
-            for(var w in websites) {
-                if(websites[w]._id === websiteId) {
-                    websites.splice(w, 1);
-                }
-            }
-            return websites;
-        }
-
-        function findAllWebsitesForUser(userId) {
-            return $http.get("/api/user/"+userId+"/website");
         }
     }
 })();
@@ -83,3 +62,21 @@
 //     }
 // }
 // return _sites;
+
+// client-side findWebsiteById
+// for(var w in websites) {
+//     if(websites[w]._id === wid) {
+//         return angular.copy(websites[w]);
+//     }
+// }
+// return null;
+
+// client-side updateWebsite
+
+// client-side deleteWebsite
+// for(var w in websites) {
+//     if(websites[w]._id === websiteId) {
+//         websites.splice(w, 1);
+//     }
+// }
+// return websites;

@@ -11,24 +11,50 @@
         vm.updateWebsite = updateWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findAllWebsitesForUser(vm.userId)
+                .success(renderWebsites);
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .success(renderWebsite);
         }
         init();
 
-        function deleteWebsite (newId) {
-            vm.websites = WebsiteService.deleteWebsite(newId);
-            $location.url("/user/" + vm.userId + "/website");
-        };
+        function renderWebsites(websites) {
+            vm.websites = websites;
+            console.log(websites);
+        }
+
+        function renderWebsite(website) {
+            vm.website = website;
+            console.log(website);
+        }
+
+        function deleteWebsite (websiteId) {
+            var answer = confirm("Are you sure?");
+            console.log(answer);
+            if(answer) {
+                WebsiteService
+                    .deleteWebsite(websiteId)
+                    .success(function () {
+                        $location.url("/user/"+vm.userId+"/website");
+                    })
+                    .error(function () {
+                        vm.error = 'unable to delete website';
+                    });
+            }
+        }
 
         function updateWebsite (newWebsite) {
-            var website = WebsiteService.updateWebsite(vm.websiteId, newWebsite);
-            if(website == null) {
-                vm.error = "unable to update website";
-            } else {
-                vm.message = "website successfully updated"
-            }
-            $location.url("/user/" + vm.userId + "/website");
+            WebsiteService
+                .updateWebsite(vm.websiteId, newWebsite)
+                .success(function (response) {
+                    $location.url("/user/" + vm.userId + "/website");
+                    //vm.message = "website successfully updated"
+                })
+                .error(function () {
+                    vm.error = "unable to update website";
+                });
         }
     }
 })();

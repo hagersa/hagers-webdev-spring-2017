@@ -30,7 +30,7 @@
                 .error(function () {
                     vm.error = "unable to update user";
                 });
-        };
+        }
 
         function unregisterUser(user) {
             var answer = confirm("Are you sure?");

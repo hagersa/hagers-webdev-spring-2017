@@ -12,24 +12,50 @@
         vm.updatePage = updatePage;
 
         function init() {
-            vm.pages = PageService.findAllPagesForUser(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(renderPages);
+            PageService
+                .findPageById(vm.pageId)
+                .success(renderPage);
         }
         init();
 
-        function deletePage (newId) {
-            vm.pages = PageService.deletePage(newId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-        };
+        function renderPages(pages) {
+            vm.pages = pages;
+            //console.log(pages);
+        }
+
+        function renderPage(page) {
+            vm.page = page;
+            console.log(page);
+        }
+
+        function deletePage (pageId) {
+            var answer = confirm("Are you sure?");
+            //console.log(answer);
+            if(answer) {
+                PageService
+                    .deletePage(pageId)
+                    .success(function () {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    })
+                    .error(function () {
+                        vm.error = 'unable to delete page';
+                    });
+            }
+        }
 
         function updatePage (newPage) {
-            var page = PageService.updatePage(vm.pageId, newPage);
-            if(page == null) {
-                vm.error = "unable to update page";
-            } else {
-                vm.message = "page successfully updated"
-            }
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
+            PageService
+                .updatePage(vm.pageId, newPage)
+                .success(function (response) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
+                    //vm.message = "page successfully updated"
+                })
+                .error(function () {
+                    vm.error = "unable to update page";
+                });
         }
     }
 })();
