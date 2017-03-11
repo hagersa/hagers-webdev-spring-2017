@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Share Collection</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="../collection/collection-list.view.client.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="../library/library-home.view.client.html" class="navbar-link">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Share Collection
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs sah-left-pane">
+        <div class="container-fluid">
+            <div class="h3">
+                <a href="collection-create.view.client.html">
+                    <span class="glyphicon glyphicon-plus-sign pull-right sah-glyphicon-padding"></span>
+                </a>
+                In My Collection
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <a href="../widget/widget-list-owner.view.client.html">
+                                Lexington Choral Festival
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="collection-share.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="collection-edit.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <a href="../widget/widget-list-owner.view.client.html">
+                                Spring Rehearsals
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="collection-share.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="collection-edit.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-8 col-xs-12 sah-right-pane">
+    <form>
+        <div class="form-group">
+            <label for="email-search">Search for a User by Email</label>
+            <input type="email" class="form-control" id="email-search" placeholder="Enter an email address...">
+        </div>
+
+        <a class="btn btn-success  btn-block" href="">Add to List</a>
+    </form>
+
+    <ul class="list-group sah-ul-style">
+        <li class="list-group-item sah-ul-style">
+            Jane.Soprano@singer.com
+        </li>
+        <li class="list-group-item">
+            Alice.Alto@singer.com
+        </li>
+        <li class="list-group-item">
+            James.Tenor@singer.com
+        </li>
+        <li class="list-group-item">
+            John.Bass@singer.com
+        </li>
+    </ul>
+
+    <a class="btn btn-warning  btn-block" href="collection-list.view.client.html">Share</a>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-footer">
+            <div class="row navbar-text text-center">
+                <div class="col-xs-2 pull-right">
+                    <a href="../user/login.view.client.html">
+                        <span class="glyphicon glyphicon-off"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="../social/search.view.client.html">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="../social/favorites.view.client.html">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="../social/newsfeed.view.client.html">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="../user/profile.view.client.html">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,23 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MovieApp">
 <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../css/bootstrap.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <script src="../../public/js/angular.min.js"></script>
-    <script src="../../public/js/angular-route.min.js"></script>
+    <script src="../../js/angular.js"></script>
+    <script src="movies.js"></script>
     <title>Movies</title>
 </head>
 <body>
+<div class="container-fluid" ng-controller="MovieController as model">
+    <div class="row">
+        <div class="col-xs-4">
+            <h1>Movies Database</h1>
+            <label>Title</label>
+            <img ng-src="{{movie.poster}}" style="width:20px;"/>
+            <a ng-click="model.searchMovieDetails(movie.imdbID)">
+                {{movie.searchMovieDetails}}
+            </a>
+            <input ng-model="model.movie.title" class="form-control"/>
+            <a ng-click="model.createMovie(model.movie)" class="btn btn-block btn-primary">Create</a>
+            <a ng-click="model.updateMovie(model.movie)" class="btn btn-block btn-success">Update</a>
 
-<div class="container-fluid">
-<h1>Movies Database</h1>
+            <ul class="list-group">
+                <li ng-repeat="movie in model.movies" class="list-group-item">
+                    {{movie.title}}
+                    <a ng-click="model.deleteMovie(movie._id)" class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                    <a ng-click="model.selectMovie(movie._id)" class="pull-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-4">
+            <h1>Search Movies</h1>
+            <label>Movie Title</label>
+            <button ng-click="model.searchMovie(model.movie)" class="btn btn-block btn-primary">
+                Search
+            </button>
+            {{model.movieSearchResults}}
+            <div>
+                <h2>Search Results</h2>
+                <ul class="list-group"></ul>
+                <li class="list-group-item"
+                ng-repeat="movie in model.movieSearchResults">
+                    <img ng-src="{{movie.Poster}}" style="width:20px;"/>
+                    <a ng-click="model.searchMovieDetails(movie.imdbID)">
+                        {{movie.searchMovieDetails}}
+                    </a>
+                </li>
+                </ul>
+            </div>
 
-    <label>Title</label>
-    <input ng-model="movie.title" class="form-control"/>
-    <a ng-click="model.createMovie">Create Movie</a>
-    <!--add some list fields with ng-repeat-->
+        </div>
+        <div class="col-xs-4" ng-show="model.moiveDetails">
+            <h1>Search Details</h1>
+            <h2>{{model.movieDetails.Title}}
+                <span ng-click="model.likeMovie(model.movieDetails)" class="glyphicon glyphicon-star-empty"></span>
+
+            </h2>
+            <img ng-src="{{movie.movieDetails.poster}}"/>
+            <p>{{model.movieDetails.Acotrs}}</p>
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
 
 </div>
-
 </body>
 </html>

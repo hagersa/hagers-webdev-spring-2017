@@ -228,7 +228,7 @@ $.widget.bridge = function( name, object ) {
 
 		if ( isMethodCall ) {
 
-			// If this is an empty collection, we need to have the instance method
+			// If this is an empty library, we need to have the instance method
 			// return undefined instead of the jQuery instance
 			if ( !this.length && options === "instance" ) {
 				returnValue = undefined;
@@ -464,7 +464,7 @@ $.Widget.prototype = {
 
 			// We are doing this to create a new jQuery object because the _removeClass() call
 			// on the next line is going to destroy the reference to the current elements being
-			// tracked. We need to save a copy of this collection so that we can add the new classes
+			// tracked. We need to save a copy of this library so that we can add the new classes
 			// below.
 			elements = $( currentElements.get() );
 			this._removeClass( currentElements, classKey );
@@ -7616,7 +7616,7 @@ $.extend( Datepicker.prototype, {
 		this._disabledInputs[ this._disabledInputs.length ] = target;
 	},
 
-	/* Is the first field in a jQuery collection disabled as a datepicker?
+	/* Is the first field in a jQuery library disabled as a datepicker?
 	 * @param  target	element - the target input field or division or span
 	 * @return boolean - true if disabled, false if enabled
 	 */
@@ -9225,7 +9225,7 @@ function datepicker_extendRemove( target, props ) {
    @return  jQuery object */
 $.fn.datepicker = function( options ) {
 
-	/* Verify an empty collection wasn't passed - Fixes #6976 */
+	/* Verify an empty library wasn't passed - Fixes #6976 */
 	if ( !this.length ) {
 		return this;
 	}

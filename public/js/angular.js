@@ -313,7 +313,7 @@ function isArrayLike(obj) {
  * @kind function
  *
  * @description
- * Invokes the `iterator` function once for each item in `obj` collection, which can be either an
+ * Invokes the `iterator` function once for each item in `obj` library, which can be either an
  * object or an array. The `iterator` function is invoked with `iterator(value, key, obj)`, where `value`
  * is the value of an object property or an array element, `key` is the object property key or
  * array element index and obj is the `obj` itself. Specifying a `context` for the function is optional.
@@ -2025,7 +2025,7 @@ function getter(obj, path, bindFnToScope) {
 /**
  * Return the DOM siblings between the first and last node in the given array.
  * @param {Array} array like object
- * @returns {Array} the inputted object or a jqLite collection containing the nodes
+ * @returns {Array} the inputted object or a jqLite library containing the nodes
  */
 function getBlockNodes(nodes) {
   // TODO(perf): update `nodes` instead of creating a new object?
@@ -2133,7 +2133,7 @@ function setupModuleLoader(window) {
      *
      * # Module
      *
-     * A module is a collection of services, directives, controllers, filters, and configuration information.
+     * A module is a library of services, directives, controllers, filters, and configuration information.
      * `angular.module` is used to configure the {@link auto.$injector $injector}.
      *
      * ```js
@@ -5580,7 +5580,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        * @param {DOMElement} parent the parent element which will append the element as
        *   a child (so long as the after element is not present)
        * @param {DOMElement=} after the sibling element after which the element will be appended
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -5612,7 +5612,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        * @param {DOMElement} parent the parent element which will append the element as
        *   a child (so long as the after element is not present)
        * @param {DOMElement=} after the sibling element after which the element will be appended
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -5639,7 +5639,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        * digest once the animation has completed.
        *
        * @param {DOMElement} element the element which will be removed from the DOM
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -5669,7 +5669,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        *
        * @param {DOMElement} element the element which the CSS classes will be applied to
        * @param {string} className the CSS class(es) that will be added (multiple classes are separated via spaces)
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -5699,7 +5699,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        *
        * @param {DOMElement} element the element which the CSS classes will be applied to
        * @param {string} className the CSS class(es) that will be removed (multiple classes are separated via spaces)
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -5730,7 +5730,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        * @param {DOMElement} element the element which the CSS classes will be applied to
        * @param {string} add the CSS class(es) that will be added (multiple classes are separated via spaces)
        * @param {string} remove the CSS class(es) that will be removed (multiple classes are separated via spaces)
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -5777,7 +5777,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        * @param {string=} className an optional CSS class that will be applied to the element for the duration of the animation. If
        *    this value is left as empty then a CSS class of `ng-inline-animate` will be applied to the element.
        *    (Note that if no animation is detected then this value will not be applied to the element.)
-       * @param {object=} options an optional collection of options/styles that will be applied to the element.
+       * @param {object=} options an optional library of options/styles that will be applied to the element.
        *   The object can have the following properties:
        *
        *   - **addClass** - `{string}` - space-separated CSS classes to add to element
@@ -8772,8 +8772,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
      * @param {function(angular.Scope, cloneAttachFn=)} transcludeFn A linking function, where the
      *        scope argument is auto-generated to the new child of the transcluded parent scope.
      * @param {DOMElement=} $rootElement If the nodeList is the root of the compilation tree then
-     *        the rootElement must be set the jqLite collection of the compile root. This is
-     *        needed so that the jqLite collection items can be replaced with widgets.
+     *        the rootElement must be set the jqLite library of the compile root. This is
+     *        needed so that the jqLite library items can be replaced with widgets.
      * @param {number=} maxPriority Max directive priority.
      * @returns {Function} A composite linking function of all of the matched directives or null.
      */
@@ -8781,7 +8781,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
                             previousCompileContext) {
       var linkFns = [],
           // `nodeList` can be either an element's `.childNodes` (live NodeList)
-          // or a jqLite/jQuery collection or an array
+          // or a jqLite/jQuery library or an array
           notLiveList = isArray(nodeList) || (nodeList instanceof jqLite),
           attrs, directives, nodeLinkFn, childNodes, childLinkFn, linkFnFound, nodeLinkFnFound;
 
@@ -8943,7 +8943,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
     }
 
     /**
-     * Looks for directives on the given node and adds them to the directive collection which is
+     * Looks for directives on the given node and adds them to the directive library which is
      * sorted.
      *
      * @param node Node to search.
@@ -9130,7 +9130,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         if (!compiled) {
           compiled = compile($compileNodes, transcludeFn, maxPriority, ignoreDirective, previousCompileContext);
 
-          // Null out all of these references in order to make them eligible for garbage collection
+          // Null out all of these references in order to make them eligible for garbage library
           // since this is a potentially long lived closure
           $compileNodes = transcludeFn = previousCompileContext = null;
         }
@@ -10166,7 +10166,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
     /**
      * This is a special jqLite.replaceWith, which can replace items which
-     * have no parents, provided that the containing jqLite collection is provided.
+     * have no parents, provided that the containing jqLite library is provided.
      *
      * @param {JqLite=} $rootElement The root of the compile tree. Used so that we can replace nodes
      *                               in the root of the tree.
@@ -10233,7 +10233,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       // This includes invoking the $destroy event on any elements with listeners.
       jqLite.cleanData(fragment.querySelectorAll('*'));
 
-      // Update the jqLite collection to only contain the `newNode`
+      // Update the jqLite library to only contain the `newNode`
       for (i = 1; i < removeCount; i++) {
         delete elementsToRemove[i];
       }
@@ -17435,7 +17435,7 @@ function $RootScopeProvider() {
        *
        * @description
        * A variant of {@link ng.$rootScope.Scope#$watch $watch()} where it watches an array of `watchExpressions`.
-       * If any one expression in the collection changes the `listener` is executed.
+       * If any one expression in the library changes the `listener` is executed.
        *
        * - The items in the `watchExpressions` array are observed via the standard `$watch` operation. Their return
        *   values are examined for changes on every call to `$digest`.
@@ -17522,7 +17522,7 @@ function $RootScopeProvider() {
        * (for arrays, this implies watching the array items; for object maps, this implies watching
        * the properties). If a change is detected, the `listener` callback is fired.
        *
-       * - The `obj` collection is observed via standard $watch operation and is examined on every
+       * - The `obj` library is observed via standard $watch operation and is examined on every
        *   call to $digest() to see if any items have been added, removed, or moved.
        * - The `listener` is called whenever anything within the `obj` has changed. Examples include
        *   adding, removing, and moving items belonging to an object or array.
@@ -17554,12 +17554,12 @@ function $RootScopeProvider() {
        * @param {string|function(scope)} obj Evaluated as {@link guide/expression expression}. The
        *    expression value should evaluate to an object or an array which is observed on each
        *    {@link ng.$rootScope.Scope#$digest $digest} cycle. Any shallow change within the
-       *    collection will trigger a call to the `listener`.
+       *    library will trigger a call to the `listener`.
        *
        * @param {function(newCollection, oldCollection, scope)} listener a callback function called
        *    when a change is detected.
        *    - The `newCollection` object is the newly modified data obtained from the `obj` expression
-       *    - The `oldCollection` object is a copy of the former collection data.
+       *    - The `oldCollection` object is a copy of the former library data.
        *      Due to performance considerations, the`oldCollection` value is computed only if the
        *      `listener` function declares two or more arguments.
        *    - The `scope` argument refers to the current scope.
@@ -17677,7 +17677,7 @@ function $RootScopeProvider() {
             listener(newValue, veryOldValue, self);
           }
 
-          // make a copy for the next time a collection is changed
+          // make a copy for the next time a library is changed
           if (trackVeryOldValue) {
             if (!isObject(newValue)) {
               //primitive
@@ -17892,7 +17892,7 @@ function $RootScopeProvider() {
        * Removes the current scope (and all of its children) from the parent scope. Removal implies
        * that calls to {@link ng.$rootScope.Scope#$digest $digest()} will no longer
        * propagate to the current scope and its children. Removal also implies that the current
-       * scope is eligible for garbage collection.
+       * scope is eligible for garbage library.
        *
        * The `$destroy()` is usually used by directives such as
        * {@link ng.directive:ngRepeat ngRepeat} for managing the
@@ -17924,7 +17924,7 @@ function $RootScopeProvider() {
         }
 
         // sever all the references to parent scopes (after this cleanup, the current scope should
-        // not be retained by any of our references and should be eligible for garbage collection)
+        // not be retained by any of our references and should be eligible for garbage library)
         if (parent && parent.$$childHead === this) parent.$$childHead = this.$$nextSibling;
         if (parent && parent.$$childTail === this) parent.$$childTail = this.$$prevSibling;
         if (this.$$prevSibling) this.$$prevSibling.$$nextSibling = this.$$nextSibling;
@@ -19754,7 +19754,7 @@ function $$TestabilityProvider() {
      * @name $testability
      *
      * @description
-     * The private $$testability service provides a collection of methods for use when debugging
+     * The private $$testability service provides a library of methods for use when debugging
      * or by automated test and debugging tools.
      */
     var testability = {};
@@ -22116,7 +22116,7 @@ function orderByFilter($parse) {
         value2 = value2.toLowerCase();
       } else if (type1 === 'object') {
         // For basic objects, use the position of the object
-        // in the collection instead of the value
+        // in the library instead of the value
         if (isObject(value1)) value1 = v1.index;
         if (isObject(value2)) value2 = v2.index;
       }
@@ -26713,7 +26713,7 @@ var ngControllerDirective = [function() {
    </example>
  */
 /*
- * A collection of directives that allows creation of custom event handlers that are defined as
+ * A library of directives that allows creation of custom event handlers that are defined as
  * angular expressions and are compiled and executed within the current scope.
  */
 var ngEventDirectives = {};
@@ -29591,7 +29591,7 @@ var NG_OPTIONS_REGEXP = /^\s*([\s\S]+?)(?:\s+as\s+([\s\S]+?))?(?:\s+group\s+by\s
                         // 5: array item variable name
                         // 6: object item key variable name
                         // 7: object item value variable name
-                        // 8: collection expression
+                        // 8: library expression
                         // 9: track by expression
 /* eslint-enable */
 
@@ -29611,14 +29611,14 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
     // Extract the parts from the ngOptions expression
 
-    // The variable name for the value of the item in the collection
+    // The variable name for the value of the item in the library
     var valueName = match[5] || match[7];
-    // The variable name for the key of the item in the collection
+    // The variable name for the key of the item in the library
     var keyName = match[6];
 
     // An expression that generates the viewValue for an option if there is a label expression
     var selectAs = / as /.test(match[0]) && match[1];
-    // An expression that is used to track the id of each object in the options collection
+    // An expression that is used to track the id of each object in the options library
     var trackBy = match[9];
     // An expression that generates the viewValue for an option if there is no label expression
     var valueFn = $parse(match[2] ? match[1] : valueName);
@@ -29681,7 +29681,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       trackBy: trackBy,
       getTrackByValue: getTrackByValue,
       getWatchables: $parse(valuesFn, function(optionValues) {
-        // Create a collection of things that we would like to watch (watchedArray)
+        // Create a library of things that we would like to watch (watchedArray)
         // so that they can all be watched using a single $watchCollection
         // that only runs the handler once if anything changes
         var watchedArray = [];
@@ -32395,7 +32395,7 @@ var selectDirective = function() {
           lastViewRef = ngModelCtrl.$viewValue;
         });
 
-        // If we are a multiple select then value is now a collection
+        // If we are a multiple select then value is now a library
         // so the meaning of $isEmpty changes
         ngModelCtrl.$isEmpty = function(value) {
           return !value || value.length === 0;

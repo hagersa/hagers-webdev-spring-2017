@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, userModel) {
 
     app.get("/api/user", findUser);
     // Note: findUser handles findUserByUsername and findUserByCredentials,
@@ -84,8 +84,17 @@ module.exports = function (app) {
         res.sendStatus(404);
     }
 
+
+
     function createUser(req, res) {
         var newUser = req.body;
+        //UserModel.createUser(newUser);
+        //.then(function(user) {
+        // res.json(user;
+        //}, function (error) {
+        //res.sendStatus(500);
+        //}
+        // following will be commented out
         newUser._id = (new Date()).getTime()+"";
         users.push(newUser);
         res.json(newUser);

@@ -1,0 +1,178 @@
+.sah-iframe-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.sah-iframe-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sah-floating-outer-toolbar {
+    position: fixed;
+    padding-left: 30px;
+}
+
+.sah-container-top-padding {
+    padding-top: 40px;
+}
+
+.sah-floating-toolbar {
+    font-size: xx-large;
+    float: left;
+    z-index: 50;
+    opacity: 0.9;
+    background-color : white;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.newsfeed-list-group-item {
+    padding-bottom: 0px;
+    padding-top: 2px;
+}
+
+.col-sm-4 {
+    padding-left: 0px;
+}
+
+.col-sm-8 {
+    padding-right: 0px;
+}
+
+.sah-left-pane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin-top: 45px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    overflow: auto;
+    padding-left: 0px;
+    border-right-style: solid;
+    border-right-color: lightgray;
+}
+
+.sah-right-pane {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-bottom: 52px;
+    margin-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: auto;
+}
+
+.sah-toolbar {
+    position: absolute;
+    right: 15px;
+    background-color : white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 5px;
+    opacity: 0.7;
+    z-index: 50;
+}
+
+.sah-form-padding {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.sah-container-left-padding {
+    padding-left: 30px;
+    padding-right: 0px;
+}
+
+.sah-container-right-padding {
+    padding-left: 30px;
+}
+
+.sah-navbar-text-padding {
+    padding-right: 15px;
+}
+
+.sah-glyphicon-padding {
+    padding-right: 10px;
+}
+
+.sah-top-padding {
+    padding-top: 15px;
+}
+
+.sah-glyphicon-center {
+    vertical-align: middle;
+}
+
+.sah-button-padding {
+    padding-bottom: 5px;
+}
+
+.sah-page-custom-color.navbar-default {
+    background-color: darkgrey;
+}
+
+.sah-ul-style {
+    list-style-type: square;
+}
+
+.navbar-default {
+    background-color: #337ab7;
+}
+
+.sah-glyphicon-style {
+    color: white;
+}
+
+.sah-glyphicon-edit {
+    color: #ff0000;
+}
+
+.navbar-text a {
+    color: white;
+}
+a.navbar-brand {
+    color: white !important;
+}
+
+a.navbar-link {
+    color: white !important;
+}
+
+.info-image-size {
+    width: 50px;
+}
+
+.list-image-size {
+    width: 20px;
+}
+
+.sah-flex-shrink {
+    flex-shrink: 3;
+}
+
+body {
+    background-image: url("choral-music.jpg");
+    background-repeat: no-repeat;
+}
