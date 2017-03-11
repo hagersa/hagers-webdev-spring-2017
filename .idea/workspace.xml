@@ -9,6 +9,72 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assignment/css/textAngular.css" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assignment/views/widgets/editors/widget-TEXT-edit.view.client.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assignment/views/widgets/templates/widget-TEXT.view.client.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/.bowerrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/Gruntfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/changelog.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/demo/demo.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/demo/static-demo.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/demo/textAngular.com.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular-rangy.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular-sanitize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular-sanitize.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngular.umd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/dist/textAngularSetup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/karma-jqlite.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/karma-jquery.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/DOM.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/demo/demo.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/demo/static-demo.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/demo/textAngular.com.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/factories.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/globals.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/taBind.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/textAngular-sanitize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/textAngular.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/textAngularSetup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/src/validators.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/helpers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/rawHtmlForTablesTest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/resultForTablesTest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.$formatters.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind._taBlankTest.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.display.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.events.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.sanitize.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.taReadOnly.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.undoManager.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.validation.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/taBind.wordPaste.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBind/temp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taBrowserTag.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taDOM.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taExecCommand/taExecCommand.formatBlock.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taExecCommand/taExecCommand.lists.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taExecCommand/taExecCommand.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taFixChrome.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taMaxText.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taMinText.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taRegisterTool.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taSanitize.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taToolFunctions.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/taTools.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/textAngular.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/textAngularManager.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/textAngularSanitize/linky.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/textAngularSanitize/ngBindHtml.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/textAngularSanitize/sanitize.spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/textAngular-1.5.16/test/textAngularToolbar.spec.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/project/css/style.css" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/project/views/collection/collection-create.view.client.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/project/views/collection/collection-edit.view.client.html" />
@@ -752,12 +818,12 @@
       <workItem from="1488136625107" duration="82168000" />
       <workItem from="1488551296702" duration="7252000" />
       <workItem from="1489006413367" duration="9656000" />
-      <workItem from="1489027298025" duration="47227000" />
+      <workItem from="1489027298025" duration="47303000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366308000" />
+    <option name="totallyTimeSpent" value="366384000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
