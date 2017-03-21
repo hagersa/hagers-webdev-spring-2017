@@ -11,6 +11,16 @@
         this.deleteWidget = deleteWidget;
         this.findAllWidgetsForPage = findAllWidgetsForPage;
         this.uploadImage = uploadImage;
+        // this.updateWidgetImage = updateWidgetImage;
+        this.sort = sort;
+
+        function sort(pageId, start, end) {
+            var url = "/api/page/"+pageId+"/widget?start=index1&end=index2";
+            url = url
+                .replace("index1", start)
+                .replace("index2", end);
+            return $http.put(url);
+        }
 
         function uploadImage() {
             return $http.post("/api/upload");
@@ -31,6 +41,10 @@
         function updateWidget(widgetId, newWidget) {
             return $http.put("/api/widget/"+widgetId, newWidget);
         }
+
+        /*function updateWidgetImage(widgetId, newWidget) {
+            return $http.put("/api/widget/"+widgetId, newWidget);
+        }*/
 
         function deleteWidget(widgetId) {
             return $http.delete("/api/widget/"+widgetId);

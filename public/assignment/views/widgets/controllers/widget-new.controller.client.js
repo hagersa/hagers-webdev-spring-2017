@@ -16,7 +16,7 @@
         init();
 
         function createWidget(type) {
-            var newWidget = { widgetType : type };
+            var newWidget = { widgetType : type};
 
             WidgetService
                 .createWidget(vm.pageId, newWidget)

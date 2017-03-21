@@ -4,8 +4,23 @@
         .config(configuration);
 
     function configuration($routeProvider) {
-        // may need to add this, and add to function params: , $httpsProvider
-        // $httpsProvider.defualts.headers.post['Content-Type'] = 'application/json'
+        // ?? add $provide to allow editing TextAngular
+
+        /*$provide.decorator('taOptions', ['$delegate', function(taOptions){
+            taOptions.classes = {
+                focussed: 'focussed',
+                toolbar: 'btn-toolbar your-toolbar-class',
+                toolbarGroup: 'btn-group your-toolbar-group-class',
+                toolbarButton: 'btn btn-default your-toolbar-button-class',
+                toolbarButtonActive: 'active',
+                disabled: 'disabled',
+                textEditor: 'form-control',
+                htmlEditor: 'form-control'
+            };
+
+            return taOptions;
+        }]);*/
+
 
         $routeProvider
             .when("/login",{
@@ -69,6 +84,12 @@
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{
                 templateUrl: 'views/widgets/templates/widget-edit.view.client.html',
                 controller: "WidgetEditController",
+                controllerAs: "model"
+            })
+
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/search",{
+                templateUrl: 'views/widgets/templates/widget-flickr-search.view.client.html',
+                controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
 

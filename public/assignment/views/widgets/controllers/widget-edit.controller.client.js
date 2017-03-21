@@ -11,6 +11,7 @@
         vm.widgetId = $routeParams.wgid;
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.renderWidget = renderWidget;
         vm.upload = upload;
 
         function init() {

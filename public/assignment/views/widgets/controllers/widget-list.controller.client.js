@@ -10,6 +10,7 @@
         vm.pageId = $routeParams.pid;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
+        vm.sort = sort;
 
         function init() {
             WidgetService
@@ -17,6 +18,18 @@
                 .success(renderWidgets);
         }
         init();
+
+        function sort(start, end) {
+            WidgetService
+                .sort(vm.pageId, start, end)
+                .success(function () {
+                    console.log('yay');
+                    // $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                })
+                .error(function () {
+                    vm.error = "could not update order";
+                });
+        }
 
         function renderWidgets(widgets) {
             vm.widgets = widgets;

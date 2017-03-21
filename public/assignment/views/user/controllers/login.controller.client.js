@@ -13,7 +13,7 @@
             promise
                 .success(function (user) {
                     // hide waiting gif
-                    var loginUser = user;
+                    var loginUser = user[0];
                     if(loginUser != null) {
                         $location.url('/profile/' + loginUser._id);
                     } else {

@@ -1,4 +1,6 @@
-module.exports = function (app, userModel) {
+module.exports = function (app, UserModel) {
+
+    console.log(UserModel);
 
     app.get("/api/user", findUser);
     // Note: findUser handles findUserByUsername and findUserByCredentials,
@@ -28,41 +30,55 @@ module.exports = function (app, userModel) {
 
     function findUserByUsername (req, res) {
         var username = req.query['username'];
-        var user = users.find(function (u) {
-            return u.username == username;
-        });
-        if(user) {
-            res.send(user);
-        } else {
-            res.sendStatus(404);
-        }
+        console.log(username);
+
+        UserModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                res.json(user);
+            }, function (error) {
+                res.sendStatus(500)
+            });
     }
 
     function findUserByCredentials(req, res) {
         var username = req.query['username'];
         var password = req.query['password'];
-        var user = users.find(function (u) {
-            return u.username == username && u.password == password
-        });
+        console.log(username);
+        console.log(password);
 
-        if (user) {
-            res.send(user);
-        } else {
-            res.sendStatus(404);
-        }
+        UserModel
+            .findUserByCredentials(username, password)
+            .then(function (user) {
+                console.log(user); // why is this sending back an array of user ids?
+                res.send(user);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+
+
+        // var user = users.find(function (u) {
+        //     return u.username == username && u.password == password
+        // });
+        //
+        // if (user) {
+        //     res.send(user);
+        // } else {
+        //     res.sendStatus(404);
+        // }
     }
 
-    function findUserById(req, res){
+    function findUserById(req, res) {
         var userId = req.params.userId;
+        console.log(userId);
 
-        for(var u in users) {
-            var user = users[u];
-            if(user._id == userId) {
-                res.send(user);
-                return
-            }
-        }
-        res.sendStatus(404);
+        UserModel
+            .findUserById(userId)
+            .then(function (user) {
+                res.json(user);
+            }, function (error) {
+                res.sendStatus(500)
+            });
     }
 
     function updateUser(req, res) {
@@ -85,19 +101,16 @@ module.exports = function (app, userModel) {
     }
 
 
-
     function createUser(req, res) {
         var newUser = req.body;
-        //UserModel.createUser(newUser);
-        //.then(function(user) {
-        // res.json(user;
-        //}, function (error) {
-        //res.sendStatus(500);
-        //}
-        // following will be commented out
-        newUser._id = (new Date()).getTime()+"";
-        users.push(newUser);
-        res.json(newUser);
+        console.log(newUser);
+        UserModel
+            .createUser(newUser)
+            .then(function(user) {
+                res.json(user);
+            }, function (error) {
+                res.sendStatus(500);
+            });
     }
 
     function deleteUser(req, res) {

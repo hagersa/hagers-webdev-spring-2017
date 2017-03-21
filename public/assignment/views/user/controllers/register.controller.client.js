@@ -11,13 +11,14 @@
         function registerUser(user) {
             UserService
                 .findUserByUsername(user.username)
-                .success(function (user) {
+                .then(function (user) {
                     vm.error = "username already taken"
-                })
-                .error(function () {
+                }, function () {
+                    console.log(user);
                     UserService
                         .createUser(user)
                         .success(function (user) {
+                            console.log(user);
                             $location.url('/profile/' + user._id);
                         })
                         .error(function () {

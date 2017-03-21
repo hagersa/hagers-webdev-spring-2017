@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var connectionString = 'mongodb://127.0.0.1:27017/test';
+var connectionString = 'mongodb://127.0.0.1:27017/assignment';
 
 if(process.env.MLAB_USERNAME) {
 	connectionString = process.env.MLAB_USERNAME + ":" +
@@ -16,11 +16,17 @@ if(process.env.MLAB_USERNAME) {
 	process.env.MLAB_APP_NAME;
 }
 console.log(connectionString);
+var mongoose = require('mongoose');
+mongoose.connect(connectionString);
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
+// require("./test/app")(app);
 var assignment = require("./assignment/app.js")(app);
+
+
+//require('.lectures/university/university.js')()
 
 var port = process.env.PORT || 3000;
 

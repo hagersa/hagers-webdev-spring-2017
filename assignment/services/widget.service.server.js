@@ -8,6 +8,7 @@ module.exports = function (app) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/api/page/:pageId/widget", sortWidgets);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -20,6 +21,14 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
+
+    function sortWidgets(req, res) {
+        var start = req.query.start;
+        var end = req.query.end;
+        console.log([start, end]);
+        widgets.splice(end, 0, widgets.splice(start, 1)[0]);
+        res.send(200);
+    }
 
     function createWidget(req, res) {
         var newWidget = req.body;
@@ -34,7 +43,7 @@ module.exports = function (app) {
                     widgets[w].text = "Edit new header text...";
                 }
                 else if(widgets[w].widgetType === "IMAGE") {
-                    widgets[w].width = "100%";
+                    widgets[w].width = '100%';
                     widgets[w].url = "";
                 }
                 else if(widgets[w].widgetType === "YOUTUBE") {

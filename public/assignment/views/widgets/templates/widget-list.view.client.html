@@ -19,7 +19,11 @@
 </nav>
 
 <div ng-controller="WidgetListController as model" class="container-fluid">
-    <div class="widget-list" sortable-directive="">
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+    <div class="widget-list" sortable-directive="" callback="model.sort(start, end)">
         <div ng-repeat="widget in model.widgets">
         <div class="sah-toolbar">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">

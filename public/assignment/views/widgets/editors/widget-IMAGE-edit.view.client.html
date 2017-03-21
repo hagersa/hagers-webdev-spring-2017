@@ -25,6 +25,11 @@
             <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     </form>
 
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/search"
+       class="btn btn-primary  btn-block">
+        Search
+    </a>
+
     <a ng-click="model.updateWidget(model.widget)"
        class="btn btn-warning  btn-block">
         Update
