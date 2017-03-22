@@ -35,6 +35,7 @@ module.exports = function (app, UserModel) {
         UserModel
             .findUserByUsername(username)
             .then(function (user) {
+                console.log("in user server findusername " +user);
                 res.json(user);
             }, function (error) {
                 res.sendStatus(500)
@@ -81,6 +82,19 @@ module.exports = function (app, UserModel) {
             });
     }
 
+    function deleteUser(req, res) {
+        var userId = req.params.userId;
+        console.log(userId);
+
+        UserModel
+            .deleteUser(userId)
+            .then(function () {
+                res.sendStatus(200);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+    }
+
     function updateUser(req, res) {
         var userId = req.params.userId;
         console.log(userId);
@@ -100,7 +114,6 @@ module.exports = function (app, UserModel) {
         res.sendStatus(404);
     }
 
-
     function createUser(req, res) {
         var newUser = req.body;
         console.log(newUser);
@@ -111,17 +124,5 @@ module.exports = function (app, UserModel) {
             }, function (error) {
                 res.sendStatus(500);
             });
-    }
-
-    function deleteUser(req, res) {
-        var userId = req.params.userId;
-        for (var u in users) {
-            if (users[u]._id === userId) {
-                users.splice(u, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
     }
 };

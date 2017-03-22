@@ -4,9 +4,9 @@ module.exports = function () {
         createUser: createUser,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
         // updateUser: updateUser,
-        // deleteUser: deleteUser*/
+        deleteUser: deleteUser
     };
 
     var mongoose = require('mongoose');
@@ -42,11 +42,16 @@ module.exports = function () {
     }
 
     function findUserByUsername(username) {
+
+        console.log('in model'+username);
         var deferred = q.defer();
         UserModel
-            .find(username, function (err, user) {
-                // check that promise is returned first
-                deferred.resolve(user);
+            .findOne({username: username}, function (err, user) {
+                if(err) {
+                    deferred.abort(err); // reject
+                } else {
+                    deferred.resolve(user);
+                }
             });
         return deferred.promise;
     }
@@ -55,15 +60,21 @@ module.exports = function () {
         var deferred = q.defer();
         UserModel
             .find({username: username, password: password}, function (err, user) {
-                // check that promise is returned first
                 deferred.resolve(user);
             });
         return deferred.promise;
     }
+
+    function deleteUser(userId) {
+        var deferred = q.defer();
+        UserModel
+            .remove({_id: userId}, function (err, user) {
+            deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+
     // function updateUser(userId, user) {
     //     return ;
     // }
-    // function deleteUser(userId) {
-    //     return ;
-    // }*/
 };

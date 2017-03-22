@@ -22,9 +22,9 @@
     </span>
 </div>
 
-<div class="row">
-    <div class="col-xs-4" ng-repeat="photo in model.photos.photo">
-        {{photo.farm}}
+<div ng-controller="FlickrImageSearchController as model" class="row">
+    {{vm.photos}}
+    <div class="col-xs-4" ng-repeat="photo in vm.photos">
         <img ng-click="model.selectPhoto(photo)"
              ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
     </div>
