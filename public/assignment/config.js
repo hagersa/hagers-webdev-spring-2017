@@ -4,23 +4,6 @@
         .config(configuration);
 
     function configuration($routeProvider) {
-        // ?? add $provide to allow editing TextAngular
-
-        /*$provide.decorator('taOptions', ['$delegate', function(taOptions){
-            taOptions.classes = {
-                focussed: 'focussed',
-                toolbar: 'btn-toolbar your-toolbar-class',
-                toolbarGroup: 'btn-group your-toolbar-group-class',
-                toolbarButton: 'btn btn-default your-toolbar-button-class',
-                toolbarButtonActive: 'active',
-                disabled: 'disabled',
-                textEditor: 'form-control',
-                htmlEditor: 'form-control'
-            };
-
-            return taOptions;
-        }]);*/
-
 
         $routeProvider
             .when("/login",{

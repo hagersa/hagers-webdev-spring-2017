@@ -15,8 +15,8 @@
         }
         init();
 
-        function renderPages(pages) {
-            vm.pages = pages;
+        function renderPages(response) {
+            vm.pages = response;
         }
     }
 })();

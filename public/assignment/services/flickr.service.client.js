@@ -16,7 +16,7 @@
         //    "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT";
 
         function searchPhotos(searchText) {
-            console.log("in searchPhotos in service.client")
+            console.log("in searchPhotos in service.client");
             //var url = urlBase.replace("API_KEY", key).replace("TEXT", searchText);
             return $http.get("https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=398879f5f06e0f1cb0c3bb5f79269657&text="+searchText);
         }

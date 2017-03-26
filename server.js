@@ -6,6 +6,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// install, load, and configure cookieParser module
+// var passport = require('passport'); //, process.ENV.session // should be an environment variable
+// var cookieParser = require('cookie-parser');
+// var session = require('express-session');
+
 var connectionString = 'mongodb://127.0.0.1:27017/assignment';
 
 if(process.env.MLAB_USERNAME) {
@@ -21,6 +27,14 @@ mongoose.connect(connectionString);
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
+
+// // configure passport and cookieParser
+// app.use(session({
+// 	secret: 'this is the secret',
+// 	resave: true,
+// 	saveUninitialized: true
+// }));
+// app.use(cookieParser());
 
 // require("./test/app")(app);
 var assignment = require("./assignment/app.js")(app);

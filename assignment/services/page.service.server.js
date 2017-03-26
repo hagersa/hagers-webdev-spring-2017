@@ -1,4 +1,6 @@
-module.exports = function (app) {
+module.exports = function (app) { // add PageModel
+
+    //console.log(PageModel);
 
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
@@ -13,6 +15,20 @@ module.exports = function (app) {
     ];
 
     function createPage(req, res) {
+            // var newPage = req.body;
+            // var websiteId = req.params.websiteId;
+            // console.log(websiteId);
+            // console.log(newPage);
+            //
+            // PageModel
+            //     .createPage(websiteId, newPage)
+            //     .then(function(response) {
+            //         console.log(response);
+            //         res.send(response);
+            //     }, function (error) {
+            //         res.sendStatus(500);
+            //     });
+
         var newPage = req.body;
         newPage.websiteId = req.params.websiteId;
         newPage._id = (new Date()).getTime()+"";
@@ -21,22 +37,32 @@ module.exports = function (app) {
     }
 
     function findAllPagesForWebsite(req, res){
-        var websiteId = req.params.websiteId;
-
-        var _pages = [];
-
-        for(var p in pages) {
-            if(pages[p].websiteId === websiteId) {
-                _pages.push(pages[p]);
-            }
-        }
-        if (_pages) {
-            res.send(_pages);
-            return
-        } else {
-            res.sendStatus(404); // .send('pages not found')
-        }
-        return
+        // var websiteId = req.params.websiteId;
+        // console.log("In service.server with websiteId: " +websiteId);
+        //
+        // //var pageObjects = ["a","b","c"];
+        //
+        // PageModel
+        //     .findAllPagesForUser(websiteId) // gets array of websiteIds for userId
+        //     .then(function(pageIds) {
+        //         console.log("have pageIds in service.server: " + pageIds);
+        //
+        //         PageModel
+        //             .findAllPages(pageIds) // gets array of websites corresponding to array of websiteIds
+        //             .then(function(pages) {
+        //                 console.log("have pageObjects in service.server: " + pages);
+        //                 // for(var r in response) {
+        //                 //     pageObjects.push(response[r]);
+        //                 // }
+        //                 // console.log("pushed response into pageObjects in service.server: " + pageObjects);
+        //                 res.send(pages);
+        //             }, function (error) {
+        //                 res.sendStatus(500);
+        //             });
+        //         res.sendStatus(200);
+        //     }, function (error) {
+        //         res.sendStatus(500);
+        //     });
     }
 
     function findPageById(req, res){

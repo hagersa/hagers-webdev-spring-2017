@@ -96,22 +96,31 @@ module.exports = function (app, UserModel) {
     }
 
     function updateUser(req, res) {
+        var user = req.body;
         var userId = req.params.userId;
         console.log(userId);
 
-        for (var u in users) {
-            var user = users[u];
-            if (user._id == userId) {
-                var newUser = req.body;
-                user.firstName = newUser.firstName;
-                user.lastName = newUser.lastName;
-                user.password = newUser.password;
-                user.email = newUser.email;
-                res.sendStatus(200);
-                return
-            }
-        }
-        res.sendStatus(404);
+        UserModel
+            .updateUser(userId, user)
+            .then(function(response) {
+                res.json(response);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+
+        // for (var u in users) {
+        //     var user = users[u];
+        //     if (user._id == userId) {
+        //         var newUser = req.body;
+        //         user.firstName = newUser.firstName;
+        //         user.lastName = newUser.lastName;
+        //         user.password = newUser.password;
+        //         user.email = newUser.email;
+        //         res.sendStatus(200);
+        //         return
+        //     }
+        // }
+        // res.sendStatus(404);
     }
 
     function createUser(req, res) {

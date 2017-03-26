@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("FlickrImageSearchController", FlickrImageSearchController);
 
-    function FlickrImageSearchController($location, $routeParams, FlickrService) {
+    function FlickrImageSearchController($location, $routeParams, FlickrService, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -38,7 +38,7 @@
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             var newWidget = { url : url, widgetType : "IMAGE", width : 400 };
             WidgetService
-                .updateWidget(widgetId, newWidget)
+                .updateWidget(vm.widgetId, newWidget)
                 .then($location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"));
         }
     }

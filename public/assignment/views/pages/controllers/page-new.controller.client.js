@@ -21,9 +21,12 @@
         }
 
         function createPage(page) {
+            var newPage =
+                {_website: vm.websiteId, name: vm.page.name, description: vm.page.description};
+
             PageService
-                .createPage(vm.websiteId, page)
-                .success(function (page) {
+                .createPage(vm.websiteId, newPage)
+                .success(function (response) {
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
                 })
                 .error(function () {

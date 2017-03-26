@@ -16,7 +16,7 @@ function registerStudentInCourse(studentId, courseId) {
    var d = q.defer();
 
    findCourseById(courseId)
-       .them(function (course) {
+       .then(function (course) {
            course.students.push(studentId);
            course.save(function (err, course) {
                d.resolve(course);

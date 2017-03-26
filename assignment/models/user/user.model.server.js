@@ -5,7 +5,7 @@ module.exports = function () {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
-        // updateUser: updateUser,
+        updateUser: updateUser,
         deleteUser: deleteUser
     };
 
@@ -74,7 +74,22 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    // function updateUser(userId, user) {
-    //     return ;
-    // }
+    function updateUser(userId, user) {
+        var deferred = q.defer();
+        UserModel
+            .update({_id : userId},
+                {firstName : user.firstName,
+                    lastName : user.lastName,
+                    password : user.password,
+                    email : user.email},
+                function (err, response) {
+            deferred.resolve(response);
+        });
+        return deferred.promise;
+    }
 };
+
+//user.firstName = newUser.firstName;
+//         user.lastName = newUser.lastName;
+//         user.password = newUser.password;
+//         user.email = newUser.email;

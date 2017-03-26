@@ -1,3 +1,13 @@
+.btn-toolbar .btn-group {
+    padding-bottom: 5px;
+
+}
+
+.btn-default {
+    background-color: #337ab7;
+    color: white;
+}
+
 .sah-youtube-widget {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */

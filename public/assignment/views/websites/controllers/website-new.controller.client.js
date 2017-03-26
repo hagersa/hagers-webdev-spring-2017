@@ -20,9 +20,12 @@
         }
 
         function createWebsite(website) {
+            var newWebsite =
+                {_user: vm.userId, name: vm.website.name, description: vm.website.description};
+
             WebsiteService
-                .createWebsite(vm.userId, website)
-                .success(function (website) {
+                .createWebsite(vm.userId, newWebsite)
+                .success(function (response) {
                     $location.url("/user/" + vm.userId + "/website");
                 })
                 .error(function () {
