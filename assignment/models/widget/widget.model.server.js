@@ -42,54 +42,102 @@ module.exports = function (pageModel) {
         return deferred.promise;
     }
 
-    // returns pagee objects corresponding to an array of pageIds
+    // returns widget objects corresponding to an array of widgetIds
     function findAllWidgets(widgetIds) {
-        console.log("Have pageIds in findAllPages in model.server: "+pageIds);
+        console.log("Have widgetIds in findAllPages in model.server: "+widgetIds);
 
         var deferred = q.defer();
 
-        PageModel
-            .find({'_id': { $in: widgetIds}}, function(err, pageObjects) {
-                console.log("Found page objects in model.server: "+pageObjects);
+        WidgetModel
+            .find({'_id': { $in: widgetIds}}, function(err, widgetObjects) {
+                console.log("Found widget objects in model.server: "+widgetObjects);
 
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
-                    deferred.resolve(pageObjects);
+                    deferred.resolve(widgetObjects);
                 }
             });
         return deferred.promise;
     }
 
-    // finds an array of pageIds for a user matching a particular websiteId
+    // finds an array of widgetIds for a user matching a particular pageId
     function findAllWidgetsForPage(pageId) {
         var deferred = q.defer();
 
-        websiteModel
-            .findWebsiteById(websiteId)
-            .then(function (website) {
-                console.log("found website in findAllPagesForWebsite in model.server"+website);
-                var pageIds = website.pages;
-                console.log("found pageIds in findAllPagesForWebsite in model.server"+pageIds);
-                deferred.resolve(pageIds);
+        pageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                console.log("found page in findAllWidgetsForPage in model.server"+page);
+                var widgetIds = page.widgets;
+                console.log("found widgetIds in findAllWidgetsForPage in model.server"+widgetIds);
+                deferred.resolve(widgetIds);
             });
         return deferred.promise;
     }
 
     function updateWidget(widgetId, widget) {
         var deferred = q.defer();
-        WidgetModel
-            .update({_id : pageId},
-                {name : page.name,
-                    description : page.description},
-                function (err, response) {
-                    deferred.resolve(response);
-                });
+        console.log("Have the widget in updateWidget in model.server: "+widget);
+        console.log("Have widgetType in model.server: "+widget.widgetType);
+
+        if(widget.widgetType === "HEADER") {
+            WidgetModel
+                .update({_id : widgetId}, {text: widget.text, size: widget.size},
+                    function (err, response) {
+                        deferred.resolve(response);
+                    });
+        }
+        else if(widget.widgetType === "IMAGE") {
+            WidgetModel
+                .update({_id : widgetId}, {width: widget.width, url: widget.url},
+                    function (err, response) {
+                        deferred.resolve(response);
+                    });
+        }
+        else if(widget.widgetType === "YOUTUBE") {
+            WidgetModel
+                .update({_id : widgetId}, {width: widget.width, url: widget.url},
+                    function (err, response) {
+                        deferred.resolve(response);
+                    });
+        }
+        else if(widget.widgetType === "HTML") {
+            WidgetModel
+                .update({_id : widgetId}, {text: widget.text},
+                    function (err, response) {
+                        deferred.resolve(response);
+                    });
+        }
+        else if(widget.widgetType === "TEXT") {
+            WidgetModel
+                .update({_id : widgetId}, {text: widget.text, rows: widget.rows, placeholder: widget.placeholder, formatted: widget.formatted},
+                    function (err, response) {
+                        deferred.resolve(response);
+                    });
+        }
         return deferred.promise;
     }
 
-    function reorderWidget(pageId, start, end) {
 
+    function reorderWidget(pageId, start, end) {
+        var deferred = q.defer();
+
+        pageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                console.log("found page in reorderWidgets in model.server: "+page);
+                console.log("widgets before reorder in reorderWidgets in model.server: "+page.widgets);
+                console.log("start and end: "+start+" "+end);
+
+                page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
+
+                console.log("widgets after reorder in reorderWidgets in model.server: "+page.widgets);
+                console.log("whole page after reorder in reorderWidgets in model.server: "+page);
+                page.save();
+                deferred.resolve(page);
+            });
+        return deferred.promise;
     }
 
     function findWidgetById(widgetId) {
