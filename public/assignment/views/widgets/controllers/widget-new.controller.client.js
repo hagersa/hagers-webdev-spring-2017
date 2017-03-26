@@ -21,6 +21,7 @@
             WidgetService
                 .createWidget(vm.pageId, newWidget)
                 .success(function (newWidget) {
+                    console.log("widgetType is :" + newWidget.widgetType)
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"+newWidget._id);
                 })
                 .error(function () {

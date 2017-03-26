@@ -1,4 +1,7 @@
-module.exports = function (app) {
+module.exports = function (app, WidgetModel) {
+
+    console.log(WidgetModel);
+
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads'});
 
@@ -32,38 +35,72 @@ module.exports = function (app) {
 
     function createWidget(req, res) {
         var newWidget = req.body;
-        newWidget.pageId = req.params.pageId;
-        newWidget._id = (new Date()).getTime()+"";
-        widgets.push(newWidget);
+        var pageId = req.params.pageId;
+        // newWidget.pageId = req.params.pageId;
+        // newWidget._id = (new Date()).getTime()+"";
+        // widgets.push(newWidget);
 
-        for(var w in widgets) {
-            if(widgets[w]._id === newWidget._id) {
-                if(widgets[w].widgetType === "HEADER") {
-                    widgets[w].size = 1;
-                    widgets[w].text = "Edit new header text...";
-                }
-                else if(widgets[w].widgetType === "IMAGE") {
-                    widgets[w].width = '100%';
-                    widgets[w].url = "";
-                }
-                else if(widgets[w].widgetType === "YOUTUBE") {
-                    widgets[w].width = "100%";
-                    widgets[w].url = "";
-                }
-                else if(widgets[w].widgetType === "HTML") {
-                    widgets[w].text = "Edit new html text...";
-                }
-                else if(widgets[w].widgetType === "TEXT") {
-                    widgets[w].text = "Edit new text...";
-                    widgets[w].rows = 2;
-                    widgets[w].placeholder = "New text here...";
-                    widgets[w].formatted = true;
-                }
-            }
+        if(newWidget.widgetType === 'HEADER') {
+            newWidget.size = 1;
+            newWidget.text = "Edit new header text...";
+        }
+        else if(newWidget.widgetType === 'IMAGE') {
+            newWidget.width = '100%';
+            newWidget.url = "";
+        }
+        else if(newWidget.widgetType === 'YOUTUBE') {
+            newWidget.width = "100%";
+            newWidget.url = "";
+        }
+        else if(newWidget.widgetType === 'HTML') {
+            newWidget.text = "Edit new html text...";
+        }
+        else if(newWidget.widgetType === 'TEXT') {
+            newWidget.text = "Edit new text...";
+            newWidget.rows = 2;
+            newWidget.placeholder = "New text here...";
+            newWidget.formatted = true;
         }
 
-        res.send(newWidget);
+        WidgetModel
+            .createWidget(pageId, newWidget)
+            .then(function (response) {
+                console.log(response);
+                console.log("the widgetType is: "+response.widgetType)
+                res.send(response);
+            }, function (error) {
+                res.sendStatus(500);
+            });
     }
+
+        // for(var w in widgets) {
+        //     if(widgets[w]._id === newWidget._id) {
+        //         if(widgets[w].widgetType === "HEADER") {
+        //             widgets[w].size = 1;
+        //             widgets[w].text = "Edit new header text...";
+        //         }
+        //         else if(widgets[w].widgetType === "IMAGE") {
+        //             widgets[w].width = '100%';
+        //             widgets[w].url = "";
+        //         }
+        //         else if(widgets[w].widgetType === "YOUTUBE") {
+        //             widgets[w].width = "100%";
+        //             widgets[w].url = "";
+        //         }
+        //         else if(widgets[w].widgetType === "HTML") {
+        //             widgets[w].text = "Edit new html text...";
+        //         }
+        //         else if(widgets[w].widgetType === "TEXT") {
+        //             widgets[w].text = "Edit new text...";
+        //             widgets[w].rows = 2;
+        //             widgets[w].placeholder = "New text here...";
+        //             widgets[w].formatted = true;
+        //         }
+        //     }
+        // }
+
+    //     res.send(newWidget);
+    // }
 
     function findAllWidgetsForPage(req, res){
         var pageId = req.params.pageId;
