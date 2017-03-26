@@ -7,7 +7,8 @@ module.exports = function (pageModel) {
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget
+        reorderWidget: reorderWidget,
+        getOwnerPage: getOwnerPage
     };
 
     var mongoose = require('mongoose');
@@ -22,6 +23,7 @@ module.exports = function (pageModel) {
         var deferred = q.defer();
         console.log(pageId);
         console.log(widget);
+        widget._page = pageId;
 
         WidgetModel
             .create(widget, function (err, response) {
@@ -153,12 +155,31 @@ module.exports = function (pageModel) {
         return deferred.promise;
     }
 
+
     function deleteWidget(widgetId) {
         var deferred = q.defer();
+
         WidgetModel
             .remove({_id: widgetId}, function (err, widget) {
+            console.log("widget to be deleted: "+widget);
                 deferred.resolve(widget);
             });
         return deferred.promise;
     }
+
+    function getOwnerPage(widget) {
+        var deferred = q.defer();
+        var pageId = widget._page;
+
+        console.log("widget getOwnerPage: "+widget);
+        console.log("pageId in getOwnerPage: "+pageId);
+
+        pageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                deferred.resolve(page);
+            });
+        return deferred.promise;
+    }
+
 };

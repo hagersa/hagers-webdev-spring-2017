@@ -93,8 +93,10 @@ module.exports = function (userModel) {
 
     function deleteWebsite(websiteId) {
         var deferred = q.defer();
+
         WebsiteModel
             .remove({_id: websiteId}, function (err, website) {
+
                 deferred.resolve(website);
             });
         return deferred.promise;

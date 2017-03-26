@@ -97,25 +97,6 @@ module.exports = function (app, WidgetModel) {
             })
     }
 
-    // function findAllWidgetsForPage(req, res){
-    //     var pageId = req.params.pageId;
-    //
-    //     var _widgets = [];
-    //
-    //     for(var w in widgets) {
-    //         if(widgets[w].pageId === pageId) {
-    //             _widgets.push(widgets[w]);
-    //         }
-    //     }
-    //     if (_widgets) {
-    //         res.send(_widgets);
-    //         return
-    //     } else {
-    //         res.sendStatus(404);
-    //     }
-    //     return
-    // }
-
     function findWidgetById(req, res){
         var widgetId = req.params.widgetId;
         console.log("have widgetId in service.server: "+widgetId);
@@ -127,16 +108,6 @@ module.exports = function (app, WidgetModel) {
             }, function (error) {
                 res.sendStatus(500)
             });
-        // var widgetId = req.params.widgetId;
-        //
-        // for(var w in widgets) {
-        //     var widget = widgets[w];
-        //     if(widgets[w]._id === widgetId) {
-        //         res.send(widget);
-        //         return
-        //     }
-        // }
-        // res.sendStatus(404);
     }
 
     function deleteWidget(req, res) {
@@ -144,21 +115,30 @@ module.exports = function (app, WidgetModel) {
         console.log(widgetId);
 
         WidgetModel
-            .deleteWidget(widgetId)
-            .then(function () {
-                res.sendStatus(200);
-            }, function (error) {
-                res.sendStatus(500)
+            .findWidgetById(widgetId)
+            .then(function (widget) {
+                console.log("widget in service.server: "+widget);
+                WidgetModel
+                    .getOwnerPage(widget)
+                    .then(function (page) {
+                        console.log("have page in service.server: "+page);
+                        var index = page.widgets.indexOf(widgetId);
+                        console.log("index is: "+index);
+                        if (index > -1) {
+                            page.widgets.splice(index, 1);
+                        }
+                        console.log("updated page.widgets: "+page.widgets);
+                        page.save();
+
+                        WidgetModel
+                            .deleteWidget(widgetId)
+                            .then(function (widget) {
+                                res.sendStatus(200);
+                            }, function (error) {
+                                res.sendStatus(500);
+                            });
+                    });
             });
-        // var widgetId = req.params.widgetId;
-        // for(var w in widgets) {
-        //     if(widgets[w]._id === widgetId) {
-        //         widgets.splice(w, 1);
-        //         res.sendStatus(200);
-        //         return;
-        //     }
-        // }
-        // res.sendStatus(404);
     }
 
     function updateWidget(req, res) {
@@ -178,27 +158,49 @@ module.exports = function (app, WidgetModel) {
 
     function uploadImage(req, res) {
         var widget        = req.body;
-        var widgetType    = req.body.widgetType;
+        var widgetType = req.body.widgetType;
         var widgetId      = req.body.widgetId;
-        var width         = req.body.width;
-        var userId        = req.body.userId;
-        var pageId        = req.body.pageId;
-        var websiteId     = req.body.websiteId;
-        var myFile        = req.file;
-        var originalname  = myFile.originalname; // file name on user's computer
-        var filename      = myFile.filename;     // new file name in upload folder
-        var path          = myFile.path;         // full path of uploaded file
-        var destination   = myFile.destination;  // folder where file is saved to
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
+        var width = req.body.width;
+        var userId = req.body.userId;
+        var pageId = req.body.pageId;
+        var websiteId = req.body.websiteId;
+        var myFile = req.file;
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename = myFile.filename;     // new file name in upload folder
+        var path = myFile.path;         // full path of uploaded file
+        var destination = myFile.destination;  // folder where file is saved to
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
 
-        for(var w in widgets) {
-            var widget = widgets[w];
-            if(widgets[w]._id === widgetId) {
-                widget.url = '/uploads/'+filename;
-                break;
-            }
-        }
-        res.redirect('/assignment/#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId);
+        //var widget = req.body;
+        //var widgetId = req.params.widgetId;
+
+        console.log("widgetId in upload image: " + widgetId);
+
+        WidgetModel
+            .findWidgetById(widgetId)
+            .then(function (response) {
+                console.log("have widget: "+response);
+                response.url = '/uploads/' + filename;
+                response.width = width;
+
+                console.log("here is the url: "+response.url);
+                console.log("here is the width: "+response.width);
+
+                WidgetModel
+                    .updateWidget(widgetId, response)
+                    .then(function (result) {
+                        console.log("updated widget: "+result);
+                        res.redirect('/assignment/#/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);
+                        //res.send(response);
+                    }, function (error) {
+                        res.sendStatus(500);
+                    });
+            });
     }
+                // for(var w in widgets) {
+                //     var widget = widgets[w];
+                //     if(widgets[w]._id === widgetId) {
+                //         widget.url = '/uploads/'+filename;
+                //         break;
 };
