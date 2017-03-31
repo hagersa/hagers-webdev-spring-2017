@@ -43,9 +43,6 @@ module.exports = function (app, WidgetModel) {
     function createWidget(req, res) {
         var newWidget = req.body;
         var pageId = req.params.pageId;
-        // newWidget.pageId = req.params.pageId;
-        // newWidget._id = (new Date()).getTime()+"";
-        // widgets.push(newWidget);
 
         if(newWidget.widgetType === 'HEADER') {
             newWidget.size = 1;
@@ -172,9 +169,6 @@ module.exports = function (app, WidgetModel) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
 
-        //var widget = req.body;
-        //var widgetId = req.params.widgetId;
-
         console.log("widgetId in upload image: " + widgetId);
 
         WidgetModel
@@ -198,9 +192,4 @@ module.exports = function (app, WidgetModel) {
                     });
             });
     }
-                // for(var w in widgets) {
-                //     var widget = widgets[w];
-                //     if(widgets[w]._id === widgetId) {
-                //         widget.url = '/uploads/'+filename;
-                //         break;
 };

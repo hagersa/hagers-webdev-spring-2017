@@ -7,7 +7,10 @@
 
         var api = {
             //"users": users,
+            "login": login,
+            "logout": logout,
             "createUser": createUser,
+            "register": register,
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
@@ -16,6 +19,16 @@
         };
         return api;
 
+        function login(user) {
+            console.log("have user in service.client: "+user);
+            return $http.post("/api/login", user);
+        }
+
+        function logout(user) {
+            console.log("have user in logout service.client: "+user);
+            return $http.post("/api/logout");
+        }
+
         function findUserByCredentials(username, password) {
             console.log(username, password);
             return $http.get("/api/user?username="+username+"&password="+password);
@@ -23,6 +36,10 @@
 
         function createUser(user) {
             return $http.post("/api/user", user);
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
         }
 
         function findUserById(userId) {

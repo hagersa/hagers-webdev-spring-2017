@@ -16,75 +16,111 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when("/profile/:uid",{
+            .when("/profile", {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {loggedIn: checkLoggedin}
             })
-            .when("/user/:uid/website",{
+            .when("/profile/:uid", {
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: 'profileController',
+                controllerAs: 'model',
+                resolve: {loggedIn: checkLoggedin}
+            })
+            .when("/user/:uid/website", {
                 templateUrl: 'views/websites/templates/website-list.view.client.html',
                 controller: 'WebsiteListController',
                 controllerAs: 'model'
             })
-            .when("/user/:uid/website/new",{
+            .when("/user/:uid/website/new", {
                 templateUrl: 'views/websites/templates/website-new.view.client.html',
                 controller: 'WebsiteNewController',
                 controllerAs: 'model'
             })
-            .when("/user/:uid/website/:wid",{
+            .when("/user/:uid/website/:wid", {
                 templateUrl: 'views/websites/templates/website-edit.view.client.html',
                 controller: 'WebsiteEditController',
                 controllerAs: 'model'
             })
-            .when("/user/:uid/website/:wid/page",{
+            .when("/user/:uid/website/:wid/page", {
                 templateUrl: 'views/pages/templates/page-list.view.client.html',
                 controller: "PageListController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid/page/new",{
+            .when("/user/:uid/website/:wid/page/new", {
                 templateUrl: 'views/pages/templates/page-new.view.client.html',
                 controller: "PageNewController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid/page/:pid",{
+            .when("/user/:uid/website/:wid/page/:pid", {
                 templateUrl: 'views/pages/templates/page-edit.view.client.html',
                 controller: "PageEditController",
                 controllerAs: "model"
             })
-
-            .when("/user/:uid/website/:wid/page/:pid/widget",{
+            .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: 'views/widgets/templates/widget-list.view.client.html',
                 controller: "WidgetListController",
                 controllerAs: "model"
             })
-
-            .when("/user/:uid/website/:wid/page/:pid/widget/new",{
+            .when("/user/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: 'views/widgets/templates/widget-choose.view.client.html',
                 controller: "WidgetNewController",
                 controllerAs: "model"
             })
-
-            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: 'views/widgets/templates/widget-edit.view.client.html',
                 controller: "WidgetEditController",
                 controllerAs: "model"
             })
-
-            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/search",{
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/search", {
                 templateUrl: 'views/widgets/templates/widget-flickr-search.view.client.html',
                 controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
-
             .when("/", {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: 'loginController',
                 controllerAs: 'model'
             })
-            .otherwise ( {
+            .otherwise({
                 redirectTo: "/"
             })
-
     }
+
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        $http.get('/api/loggedin').success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user !== '0') {
+                $rootScope.currentUser = user;
+                console.log("success in config, userId in checkLoggedin function: "+ user._id);
+                $location.url('/profile/'+user._id);
+                deferred.resolve();
+            } else {
+                console.log("user not logged in in checkLoggedin in config");
+                deferred.reject();
+                $location.url('/');
+            }
+        });
+        return deferred.promise;
+    }
+
+    // function checkLoggedin($q, $http, userService, $location, $rootScope) {
+    //     var deffered = $q.defer();
+    //     userService
+    //         .loggedin()
+    //         .then(function (user) {
+    //             if(user == '0') {
+    //                 console.log("in config");
+    //                 deffered.reject();
+    //                 $location.url('/login')
+    //             } else {
+    //                 console.log("in config2");
+    //                 deffered.resolve(user);
+    //             }
+    //         });
+    //     return deffered.promise;
+    // }
 
 })();

@@ -18,6 +18,7 @@ module.exports = function () {
     return api;
 
     function createUser(user) {
+        console.log("have new user in model.server: "+user);
         var deferred = q.defer();
         console.log(user);
         UserModel
@@ -25,6 +26,7 @@ module.exports = function () {
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
+                    console.log("success creating user in model.server: "+user);
                     deferred.resolve(user);
                 }
             });
@@ -50,6 +52,7 @@ module.exports = function () {
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
+                    console.log("in model.server"+user);
                     deferred.resolve(user);
                 }
             });
@@ -59,8 +62,14 @@ module.exports = function () {
     function findUserByCredentials(username, password) {
         var deferred = q.defer();
         UserModel
-            .find({username: username, password: password}, function (err, user) {
+            .findOne({username: username, password: password}, function (err, user) {
+            if(err) {
+                console.log("error in model.server findUserByCredentials: "+ user);
+                deferred.abort(err);
+            } else {
+                console.log("in model.server findUserByCredentials: "+ user);
                 deferred.resolve(user);
+            }
             });
         return deferred.promise;
     }
@@ -88,8 +97,3 @@ module.exports = function () {
         return deferred.promise;
     }
 };
-
-//user.firstName = newUser.firstName;
-//         user.lastName = newUser.lastName;
-//         user.password = newUser.password;
-//         user.email = newUser.email;

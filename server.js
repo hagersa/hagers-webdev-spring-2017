@@ -7,10 +7,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// install, load, and configure cookieParser module
-// var passport = require('passport'); //, process.ENV.session // should be an environment variable
-// var cookieParser = require('cookie-parser');
-// var session = require('express-session');
+// install, load, and configure passport and cookieParser module
+var passport = require('passport'); //, process.ENV.session // should be an environment variable
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
 
 var connectionString = 'mongodb://127.0.0.1:27017/assignment';
 
@@ -28,19 +29,21 @@ mongoose.connect(connectionString);
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
-// // configure passport and cookieParser
-// app.use(session({
-// 	secret: 'this is the secret',
-// 	resave: true,
-// 	saveUninitialized: true
-// }));
-// app.use(cookieParser());
+// configure  and initialsize passport and cookieParser
+app.use(session({
+    secret: 'this is the secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(cookieParser());
+//app.use(session({ secret: process.env.SESSION_SECRET }));
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // require("./test/app")(app);
 var assignment = require("./assignment/app.js")(app);
-
-
-//require('.lectures/university/university.js')()
 
 var port = process.env.PORT || 3000;
 

@@ -114,5 +114,3 @@ module.exports = function (userModel) {
         return deferred.promise;
     }
 };
-
-//update, findById

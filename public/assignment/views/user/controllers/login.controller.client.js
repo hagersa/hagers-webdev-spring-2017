@@ -3,26 +3,21 @@
         .module("WebAppMaker")
         .controller("loginController", loginController);
 
-    function loginController(UserService, $location) {
+    function loginController(UserService, $location, $rootScope) {
         var vm = this;
         vm.login = login;
 
         function login(user) {
-            // show waiting gif
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise
-                .success(function (user) {
-                    // hide waiting gif
-                    var loginUser = user[0];
-                    if(loginUser != null) {
-                        $location.url('/profile/' + loginUser._id);
-                    } else {
-                        vm.error = 'user not found';
-                    }
-                })
-                .error(function(err) {
-                    vm.error = 'user does not exist';
-                });
+            UserService
+                .login(user)
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        $rootScope.currentUser = user;
+                        $location.url('/profile');  //+ user._id
+                    });
         }
     }
+
+
 })();

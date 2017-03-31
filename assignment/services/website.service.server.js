@@ -31,29 +31,11 @@ module.exports = function (app, WebsiteModel) {
             }, function (error) {
                 res.sendStatus(500);
             });
-        // var newWebsite = req.body;
-        // newWebsite.developerId = req.params.userId;
-        // newWebsite._id = (new Date()).getTime()+"";
-        // newWebsite.created = (new Date());
-        // websites.push(newWebsite);
-        // res.send(newWebsite);
     }
-
-    // function someServersideFunction() {
-    //     return makedbcall()
-    //             .then((s1) => {
-    //             return makeanotherdbcall(s1);
-    // })
-    // .then((s2) => {
-    //         return s2; // i want this to be the return of someServersideFunction and i need it to wait for s2 before returning.
-    // })
-    // }
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
         console.log("In service.server with userId: " + userId);
-
-        //var websiteObjects = [];
 
         return WebsiteModel.findAllWebsitesForUser(userId)
             .then(function (websiteIds) {
@@ -64,67 +46,8 @@ module.exports = function (app, WebsiteModel) {
             .then(function (websites) {
                 console.log("have websiteObjects in service.server: " + websites);
                 res.send(websites);
-                //     // console.log("have websiteObjects in service.server: " + websites);
-                //             // for(var w in websites) {
-                //             //     websiteObjects.push(websites[w]);
-                //             // }
-                //             // console.log("pushed response into websiteObjects in service.server: " + websiteObjects);
-                //             // res.sendStatus(200);
-                //         }, function (error) {
-                //             console.log("something went wrong in service.server");
-                //             res.sendStatus(500);
-                //         });
-                //     console.log("pushed response into websiteObjects in service.server: " + websiteObjects);
-                //     res.send(websiteObjects);
-                // }, function (error) {
-                //     res.sendStatus(500);
-                // });
             })
     }
-
-    // function findAllWebsitesForUser(req, res){
-    //     var userId = req.params.userId;
-    //     console.log("In service.server with userId: " +userId);
-    //
-    //     var websiteObjects = [];
-    //
-    //     WebsiteModel
-    //         .findAllWebsitesForUser(userId) // gets array of websiteIds for userId
-    //         .then(function(websiteIds) {
-    //             console.log("have websiteIds in service.server: " + websiteIds);
-    //
-    //             WebsiteModel
-    //                 .findAllWebsites(websiteIds) // gets array of websites corresponding to array of websiteIds
-    //                 .then(function(websites) {
-    //                     console.log("have websiteObjects in service.server: " + websites);
-    //                     for(var w in websites) {
-    //                         websiteObjects.push(websites[w]);
-    //                     }
-    //                     console.log("pushed response into websiteObjects in service.server: " + websiteObjects);
-    //                     res.sendStatus(200);
-    //                 }, function (error) {
-    //                     console.log("something went wrong in service.server");
-    //                     res.sendStatus(500);
-    //                 });
-    //             console.log("pushed response into websiteObjects in service.server: " + websiteObjects);
-    //             res.send(websiteObjects);
-    //         }, function (error) {
-    //             res.sendStatus(500);
-    //         });
-    //
-    //     // var _sites = [];
-    //     // for(var w in websites) {
-    //     //     if(websites[w].developerId === userId) {
-    //     //         _sites.push(websites[w]);
-    //     //     }
-    //     // }
-    //     // if (_sites) {
-    //     //     res.send(_sites);
-    //     //     return
-    //     // } else {
-    //     //     res.sendStatus(404);
-    //     // }
-    // }
 
     function findWebsiteById(req, res){
             var websiteId = req.params.websiteId;
@@ -137,16 +60,6 @@ module.exports = function (app, WebsiteModel) {
                 }, function (error) {
                     res.sendStatus(500)
                 });
-        // var websiteId = req.params.websiteId;
-        //
-        // for(var w in websites) {
-        //     var website = websites[w];
-        //     if(websites[w]._id === websiteId) {
-        //         res.send(website);
-        //         return
-        //     }
-        // }
-        // res.sendStatus(404);
     }
 
     function updateWebsite(req, res) {
@@ -162,20 +75,6 @@ module.exports = function (app, WebsiteModel) {
             }, function (error) {
                 res.sendStatus(500);
             });
-
-        // for(var w in websites) {
-        //     var website = websites[w];
-        //
-        //     if(website._id === websiteId ) {
-        //         var newWebsite = req.body;
-        //         website.name = newWebsite.name;
-        //         website.description = newWebsite.description;
-        //
-        //         res.sendStatus(200);
-        //         return
-        //     }
-        // }
-        // res.sendStatus(404);
     }
 
     function deleteWebsite(req, res) {
@@ -190,13 +89,4 @@ module.exports = function (app, WebsiteModel) {
                 res.sendStatus(500)
             });
     }
-    //     var websiteId = req.params.websiteId;
-    //     for (var w in websites) {
-    //         if(websites[w]._id === websiteId) {
-    //             websites.splice(w, 1);
-    //             res.sendStatus(200);
-    //             return;
-    //         }
-    //     }
-    //     res.sendStatus(404);
 };
