@@ -11,17 +11,20 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="../library/library-home.view.client.html" class="navbar-link">
+        <!--<div class="navbar-text pull-left">
+            &lt;!&ndash;ng-if for director vs. member&ndash;&gt;
+            <a href="../library/director-director-library-home.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
             </a>
-        </div>
+        </div>-->
         <div class="navbar-text pull-right">
-            <a href="../library/library-home.view.client.html" class="navbar-link">
+            <!--ng-if for director vs. member-->
+            <a href="../library/director-library-home.view.client.html" class="navbar-link">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
         </div>
+
         <div class="navbar-header">
             <a class="navbar-brand">
                 Search
@@ -48,7 +51,21 @@
         </a>
     </span>
     </div>
+</div>
 
+<div class="container-fluid">
+    <h4>Search Results</h4>
+    <ul class="list-group">
+        <li class="newsfeed-list-group-item list-group-item">
+            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg" class="list-image-size"/>
+            <a href="info.view.client.html">Dirait On</a>
+            <a class="pull-right">
+            <!--if viewing self, non-empty stars, can unfavorite-->
+            <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
+            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
+            </a>
+        </li>
+    </ul>
 </div>
 
 
@@ -67,7 +84,7 @@
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/favorites.view.client.html">
+                    <a href="../social/public-profile.view.client.html">
                         <span class="glyphicon glyphicon-star"></span>
                     </a>
                 </div>

@@ -94,6 +94,15 @@ module.exports = function (app, WidgetModel) {
             })
     }
 
+
+    //update to get widgets in correct order, need to find them from the page widget ids
+//     pageModel
+//         .findById()
+//         .populate('widgets')
+//         .exec(function (page)}
+//         d.resolve(page.widgets)
+// }
+
     function findWidgetById(req, res){
         var widgetId = req.params.widgetId;
         console.log("have widgetId in service.server: "+widgetId);

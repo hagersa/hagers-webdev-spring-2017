@@ -1,10 +1,24 @@
 module.exports = function (app, UserModel) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var bcrypt = require("bcrypt-nodejs");
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     passport.use(new LocalStrategy(localStrategy));
+
+    // var googleConfig = {
+    //     clientId : process.env.GOOGLE_CLIENT_ID,
+    //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    //     callbackURL : process.env.GOOGLE_CALLBACK_URL
+    // };
+
+    var googleConfig = {
+        clientID : process.env.GOOGLE_CLIENT_ID,
+        clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL : 'http://localhost:3000/auth/google/callback'
+    };
 
     app.get("/api/user", findUser);
     // Note: findUser handles findUserByUsername and findUserByCredentials,
@@ -17,6 +31,53 @@ module.exports = function (app, UserModel) {
     app.delete("/api/user/:userId", deleteUser);
     app.post ('/api/register', register);
     app.get ('/api/loggedin', loggedIn);
+
+    app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
+    app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/assignment/#/profile',
+        failureRedirect: '/assignment/#/login'
+        }));
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        UserModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username: emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName: profile.name.familyName,
+                            email: email,
+                            google: {
+                                id: profile.id,
+                                token: token // used to check if authentication is still valid
+                            }
+                        };
+                        return UserModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
 
     function serializeUser(user, done) {
         done(null, user);
@@ -35,6 +96,7 @@ module.exports = function (app, UserModel) {
             );
     }
 
+    // checks that encrypted password and typed password match
     function localStrategy(username, password, done) {
         console.log("in localStrategy: "+username+" "+password);
         UserModel
@@ -42,7 +104,7 @@ module.exports = function (app, UserModel) {
             .then(
                 function(user) {
                     console.log("user and password: "+user.username+" "+user.password);
-                    if(user.username === username && user.password === password) {
+                    if(user.username === username && bcrypt.compareSync(password, user.password)) {
                         console.log("success in localStrategy");
                         return done(null, user);
                     } else {
@@ -54,8 +116,17 @@ module.exports = function (app, UserModel) {
                     console.log("findUserByCredentials in localStrategy didn't find user");
                     if (err) { return done(err); }
                 }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
             );
     }
+
 
     function login(req, res) {
         var user = req.user;
@@ -168,9 +239,12 @@ module.exports = function (app, UserModel) {
             });
     }
 
+    // encrypts passwords upon registration
     function register (req, res) {
         var user = req.body;
         console.log("have new user in service.server: "+user);
+        user.password = bcrypt.hashSync(user.password);
+        console.log("success in createUser in service.server: "+user.password);
         UserModel
             .createUser(user)
             .then(function(newUser){

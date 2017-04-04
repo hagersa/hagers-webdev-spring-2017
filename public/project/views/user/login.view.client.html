@@ -19,6 +19,27 @@
     </div>
 </nav>
 
+<div class="container-fluid">
+    <div class="input-group sah-button-padding">
+        <input type="text" class="form-control" placeholder="Search Youtube">
+        <span class="input-group-btn">
+        <a class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+
+    <div class="input-group sah-button-padding">
+        <input type="text" class="form-control" placeholder="Search IMSLP">
+        <span class="input-group-btn">
+        <a class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+</div>
+
+
 <div id="padded-container" class="container-fluid">
     <h3>
         Welcome to Odhecaton!
@@ -40,7 +61,8 @@
     <input type="password"
            class="form-control"
            placeholder="password"/>
-    <a class="btn btn-primary btn-block" href="../library/library-home.view.client.html">Login</a>
+    <!--ng-if for director vs. member-->
+    <a class="btn btn-primary btn-block" href="../library/director-library-home.view.client.html">Login</a>
     <a class="btn btn-warning btn-block" href="../user/register.view.client.html">Register</a>
 </div>
 

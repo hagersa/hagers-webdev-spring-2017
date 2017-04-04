@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Username</title>
+    <title>Username's Favorites & Friends</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../css/style.css" rel="stylesheet"/>
 </head>
@@ -11,16 +11,21 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="../library/library-home.view.client.html" class="navbar-link">
+        <!--<div class="navbar-text pull-left">
+            <a href="newsfeed.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
             </a>
-        </div>
+        </div>-->
         <div class="navbar-text pull-right">
-            <a href="../library/library-home.view.client.html" class="navbar-link">
+            <a href="../library/director-library-home.view.client.html" class="navbar-link">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
+        </div>
+        <!--ng-if for admin vs. user-->
+        <div class="sah-navbar-text-padding navbar-button pull-right">
+            <a href="../admin/admin-home.view.client.html" class="navbar-link">
+                <span class="btn btn-warning">Admin</span></a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand">
@@ -34,6 +39,7 @@
     <h4>
         About Username
         <span class="glyphicon glyphicon-star-empty sah-glyphicon-center pull-right"></span>
+        <!--don't show star if currently viewing self-->
     </h4>
     <p>Email address: username@singer.com</p>
     <p>Lorem ipsum Lorem ipsum Lorem ipsum<br>
@@ -45,7 +51,9 @@
             <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg" class="list-image-size"/>
             <a href="info.view.client.html">Dirait On</a>
             <a class="pull-right">
+                <!--if viewing self, non-empty stars, can unfavorite-->
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
+                <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
             </a>
         </li>
         <li class="list-group-item">
@@ -54,6 +62,7 @@
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
+            <!--div that displays pdf details if user clicks on the title above-->
         </li>
         <li class="list-group-item">
             <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg" class="list-image-size"/>
@@ -61,25 +70,27 @@
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
+            <!--div that displays pdf details if user clicks on the title above-->
         </li>
     </ul>
 
     <h4>Followed by Username</h4>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="friend.view.client.html">Username123</a>
+            <a href="public-profile.view.client.html">Username123</a>
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="friend.view.client.html">Username234</a>
+            <a href="public-profile.view.client.html">Username234</a>
             <a class="pull-right">
+                <!--if viewing self, non-empty stars, can unfavorite-->
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="friend.view.client.html">Username345</a>
+            <a href="public-profile.view.client.html">Username345</a>
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
@@ -89,19 +100,19 @@
     <h4>Following Username</h4>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="friend.view.client.html">Username123</a>
+            <a href="public-profile.view.client.html">Username123</a>
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="friend.view.client.html">Username234</a>
+            <a href="public-profile.view.client.html">Username234</a>
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="friend.view.client.html">Username345</a>
+            <a href="public-profile.view.client.html">Username345</a>
             <a class="pull-right">
                 <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
             </a>
@@ -124,7 +135,7 @@
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/favorites.view.client.html">
+                    <a href="../social/public-profile.view.client.html">
                         <span class="glyphicon glyphicon-star"></span>
                     </a>
                 </div>

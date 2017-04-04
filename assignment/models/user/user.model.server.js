@@ -6,16 +6,35 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByGoogleId: findUserByGoogleId
     };
 
     var mongoose = require('mongoose');
     var q = require('q');
+    var bcrypt = require("bcrypt-nodejs");
+
 
     var UserSchema = require('./user.schema.server.js')();
     var UserModel = mongoose.model('UserModel', UserSchema);
 
     return api;
+
+    // check code
+    function findUserByGoogleId(googleId) {
+        //var deferred = q.defer();
+       return  UserModel
+            .findOne({'google.id': googleId});//, function (err, user) {
+            // if(err) {
+            //     console.log("error in model.server findUserByGoogleId: "+user);
+            //     deferred.reject(err); // reject
+            // } else {
+            //     console.log("in model.server findUserByGoogleId: "+user);
+            //     deferred.resolve(user);
+            // }
+     //   });
+        //return deferred.promise;
+    }
 
     function createUser(user) {
         console.log("have new user in model.server: "+user);
@@ -59,16 +78,23 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    // updated to check that the password is correct
     function findUserByCredentials(username, password) {
+
         var deferred = q.defer();
         UserModel
-            .findOne({username: username, password: password}, function (err, user) {
+            .findOne({username: username}, function (err, user) {
             if(err) {
                 console.log("error in model.server findUserByCredentials: "+ user);
-                deferred.abort(err);
+                deferred.reject(err);
             } else {
-                console.log("in model.server findUserByCredentials: "+ user);
-                deferred.resolve(user);
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    console.log("in model.server findUserByCredentials: "+ user);
+                    deferred.resolve(user);
+                } else {
+                    console.log("in model.server error findUserByCredentials: "+ user);
+                    deferred.reject(err);
+                }
             }
             });
         return deferred.promise;
@@ -89,7 +115,7 @@ module.exports = function () {
             .update({_id : userId},
                 {firstName : user.firstName,
                     lastName : user.lastName,
-                    password : user.password,
+                    password : bcrypt.hashSync(user.password),
                     email : user.email},
                 function (err, response) {
             deferred.resolve(response);

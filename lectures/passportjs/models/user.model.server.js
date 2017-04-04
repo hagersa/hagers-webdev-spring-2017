@@ -4,8 +4,8 @@ mongoose.connect(connectionString);
 
 var userSchema = mongoose.Schema({
     // validation
-    username: {type: String, require: true},
-    password: {type: String, require: true},
+    username: {type: String, required: true},
+    password: {type: String, required: true},
     firstName: String,
     // add following to manage roles
     role: {type: String, enum: ['STUDENT', 'FACULTY', 'ADMIN', 'USER'], default: 'USER' }

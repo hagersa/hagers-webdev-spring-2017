@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Create Collection</title>
+    <title>Edit Library</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../css/style.css" rel="stylesheet"/>
 </head>
@@ -12,32 +12,33 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../collection/collection-list.view.client.html" class="navbar-link">
+            <a href="../library/director-library-home.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="../library/library-home.view.client.html" class="navbar-link">
+            <a href="../library/director-library-home.view.client.html" class="navbar-link">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
         </div>
+
         <div class="navbar-header">
             <a class="navbar-brand">
-                Create a Collection
+                Edit Library
             </a>
         </div>
     </div>
 </nav>
 
-<div class="row container-fluid">
+<div class="row container-fluid sah-container-left-padding">
     <div class="col-sm-4 hidden-xs sah-left-pane">
         <div class="container-fluid">
             <div class="h3">
-                <a href="collection-create.view.client.html">
-                    <span class="glyphicon glyphicon-plus-sign pull-right sah-glyphicon-padding"></span>
+                <a href="director-library-create.view.client.html">
+                    <span class="glyphicon glyphicon-plus-sign pull-right"></span>
                 </a>
-                In My Collection
+                Owned By Me
             </div>
 
             <ul class="list-group">
@@ -45,17 +46,17 @@
                     <div class="row">
                         <div class="col-xs-8">
                             <a href="../widget/widget-list-owner.view.client.html">
-                                Lexington Choral Festival
+                                LUMC Chancel Choir
                             </a>
                         </div>
                         <div class="col-xs-2">
-                            <a href="collection-share.view.client.html" class="pull-right">
-                                <span class="glyphicon glyphicon-share-alt"></span>
+                            <a href="director-library-share.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-link"></span>
                             </a>
                         </div>
                         <div class="col-xs-2">
-                            <a href="collection-edit.view.client.html" class="pull-right">
-                                <span class="glyphicon glyphicon-cog"></span>
+                            <a href="director-library-edit.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </div>
                     </div>
@@ -64,40 +65,58 @@
                     <div class="row">
                         <div class="col-xs-8">
                             <a href="../widget/widget-list-owner.view.client.html">
-                                Spring Rehearsals
+                                Lasell VOX Chorus
                             </a>
                         </div>
                         <div class="col-xs-2">
-                            <a href="collection-share.view.client.html" class="pull-right">
-                                <span class="glyphicon glyphicon-share-alt"></span>
+                            <a href="director-library-share.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-link"></span>
                             </a>
                         </div>
                         <div class="col-xs-2">
-                            <a href="collection-edit.view.client.html" class="pull-right">
-                                <span class="glyphicon glyphicon-cog"></span>
+                            <a href="director-library-edit.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
+
+        <div class="container-fluid">
+            <h3>
+                Shared With Me
+            </h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="../widget/widget-list-user.view.client.html">
+                        CCC Evensong Choir
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="../widget/widget-list-user.view.client.html">
+                        Cantilena
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
-<div class="col-sm-8 col-xs-12 sah-right-pane">
+<div class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
     <form>
         <div class="form-group">
-            <label for="name">Collection Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name your new collection!">
+            <label for="name">Library Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Rename your library...">
         </div>
         <div class="form-group">
-            <label for="description">Collection Description</label>
-            <textarea class="form-control" id="description" rows="4" placeholder="Describe your collection here..." required></textarea>
+            <label for="description">Library Description</label>
+            <textarea class="form-control" id="description" rows="4" placeholder="Desrcribe your library..." required></textarea>
         </div>
     </form>
-    <a class="btn btn-success  btn-block" href="collection-list.view.client.html">Create</a>
+    <a class="btn btn-success  btn-block" href="director-library-home.view.client.html">Update</a>
+    <a class="btn btn-danger  btn-block" href="director-library-home.view.client.html">Delete</a>
 </div>
-
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -115,7 +134,7 @@
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/favorites.view.client.html">
+                    <a href="../social/public-profile.view.client.html">
                         <span class="glyphicon glyphicon-star"></span>
                     </a>
                 </div>

@@ -13,7 +13,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 
-var connectionString = 'mongodb://127.0.0.1:27017/assignment';
+var connectionString = 'mongodb://127.0.0.1:27017/CS5610';
 
 if(process.env.MLAB_USERNAME) {
 	connectionString = process.env.MLAB_USERNAME + ":" +
