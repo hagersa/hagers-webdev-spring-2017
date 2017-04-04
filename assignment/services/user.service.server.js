@@ -8,16 +8,10 @@ module.exports = function (app, UserModel) {
     passport.deserializeUser(deserializeUser);
     passport.use(new LocalStrategy(localStrategy));
 
-    // var googleConfig = {
-    //     clientId : process.env.GOOGLE_CLIENT_ID,
-    //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    //     callbackURL : process.env.GOOGLE_CALLBACK_URL
-    // };
-
     var googleConfig = {
         clientID : process.env.GOOGLE_CLIENT_ID,
         clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL : 'http://localhost:3000/auth/google/callback'
+        callbackURL : 'https://hagers-webdev-spring-2017.herokuapp.com/auth/google/callback' //'http://localhost:3000/auth/google/callback'
     };
 
     app.get("/api/user", findUser);
@@ -31,7 +25,7 @@ module.exports = function (app, UserModel) {
     app.delete("/api/user/:userId", deleteUser);
     app.post ('/api/register', register);
     app.get ('/api/loggedin', loggedIn);
-
+    //login with Google
     app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
     app.get('/auth/google/callback',
     passport.authenticate('google', {

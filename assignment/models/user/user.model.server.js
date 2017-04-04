@@ -14,27 +14,12 @@ module.exports = function () {
     var q = require('q');
     var bcrypt = require("bcrypt-nodejs");
 
-
     var UserSchema = require('./user.schema.server.js')();
     var UserModel = mongoose.model('UserModel', UserSchema);
 
     return api;
 
-    // check code
-    function findUserByGoogleId(googleId) {
-        //var deferred = q.defer();
-       return  UserModel
-            .findOne({'google.id': googleId});//, function (err, user) {
-            // if(err) {
-            //     console.log("error in model.server findUserByGoogleId: "+user);
-            //     deferred.reject(err); // reject
-            // } else {
-            //     console.log("in model.server findUserByGoogleId: "+user);
-            //     deferred.resolve(user);
-            // }
-     //   });
-        //return deferred.promise;
-    }
+
 
     function createUser(user) {
         console.log("have new user in model.server: "+user);
@@ -50,6 +35,11 @@ module.exports = function () {
                 }
             });
         return deferred.promise;
+    }
+
+    function findUserByGoogleId(googleId) {
+        return  UserModel
+            .findOne({'google.id': googleId});//, function (err, user) {
     }
 
     function findUserById(userId) {
