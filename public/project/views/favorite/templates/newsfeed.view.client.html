@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Newsfeed</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!--<div class="navbar-text pull-left">
+            <a href="../library/library-home-director.view.client.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+            </a>
+        </div>-->
+        <div class="navbar-text pull-right">
+            <a href="../../library/templates/library-home-director.view.client.html" class="navbar-link">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+        </div>
+
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                What's new?
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="input-group sah-button-padding">
+        <input type="text" class="form-control" placeholder="Search for a user">
+        <span class="input-group-btn">
+        <a class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+
+    <!--ng-if: show matching users if search is initiated, hide newsfeed-->
+    <ul class="list-group">
+        <li class="list-group-item h4">
+            <a href="public-profile.view.client.html">Search Results</a>
+        </li>
+        <li class="newsfeed-list-group-item list-group-item">
+            <a href="public-profile.view.client.html">Username123</a>
+            <a class="pull-right">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+        </li>
+        <li class="newsfeed-list-group-item list-group-item">
+            <a href="public-profile.view.client.html">Username234</a>
+            <a class="pull-right">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+        </li>
+    </ul>
+
+    <div>
+    <ul class="list-group">
+        <li class="list-group-item h4">
+            <a href="public-profile.view.client.html">Username123's new favorites</a>
+        </li>
+        <li class="newsfeed-list-group-item list-group-item">
+            <a href="info.view.client.html">Dirait On</a>
+            <a class="pull-right">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
+        </li>
+        <li class="newsfeed-list-group-item list-group-item">
+            <a href="info.view.client.html">Ave Maris Stella</a>
+            <a class="pull-right">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
+        </li>
+
+        <li class="list-group-item h4">
+            <a href="public-profile.view.client.html">Username234's new favorites</a>
+        </li>
+        <li class="newsfeed-list-group-item list-group-item">
+            <a href="info.view.client.html">Jesu, Meine Freude</a>
+            <a class="pull-right">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
+        </li>
+
+        <li class="list-group-item h4">
+            <a href="public-profile.view.client.html">Username345 new favorites</a>
+        </li>
+        <li class="newsfeed-list-group-item list-group-item">
+            <a href="info.view.client.html">Lux Aeterna</a>
+            <a class="pull-right">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
+        </li>
+    </ul>
+    </div>
+
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-footer">
+            <div class="row navbar-text text-center">
+                <div class="col-xs-2 pull-right">
+                    <a href="../../user/templates/login.view.client.html">
+                        <span class="glyphicon glyphicon-off"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="search.view.client.html">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="public-profile.view.client.html">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="../social/newsfeed.view.client.html">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="../../user/templates/profile.view.client.html">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("Odhecaton")
         .controller("loginController", loginController);
 
     function loginController(UserService, $location, $rootScope) {
@@ -14,7 +14,7 @@
                     .success(function (response) {
                         var user = response.data;
                         $rootScope.currentUser = user;
-                        $location.url('/profile');  //+ user._id
+                        $location.url('/profile');
                     })
                     .error(function () {
                         console.log("error in login controller");
@@ -26,4 +26,3 @@
         }
     }
 })();
-

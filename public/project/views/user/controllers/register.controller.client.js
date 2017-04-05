@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("WebAppMaker")
+        .module("Odhecaton")
         .controller("registerController", registerController);
 
     function registerController(UserService, $location, $rootScope) {
