@@ -11,7 +11,7 @@ module.exports = function (app, UserModel) {
     var googleConfig = {
         clientID : process.env.GOOGLE_CLIENT_ID,
         clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL : 'http://localhost:3000/auth/google/callback' //'https://hagers-webdev-spring-2017.herokuapp.com/auth/google/callback'
+        callbackURL : 'http://localhost:3000/auth/google/callback' //'http://localhost:3000/auth/google/callback'
     };
 
     app.get("/api/user", findUser);
@@ -28,9 +28,9 @@ module.exports = function (app, UserModel) {
     //login with Google
     app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
     app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        successRedirect: '/assignment/#/profile',
-        failureRedirect: '/assignment/#/login'
+        passport.authenticate('google', {
+            successRedirect: '/assignment/#/profile',
+            failureRedirect: '/assignment/#/login'
         }));
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -242,19 +242,19 @@ module.exports = function (app, UserModel) {
         UserModel
             .createUser(user)
             .then(function(newUser){
-                console.log("success in createUser in service.server: "+newUser);
-                if(newUser){
-                    req.login(newUser, function(err) {
-                        if(err) {
-                            res.status(400).send(err);
-                        } else {
-                            console.log("success logging new user in in service.server");
-                            res.json(newUser);
-                        }
-                    });
+                    console.log("success in createUser in service.server: "+newUser);
+                    if(newUser){
+                        req.login(newUser, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                console.log("success logging new user in in service.server");
+                                res.json(newUser);
+                            }
+                        });
+                    }
                 }
-            }
-        );
+            );
     }
 
 

@@ -1,77 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
+<div ng-controller="loginController as model" class="container">
 
-<nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Odhecaton
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                Odhecaton
-            </a>
+        <div class="input-group sah-button-padding">
+            <input type="text" class="form-control" placeholder="Search Youtube">
+            <span class="input-group-btn">
+                <a class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+        </div>
+
+        <div class="input-group sah-button-padding">
+            <input type="text" class="form-control" placeholder="Search IMSLP">
+            <span class="input-group-btn">
+                <a class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
         </div>
     </div>
-</nav>
 
-<div class="container-fluid">
-    <div class="input-group sah-button-padding">
-        <input type="text" class="form-control" placeholder="Search Youtube">
-        <span class="input-group-btn">
-        <a class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-    </span>
+    <!--div for showing search results-->
+    <div></div>
+
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+    <div id="padded-container" class="container-fluid">
+        <h3>
+            Welcome to Odhecaton!
+        </h3>
+
+        <p>
+        Odhecaton is home to choral directors and singers alike.<br>
+        </p>
+        <ul class="sah-ul-style">
+            <li>Create and access libraries of recordings and sheet music.</li>
+            <li>Share your libraries, search for new resources, and save your favorites as you search.</li>
+            <li>See what your friends are listening to!</li>
+        </ul>
+
+        <h3>Login</h3>
+        <input type="text"
+               class="form-control"
+               placeholder="username"/>
+        <input type="password"
+               class="form-control"
+               placeholder="password"/>
+        <a ng-click="model.login(user)" class="btn btn-primary btn-block">Login</a>
+
+        <!--<a href="/auth/google" class="btn btn-primary btn-block">-->
+            <!--<span class="fa fa-google-plus"></span>-->
+            <!--Google-->
+        <!--</a>-->
+
+        <a href="#/register" class="btn btn-warning btn-block">Register</a>
     </div>
 
-    <div class="input-group sah-button-padding">
-        <input type="text" class="form-control" placeholder="Search IMSLP">
-        <span class="input-group-btn">
-        <a class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-    </span>
-    </div>
-</div>
-
-
-<div id="padded-container" class="container-fluid">
-    <h3>
-        Welcome to Odhecaton!
-    </h3>
-
-    <p>
-       Odhecaton is home to choral directors and singers alike.<br>
-    </p>
-    <ul class="sah-ul-style">
-        <li>Create and access libraries of recordings and sheet music.</li>
-        <li>Share your libraries, search for new resources, and save your favorites as you search.</li>
-        <li>See what your friends are listening to!</li>
-    </ul>
-
-    <h3>Login</h3>
-    <input type="text"
-           class="form-control"
-           placeholder="username"/>
-    <input type="password"
-           class="form-control"
-           placeholder="password"/>
-    <!--ng-if for director vs. member-->
-    <a class="btn btn-primary btn-block" href="../../library/templates/library-home-director.view.client.html">Login</a>
-    <a class="btn btn-warning btn-block" href="register.view.client.html">Register</a>
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-footer">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-footer"></div>
         </div>
-    </div>
-</nav>
-
-</body>
-</html>
+    </nav>
+</div>

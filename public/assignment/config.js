@@ -105,22 +105,4 @@
         });
         return deferred.promise;
     }
-
-    // function checkLoggedin($q, $http, userService, $location, $rootScope) {
-    //     var deffered = $q.defer();
-    //     userService
-    //         .loggedin()
-    //         .then(function (user) {
-    //             if(user == '0') {
-    //                 console.log("in config");
-    //                 deffered.reject();
-    //                 $location.url('/login')
-    //             } else {
-    //                 console.log("in config2");
-    //                 deffered.resolve(user);
-    //             }
-    //         });
-    //     return deffered.promise;
-    // }
-
 })();

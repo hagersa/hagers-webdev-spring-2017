@@ -1,4 +1,5 @@
-module.exports = function (app, UserModel) {
+/*
+module.exports = function (app, OdhecatonUserModel) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -29,14 +30,14 @@ module.exports = function (app, UserModel) {
     app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
     app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/assignment/#/profile',
-        failureRedirect: '/assignment/#/login'
+        successRedirect: '/project/#/home',
+        failureRedirect: '/project/#/login'
         }));
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     function googleStrategy(token, refreshToken, profile, done) {
-        UserModel
+        OdhecatonUserModel
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
@@ -55,7 +56,7 @@ module.exports = function (app, UserModel) {
                                 token: token // used to check if authentication is still valid
                             }
                         };
-                        return UserModel.createUser(newGoogleUser);
+                        return OdhecatonUserModel.createUser(newGoogleUser);
                     }
                 },
                 function(err) {
@@ -78,7 +79,7 @@ module.exports = function (app, UserModel) {
     }
 
     function deserializeUser(user, done) {
-        UserModel
+        OdhecatonUserModel
             .findUserById(user._id)
             .then(
                 function(user){
@@ -93,7 +94,7 @@ module.exports = function (app, UserModel) {
     // checks that encrypted password and typed password match
     function localStrategy(username, password, done) {
         console.log("in localStrategy: "+username+" "+password);
-        UserModel
+        OdhecatonUserModel
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
@@ -154,7 +155,7 @@ module.exports = function (app, UserModel) {
         var username = req.query['username'];
         console.log(username);
 
-        UserModel
+        OdhecatonUserModel
             .findUserByUsername(username)
             .then(function (user) {
                 console.log("in user server findUserByUsername " +user);
@@ -171,7 +172,7 @@ module.exports = function (app, UserModel) {
         console.log(username);
         console.log(password);
 
-        UserModel
+        OdhecatonUserModel
             .findUserByCredentials(username, password)
             .then(function (user) {
                 console.log("user in findUserByCredentials: "+user);
@@ -185,7 +186,7 @@ module.exports = function (app, UserModel) {
         var userId = req.params.userId;
         console.log(userId);
 
-        UserModel
+        OdhecatonUserModel
             .findUserById(userId)
             .then(function (user) {
                 res.json(user);
@@ -198,7 +199,7 @@ module.exports = function (app, UserModel) {
         var userId = req.params.userId;
         console.log(userId);
 
-        UserModel
+        OdhecatonUserModel
             .deleteUser(userId)
             .then(function () {
                 res.sendStatus(200);
@@ -212,7 +213,7 @@ module.exports = function (app, UserModel) {
         var userId = req.params.userId;
         console.log(userId);
 
-        UserModel
+        OdhecatonUserModel
             .updateUser(userId, user)
             .then(function(response) {
                 res.json(response);
@@ -224,7 +225,7 @@ module.exports = function (app, UserModel) {
     function createUser(req, res) {
         var newUser = req.body;
         console.log(newUser);
-        UserModel
+        OdhecatonUserModel
             .createUser(newUser)
             .then(function(user) {
                 res.json(user);
@@ -239,7 +240,7 @@ module.exports = function (app, UserModel) {
         console.log("have new user in service.server: "+user);
         user.password = bcrypt.hashSync(user.password);
         console.log("success in createUser in service.server: "+user.password);
-        UserModel
+        OdhecatonUserModel
             .createUser(user)
             .then(function(newUser){
                 console.log("success in createUser in service.server: "+newUser);
@@ -256,4 +257,4 @@ module.exports = function (app, UserModel) {
             }
         );
     }
-};
+};*/

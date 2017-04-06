@@ -1,42 +1,42 @@
-module.exports = function (pageModel) {
+module.exports = function (libraryModel) {
 
     var api = {
         createWidget: createWidget,
         findAllWidgets: findAllWidgets,
-        findAllWidgetsForPage: findAllWidgetsForPage,
+        findAllWidgetsForLibrary: findAllWidgetsForLibrary,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
         reorderWidget: reorderWidget,
-        getOwnerPage: getOwnerPage
+        getOwnerLibrary: getOwnerLibrary
     };
 
     var mongoose = require('mongoose');
     var q = require('q');
 
-    var WidgetSchema = require('./widget.schema.server.js')();
-    var WidgetModel = mongoose.model('WidgetModel', WidgetSchema);
+    var OdhecatonWidgetSchema = require('./widget.schema.server.js')();
+    var OdhecatonWidgetModel = mongoose.model('OdhecatonWidgetModel', OdhecatonWidgetSchema);
 
     return api;
 
-    function createWidget(pageId, widget) {
+    function createWidget(libraryId, widget) {
         var deferred = q.defer();
-        console.log(pageId);
+        console.log(libraryId);
         console.log(widget);
-        widget._page = pageId;
+        widget._library = libraryId;
 
-        WidgetModel
+        OdhecatonWidgetModel
             .create(widget, function (err, response) {
                 console.log(response);
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
-                    pageModel
-                        .findPageById(pageId)
-                        .then(function (page) {
-                            console.log(page);
-                            page.widgets.push(response._id);
-                            page.save();
+                    libraryModel
+                        .findLibraryById(libraryId)
+                        .then(function (library) {
+                            console.log(library);
+                            library.widgets.push(response._id);
+                            library.save();
                             deferred.resolve(response);
                         });
                 }
@@ -46,11 +46,11 @@ module.exports = function (pageModel) {
 
     // returns widget objects corresponding to an array of widgetIds
     function findAllWidgets(widgetIds) {
-        console.log("Have widgetIds in findAllPages in model.server: "+widgetIds);
+        console.log("Have widgetIds in findAllWidgets in model.server: "+widgetIds);
 
         var deferred = q.defer();
 
-        WidgetModel
+        OdhecatonWidgetModel
             .find({'_id': { $in: widgetIds}}, function(err, widgetObjects) {
                 console.log("Found widget objects in model.server: "+widgetObjects);
 
@@ -64,15 +64,15 @@ module.exports = function (pageModel) {
     }
 
     // finds an array of widgetIds for a user matching a particular pageId
-    function findAllWidgetsForPage(pageId) {
+    function findAllWidgetsForLibrary(libraryId) {
         var deferred = q.defer();
 
-        pageModel
-            .findPageById(pageId)
-            .then(function (page) {
-                console.log("found page in findAllWidgetsForPage in model.server"+page);
-                var widgetIds = page.widgets;
-                console.log("found widgetIds in findAllWidgetsForPage in model.server"+widgetIds);
+        libraryModel
+            .findLibraryById(libraryId)
+            .then(function (library) {
+                console.log("found page in findAllWidgetsForLibrary in model.server"+library);
+                var widgetIds = library.widgets;
+                console.log("found widgetIds in findAllWidgetsForLibrary in model.server"+widgetIds);
                 deferred.resolve(widgetIds);
             });
         return deferred.promise;
@@ -83,37 +83,23 @@ module.exports = function (pageModel) {
         console.log("Have the widget in updateWidget in model.server: "+widget);
         console.log("Have widgetType in model.server: "+widget.widgetType);
 
-        if(widget.widgetType === "HEADER") {
-            WidgetModel
-                .update({_id : widgetId}, {text: widget.text, size: widget.size},
-                    function (err, response) {
-                        deferred.resolve(response);
-                    });
-        }
-        else if(widget.widgetType === "IMAGE") {
-            WidgetModel
+        if(widget.widgetType === "PDF") {
+            OdhecatonWidgetModel
                 .update({_id : widgetId}, {width: widget.width, url: widget.url},
                     function (err, response) {
                         deferred.resolve(response);
                     });
         }
         else if(widget.widgetType === "YOUTUBE") {
-            WidgetModel
+            OdhecatonWidgetModel
                 .update({_id : widgetId}, {width: widget.width, url: widget.url},
                     function (err, response) {
                         deferred.resolve(response);
                     });
         }
         else if(widget.widgetType === "HTML") {
-            WidgetModel
+            OdhecatonWidgetModel
                 .update({_id : widgetId}, {text: widget.text},
-                    function (err, response) {
-                        deferred.resolve(response);
-                    });
-        }
-        else if(widget.widgetType === "TEXT") {
-            WidgetModel
-                .update({_id : widgetId}, {text: widget.text, rows: widget.rows, placeholder: widget.placeholder, formatted: widget.formatted},
                     function (err, response) {
                         deferred.resolve(response);
                     });
@@ -122,29 +108,29 @@ module.exports = function (pageModel) {
     }
 
 
-    function reorderWidget(pageId, start, end) {
+    function reorderWidget(libraryId, start, end) {
         var deferred = q.defer();
 
-        pageModel
-            .findPageById(pageId)
-            .then(function (page) {
-                console.log("found page in reorderWidgets in model.server: "+page);
-                console.log("widgets before reorder in reorderWidgets in model.server: "+page.widgets);
+        libraryModel
+            .findLibraryById(libraryId)
+            .then(function (library) {
+                console.log("found page in reorderWidgets in model.server: "+library);
+                console.log("widgets before reorder in reorderWidgets in model.server: "+library.widgets);
                 console.log("start and end: "+start+" "+end);
 
-                page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
+                library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
 
-                console.log("widgets after reorder in reorderWidgets in model.server: "+page.widgets);
-                console.log("whole page after reorder in reorderWidgets in model.server: "+page);
-                page.save();
-                deferred.resolve(page);
+                console.log("widgets after reorder in reorderWidgets in model.server: "+library.widgets);
+                console.log("whole page after reorder in reorderWidgets in model.server: "+library);
+                library.save();
+                deferred.resolve(library);
             });
         return deferred.promise;
     }
 
     function findWidgetById(widgetId) {
         var deferred = q.defer();
-        WidgetModel
+        OdhecatonWidgetModel
             .findById(widgetId, function (err, widget) {
                 if(err) {
                     deferred.abort(err); // reject
@@ -159,7 +145,7 @@ module.exports = function (pageModel) {
     function deleteWidget(widgetId) {
         var deferred = q.defer();
 
-        WidgetModel
+        OdhecatonWidgetModel
             .remove({_id: widgetId}, function (err, widget) {
             console.log("widget to be deleted: "+widget);
                 deferred.resolve(widget);
@@ -167,17 +153,17 @@ module.exports = function (pageModel) {
         return deferred.promise;
     }
 
-    function getOwnerPage(widget) {
+    function getOwnerLibrary(widget) {
         var deferred = q.defer();
-        var pageId = widget._page;
+        var libraryId = widget._library;
 
         console.log("widget getOwnerPage: "+widget);
-        console.log("pageId in getOwnerPage: "+pageId);
+        console.log("libraryId in getOwnerLibrary: "+libraryId);
 
-        pageModel
-            .findPageById(pageId)
-            .then(function (page) {
-                deferred.resolve(page);
+        libraryModel
+            .findLibraryById(libraryId)
+            .then(function (library) {
+                deferred.resolve(library);
             });
         return deferred.promise;
     }

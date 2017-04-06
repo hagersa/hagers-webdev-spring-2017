@@ -10,6 +10,7 @@
 
         function registerUser(user) {
             if (user.username && user.password) {
+                if (user.password === user.password2) {
                 UserService
                     .findUserByUsername(user.username)
                     .then(function (response) {
@@ -36,6 +37,9 @@
                                 });
                         }
                     });
+                } else {
+                    vm.error = "passwords must match";
+                }
             } else {
                 vm.error = "username and password required";
             }

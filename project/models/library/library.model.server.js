@@ -1,39 +1,39 @@
-module.exports = function (userModel) {
+module.exports = function (odhecatonUserModel) {
 
     var api = {
-        createWebsiteForUser: createWebsiteForUser,
-        findAllWebsites: findAllWebsites,
-        findAllWebsitesForUser: findAllWebsitesForUser,
-        findWebsiteById: findWebsiteById,
-        updateWebsite: updateWebsite,
-        deleteWebsite: deleteWebsite
+        createLibraryForUser: createLibraryForUser,
+        findAllLibraries: findAllLibraries,
+        findAllLibrariesForUser: findAllLibrariesForUser,
+        findLibraryById: findLibraryById,
+        updateLibrary: updateLibrary,
+        deleteLibrary: deleteLibrary
     };
 
 
     var mongoose = require('mongoose');
     var q = require('q');
 
-    var WebsiteSchema = require('./website.schema.server.js')();
-    var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
+    var LibrarySchema = require('./library.schema.server.js')();
+    var LibraryModel = mongoose.model('LibraryModel', LibrarySchema);
 
     return api;
 
-    function createWebsiteForUser(userId, website) {
+    function createLibraryForUser(userId, library) {
         var deferred = q.defer();
         console.log(userId);
-        console.log(website);
+        console.log(library);
 
-        WebsiteModel
-            .create(website, function (err, response) {
+        LibraryModel
+            .create(library, function (err, response) {
                 console.log(response);
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
-                    userModel
+                    odhecatonUserModel
                         .findUserById(userId)
                         .then(function (user) {
                             console.log(user);
-                            user.websites.push(response._id);
+                            user.libraries.push(response._id);
                             user.save();
                             deferred.resolve(response); // user.websites
                     });
@@ -42,72 +42,72 @@ module.exports = function (userModel) {
         return deferred.promise;
     }
 
-    // returns website objects corresponding to an array of websiteIds
-    function findAllWebsites(websiteIds) {
-        console.log("Have websiteIds in findAllWebsites in model.server: "+websiteIds);
+    // returns library objects corresponding to an array of websiteIds
+    function findAllLibraries(libraryIds) {
+        console.log("Have libraryIds in findAllLibraries in model.server: "+libraryIds);
 
         var deferred = q.defer();
 
-        WebsiteModel
-            .find({'_id': { $in: websiteIds}}, function(err, websiteObjects) {
-                console.log("Found website objects in model.server: "+websiteObjects);
+        LibraryModel
+            .find({'_id': { $in: libraryIds}}, function(err, libraryObjects) {
+                console.log("Found Library objects in model.server: "+libraryObjects);
 
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
-                    deferred.resolve(websiteObjects);
+                    deferred.resolve(libraryObjects);
                 }
             });
         return deferred.promise;
     }
 
-    // finds an array of websiteIds for a user matching a particular userId
-    function findAllWebsitesForUser(userId) {
+    // finds an array of libraryIds for a user matching a particular userId
+    function findAllLibrariesForUser(userId) {
        var deferred = q.defer();
 
-       userModel
+       odhecatonUserModel
            .findUserById(userId)
            .then(function (user) {
-               console.log("found user in findAllWebsitesForUser in model.server"+user);
-               var websiteIds = user.websites;
-               console.log("found websiteIds in findAllWebsitesForUser in model.server"+websiteIds);
-               deferred.resolve(websiteIds);
+               console.log("found user in findAllLibrariesForUser in model.server"+user);
+               var libraryIds = user.libraries;
+               console.log("found libraryIds in findAllLibrariesForUser in model.server"+libraryIds);
+               deferred.resolve(libraryIds);
            });
        return deferred.promise;
     }
 
 
 
-    function findWebsiteById(websiteId) {
+    function findLibraryById(libraryId) {
         var deferred = q.defer();
-        WebsiteModel
-            .findById(websiteId, function (err, website) {
+        LibraryModel
+            .findById(libraryId, function (err, library) {
                 if(err) {
                     deferred.abort(err); // reject
                 } else {
-                    deferred.resolve(website);
+                    deferred.resolve(library);
                 }
             });
         return deferred.promise;
     }
 
-    function deleteWebsite(websiteId) {
+    function deleteLibrary(libraryId) {
         var deferred = q.defer();
 
-        WebsiteModel
-            .remove({_id: websiteId}, function (err, website) {
+        LibraryModel
+            .remove({_id: libraryId}, function (err, library) {
 
-                deferred.resolve(website);
+                deferred.resolve(library);
             });
         return deferred.promise;
     }
 
-    function updateWebsite(websiteId, website) {
+    function updateLibrary(libraryId, library) {
         var deferred = q.defer();
-        WebsiteModel
-            .update({_id : websiteId},
-                {name : website.name,
-                 description : website.description},
+        LibraryModel
+            .update({_id : libraryId},
+                {name : library.name,
+                 description : library.description},
                 function (err, response) {
                     deferred.resolve(response);
                 });

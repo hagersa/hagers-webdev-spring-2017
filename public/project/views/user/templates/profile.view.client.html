@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Profile</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
+<div ng-controller="profileController as model">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
        <!-- <div class="navbar-text pull-left">
@@ -19,13 +9,13 @@
         </div>-->
         <div class="navbar-text pull-right">
             <!--ng-if for director vs. member-->
-            <a href="../../library/templates/library-home-director.view.client.html" class="navbar-link">
+            <a href="#/home" class="navbar-link">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
         </div>
         <!--ng-if for admin vs. user-->
-        <div class="sah-navbar-text-padding navbar-button pull-right">
-               <a href="../../admin/templates/admin-home.view.client.html" class="navbar-link">
+        <div ng-if="model.currentUser.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
+               <a href="#/admin" class="navbar-link">
                    <span class="btn btn-warning">Admin</span></a>
         </div>
         <div class="navbar-header">
@@ -37,36 +27,47 @@
 </nav>
 
 <div id="padded-container" class="container-fluid">
+
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
     <form>
         <!--cannot edit username once created!-->
-        <label>Welcome, Username</label>
+        <label>Welcome, {{model.user.username}}</label>
         <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" class="form-control" id="first-name" placeholder="Sarah">
+            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Sarah">
         </div>
         <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" class="form-control" id="last-name" placeholder="Hager">
+            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Hager">
         </div>
         <div class="form-group">
             <label for="about-me">About Me</label>
-            <textarea class="form-control" id="about-me" rows="4" placeholder="A few words about yourself..." required></textarea>
+            <textarea ng-model="model.user.aboutMe" class="form-control" id="about-me" rows="4" placeholder="A few words about yourself..." required></textarea>
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="hager.s@husky.neu.edu">
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="hager.s@husky.neu.edu">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter new password">
+            <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Enter new password">
         </div>
         <div class="form-group">
-            <label for="password">Validate Password</label>
-            <input type="password" class="form-control" id="password-validate" placeholder="Re-enter new password">
+            <label for="password2">Validate Password</label>
+            <input ng-model="model.user.password2" type="password" class="form-control" id="password2" placeholder="Re-enter new password">
         </div>
     </form>
 <!--ng-if for director vs. member-->
-    <a class="btn btn-primary btn-block" href="../../library/templates/library-home-director.view.client.html">Update</a>
+    <a ng-click="model.update(model.user)" class="btn btn-primary btn-block">Save Changes</a>
+
+    <a ng-click="model.unregisterUser(model.user)"
+       class="btn btn-danger  btn-block" >
+        Delete Account
+    </a>
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -74,28 +75,28 @@
         <div class="navbar-footer">
             <div class="row navbar-text text-center">
                 <div class="col-xs-2 pull-right">
-                    <a href="login.view.client.html">
+                    <a ng-click="model.logout(model.user)">
                         <span class="glyphicon glyphicon-off"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../../social/search.view.client.html">
+                    <a href="#/user/{{model.user._id}}/search">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../../social/public-profile.view.client.html">
-                        <span class="glyphicon glyphicon-star"></span>
+                    <a href="#/user/{{model.user._id}}/public">
+                        <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../../social/newsfeed.view.client.html">
+                    <a href="#/user/{{model.user._id}}/newfeed">
                         <span class="glyphicon glyphicon-globe"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../user/profile.view.client.html">
-                        <span class="glyphicon glyphicon-user"></span>
+                    <a href="#/user/{{model.user._id}}/profile">
+                        <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </div>
             </div>
@@ -103,5 +104,4 @@
     </div>
 </nav>
 
-</body>
-</html>
+</div>

@@ -74,18 +74,18 @@ module.exports = function () {
         var deferred = q.defer();
         UserModel
             .findOne({username: username}, function (err, user) {
-            if(err) {
-                console.log("error in model.server findUserByCredentials: "+ user);
-                deferred.reject(err);
-            } else {
-                if(user && bcrypt.compareSync(password, user.password)) {
-                    console.log("in model.server findUserByCredentials: "+ user);
-                    deferred.resolve(user);
-                } else {
-                    console.log("in model.server error findUserByCredentials: "+ user);
+                if(err) {
+                    console.log("error in model.server findUserByCredentials: "+ user);
                     deferred.reject(err);
+                } else {
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        console.log("in model.server findUserByCredentials: "+ user);
+                        deferred.resolve(user);
+                    } else {
+                        console.log("in model.server error findUserByCredentials: "+ user);
+                        deferred.reject(err);
+                    }
                 }
-            }
             });
         return deferred.promise;
     }
@@ -94,7 +94,7 @@ module.exports = function () {
         var deferred = q.defer();
         UserModel
             .remove({_id: userId}, function (err, user) {
-            deferred.resolve(user);
+                deferred.resolve(user);
             });
         return deferred.promise;
     }
@@ -108,8 +108,8 @@ module.exports = function () {
                     password : bcrypt.hashSync(user.password),
                     email : user.email},
                 function (err, response) {
-            deferred.resolve(response);
-        });
+                    deferred.resolve(response);
+                });
         return deferred.promise;
     }
 };

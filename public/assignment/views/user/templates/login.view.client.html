@@ -1,19 +1,24 @@
 <div ng-controller="loginController as model" class="container">
     <h1>Login</h1>
 
+
     <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
 
     <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
+    <form name="login">
     <input ng-model="user.username"
            type="text"
            class="form-control"
-           placeholder="username"/>
+           placeholder="username"
+           autocomplete="off" autocapitalize="off"
+           required/>
 
     <input ng-model="user.password"
            type="password"
            class="form-control"
            placeholder="password"/>
+    </form>
 
     <a ng-click="model.login(user)"
        class="btn btn-primary btn-block">

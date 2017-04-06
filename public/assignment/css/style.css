@@ -1,3 +1,12 @@
+.invalid input{
+    border-color:red;
+}
+.invalid::after{
+    content:"!";
+    font-weight:bolder;
+    color:red;
+}
+
 .btn-toolbar .btn-group {
     padding-bottom: 5px;
 
