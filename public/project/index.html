@@ -1,3 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Odhecaton">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/textAngular.css" rel="stylesheet"/>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="../js/jquery.ui.touch-punch.js"></script>
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-route.min.js"></script>
+    <script src="../js/textAngular-1.5.16/dist/textAngularSetup.js"></script>
+    <script src="../js/textAngular-1.5.16/dist/textAngular.js"></script>
+    <script src="../js/textAngular-1.5.16/dist/textAngular-rangy.min.js"></script>
+    <script src="../js/textAngular-1.5.16/dist/textAngular-sanitize.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular.min.js"/>-->
+
+    <!--directives-->
+    <script src="directives/sortable.directive.client.js"></script>
+
+    <!--controllers-->
+    <script src="views/admin/controllers/admin-home.controller.client.js"></script>
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+    <script src="views/library/controllers/library-home.controller.client.js"></script>
+    <script src="views/library/controllers/library-create.controller.client.js"></script>
+    <script src="views/library/controllers/libary-share.controller.client.js"></script>
+    <script src="views/library/controllers/library-edit.controller.client.js"></script>
+    <script src="views/favorite/controllers/newsfeed.controller.client.js"></script>
+    <script src="views/favorite/controllers/public-profile.controller.client.js"></script>
+    <script src="views/favorite/controllers/search.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+    <!--<script src="views/widget/controllers/widget-new.controller.client.js"></script>-->
+    <!--<script src="views/widget/controllers/widget-flickr-search.controller.client.js"></script>-->
+
+    <!--services-->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/library.service.client.js"></script>
+    <script src="services/favorite.service.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+    <!--<script src="services/flickr.service.client.js"></script>-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Odhecaton Home</title>
+</head>
+
+<body>
+<div ng-view></div>
+</body>
+
+</html>
+
+
+
+
+
 <!--<!DOCTYPE html>-->
 <!--<html lang="en" ng-app="Odhecaton">-->
 <!--<head>-->
@@ -6,105 +71,40 @@
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
     <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>-->
     <!--<link href="css/style.css" rel="stylesheet"/>-->
-    <!--<link href="css/textAngular.css" rel="stylesheet"/>-->
-    <!--<script src="../js/jquery-3.1.1.min.js"></script>-->
-    <!--<script src="../js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>-->
-    <!--<script src="../js/jquery.ui.touch-punch.js"></script>-->
-    <!--<script src="../js/angular.min.js"></script>-->
-    <!--<script src="../js/angular-route.min.js"></script>-->
-    <!--<script src="../js/textAngular-1.5.16/dist/textAngularSetup.js"></script>-->
-    <!--<script src="../js/textAngular-1.5.16/dist/textAngular.js"></script>-->
-    <!--<script src="../js/textAngular-1.5.16/dist/textAngular-rangy.min.js"></script>-->
-    <!--<script src="../js/textAngular-1.5.16/dist/textAngular-sanitize.min.js"></script>-->
-    <!--<script src="app.js"></script>-->
-    <!--<script src="config.js"></script>-->
+    <!--&lt;!&ndash;<link href="css/textAngular.css" rel="stylesheet"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/jquery-3.1.1.min.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/jquery.ui.touch-punch.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/angular.min.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/angular-route.min.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngularSetup.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngular.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngular-rangy.min.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngular-sanitize.min.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="app.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;<script src="config.js"></script>&ndash;&gt;-->
 
-    <!--&lt;!&ndash;<link href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular.min.js"/>&ndash;&gt;-->
 
     <!--&lt;!&ndash;directives&ndash;&gt;-->
-    <!--<script src="directives/sortable.directive.client.js"></script>-->
 
-    <!--&lt;!&ndash;controllers&ndash;&gt;-->
-    <!--<script src="views/admin/controllers/admin-home.controller.client.js"></script>-->
-    <!--<script src="views/user/controllers/login.controller.client.js"></script>-->
-    <!--<script src="views/user/controllers/profile.controller.client.js"></script>-->
-    <!--<script src="views/user/controllers/register.controller.client.js"></script>-->
-    <!--<script src="views/library/controllers/library-home.controller.client.js"></script>-->
-    <!--<script src="views/library/controllers/library-create.controller.client.js"></script>-->
-    <!--<script src="views/library/controllers/libary-share.controller.client.js"></script>-->
-    <!--<script src="views/library/controllers/library-edit.controller.client.js"></script>-->
-    <!--<script src="views/favorite/controllers/newsfeed.controller.client.js"></script>-->
-    <!--<script src="views/favorite/controllers/public-profile.controller.client.js"></script>-->
-    <!--<script src="views/favorite/controllers/search.controller.client.js"></script>-->
-    <!--<script src="views/widget/controllers/widget-list.controller.client.js"></script>-->
-    <!--<script src="views/widget/controllers/widget-edit.controller.client.js"></script>-->
-    <!--&lt;!&ndash;<script src="views/widget/controllers/widget-new.controller.client.js"></script>&ndash;&gt;-->
-    <!--&lt;!&ndash;<script src="views/widget/controllers/widget-flickr-search.controller.client.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;conntrollers&ndash;&gt;-->
 
-    <!--&lt;!&ndash;services&ndash;&gt;-->
-    <!--<script src="services/user.service.client.js"></script>-->
-    <!--<script src="services/library.service.client.js"></script>-->
-    <!--<script src="services/favorite.service.client.js"></script>-->
-    <!--<script src="services/widget.service.client.js"></script>-->
-    <!--&lt;!&ndash;<script src="services/flickr.service.client.js"></script>&ndash;&gt;-->
+    <!--&lt;!&ndash;client services&ndash;&gt;-->
 
     <!--<meta charset="UTF-8">-->
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
-    <!--<title>Odhecaton Home</title>-->
+    <!--<title>Odhecaton</title>-->
 <!--</head>-->
 
 <!--<body>-->
-<!--<div ng-view></div>-->
+<!--<div class="container">-->
+    <!--<h1>Odhecaton Home Page</h1>-->
+    <!--<a href="views/user/login.view.client.html">-->
+        <!--Click here to view Sarah's project.-->
+    <!--</a>-->
+<!--</div>-->
 <!--</body>-->
 
 <!--</html>-->
-
-
-
-
-
-<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
-<!--&lt;!&ndash;<html lang="en" ng-app="Odhecaton">&ndash;&gt;-->
-<!--&lt;!&ndash;<head>&ndash;&gt;-->
-    <!--&lt;!&ndash;<meta charset="UTF-8">&ndash;&gt;-->
-    <!--&lt;!&ndash;<meta name="viewport" content="width-device-width, initial-scale=1">&ndash;&gt;-->
-    <!--&lt;!&ndash;<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<link href="css/style.css" rel="stylesheet"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<link href="css/textAngular.css" rel="stylesheet"/>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/jquery-3.1.1.min.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/jquery.ui.touch-punch.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/angular.min.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/angular-route.min.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngularSetup.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngular.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngular-rangy.min.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="../js/textAngular-1.5.16/dist/textAngular-sanitize.min.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="app.js"></script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;<script src="config.js"></script>&ndash;&gt;&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;&lt;!&ndash;directives&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;conntrollers&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;client services&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<meta charset="UTF-8">&ndash;&gt;-->
-    <!--&lt;!&ndash;<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">&ndash;&gt;-->
-    <!--&lt;!&ndash;<title>Odhecaton</title>&ndash;&gt;-->
-<!--&lt;!&ndash;</head>&ndash;&gt;-->
-
-<!--&lt;!&ndash;<body>&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
-    <!--&lt;!&ndash;<h1>Odhecaton Home Page</h1>&ndash;&gt;-->
-    <!--&lt;!&ndash;<a href="views/user/login.view.client.html">&ndash;&gt;-->
-        <!--&lt;!&ndash;Click here to view Sarah's project.&ndash;&gt;-->
-    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;</body>&ndash;&gt;-->
-
-<!--&lt;!&ndash;</html>&ndash;&gt;-->
 
 

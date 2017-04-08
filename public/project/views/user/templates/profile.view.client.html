@@ -8,13 +8,13 @@
             </a>
         </div>-->
         <div class="navbar-text pull-right">
-            <!--ng-if for director vs. member-->
             <a href="#/home" class="navbar-link">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
         </div>
+
         <!--ng-if for admin vs. user-->
-        <div ng-if="model.currentUser.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
+        <div ng-if="model.user.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
                <a href="#/admin" class="navbar-link">
                    <span class="btn btn-warning">Admin</span></a>
         </div>
@@ -37,11 +37,11 @@
         <label>Welcome, {{model.user.username}}</label>
         <div class="form-group">
             <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Sarah">
+            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Enter first name...">
         </div>
         <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Hager">
+            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Enter last name...">
         </div>
         <div class="form-group">
             <label for="about-me">About Me</label>
@@ -49,16 +49,16 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="hager.s@husky.neu.edu">
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="Enter email address...">
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Enter new password">
-        </div>
-        <div class="form-group">
-            <label for="password2">Validate Password</label>
-            <input ng-model="model.user.password2" type="password" class="form-control" id="password2" placeholder="Re-enter new password">
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="password">Password</label>-->
+            <!--<input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Enter new password">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="password2">Validate Password</label>-->
+            <!--<input ng-model="model.user.password2" type="password" class="form-control" id="password2" placeholder="Re-enter new password">-->
+        <!--</div>-->
     </form>
 <!--ng-if for director vs. member-->
     <a ng-click="model.update(model.user)" class="btn btn-primary btn-block">Save Changes</a>

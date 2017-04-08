@@ -3,7 +3,7 @@
         .module("Odhecaton")
         .controller("registerController", registerController);
 
-    function registerController(UserService, $location, $rootScope) {
+    function registerController(OdhecatonUserService, $location, $rootScope) {
 
         var vm = this;
         vm.registerUser = registerUser;
@@ -11,7 +11,7 @@
         function registerUser(user) {
             if (user.username && user.password) {
                 if (user.password === user.password2) {
-                    UserService
+                    OdhecatonUserService
                         .findUserByUsername(user.username)
                         .then(function (response) {
                             if (response.data != null) {
@@ -21,7 +21,7 @@
                             else {
                                 console.log("here is the user before registering: " + user);
                                 console.log("username: " + user.username + " and password: " + user.password);
-                                UserService
+                                OdhecatonUserService
                                     .register(user)
                                     .then(function (response) {
                                         if (response.data == null) {

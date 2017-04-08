@@ -67,6 +67,22 @@ module.exports = function (pageModel) {
     function findAllWidgetsForPage(pageId) {
         var deferred = q.defer();
 
+        // option #1 did not work
+        //     pageModel
+        //         .findAllWidgetsForPage(pageId)
+        //         .then(function (widgetIds) {
+        //             deferred.resolve(widgetsIds);
+        //         });
+        //     return deferred.promise;
+
+        // option #2 also did not work
+        // //update to get widgets in correct order, need to find them from the page widget ids
+        // pageModel
+        //     .findById(pageId)
+        //     .populate('widgets')
+        //     .exec(function (page) {
+        //     deferred.resolve(page.widgets);
+        //     });
         pageModel
             .findPageById(pageId)
             .then(function (page) {

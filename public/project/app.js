@@ -1,4 +1,4 @@
-// (function () {
-//     angular
-//         .module("Odhecaton", ["ngRoute", "textAngular"]); // has dependencies
-// })();
+(function () {
+    angular
+        .module("Odhecaton", ["ngRoute", "textAngular"]); // has dependencies
+})();

@@ -6,7 +6,8 @@ module.exports = function (websiteModel) {
         findAllPagesForWebsite: findAllPagesForWebsite,
         findPageById: findPageById,
         updatePage: updatePage,
-        deletePage: deletePage
+        deletePage: deletePage,
+        //findAllWidgetsForPage: findAllWidgetsForPage
     };
 
     var mongoose = require('mongoose');
@@ -16,6 +17,19 @@ module.exports = function (websiteModel) {
     var PageModel = mongoose.model('PageModel', PageSchema);
 
     return api;
+
+    // did not work to return all widgets
+    // function findAllWidgetsForPage(pageId) {
+    //     var deferred = q.defer();
+    //
+    //     //update to get widgets in correct order, need to find them from the page widget ids
+    //     PageModel
+    //         .findById(pageId)
+    //         .populate('widgets')
+    //         .exec(function (page) {
+    //             deferred.resolve(page.widgets);
+    //         });
+    // }
 
     function createPage(websiteId, page) {
         var deferred = q.defer();

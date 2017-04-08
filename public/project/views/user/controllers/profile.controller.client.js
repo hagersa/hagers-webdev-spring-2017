@@ -3,7 +3,7 @@
         .module("Odhecaton")
         .controller("profileController", profileController);
 
-    function profileController($routeParams, $location, $rootScope, UserService) {
+    function profileController($routeParams, $location, $rootScope, OdhecatonUserService) {
         var vm = this;
         var userId = $routeParams.uid;
         vm.update = update;
@@ -11,7 +11,7 @@
         vm.logout = logout;
 
         function init() {
-            UserService
+            OdhecatonUserService
                 .findUserById(userId)
                 .success(renderUser);
         }
@@ -24,7 +24,7 @@
 
         function logout(user) {
             console.log("have user in profile controller logout: "+user);
-            UserService
+            OdhecatonUserService
                 .logout(user)
                 .then(function(response) {
                     $rootScope.currentUser = null;
@@ -34,7 +34,7 @@
         }
 
         function  update(newUser) {
-            UserService
+            OdhecatonUserService
                 .updateUser(userId, newUser)
                 .success(function (response) {
                     vm.message = "user successfully updated"
@@ -48,7 +48,7 @@
             var answer = confirm("Are you sure?");
             console.log(answer);
             if(answer) {
-                UserService
+                OdhecatonUserService
                     .deleteUser(user._id)
                     .success(function () {
                         $location.url("/login");

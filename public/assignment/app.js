@@ -1,4 +1,4 @@
-(function () {
-    angular
-        .module("WebAppMaker", ["ngRoute", "textAngular"]); // has dependencies
-})();
+// (function () {
+//     angular
+//         .module("WebAppMaker", ["ngRoute", "textAngular"]); // has dependencies
+// })();

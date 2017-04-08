@@ -8,7 +8,7 @@
         vm.login = login;
 
         function login(user) {
-            if (user.username && user.password) {
+            //if (user.username && user.password) {
                 UserService
                     .login(user)
                     .success(function (response) {
@@ -20,9 +20,9 @@
                         console.log("error in login controller");
                         vm.error = "user not found";
                     });
-            } else {
-                vm.error = "username and password required";
-            }
+            // } else {
+            //     vm.error = "username and password required";
+            // }
         }
     }
 })();

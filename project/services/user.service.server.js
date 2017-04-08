@@ -1,4 +1,3 @@
-/*
 module.exports = function (app, OdhecatonUserModel) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
@@ -30,7 +29,7 @@ module.exports = function (app, OdhecatonUserModel) {
     app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
     app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/project/#/home',
+        successRedirect: '/project/#/profile',
         failureRedirect: '/project/#/login'
         }));
 
@@ -41,7 +40,9 @@ module.exports = function (app, OdhecatonUserModel) {
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
+                    console.log("user in googleStrategy: "+user);
                     if(user) {
+                        console.log("logging in existing: "+user);
                         return done(null, user);
                     } else {
                         var email = profile.emails[0].value;
@@ -54,20 +55,25 @@ module.exports = function (app, OdhecatonUserModel) {
                             google: {
                                 id: profile.id,
                                 token: token // used to check if authentication is still valid
-                            }
+                            },
+                            role: 'MEMBER'
                         };
+                        console.log("creating new: "+user);
                         return OdhecatonUserModel.createUser(newGoogleUser);
                     }
                 },
                 function(err) {
+                    console.log("error1 "+err);
                     if (err) { return done(err); }
                 }
             )
             .then(
                 function(user){
+                    console.log("have user again in googleStrategy:"+user);
                     return done(null, user);
                 },
                 function(err){
+                    console.log("error1 "+err);
                     if (err) { return done(err); }
                 }
             );
@@ -98,8 +104,9 @@ module.exports = function (app, OdhecatonUserModel) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    console.log("user and password: "+user.username+" "+user.password);
-                    if(user.username === username && bcrypt.compareSync(password, user.password)) {
+                    console.log("user.username and user.password: "+user.username+" "+user.password);
+                    console.log("username and password: "+username + password);
+                    if(user.username === username && bcrypt.compareSync(password, user.password)) { // && bcrypt.compareSync(password, user.password
                         console.log("success in localStrategy");
                         return done(null, user);
                     } else {
@@ -114,14 +121,17 @@ module.exports = function (app, OdhecatonUserModel) {
             )
             .then(
                 function(user){
+                    console.log("returning user in localStrategy: "+user);
                     return done(null, user);
                 },
                 function(err){
+                    console.log("what's happening?");
                     if (err) { return done(err); }
                 }
             );
     }
 
+    //OdhecatonUserModel.createUser({username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'});
 
     function login(req, res) {
         var user = req.user;
@@ -257,4 +267,4 @@ module.exports = function (app, OdhecatonUserModel) {
             }
         );
     }
-};*/
+};

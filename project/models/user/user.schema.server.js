@@ -3,7 +3,7 @@ module.exports = function () {
 
     var OdhecatonUserSchema = mongoose.Schema({
         username:  {type: String, required: true},
-        password: {type: String, required: true},
+        password: {type: String}, // not set as required, because oauth will not store a password
         firstName: String,
         lastName: String,
         aboutMe: String,

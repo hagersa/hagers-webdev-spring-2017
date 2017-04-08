@@ -1,10 +1,5 @@
-.invalid input{
-    border-color:red;
-}
-.invalid::after{
-    content:"!";
-    font-weight:bolder;
-    color:red;
+.ng-submitted .ng-invalid {
+    background-color: pink;
 }
 
 .btn-toolbar .btn-group {

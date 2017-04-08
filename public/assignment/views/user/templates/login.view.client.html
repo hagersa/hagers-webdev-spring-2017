@@ -6,29 +6,40 @@
 
     <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
-    <form name="login">
-    <input ng-model="user.username"
+
+    <form name="loginForm" nonvalidate>
+        <input ng-model="user.username"
            type="text"
            class="form-control"
            placeholder="username"
            autocomplete="off" autocapitalize="off"
            required/>
+        <!--add this to show error-->
+        <span ng-if="loginForm.username.$error.required && loginForm.username.$submitted">Username is required</span>
 
-    <input ng-model="user.password"
+        <input ng-model="user.password"
            type="password"
            class="form-control"
-           placeholder="password"/>
+           placeholder="password"
+           required/>
+        <span ng-if="loginForm.password.$error.required && loginForm.password.$submitted">Password is required</span>
+
+        <!--For email-->
+        <!--<span ng-if="loginForm.email.$error.name && formLogin.email.$submitted">Not a valid email</span>-->
+
     </form>
 
-    <a ng-click="model.login(user)"
+    <!--type="submit" ???-->
+    <a type="submit" ng-click="model.login(user)"
        class="btn btn-primary btn-block">
         Login
     </a>
 
-    <a href="/auth/google" class="btn btn-primary btn-block">
-        <span class="fa fa-google-plus"></span>
-        Google
-    </a>
+
+    <!--<a href="/auth/google" class="btn btn-primary btn-block">-->
+        <!--<span class="fa fa-google-plus"></span>-->
+        <!--Google-->
+    <!--</a>-->
 
     <a href="#/register"
        class="btn btn-success btn-block">

@@ -1,60 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="WebAppMaker">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/textAngular.css" rel="stylesheet"/>
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>
-    <script src="../js/jquery.ui.touch-punch.js"></script>
-    <script src="../js/angular.min.js"></script>
-    <script src="../js/angular-route.min.js"></script>
-    <script src="../js/textAngular-1.5.16/dist/textAngularSetup.js"></script>
-    <script src="../js/textAngular-1.5.16/dist/textAngular.js"></script>
-    <script src="../js/textAngular-1.5.16/dist/textAngular-rangy.min.js"></script>
-    <script src="../js/textAngular-1.5.16/dist/textAngular-sanitize.min.js"></script>
-    <script src="app.js"></script>
-    <script src="config.js"></script>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" ng-app="WebAppMaker">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport" content="width-device-width, initial-scale=1">-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>-->
+    <!--<link href="css/style.css" rel="stylesheet"/>-->
+    <!--<link href="css/textAngular.css" rel="stylesheet"/>-->
+    <!--<script src="../js/jquery-3.1.1.min.js"></script>-->
+    <!--<script src="../js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>-->
+    <!--<script src="../js/jquery.ui.touch-punch.js"></script>-->
+    <!--<script src="../js/angular.min.js"></script>-->
+    <!--<script src="../js/angular-route.min.js"></script>-->
+    <!--<script src="../js/textAngular-1.5.16/dist/textAngularSetup.js"></script>-->
+    <!--<script src="../js/textAngular-1.5.16/dist/textAngular.js"></script>-->
+    <!--<script src="../js/textAngular-1.5.16/dist/textAngular-rangy.min.js"></script>-->
+    <!--<script src="../js/textAngular-1.5.16/dist/textAngular-sanitize.min.js"></script>-->
+    <!--<script src="app.js"></script>-->
+    <!--<script src="config.js"></script>-->
 
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular.min.js"/>-->
+    <!--&lt;!&ndash;<link href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular.min.js"/>&ndash;&gt;-->
 
-    <!--directives-->
-    <script src="directives/sortable.directive.client.js"></script>
+    <!--&lt;!&ndash;directives&ndash;&gt;-->
+    <!--<script src="directives/sortable.directive.client.js"></script>-->
 
-    <!--controllers-->
-    <script src="views/user/controllers/login.controller.client.js"></script>
-    <script src="views/user/controllers/profile.controller.client.js"></script>
-    <script src="views/user/controllers/register.controller.client.js"></script>
-    <script src="views/websites/controllers/website-list.controller.client.js"></script>
-    <script src="views/websites/controllers/website-new.controller.client.js"></script>
-    <script src="views/websites/controllers/website-edit.controller.client.js"></script>
-    <script src="views/pages/controllers/page-list.controller.client.js"></script>
-    <script src="views/pages/controllers/page-new.controller.client.js"></script>
-    <script src="views/pages/controllers/page-edit.controller.client.js"></script>
-    <script src="views/widgets/controllers/widget-list.controller.client.js"></script>
-    <script src="views/widgets/controllers/widget-edit.controller.client.js"></script>
-    <script src="views/widgets/controllers/widget-new.controller.client.js"></script>
-    <script src="views/widgets/controllers/widget-flickr-search.controller.client.js"></script>
+    <!--&lt;!&ndash;controllers&ndash;&gt;-->
+    <!--<script src="views/user/controllers/login.controller.client.js"></script>-->
+    <!--<script src="views/user/controllers/profile.controller.client.js"></script>-->
+    <!--<script src="views/user/controllers/register.controller.client.js"></script>-->
+    <!--<script src="views/websites/controllers/website-list.controller.client.js"></script>-->
+    <!--<script src="views/websites/controllers/website-new.controller.client.js"></script>-->
+    <!--<script src="views/websites/controllers/website-edit.controller.client.js"></script>-->
+    <!--<script src="views/pages/controllers/page-list.controller.client.js"></script>-->
+    <!--<script src="views/pages/controllers/page-new.controller.client.js"></script>-->
+    <!--<script src="views/pages/controllers/page-edit.controller.client.js"></script>-->
+    <!--<script src="views/widgets/controllers/widget-list.controller.client.js"></script>-->
+    <!--<script src="views/widgets/controllers/widget-edit.controller.client.js"></script>-->
+    <!--<script src="views/widgets/controllers/widget-new.controller.client.js"></script>-->
+    <!--<script src="views/widgets/controllers/widget-flickr-search.controller.client.js"></script>-->
 
-    <!--services-->
-    <script src="services/user.service.client.js"></script>
-    <script src="services/website.service.client.js"></script>
-    <script src="services/page.service.client.js"></script>
-    <script src="services/widget.service.client.js"></script>
-    <script src="services/flickr.service.client.js"></script>
+    <!--&lt;!&ndash;services&ndash;&gt;-->
+    <!--<script src="services/user.service.client.js"></script>-->
+    <!--<script src="services/website.service.client.js"></script>-->
+    <!--<script src="services/page.service.client.js"></script>-->
+    <!--<script src="services/widget.service.client.js"></script>-->
+    <!--<script src="services/flickr.service.client.js"></script>-->
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Assignment Home</title>
-</head>
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <!--<title>Assignment Home</title>-->
+<!--</head>-->
 
-<body>
-    <div ng-view></div>
-</body>
+<!--<body>-->
+    <!--<div ng-view></div>-->
+<!--</body>-->
 
-</html>
+<!--</html>-->
 
 

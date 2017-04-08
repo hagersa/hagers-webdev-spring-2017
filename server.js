@@ -43,8 +43,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // require("./test/app")(app);
-var assignment = require("./assignment/app.js")(app);
-//var project = require("./project/app.js")(app);
+//var assignment = require("./assignment/app.js")(app);
+var project = require("./project/app.js")(app);
 
 var port = process.env.PORT || 3000;
 
