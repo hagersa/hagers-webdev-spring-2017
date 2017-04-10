@@ -1,10 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div ng-controller="LibraryHomeController as model">
 
-</body>
-</html>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <!--ng-if for admin vs. user-->
+            <div ng-if="model.user.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
+                <a href="../../admin/templates/admin-home.view.client.html" class="navbar-link">
+                    <span class="btn btn-warning">Admin</span></a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Welcome, {{model.user.username}}!
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+    <div ng-if="model.user.role=='DIRECTOR'" class="container-fluid">
+        <div class="h3">
+            <a href="#/user/{{model.userId}}/libary/new">
+            <span class="glyphicon glyphicon-plus-sign pull-right sah-glyphicon-padding"></span>
+            </a>
+            Libraries Created By You
+        </div>
+        <!--<h3>Libraries Created By You</h3>-->
+
+        <div class="container-fluid">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 sah-left-padding">
+                            Name
+                        </div>
+                        <div class="col-sm-8 hidden-xs">
+                            Choral Group
+                        </div>
+                    </div>
+                </li>
+                <li ng-repeat="dirLibrary in model.dirLibraries" class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-4 sah-left-padding">
+                            <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
+                        </div>
+                        <!--<div class="col-sm-2 hidden-xs">-->
+                            <!--{{dirLibrary.created | date}}-->
+                        <!--</div>-->
+                        <div class="col-sm-4 hidden-xs sah-left-padding">
+                            {{dirLibrary.group}}
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="library-share-director.view.client.html" class="pull-right">
+                                <span class="glyphicon glyphicon-link"></span>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}">
+                                <span class="glyphicon glyphicon-pencil pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h3>
+            Libraries Shared With You
+        </h3>
+
+        <div class="container-fluid">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-5 sah-left-padding">
+                            Name
+                        </div>
+                    <div class="col-sm-5 hidden-xs">
+                        Choral Group
+                    </div>
+                </div>
+            </li>
+            <li ng-repeat="memLibrary in model.memLibraries" class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10 col-sm-5 sah-left-padding">
+                        <a href="#/user/{{model.userId}}/library/{{memLibrary._id}}/widget/member">{{memLibrary.name}}</a>
+                    </div>
+                    <div class="col-sm-5 hidden-xs">
+                        {{memLibrary.group}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+        <!--<ul class="list-group">-->
+        <!--<li class="list-group-item">-->
+        <!--<a href="../../widget/templates/widget-list-member.view.client.html">-->
+        <!--CCC Evensong Choir-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li class="list-group-item">-->
+        <!--<a href="../../widget/templates/widget-list-member.view.client.html">-->
+        <!--Cantilena-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+
+    <!--<ul class="list-group">-->
+    <!--<li class="list-group-item">-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-8 col-sm-6">-->
+    <!--<a href="../../widget/templates/widget-list-director.view.client.html">-->
+    <!--LUMC Chancel Choir-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="col-sm-2 hidden-xs">-->
+    <!--</div>-->
+    <!--<div class="col-xs-2">-->
+    <!--<a href="library-share-director.view.client.html" class="pull-right">-->
+    <!--<span class="glyphicon glyphicon-link"></span>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="col-xs-2">-->
+    <!--<a href="library-edit-director.view.client.html" class="pull-right">-->
+    <!--<span class="glyphicon glyphicon-pencil"></span>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--<li class="list-group-item">-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-8 col-sm-6">-->
+    <!--<a href="../../widget/templates/widget-list-director.view.client.html">-->
+    <!--Lasell VOX Chorus-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="col-sm-2 hidden-xs">-->
+    <!--</div>-->
+    <!--<div class="col-xs-2">-->
+    <!--<a href="library-share-director.view.client.html" class="pull-right">-->
+    <!--<span class="glyphicon glyphicon-link"></span>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="col-xs-2">-->
+    <!--<a href="library-edit-director.view.client.html" class="pull-right">-->
+    <!--<span class="glyphicon glyphicon-pencil"></span>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+
+
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-footer">
+                <div class="row navbar-text text-center">
+                    <div class="col-xs-2 pull-right">
+                        <a ng-click="model.logout(model.user)">
+                            <span class="glyphicon glyphicon-off"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/profile">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/newsfeed">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/profile">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>

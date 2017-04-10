@@ -22,26 +22,42 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            // navigation to home page (library)
-            .when("/home", {
-                templateUrl: 'views/library/templates/library-home.view.client.html',
-                controller: 'LibraryHomeController',
-                controllerAs: 'model'
-                //resolve: {loggedIn: checkLoggedin}
-            })
-            .when("/home/:uid", {
-                templateUrl: 'views/library/templates/library-home.view.client.html',
-                controller: 'LibraryHomeController',
-                controllerAs: 'model'
-                //resolve: {loggedIn: checkLoggedin}
+            .when("/user/profile", {
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: 'profileController',
+                controllerAs: 'model',
+                resolve: {loggedIn: checkLoggedin}
             })
             // navigation to user's editable profile
             .when("/user/:uid/profile", {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
                 controllerAs: 'model',
+                resolve: {loggedIn: checkLoggedin}
+            })
+            // navigation to library home page
+            .when("/user/:uid/library", {
+                templateUrl: 'views/library/templates/library-home.view.client.html',
+                controller: 'LibraryHomeController',
+                controllerAs: 'model'
                 //resolve: {loggedIn: checkLoggedin}
             })
+            .when("/user/:uid/libary/new", {
+                templateUrl: 'views/library/templates/library-create.view.client.html',
+                controller: 'LibraryCreateController',
+                controllerAs: 'model'
+            })
+            .when("/user/:uid/library/:lid", {
+                templateUrl: 'views/library/templates/library-edit.view.client.html',
+                controller: 'LibraryEditController',
+                controllerAs: 'model'
+            })
+            .when("/user/:uid/library/:lid/share", {
+                templateUrl: 'views/library/templates/library-share.view.client.html',
+                controller: 'LibraryEditController',
+                controllerAs: 'model'
+            })
+            // social media
             .when("/user/:uid/newsfeed", {
                 templateUrl: 'views/favorite/templates/newsfeed.view.client.html',
                 controller: 'NewsfeedController',
@@ -53,21 +69,19 @@
                 controller: 'PublicController',
                 controllerAs: 'model'
             })
+            // logged in search page
             .when("/user/:uid/search", {
                 templateUrl: 'views/favorite/templates/search.view.client.html',
                 controller: 'SearchController',
                 controllerAs: 'model'
             })
-            .when("/user/:uid/libary/new", {
-                templateUrl: 'views/libary/templates/library-create-director.view.client.html',
-                controller: 'LibraryNewController',
+            // public search page
+            .when("/user/search", {
+                templateUrl: 'views/favorite/templates/search.view.client.html',
+                controller: 'PublicSearchController',
                 controllerAs: 'model'
             })
-            .when("/user/:uid/library/:lid", {
-                templateUrl: 'views/libary/templates/library-edit-director.view.client.html',
-                controller: 'LibraryEditController',
-                controllerAs: 'model'
-            })
+            // for widget view and editing
             .when("/user/:uid/library/:lid/widget/director", {
                 templateUrl: 'views/widgets/templates/widget-list-director.view.client.html',
                 controller: "WidgetListController",
@@ -105,7 +119,7 @@
             if (user !== '0') {
                 $rootScope.currentUser = user;
                 console.log("success in config, userId in checkLoggedin function: "+ user._id);
-                $location.url('/profile/'+user._id);
+                $location.url('user/'+user._id+'/profile');
                 deferred.resolve();
             } else {
                 console.log("user not logged in in checkLoggedin in config");

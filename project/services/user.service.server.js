@@ -29,7 +29,7 @@ module.exports = function (app, OdhecatonUserModel) {
     app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
     app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/project/#/profile',
+        successRedirect: '/project/#/user/profile',
         failureRedirect: '/project/#/login'
         }));
 
@@ -116,6 +116,7 @@ module.exports = function (app, OdhecatonUserModel) {
                 },
                 function(err) {
                     console.log("findUserByCredentials in localStrategy didn't find user");
+                    console.log(err);
                     if (err) { return done(err); }
                 }
             )
@@ -131,7 +132,9 @@ module.exports = function (app, OdhecatonUserModel) {
             );
     }
 
-    //OdhecatonUserModel.createUser({username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'});
+    // var firstUser = {username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'};
+    // firstUser.password = bcrypt.hashSync(firstUser.password);
+    // OdhecatonUserModel.createUser(firstUser); //{username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'}
 
     function login(req, res) {
         var user = req.user;

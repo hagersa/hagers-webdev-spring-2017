@@ -6,43 +6,37 @@
     function libraryService($http) {
 
         var api = {
-            //"createWebsite": createWebsite,
-            //"findWebsiteById": findWebsiteById,
-            //"updateWebsite": updateWebsite,
-            //"deleteWebsite": deleteWebsite,
-            "findAllLibrariesForUser": findAllLibrariesForUser
+            "createLibrary": createLibrary,
+            "findLibraryById": findLibraryById,
+            "updateLibrary": updateLibrary,
+            "deleteLibrary": deleteLibrary,
+            "findAllDirLibrariesForUser": findAllDirLibrariesForUser,
+            "findAllMemLibrariesForUser": findAllMemLibrariesForUser
         };
         return api;
 
-        // function createWebsite(userId, website) {
-        //     return $http.post("/api/user/"+userId+"/website", website);
-        // }
-        //
-        // function deleteWebsite(websiteId) {
-        //     return $http.delete("/api/website/"+websiteId);
-        // }
-
-        function findAllLibrariesForUser(userId) {
-            return $http.get("/api/user/"+userId+"/library");
+        function createLibrary(userId, library) {
+            return $http.post("/api/user/"+userId+"/library", library);
         }
 
-        // function findWebsiteById(websiteId) {
-        //     return $http.get("/api/website/"+websiteId);
-        // }
-        //
-        // function updateWebsite(websiteId, newWebsite) {
-        //     return $http.put("/api/website/"+websiteId, newWebsite);
-        // }
+        function deleteLibrary(libraryId) {
+            return $http.delete("/api/library/"+libraryId);
+        }
+
+        function findAllDirLibrariesForUser(userId) {
+            return $http.get("/api/user/"+userId+"/dirLibrary");
+        }
+
+        function findAllMemLibrariesForUser(userId) {
+            return $http.get("/api/user/"+userId+"/memLibrary");
+        }
+
+        function findLibraryById(libraryId) {
+            return $http.get("/api/library/"+libraryId);
+        }
+
+        function updateLibrary(libraryId, newLibrary) {
+            return $http.put("/api/library/"+libraryId, newLibrary);
+        }
     }
 })();
-
-// This function is redundant, but was used in assignment3
-//"findWebsitesByUser": findWebsitesByUser,
-// function findWebsitesByUser(userId) {
-//     for(var w in websites) {
-//         if(websites[w].developerId === userId) {
-//             return angular.copy(websites[w]);
-//         }
-//     }
-//     return null;
-// }

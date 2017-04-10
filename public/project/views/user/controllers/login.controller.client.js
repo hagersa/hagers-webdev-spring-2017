@@ -10,10 +10,11 @@
         function login(user) {
             console.log("have user in login controller: "+user);
             if (user && user.username && user.password) {
+                console.log("in function");
                 OdhecatonUserService
                     .login(user)
                     .then(function (response) {
-                        if (response.data == null) {
+                        if (response == null || response.data == null) {
                             console.log("no success from login in login function");
                             vm.error = "could not login";
                         } else {

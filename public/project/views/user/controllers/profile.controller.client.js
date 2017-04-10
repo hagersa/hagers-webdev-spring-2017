@@ -18,6 +18,7 @@
         init();
 
         function renderUser(user) {
+            console.log("in profile render function: "+user);
             vm.user = user;
             console.log(user);
         }
