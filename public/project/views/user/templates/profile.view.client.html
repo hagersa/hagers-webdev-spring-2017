@@ -15,7 +15,7 @@
 
         <!--ng-if for admin vs. user-->
         <div ng-if="model.user.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
-               <a href="#/admin" class="navbar-link">
+               <a href="#/user/{{model.user._id}}/admin" class="navbar-link">
                    <span class="btn btn-warning">Admin</span></a>
         </div>
         <div class="navbar-header">
@@ -28,9 +28,11 @@
 
 <div id="padded-container" class="container-fluid">
 
+    <div class="container-fluid">
     <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
-
     <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+    </div>
+
 
     <form>
         <!--cannot edit username once created!-->
@@ -51,17 +53,19 @@
             <label for="email">Email address</label>
             <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="Enter email address...">
         </div>
-        <!--<div class="form-group">-->
-            <!--<label for="password">Password</label>-->
-            <!--<input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Enter new password">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="password2">Validate Password</label>-->
-            <!--<input ng-model="model.user.password2" type="password" class="form-control" id="password2" placeholder="Re-enter new password">-->
-        <!--</div>-->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Enter new password">
+        </div>
+        <div class="form-group">
+            <label for="password2">Validate Password</label>
+            <input ng-model="model.user.password2" type="password" class="form-control" id="password2" placeholder="Re-enter new password">
+        </div>
     </form>
 <!--ng-if for director vs. member-->
     <a ng-click="model.update(model.user)" class="btn btn-primary btn-block">Save Changes</a>
+
+    <!--<a ng-click="model.updatePassword(model.user.password)" class="btn btn-primary btn-block">Update Password</a>-->
 
     <a ng-click="model.unregisterUser(model.user)"
        class="btn btn-danger  btn-block" >

@@ -1,3 +1,27 @@
+.danger {
+    color: red;
+}
+
+.sah-table-style {
+    width: 100%;
+    border-style: solid;
+}
+
+.sah-row-style {
+    border-style: solid;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+}
+
+.sah-table-item {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
 .sah-iframe-widget {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */

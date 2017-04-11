@@ -6,44 +6,38 @@
     function LibraryCreateController(OdhecatonUserService, $routeParams, $location, LibraryService) {
         var vm = this;
         vm.userId = $routeParams.uid;
+        //vm.libraryId = $routeParams.lid;
         vm.createLibrary = createLibrary;
 
         //vm.message = 'Hello from the controller';
 
         function init() {
-            OdhecatonUserService
-                .findUserById(vm.userId)
-                .success(renderUser);
+            // OdhecatonUserService
+            //     .findUserById(vm.userId)
+            //     .success(renderUser);
 
             LibraryService
                 .findAllDirLibrariesForUser(vm.userId)
-                //.success(renderWebsites);
-                .success(function (response) {
-                    console.log(vm.userId);
-                    console.log(response);
-                    vm.dirLibraries = response;
-                })
-                .error(function () {
-                    vm.error = 'could not render director libraries';
-                });
+                .success(renderDirLibraries);
 
-            LibraryService
-                .findAllMemLibrariesForUser(vm.userId)
-                .success(function (response) {
-                    console.log(vm.userId);
-                    console.log(response);
-                    vm.memLibraries = response;
-                })
-                .error(function () {
-                    vm.error = 'could not render member libraries';
-                });
+            // LibraryService
+            //     .findAllMemLibrariesForUser(vm.userId)
+            //     .success(renderMemLibraries);
 
         } init();
 
-        function renderUser(user) {
-            console.log("in library home render function: "+user);
-            vm.user = user;
-            console.log(user);
+        // function renderUser(user) {
+        //     console.log("in library home render function: "+user);
+        //     vm.user = user;
+        //     console.log(user);
+        // }
+
+        function renderDirLibraries(dirLibraries) {
+            vm.dirLibraries = dirLibraries;
+        }
+
+        function renderMemLibraries(memLibraries) {
+            vm.memLibraries = memLibraries;
         }
 
         function createLibrary(library) {

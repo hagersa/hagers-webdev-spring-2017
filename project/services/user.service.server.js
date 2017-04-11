@@ -15,11 +15,13 @@ module.exports = function (app, OdhecatonUserModel) {
     };
 
     app.get("/api/user", findUser);
-    // Note: findUser handles findUserByUsername and findUserByCredentials,
-    //   as specified in class
     app.get("/api/user/:userId", findUserById);
+    //app.put("/api/user/:userId", update);
     app.put("/api/user/:userId", updateUser);
+    // app.put("/api/user/password/:userId", updatePassword);
     app.post("/api/user", createUser);
+    app.post('/api/isAdmin', isAdmin);
+    app.get('/api/admin/users', findAllUsers);
     app.post ('/api/login', passport.authenticate('local'), login);
     app.post('/api/logout', logout);
     app.delete("/api/user/:userId", deleteUser);
@@ -29,7 +31,7 @@ module.exports = function (app, OdhecatonUserModel) {
     app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
     app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/project/#/user/profile',
+        successRedirect: '/project/#/user/library',
         failureRedirect: '/project/#/login'
         }));
 
@@ -40,9 +42,9 @@ module.exports = function (app, OdhecatonUserModel) {
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
-                    console.log("user in googleStrategy: "+user);
+                    // console.log("user in googleStrategy: "+user);
                     if(user) {
-                        console.log("logging in existing: "+user);
+                        // console.log("logging in existing: "+user);
                         return done(null, user);
                     } else {
                         var email = profile.emails[0].value;
@@ -58,22 +60,22 @@ module.exports = function (app, OdhecatonUserModel) {
                             },
                             role: 'MEMBER'
                         };
-                        console.log("creating new: "+user);
+                        // console.log("creating new: "+user);
                         return OdhecatonUserModel.createUser(newGoogleUser);
                     }
                 },
                 function(err) {
-                    console.log("error1 "+err);
+                    // console.log("error1 "+err);
                     if (err) { return done(err); }
                 }
             )
             .then(
                 function(user){
-                    console.log("have user again in googleStrategy:"+user);
+                    // console.log("have user again in googleStrategy:"+user);
                     return done(null, user);
                 },
                 function(err){
-                    console.log("error1 "+err);
+                    // console.log("error1 "+err);
                     if (err) { return done(err); }
                 }
             );
@@ -99,34 +101,34 @@ module.exports = function (app, OdhecatonUserModel) {
 
     // checks that encrypted password and typed password match
     function localStrategy(username, password, done) {
-        console.log("in localStrategy: "+username+" "+password);
+        // console.log("in localStrategy: "+username+" "+password);
         OdhecatonUserModel
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    console.log("user.username and user.password: "+user.username+" "+user.password);
-                    console.log("username and password: "+username + password);
+                    // console.log("user.username and user.password: "+user.username+" "+user.password);
+                    // console.log("username and password: "+username + password);
                     if(user.username === username && bcrypt.compareSync(password, user.password)) { // && bcrypt.compareSync(password, user.password
-                        console.log("success in localStrategy");
+                        // console.log("success in localStrategy");
                         return done(null, user);
                     } else {
-                        console.log("no success in localStrategy");
+                        // console.log("no success in localStrategy");
                         return done(null, false);
                     }
                 },
                 function(err) {
-                    console.log("findUserByCredentials in localStrategy didn't find user");
-                    console.log(err);
+                    // console.log("findUserByCredentials in localStrategy didn't find user");
+                    // console.log(err);
                     if (err) { return done(err); }
                 }
             )
             .then(
                 function(user){
-                    console.log("returning user in localStrategy: "+user);
+                    // console.log("returning user in localStrategy: "+user);
                     return done(null, user);
                 },
                 function(err){
-                    console.log("what's happening?");
+                    // console.log("what's happening?");
                     if (err) { return done(err); }
                 }
             );
@@ -138,12 +140,12 @@ module.exports = function (app, OdhecatonUserModel) {
 
     function login(req, res) {
         var user = req.user;
-        console.log("have user in login in service.server: "+ user);
+        // console.log("have user in login in service.server: "+ user);
         res.json(user);
     }
 
     function logout(req, res) {
-        console.log("in service.server logout: "+req.user);
+        // console.log("in service.server logout: "+req.user);
         req.logout(); // needs parameters?
         res.sendStatus(200);
     }
@@ -152,9 +154,33 @@ module.exports = function (app, OdhecatonUserModel) {
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 
+    // function checkAdmin(req, res, next) {
+    //     if(req.user && req.user.role == 'ADMIN') {
+    //         next();
+    //     } else {
+    //         res.send(401);
+    //     }
+    // }
+
+    function isAdmin(req, res) {
+        res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
+    }
+
+    function findAllUsers(req, res) {
+        // if(req.user && req.user.role=='ADMIN') {
+            OdhecatonUserModel
+                .findAllUsers()
+                .then(function (users) {
+                    res.json(users);
+                });
+        // } else {
+        //     res.sendStatus(401);
+        // }
+    }
+
     // findUser handles findUserByUsername and findUserByCredentials
     function findUser(req, res) {
-        console.log("in findUser in service.server");
+        // console.log("in findUser in service.server");
         var username = req.query['username'];
         var password = req.query['password'];
         if(username && password) {
@@ -166,15 +192,15 @@ module.exports = function (app, OdhecatonUserModel) {
 
     function findUserByUsername (req, res) {
         var username = req.query['username'];
-        console.log(username);
+        // console.log(username);
 
         OdhecatonUserModel
             .findUserByUsername(username)
             .then(function (user) {
-                console.log("in user server findUserByUsername " +user);
+                // console.log("in user server findUserByUsername " +user);
                 res.json(user);
             }, function (error) {
-                console.log("server findUserByUsername caused a problem"+error);
+                // console.log("server findUserByUsername caused a problem"+error);
                 res.sendStatus(500)
             });
     }
@@ -182,13 +208,13 @@ module.exports = function (app, OdhecatonUserModel) {
     function findUserByCredentials(req, res) {
         var username = req.query['username'];
         var password = req.query['password'];
-        console.log(username);
-        console.log(password);
+        // console.log(username);
+        // console.log(password);
 
         OdhecatonUserModel
             .findUserByCredentials(username, password)
             .then(function (user) {
-                console.log("user in findUserByCredentials: "+user);
+                // console.log("user in findUserByCredentials: "+user);
                 res.send(user);
             }, function (error) {
                 res.sendStatus(500)
@@ -197,7 +223,7 @@ module.exports = function (app, OdhecatonUserModel) {
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        console.log(userId);
+        // console.log(userId);
 
         OdhecatonUserModel
             .findUserById(userId)
@@ -210,7 +236,7 @@ module.exports = function (app, OdhecatonUserModel) {
 
     function deleteUser(req, res) {
         var userId = req.params.userId;
-        console.log(userId);
+        // console.log(userId);
 
         OdhecatonUserModel
             .deleteUser(userId)
@@ -221,10 +247,21 @@ module.exports = function (app, OdhecatonUserModel) {
             });
     }
 
+    function update(req, res) {
+        var username = req.query['username'];
+        var password = req.query['password'];
+
+        if(username) {
+            updateUser(req, res);
+        } else {
+            updatePassword(req, res);
+        }
+    }
+
     function updateUser(req, res) {
         var user = req.body;
         var userId = req.params.userId;
-        console.log(userId);
+        // console.log(userId);
 
         OdhecatonUserModel
             .updateUser(userId, user)
@@ -235,9 +272,27 @@ module.exports = function (app, OdhecatonUserModel) {
             });
     }
 
+    // function updatePassword(req, res) {
+    //      var password = req.body;
+    //      var userId = req.params.userId;
+    //
+    //      console.log("have password in server: "+password);
+    //     console.log("have userId in server: "+userId);
+    //
+    //      OdhecatonUserModel
+    //          .updatePassword(userId, password)
+    //          .then(function(response) {
+    //              console.log("success updating password in server: "+response);
+    //              res.json(response);
+    //          }, function (error) {
+    //              console.log("error updating password in server: "+response);
+    //              res.sendStatus(500);
+    //          });
+    // }
+
     function createUser(req, res) {
         var newUser = req.body;
-        console.log(newUser);
+        // console.log(newUser);
         OdhecatonUserModel
             .createUser(newUser)
             .then(function(user) {
@@ -250,19 +305,19 @@ module.exports = function (app, OdhecatonUserModel) {
     // encrypts passwords upon registration
     function register (req, res) {
         var user = req.body;
-        console.log("have new user in service.server: "+user);
+        // console.log("have new user in service.server: "+user);
         user.password = bcrypt.hashSync(user.password);
-        console.log("success in createUser in service.server: "+user.password);
+        // console.log("success in createUser in service.server: "+user.password);
         OdhecatonUserModel
             .createUser(user)
             .then(function(newUser){
-                console.log("success in createUser in service.server: "+newUser);
+                // console.log("success in createUser in service.server: "+newUser);
                 if(newUser){
                     req.login(newUser, function(err) {
                         if(err) {
                             res.status(400).send(err);
                         } else {
-                            console.log("success logging new user in in service.server");
+                            // console.log("success logging new user in in service.server");
                             res.json(newUser);
                         }
                     });

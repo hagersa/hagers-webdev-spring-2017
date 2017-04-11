@@ -16,6 +16,8 @@
 
         <div class="navbar-header">
             <a class="navbar-brand">
+                <!--<span ng-if="model.libraryId=='new'">Create</span>-->
+                <!--<span ng-if="model.libraryId!='new'">Edit</span>-->
                 Edit Your Library
             </a>
         </div>
@@ -26,7 +28,6 @@
     <div class="col-sm-4 hidden-xs sah-left-pane">
         <div class="container-fluid">
             <div class="h4">
-                <!--Why doesn't this link work???-->
                 <a href="#/user/{{model.userId}}/library/new">
                     <span class="glyphicon glyphicon-plus-sign pull-right"></span>
                 </a>
@@ -131,11 +132,11 @@
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">
-                    <div class="col-xs-2 pull-right">
-                        <a ng-click="model.logout(model.user)">
-                            <span class="glyphicon glyphicon-off"></span>
-                        </a>
-                    </div>
+                    <!--<div class="col-xs-2 pull-right">-->
+                        <!--<a ng-click="model.logout(model.user)">-->
+                            <!--<span class="glyphicon glyphicon-off"></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/search">
                             <span class="glyphicon glyphicon-search"></span>
@@ -153,7 +154,7 @@
                     </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/profile">
-                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="glyphicon glyphicon-"></span>
                         </a>
                     </div>
                 </div>

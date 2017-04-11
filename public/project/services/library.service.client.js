@@ -12,6 +12,7 @@
             "deleteLibrary": deleteLibrary,
             "findAllDirLibrariesForUser": findAllDirLibrariesForUser,
             "findAllMemLibrariesForUser": findAllMemLibrariesForUser
+            //"updateLibraryMembers": updateLibraryMembers
         };
         return api;
 
@@ -38,5 +39,9 @@
         function updateLibrary(libraryId, newLibrary) {
             return $http.put("/api/library/"+libraryId, newLibrary);
         }
+
+        // function updateLibraryMembers(libraryId, email) {
+        //     return $http.put("/api/library/share/"+libraryId, email);
+        // }
     }
 })();

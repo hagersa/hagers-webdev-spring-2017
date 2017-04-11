@@ -6,9 +6,9 @@
     function configuration($routeProvider) {
 
         $routeProvider
-            .when("/admin",{
+            .when("/user/:uid/admin",{
                 templateUrl: 'views/admin/templates/admin-home.view.client.html',
-                controller: 'adminController',
+                controller: 'AdminHomeController',
                 controllerAs: 'model',
                 resolve: { adminUser: isAdmin }
             })
@@ -36,13 +36,19 @@
                 resolve: {loggedIn: checkLoggedin}
             })
             // navigation to library home page
+            .when("/user/library", {
+                templateUrl: 'views/library/templates/library-home.view.client.html',
+                controller: 'LibraryHomeController',
+                controllerAs: 'model',
+                resolve: {loggedIn: checkHomeLoggedin}
+            })
             .when("/user/:uid/library", {
                 templateUrl: 'views/library/templates/library-home.view.client.html',
                 controller: 'LibraryHomeController',
-                controllerAs: 'model'
-                //resolve: {loggedIn: checkLoggedin}
+                controllerAs: 'model',
+                resolve: {loggedIn: checkHomeLoggedin}
             })
-            .when("/user/:uid/libary/new", {
+            .when("/user/:uid/library/new", {
                 templateUrl: 'views/library/templates/library-create.view.client.html',
                 controller: 'LibraryCreateController',
                 controllerAs: 'model'
@@ -118,11 +124,11 @@
             $rootScope.errorMessage = null;
             if (user !== '0') {
                 $rootScope.currentUser = user;
-                console.log("success in config, userId in checkLoggedin function: "+ user._id);
+                // console.log("success in config, userId in checkLoggedin function: "+ user._id);
                 $location.url('user/'+user._id+'/profile');
                 deferred.resolve();
             } else {
-                console.log("user not logged in in checkLoggedin in config");
+                // console.log("user not logged in in checkLoggedin in config");
                 deferred.reject();
                 $location.url('/');
             }
@@ -130,7 +136,36 @@
         return deferred.promise;
     }
 
-    var isAdmin = function($q, $timeout, $http, $location, $rootScope) {
+    var checkHomeLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        $http.get('/api/loggedin').success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user !== '0') {
+                $rootScope.currentUser = user;
+                // console.log("success in config, userId in checkHomeLoggedin function: "+ user._id);
+                $location.url('user/'+user._id+'/library');
+                deferred.resolve();
+            } else {
+                // console.log("user not logged in in checkLoggedin in config");
+                deferred.reject();
+                $location.url('/');
+            }
+        });
+        return deferred.promise;
+    }
 
+    var isAdmin = function($q, $timeout, $http, $location, $rootScope, OdhecatonUserService) {
+        var deferred = $q.defer();
+        OdhecatonUserService
+            .isAdmin()
+            .then(function (user) {
+                if(user == '0') {
+                    deferred.reject();
+                    $location.url('/profile')
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
     }
 })();

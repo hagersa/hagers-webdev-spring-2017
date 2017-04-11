@@ -1,6 +1,6 @@
 module.exports = function (app, WidgetModel) {
 
-    console.log(WidgetModel);
+    //console.log(WidgetModel);
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads'});

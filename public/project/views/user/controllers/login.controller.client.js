@@ -22,8 +22,11 @@
                             var newUser = response.data;
                             console.log("have new user in loginUser" + newUser);
                             $rootScope.currentUser = newUser;
-                            $location.url("/user/" + newUser._id + "/profile");
+                            $location.url("/user/" + newUser._id + "/library");
                         }
+                    }, function(error) {
+                        console.log(error);
+                        vm.error = "could not login";
                     });
                     // .success(function (response) {
                     //     if (response.data == null) {

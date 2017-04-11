@@ -1,24 +1,25 @@
 module.exports = function (app, LibraryModel) {
 
-    console.log(LibraryModel);
+    //console.log(LibraryModel);
 
     app.post("/api/user/:userId/library", createLibrary);
     app.get("/api/user/:userId/dirLibrary", findAllDirLibrariesForUser);
     app.get("/api/user/:userId/memLibrary", findAllMemLibrariesForUser);
-    //app.get("/api/website/:websiteId", findWebsiteById);
-    //app.put("/api/website/:websiteId", updateWebsite);
-    //app.delete("/api/website/:websiteId", deleteWebsite);
+    app.get("/api/library/:libraryId", findLibraryById);
+    app.put("/api/library/:libraryId", updateLibrary);
+    app.delete("/api/library/:libraryId", deleteLibrary);
+    //app.put("/api/library/share/:libraryId", updateLibraryMembers);
 
     function createLibrary(req, res) {
         var newLibrary = req.body;
         var userId = req.params.userId;
-        console.log(userId);
-        console.log(newLibrary);
+        // console.log(userId);
+        // console.log(newLibrary);
 
         LibraryModel
             .createLibraryForUser(userId, newLibrary)
             .then(function(response) {
-                console.log(response);
+                // console.log(response);
                 res.send(response);
             }, function (error) {
                 res.sendStatus(500);
@@ -27,57 +28,74 @@ module.exports = function (app, LibraryModel) {
 
     function findAllDirLibrariesForUser(req, res) {
         var userId = req.params.userId;
-        console.log("In service.server with userId: " + userId);
+        // console.log("In service.server with userId: " + userId);
 
         return LibraryModel.findAllDirLibrariesForUser(userId)
             .then(function (libraryIds) {
-                console.log("have libraryIds in service.server: " + libraryIds);
+                // console.log("have libraryIds in service.server: " + libraryIds);
 
                 return LibraryModel.findAllLibraries(libraryIds);
             })
             .then(function (libraries) {
-                console.log("have libraryObjects in service.server: " + libraries);
+                // console.log("have libraryObjects in service.server: " + libraries);
                 res.send(libraries);
             })
     }
 
     function findAllMemLibrariesForUser(req, res) {
         var userId = req.params.userId;
-        console.log("In service.server with userId: " + userId);
 
         return LibraryModel.findAllMemLibrariesForUser(userId)
-            .then(function (libraryIds) {
-                console.log("have libraryIds in service.server: " + libraryIds);
-
-                return LibraryModel.findAllLibraries(libraryIds);
-            })
             .then(function (libraries) {
                 console.log("have libraryObjects in service.server: " + libraries);
                 res.send(libraries);
-            })
+            }, function (error) {
+                console.log("error in finding libraries back in service.server");
+                res.sendStatus(500)
+            });
     }
 
-    // function findWebsiteById(req, res){
-    //         var websiteId = req.params.websiteId;
-    //         console.log("have websiteID in service.server: "+websiteId);
-    //
-    //         WebsiteModel
-    //             .findWebsiteById(websiteId)
-    //             .then(function (website) {
-    //                 res.send(website);
-    //             }, function (error) {
-    //                 res.sendStatus(500)
-    //             });
-    // }
+    function findLibraryById(req, res){
+            var libraryId = req.params.libraryId;
+            // console.log("have libraryID in service.server: "+libraryId);
 
-    // function updateWebsite(req, res) {
-    //     var website = req.body;
-    //     var websiteId = req.params.websiteId;
+            LibraryModel
+                .findLibraryById(libraryId)
+                .then(function (library) {
+                    res.send(library);
+                }, function (error) {
+                    res.sendStatus(500)
+                });
+    }
+
+    function updateLibrary(req, res) {
+        var library = req.body;
+        var libraryId = req.params.libraryId;
+
+        console.log("in library.service.server");
+        console.log("library: "+library);
+        console.log("libraryId: "+libraryId);
+        // console.log(libraryId);
+
+        LibraryModel
+            .updateLibrary(libraryId, library)
+            .then(function(response) {
+                console.log("success in library.service.server");
+                res.send(response);
+            }, function (error) {
+                console.log("error in library.service.server");
+                res.sendStatus(500);
+            });
+    }
+
+    // function updateLibraryMembers(req, res) {
+    //     var email = req.body;
+    //     var libraryId = req.params.libraryId;
     //
-    //     console.log(websiteId);
+    //     // console.log("email and libraryId: "+email+" "+libraryId);
     //
-    //     WebsiteModel
-    //         .updateWebsite(websiteId, website)
+    //     LibraryModel
+    //         .updateLibraryMembers(libraryId, email)
     //         .then(function(response) {
     //             res.send(response);
     //         }, function (error) {
@@ -85,16 +103,17 @@ module.exports = function (app, LibraryModel) {
     //         });
     // }
 
-    // function deleteWebsite(req, res) {
-    //     var websiteId = req.params.websiteId;
-    //     console.log(websiteId);
-    //
-    //     WebsiteModel
-    //         .deleteWebsite(websiteId)
-    //         .then(function () {
-    //             res.sendStatus(200);
-    //         }, function (error) {
-    //             res.sendStatus(500)
-    //         });
-    // }
+
+    function deleteLibrary(req, res) {
+        var libraryId = req.params.libraryId;
+        // console.log(libraryId);
+
+        LibraryModel
+            .deleteLibrary(libraryId)
+            .then(function () {
+                res.sendStatus(200);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+    }
 };

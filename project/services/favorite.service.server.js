@@ -1,5 +1,5 @@
-module.exports = function (app, PageModel) {
-    console.log(PageModel);
+module.exports = function (app, LibraryModel) {
+    //console.log(PageModel);
 
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);

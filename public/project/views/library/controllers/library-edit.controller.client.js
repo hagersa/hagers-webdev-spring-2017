@@ -19,33 +19,45 @@
 
             LibraryService
                 .findAllDirLibrariesForUser(vm.userId)
-                //.success(renderWebsites);
-                .success(function (response) {
-                    console.log(vm.userId);
-                    console.log(response);
-                    vm.dirLibraries = response;
-                })
-                .error(function () {
-                    vm.error = 'could not render director libraries';
-                });
+                .success(renderDirLibraries);
+
+            // LibraryService
+            //     .findAllMemLibrariesForUser(vm.userId)
+            //     .success(renderMemLibraries);
 
             LibraryService
-                .findAllMemLibrariesForUser(vm.userId)
-                .success(function (response) {
-                    console.log(vm.userId);
-                    console.log(response);
-                    vm.memLibraries = response;
-                })
-                .error(function () {
-                    vm.error = 'could not render member libraries';
-                });
+                .findLibraryById(vm.libraryId)
+                .success(renderLibrary);
 
         } init();
 
         function renderUser(user) {
-            console.log("in library home render function: "+user);
+            console.log("in library share render function: "+user);
             vm.user = user;
             console.log(user);
+        }
+
+        function renderLibrary(library) {
+            vm.library = library;
+        }
+
+        function renderDirLibraries(dirLibraries) {
+            vm.dirLibraries = dirLibraries;
+        }
+
+        function renderMemLibraries(memLibraries) {
+            vm.memLibraries = memLibraries;
+        }
+
+        function updateLibrary(library) {
+            LibraryService
+                .updateLibrary(vm.libraryId, library)
+                .success(function (response) {
+                    $location.url("/user/" + vm.userId + "/library");
+                })
+                .error(function () {
+                    vm.error = "unable to update website";
+                });
         }
 
         function deleteLibrary (libraryId) {
@@ -62,17 +74,5 @@
                     });
             }
         }
-
-        function updateLibrary (newLibrary) {
-            LibraryService
-                .updateLibrary(vm.libraryId, newLibrary)
-                .success(function (response) {
-                    $location.url("/user/" + vm.userId + "/library");
-                })
-                .error(function () {
-                    vm.error = "unable to update library";
-                });
-        }
-
     }
 })();

@@ -1,0 +1,166 @@
+<div ng-controller="LibraryShareController as model">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Share {{model.library.name}}
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row container-fluid sah-container-left-padding">
+        <div class="col-sm-4 hidden-xs sah-left-pane">
+            <div class="container-fluid">
+                <div class="h4">
+                    <a href="#/user/{{model.userId}}/library/new">
+                        <span class="glyphicon glyphicon-plus-sign pull-right"></span>
+                    </a>
+                    Created By You
+                </div>
+
+                <div class="container-fluid">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="dirLibrary in model.dirLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/share" class="pull-right">
+                                        <span class="glyphicon glyphicon-link"></span>
+                                    </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}">
+                                        <span class="glyphicon glyphicon-pencil pull-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="h4">
+                    Shared With You
+                </div>
+
+                <div class="container-fluid">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="memLibrary in model.memLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    <a href="#/user/{{model.userId}}/library/{{memLibrary._id}}/widget/member">{{memLibrary.name}}</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
+
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+    <form>
+        <label for="email">Add a New Member</label>
+        <!--<div class="input-group">-->
+            <!--<input type="text" class="form-control" placeholder="Search for user by email address...">-->
+            <!--<span class="input-group-btn">-->
+                <!--<a class="btn btn-default" type="button">-->
+                    <!--<span class="glyphicon glyphicon-search"></span>-->
+                <!--</a>-->
+            <!--</span>-->
+        <!--</div>-->
+        <input ng-model="model.library.email"
+               type="text"
+               class="form-control"
+               id="email"
+               placeholder="Enter a user's email address to add them...">
+        <!--<div class="sah-top-padding">-->
+            <!---->
+        <!--</div>-->
+    </form>
+    <a class="btn btn-success  btn-block" ng-click="model.addMember(model.library.email)">Add to List</a>
+
+    <ul class="list-group sah-ul-style sah-top-padding">
+        <label>Current Members</label>
+        <li ng-repeat="member in model.library.members" class="newsfeed-list-group-item list-group-item">
+            {{member}}
+            <a class="pull-right">
+                <span ng-click="model.deleteMember(member)" class="glyphicon glyphicon-remove"></span>
+            </a>
+        </li>
+    </ul>
+
+    <!--Add a pop up box to confirm-->
+    <br>
+    <a class="btn btn-danger  btn-block" ng-click="model.deleteAllMembers(model.library.members)">Remove All Users</a>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-footer">
+                <div class="row navbar-text text-center">
+                    <!--<div class="col-xs-2 pull-right">-->
+                        <!--<a ng-click="model.logout(model.user)">-->
+                            <!--<span class="glyphicon glyphicon-off"></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/profile">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/newsfeed">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/profile">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

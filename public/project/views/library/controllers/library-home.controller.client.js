@@ -7,19 +7,24 @@
         var vm = this;
         vm.userId = $routeParams.uid;
 
-        //vm.message = 'Hello from the controller';
-
         function init() {
             OdhecatonUserService
                 .findUserById(vm.userId)
-                .success(renderUser);
+                .success(function (user) {
+                    vm.user = user;
+                    vm.user.email = user.email;
+                })
+                .error(function () {
+                    vm.error = 'could not find user'
+                });
+
 
             LibraryService
                     .findAllDirLibrariesForUser(vm.userId)
                     //.success(renderWebsites);
                     .success(function (response) {
-                        console.log(vm.userId);
-                        console.log(response);
+                        // console.log(vm.userId);
+                        // console.log(response);
                         vm.dirLibraries = response;
                     })
                     .error(function () {
@@ -28,11 +33,10 @@
 
             LibraryService
                 .findAllMemLibrariesForUser(vm.userId)
-                //.success(renderWebsites);
-                .success(function (response) {
-                    console.log(vm.userId);
-                    console.log(response);
-                    vm.memLibraries = response;
+                .success(function (libraries) {
+                    console.log(vm.user);
+                    console.log(libraries);
+                    vm.myLibraries = libraries;
                 })
                 .error(function () {
                     vm.error = 'could not render member libraries';
@@ -40,11 +44,11 @@
 
         } init();
 
-        function renderUser(user) {
-            console.log("in library home render function: "+user);
-            vm.user = user;
-            console.log(user);
-        }
+        // function renderUser(user) {
+        //     console.log("in library home render function: "+user);
+        //     vm.user = user;
+        //     console.log(user);
+        // }
         // function init() {
         //     vm.message = 'Hello from the controller'
         //     // LibraryService

@@ -11,10 +11,13 @@
             "logout": logout,
             "createUser": createUser,
             "register": register,
+            "isAdmin": isAdmin,
+            "findAllUsers": findAllUsers,
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
             "updateUser": updateUser,
+            //"updatePassword": updatePassword,
             "deleteUser": deleteUser
         };
         return api;
@@ -54,8 +57,26 @@
             return $http.put("/api/user/"+userId, newUser);
         }
 
+        // function updatePassword(userId, password) {
+        //     return $http.put("/api/user/"+userId, password);
+        // }
+
         function deleteUser(userId) {
             return $http.delete("/api/user/" + userId);
+        }
+
+        function findAllUsers() {
+            return $http.get('/api/admin/users');
+                // .then(function (response) {
+                //     return response.data;
+                // });
+        }
+
+        function isAdmin() {
+            return $http.post('/api/isAdmin');
+                // .then(function (response) {
+                //     return response.data;
+                // });
         }
     }
 })();

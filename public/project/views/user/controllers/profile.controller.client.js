@@ -8,6 +8,7 @@
         var userId = $routeParams.uid;
         vm.update = update;
         vm.unregisterUser = unregisterUser;
+        //vm.updatePassword = updatePassword;
         vm.logout = logout;
 
         function init() {
@@ -18,9 +19,9 @@
         init();
 
         function renderUser(user) {
-            console.log("in profile render function: "+user);
+            // console.log("in profile render function: "+user);
             vm.user = user;
-            console.log(user);
+            // console.log(user);
         }
 
         function logout(user) {
@@ -44,6 +45,19 @@
                     vm.error = "unable to update user";
                 });
         }
+
+        // function  updatePassword(password) {
+        //     OdhecatonUserService
+        //         .updatePassword(userId, password)
+        //         .success(function (response) {
+        //             console.log("success in password updation");
+        //             vm.message = "password successfully updated"
+        //         })
+        //         .error(function () {
+        //             console.log("error in password updation");
+        //             vm.error = "unable to update password";
+        //         });
+        // }
 
         function unregisterUser(user) {
             var answer = confirm("Are you sure?");
