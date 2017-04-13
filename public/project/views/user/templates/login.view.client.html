@@ -53,25 +53,30 @@
         <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
         <!--name="loginForm" nonvalidate-->
-        <form>
+        <form novalidate name="loginForm" id="loginForm">
             <input ng-model="user.username"
                    type="text"
                    class="form-control"
                    placeholder="username"
                    autocomplete="off" autocapitalize="off"
+                   name="username"
                    required/>
             <!--add this to show error-->
-            <!--<span ng-if="loginForm.username.$error.required && loginForm.username.$submitted">Username is required</span>-->
+            <span ng-show="loginForm.username.$error.required && loginForm.$submitted">Username is required</span>
 
             <input ng-model="user.password"
                    type="password"
+                   name="password"
                    class="form-control"
                    placeholder="password"
                    required/>
-            <!--<span ng-if="loginForm.password.$error.required && loginForm.password.$submitted">Password is required</span>-->
+            <span ng-if="loginForm.password.$error.required && loginForm.$submitted">Password is required</span>
+            <button type="submit" ng-click="model.login(user)" class="btn btn-primary btn-block">Login</button>
         </form>
 
-        <a ng-click="model.login(user)" class="btn btn-primary btn-block">Login</a>
+        {{loginForm.username}}
+        <br/>
+        {{loginForm.$submitted}}
 
         <a href="/auth/google" class="btn btn-primary btn-block">
             <span class="fa fa-google-plus"></span>
@@ -83,7 +88,13 @@
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
-            <div class="navbar-footer"></div>
+            <div class="navbar-footer">
+                <!--<div class="navbar-text navbar-link">-->
+                    <!--<a href="#/homepage">-->
+                        <!--<span class="glyphicon glyphicon-home"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+            </div>
         </div>
     </nav>
 </div>

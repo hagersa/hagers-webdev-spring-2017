@@ -58,6 +58,12 @@
                 controller: 'LibraryEditController',
                 controllerAs: 'model'
             })
+            // for widget view and editing
+            .when("/user/:uid/library/:lid/widget", {
+                templateUrl: 'views/widget/templates/widget-list.view.client.html',
+                controller: "WidgetListController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/library/:lid/share", {
                 templateUrl: 'views/library/templates/library-share.view.client.html',
                 controller: 'LibraryEditController',
@@ -78,7 +84,7 @@
             // logged in search page
             .when("/user/:uid/search", {
                 templateUrl: 'views/favorite/templates/search.view.client.html',
-                controller: 'SearchController',
+                controller: 'YoutubeSearchController',
                 controllerAs: 'model'
             })
             // public search page
@@ -87,19 +93,14 @@
                 controller: 'PublicSearchController',
                 controllerAs: 'model'
             })
-            // for widget view and editing
-            .when("/user/:uid/library/:lid/widget/director", {
-                templateUrl: 'views/widgets/templates/widget-list-director.view.client.html',
-                controller: "WidgetListController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/library/:lid/widget/member", {
-                templateUrl: 'views/widgets/templates/widget-list-member.view.client.html',
-                controller: "WidgetListController",
-                controllerAs: "model"
-            })
+
+            // .when("/user/:uid/library/:lid/widget/member", {
+            //     templateUrl: 'views/widgets/templates/widget-list-member.view.client.html',
+            //     controller: "WidgetListController",
+            //     controllerAs: "model"
+            // })
             .when("/user/:uid/library/:lid/widget/:wgid", {
-                templateUrl: 'views/widgets/templates/widget-edit.view.client.html',
+                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: "WidgetEditController",
                 controllerAs: "model"
             })
@@ -113,6 +114,9 @@
                 controller: 'loginController',
                 controllerAs: 'model'
             })
+            // .when("/homepage", {
+            //     templateUrl: '../../index.html'
+            // })
             .otherwise({
                 redirectTo: "/"
             })

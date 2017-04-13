@@ -1,33 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Search</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
+<div ng-controller="YoutubeSearchController as model">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <!--<div class="navbar-text pull-left">
-            &lt;!&ndash;ng-if for director vs. member&ndash;&gt;
-            <a href="../library/director-library-home-director.view.client.html" class="navbar-link">
-                    <span class="glyphicon glyphicon-chevron-left">
-                    </span>
-            </a>
-        </div>-->
         <div class="navbar-text pull-right">
-            <!--ng-if for director vs. member-->
-            <a href="../../library/templates/library-home.view.client.html" class="navbar-link">
+            <a href="#/user/{{model.user._id}}/library" class="navbar-link">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
         </div>
-
         <div class="navbar-header">
             <a class="navbar-brand">
-                Search
+                Youtube Search
             </a>
         </div>
     </div>
@@ -35,70 +16,80 @@
 
 <div class="container-fluid">
     <div class="input-group sah-button-padding">
-        <input type="text" class="form-control" placeholder="Search Youtube">
+        <input ng-model="model.video.searchTitle" type="text" class="form-control" placeholder="Search Youtube">
         <span class="input-group-btn">
         <a class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
+            <span ng-click="model.searchVideo(model.video.searchTitle)" class="glyphicon glyphicon-search"></span>
         </a>
     </span>
     </div>
 
-    <div class="input-group sah-button-padding">
-        <input type="text" class="form-control" placeholder="Search IMSLP">
-        <span class="input-group-btn">
-        <a class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-    </span>
+    <!--<div class="input-group sah-button-padding">-->
+        <!--<input type="text" class="form-control" placeholder="Search IMSLP">-->
+        <!--<span class="input-group-btn">-->
+        <!--<a class="btn btn-default" type="button">-->
+            <!--<span class="glyphicon glyphicon-search"></span>-->
+        <!--</a>-->
+    <!--</span>-->
+    <!--</div>-->
+    <div class="container-fluid">
+        <h4>Search Results</h4>
+        <ul class="list-group">
+            <li class="newsfeed-list-group-item list-group-item"
+                ng-repeat="video in model.videoSearchResults.items">
+                <img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/>
+                <a>{{video.snippet.title}}</a>
+                <a class="pull-right">
+                    <span ng-click="model.favoriteVideo(video)" class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
+                </a>
+                Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br/>
+                <div class="check-element animate-show-hide" ng-show="checked">
+                    <h4>Video Details</h4>
+                    <h5>
+                        {{video.snippet.title}}
+                        <!--<span ng-click="model.likeMovie(model.movieDetails)" class="glyphicon glyphicon-star-empty"></span>-->
+                    </h5>
+                    <img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/>
+                    <p>{{video.snippet.description}}</p>
+                    <h5>Channel Title</h5>
+                    <p>{{video.snippet.channelTitle}}</p>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
-
-<div class="container-fluid">
-    <h4>Search Results</h4>
-    <ul class="list-group">
-        <li class="newsfeed-list-group-item list-group-item">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg" class="list-image-size"/>
-            <a href="info.view.client.html">Dirait On</a>
-            <a class="pull-right">
-            <!--if viewing self, non-empty stars, can unfavorite-->
-            <span class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
-            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
-            </a>
-        </li>
-    </ul>
-</div>
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">
                 <div class="col-xs-2 pull-right">
-                    <a href="../../user/templates/login.view.client.html">
+                    <a ng-click="model.logout(model.user)">
                         <span class="glyphicon glyphicon-off"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/search.view.client.html">
+                    <a href="#/user/{{model.user._id}}/search">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/public-profile.view.client.html">
-                        <span class="glyphicon glyphicon-star"></span>
+                    <a href="#/user/{{model.user._id}}/public">
+                        <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/newsfeed.view.client.html">
+                    <a href="#/user/{{model.user._id}}/newsfeed">
                         <span class="glyphicon glyphicon-globe"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../../user/templates/profile.view.client.html">
-                        <span class="glyphicon glyphicon-user"></span>
+                    <a href="#/user/{{model.user._id}}/profile">
+                        <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </nav>
+</div>

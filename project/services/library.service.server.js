@@ -47,10 +47,10 @@ module.exports = function (app, LibraryModel) {
 
         return LibraryModel.findAllMemLibrariesForUser(userId)
             .then(function (libraries) {
-                console.log("have libraryObjects in service.server: " + libraries);
+                // console.log("have libraryObjects in service.server: " + libraries);
                 res.send(libraries);
             }, function (error) {
-                console.log("error in finding libraries back in service.server");
+                // console.log("error in finding libraries back in service.server");
                 res.sendStatus(500)
             });
     }
@@ -72,37 +72,21 @@ module.exports = function (app, LibraryModel) {
         var library = req.body;
         var libraryId = req.params.libraryId;
 
-        console.log("in library.service.server");
-        console.log("library: "+library);
-        console.log("libraryId: "+libraryId);
+        // console.log("in library.service.server");
+        // console.log("library: "+library);
+        // console.log("libraryId: "+libraryId);
         // console.log(libraryId);
 
         LibraryModel
             .updateLibrary(libraryId, library)
             .then(function(response) {
-                console.log("success in library.service.server");
+                // console.log("success in library.service.server");
                 res.send(response);
             }, function (error) {
-                console.log("error in library.service.server");
+                // console.log("error in library.service.server");
                 res.sendStatus(500);
             });
     }
-
-    // function updateLibraryMembers(req, res) {
-    //     var email = req.body;
-    //     var libraryId = req.params.libraryId;
-    //
-    //     // console.log("email and libraryId: "+email+" "+libraryId);
-    //
-    //     LibraryModel
-    //         .updateLibraryMembers(libraryId, email)
-    //         .then(function(response) {
-    //             res.send(response);
-    //         }, function (error) {
-    //             res.sendStatus(500);
-    //         });
-    // }
-
 
     function deleteLibrary(req, res) {
         var libraryId = req.params.libraryId;

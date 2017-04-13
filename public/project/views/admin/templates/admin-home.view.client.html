@@ -52,7 +52,7 @@
                 <td class="sah-table-item"><input ng-model="user.email" type="text" class="form-control"/></td>
                 <td class="sah-table-item"><input ng-model="user.password" type="text" class="form-control"/></td>
                 <td class="sah-table-item">
-                    <select name="role">
+                    <select ng-model="user.role">
                         <option value='{{user.role}}'>{{user.role}}</option>
                         <option ng-if="user.role !=='ADMIN'" value='ADMIN'>ADMIN</option>
                         <option ng-if="user.role !=='DIRECTOR'" value='DIRECTOR'>DIRECTOR</option>
@@ -65,50 +65,36 @@
             </tr>
         </table>
 
+    </div>
 
-        <!--</li>-->
-        <!--<li ng-repeat="user in model.users" class="list-group-item">-->
-            <!--<div>-->
-                <!--{{user.username}}-->
-                <!--<span ng-click="model.update(user)" class="glyphicon glyphicon-ok pull-right"></span>-->
-                <!--<span ng-click="model.unregisterUser(user)" class="glyphicon glyphicon-remove pull-right"></span>-->
-            <!--</div>-->
+    <div class="container-fluid">
+        <h2>Create a New User</h2>
+        <table class="sah-table-style">
+            <tr class="sah-row-style">
+                <th class="sah-table-item">Username</th>
+                <th class="sah-table-item">Last Name</th>
+                <th class="sah-table-item">First Name</th>
+                <th class="sah-table-item">Email</th>
+                <th class="sah-table-item">Password</th>
+                <th class="sah-table-item">Role</th>
+                <th></th>
+            </tr>
+            <tr class="sah-row-style">
+                <td class="sah-table-item"><input ng-model="model.newUser.username" type="text" class="form-control"/></td>
+                <td class="sah-table-item"><input ng-model="model.newUser.lastName" type="text" class="form-control"/></td>
+                <td class="sah-table-item"><input ng-model="model.newUser.firstName" type="text" class="form-control"/></td>
+                <td class="sah-table-item"><input ng-model="model.newUser.email" type="text" class="form-control"/></td>
+                <td class="sah-table-item"><input ng-model="model.newUser.password" type="text" class="form-control"/></td>
+                <td class="sah-table-item">
+                    <select ng-model="model.newUser.role">
+                        <option value='ADMIN' selected>ADMIN</option>
+                        <option value='DIRECTOR'>DIRECTOR</option>
+                        <option value='MEMBER'>MEMBER</option>
+                    </select></td>
+                <td> <a><span ng-click="model.createUser(model.newUser, model.newUser.role)" class="glyphicon glyphicon-ok pull-right"></span></a></td>
+            </tr>
+        </table>
 
-            <!--<div>-->
-            <!--<form>-->
-                <!--&lt;!&ndash;cannot edit username once created!&ndash;&gt;-->
-                <!--<div class="form-group">-->
-                    <!--<label for="role">Role</label>-->
-                    <!--<input ng-model="user.role" type="text" class="form-control" id="role"/>-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="first-name">First Name</label>-->
-                    <!--<input ng-model="user.firstName" type="text" class="form-control" id="first-name" placeholder="Enter first name...">-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="last-name">Last Name</label>-->
-                    <!--<input ng-model="user.lastName" type="text" class="form-control" id="last-name" placeholder="Enter last name...">-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="about-me">About Me</label>-->
-                    <!--<textarea ng-model="user.aboutMe" class="form-control" id="about-me" rows="4" placeholder="A few words about yourself..." required></textarea>-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="email">Email address</label>-->
-                    <!--<input ng-model="user.email" type="email" class="form-control" id="email" placeholder="Enter email address...">-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="password">Password</label>-->
-                    <!--<input ng-model="user.password" type="password" class="form-control" id="password" placeholder="Enter new password">-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="password2">Validate Password</label>-->
-                    <!--<input ng-model="user.password2" type="password" class="form-control" id="password2" placeholder="Re-enter new password">-->
-                <!--</div>-->
-            <!--</form>-->
-            <!--</div>-->
-        </li>
-    </ul>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom sah-page-custom-color">

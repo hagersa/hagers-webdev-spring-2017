@@ -87,35 +87,25 @@ module.exports = function (odhecatonUserModel) {
         odhecatonUserModel
             .findUserById(userId)
             .then(function (user) {
-                console.log("user in library model:");
+                // console.log("user in library model:");
 
                 var email = user.email;
-                console.log("user email: "+email);
+                // console.log("user email: "+email);
 
                 LibraryModel //.find({$in: { members: email}}, function(err, libraryObjects)
-                    .find({$in: {members: email}}, function (err, libraryObjects) {
+                    .find({members: {$in: [email]}}, function (err, libraryObjects) {
                         // console.log("Found Library objects in model.server: " + libraryObjects);
-                        console.log("in library model find function");
+                        // console.log("in library model find function");
 
                         if (err) {
-                            console.log("error in find function");
+                            // console.log("error in find function");
                             deferred.reject(err); // reject
                         } else {
-                            console.log("success in find function");
+                            // console.log("success in find function");
                             deferred.resolve(libraryObjects);
                         }
                     });
             });
-
-                // odhecatonUserModel
-                //     .findUserById(userId)
-                //     .then(function (user) {
-                //         console.log("found user in findAllLibrariesForUser in model.server"+user);
-                //         var libraryIds = user.memLibraries;
-                //         console.log("found libraryIds in findAllMemLibrariesForUser in model.server"+libraryIds);
-                //         deferred.resolve(libraryIds);
-                //     });
-                // return deferred.promise;
         return deferred.promise;
     }
 
@@ -143,9 +133,9 @@ module.exports = function (odhecatonUserModel) {
     }
 
     function updateLibrary(libraryId, library) {
-        console.log("in library.model.server");
-        console.log("library: "+library);
-        console.log("libraryId: "+libraryId);
+        // console.log("in library.model.server");
+        // console.log("library: "+library);
+        // console.log("libraryId: "+libraryId);
 
         var deferred = q.defer();
         LibraryModel
