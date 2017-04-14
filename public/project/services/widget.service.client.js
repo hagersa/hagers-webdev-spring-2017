@@ -9,13 +9,13 @@
         this.findWidgetById = findWidgetById;
         this.updateWidget = updateWidget;
         this.deleteWidget = deleteWidget;
-        this.findAllWidgetsForPage = findAllWidgetsForPage;
+        this.findAllWidgetsForLibrary = findAllWidgetsForLibrary;
         this.uploadImage = uploadImage;
         // this.updateWidgetImage = updateWidgetImage;
         this.sort = sort;
 
-        function sort(pageId, start, end) {
-            var url = "/api/page/"+pageId+"/widget?start=index1&end=index2";
+        function sort(libraryId, start, end) {
+            var url = "/api/library/"+libraryId+"/widget?start=index1&end=index2";
             url = url
                 .replace("index1", start)
                 .replace("index2", end);
@@ -26,12 +26,12 @@
             return $http.post("/api/upload");
         }
 
-        function createWidget(pageId, widget) {
-            return $http.post("/api/page/"+pageId+"/widget", widget);
+        function createWidget(libraryId, widget) {
+            return $http.post("/api/library/"+libraryId+"/widget", widget);
         }
 
-        function findAllWidgetsForPage(pageId) {
-            return $http.get("/api/page/"+pageId+"/widget");
+        function findAllWidgetsForLibrary(libraryId) {
+            return $http.get("/api/library/"+libraryId+"/widget");
         }
 
         function findWidgetById(widgetId) {
@@ -51,15 +51,3 @@
         }
     }
 })();
-
-// This function is redundant, but was used in assignment3
-// this.findWidgetsByPageId = findWidgetsByPageId;
-// function findWidgetsByPageId(pageId) {
-//     for(var w in widgets) {
-//         if(widgets[w].pageId === pageId) {
-//             return angular.copy(widgets[w]);
-//         }
-//     }
-//     return null;
-//
-// }

@@ -16,6 +16,8 @@
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
+            "findFollowersForUser": findFollowersForUser,
+            "findFollowingForUser": findFollowingForUser,
             "updateUser": updateUser,
             //"updatePassword": updatePassword,
             "deleteUser": deleteUser
@@ -51,6 +53,14 @@
 
         function findUserByUsername(username) {
             return $http.get("/api/user/?username="+username);
+        }
+
+        function findFollowersForUser(userId) {
+            return $http.get("/api/user/followers/"+userId);
+        }
+
+        function findFollowingForUser(userId) {
+            return $http.get("/api/user/following/"+userId)
         }
 
         function updateUser(userId, newUser) {

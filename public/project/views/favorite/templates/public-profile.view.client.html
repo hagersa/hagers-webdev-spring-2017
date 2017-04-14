@@ -19,13 +19,13 @@
         About {{model.username}}
         <a ng-click="model.favoriteUser(model.user)" class="pull-right btn btn-primary">
             <span  class="glyphicon glyphicon-star"></span>
-            Add to Favorites
+            Follow {{model.username}}
         </a>
     </h4>
     <p>Email address: {{model.email}}</p>
-    <p>{{model.aboutMe}}<br></p>
+    <p>{{model.aboutMe}}<br></p><br>
 
-    <h4>{{model.username}} Favorites</h4>
+    <h4>{{model.username}}'s Favorites</h4>
     <ul class="list-group">
         <li ng-repeat="favorite in model.favorites" class="newsfeed-list-group-item list-group-item">
             <div style="padding-bottom: 10px" id="favorite">

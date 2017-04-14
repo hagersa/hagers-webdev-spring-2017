@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div ng-controller="WidgetEditController as model" class="sah-form-padding">
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
 
-</body>
-</html>
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+
+    <div ng-model="model.widget.text" class="sah-button-padding"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+
+    <a ng-click="model.updateWidget(model.widget)"
+       class="btn btn-warning  btn-block" >
+        Update
+    </a>
+
+    <a ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>

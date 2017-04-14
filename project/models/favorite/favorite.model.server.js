@@ -5,6 +5,7 @@ module.exports = function () {
         // findAllFavoritesForUser: findAllFavoritesForUser, // return the list of favorites for a user
         findFavoriteByVideoId: findFavoriteByVideoId,
         findFavoriteById: findFavoriteById, // find a favorite object by its id
+        findFavoritesForUser:  findFavoritesForUser,
         findNewFavorites: findNewFavorites,
         updateFavorite: updateFavorite // update a favorite object
         // deleteFavoriteForUser: deleteFavoriteForUser // deletes favoriteId from user.favorites and userId from favorites.users
@@ -59,6 +60,10 @@ module.exports = function () {
                 }
             });
         return deferred.promise;
+    }
+
+    function  findFavoritesForUser(userId) {
+
     }
 
     function  findNewFavorites() {

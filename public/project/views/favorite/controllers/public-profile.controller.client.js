@@ -12,8 +12,6 @@
         vm.favoriteVideo = favoriteVideo;
         vm.findFavoritesForUser = findFavoritesForUser;
 
-
-
         function init() {
             OdhecatonUserService
                 .findUserById(vm.followId)
@@ -28,20 +26,20 @@
                 });
 
             // return user object array
-            OdhecatonUserService
-                .findFollowersForUser(vm.user.followers)
-                .success(function (followers) {
-                    vm.followers = followers;
-                })
-                .error(function () {});
-
-            // return user object array
-            OdhecatonUserService
-                .findFollowingForUser(vm.user.following)
-                .success(function (following) {
-                    vm.following = following;
-                })
-                .error(function () {});
+            // OdhecatonUserService
+            //     .findFollowersForUser(vm.user._id)
+            //     .success(function (followers) {
+            //         vm.followers = followers;
+            //     })
+            //     .error(function () {});
+            //
+            // // return user object array
+            // OdhecatonUserService
+            //     .findFollowingForUser(vm.user._id)
+            //     .success(function (following) {
+            //         vm.following = following;
+            //     })
+            //     .error(function () {});
 
             // declare in Service
             // return favorite object array
@@ -57,6 +55,9 @@
             vm.favorites = favorites;
         }
 
+        function findFavoritesForUser(userId) {
+
+        }
 
         function searchVideo(searchText) {
             YoutubeService

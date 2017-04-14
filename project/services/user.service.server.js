@@ -18,6 +18,8 @@ module.exports = function (app, OdhecatonUserModel) {
     app.get("/api/user/:userId", findUserById);
     //app.put("/api/user/:userId", update);
     app.put("/api/user/:userId", updateUser);
+    app.get("/api/user/followers/:userId", findFollowersForUser);
+    app.get("/api/user/following/:userId", findFollowingForUser);
     // app.put("/api/user/password/:userId", updatePassword);
     app.post("/api/user", createUser);
     app.post('/api/isAdmin', isAdmin);
@@ -36,6 +38,14 @@ module.exports = function (app, OdhecatonUserModel) {
         }));
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function findFollowersForUser() {
+
+    }
+
+    function findFollowingForUser() {
+
+    }
 
     function googleStrategy(token, refreshToken, profile, done) {
         OdhecatonUserModel
@@ -232,6 +242,14 @@ module.exports = function (app, OdhecatonUserModel) {
             }, function (error) {
                 res.sendStatus(500)
             });
+    }
+
+    function findFollowersForUser(req, res) {
+
+    }
+
+    function findFollowingForUser(req, res) {
+
     }
 
     function deleteUser(req, res) {

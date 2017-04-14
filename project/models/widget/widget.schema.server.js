@@ -3,8 +3,8 @@ module.exports = function () {
 
     var WidgetSchema = mongoose.Schema({
         _library: {type:  mongoose.Schema.Types.ObjectId, ref:'LibraryModel'},
-        widgetType: String, // {type: String, enum: ['PDF', 'HTML', 'YOUTUBE']},
-        name: {type: String, required: true},
+        widgetType: String,
+        name: String,
         text: String,
         placeholder: String,
         url: String,

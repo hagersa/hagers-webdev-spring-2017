@@ -59,9 +59,19 @@
                 controllerAs: 'model'
             })
             // for widget view and editing
-            .when("/user/:uid/library/:lid/widget", {
-                templateUrl: 'views/widget/templates/widget-list.view.client.html',
+            .when("/user/:uid/library/:lid/widget/director", {
+                templateUrl: 'views/widget/templates/widget-list-director.view.client.html',
                 controller: "WidgetListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/library/:lid/widget/member", {
+                templateUrl: 'views/widget/templates/widget-list-member.view.client.html',
+                controller: "WidgetListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/library/:lid/widget/:wgid", {
+                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
+                controller: "WidgetEditController",
                 controllerAs: "model"
             })
             .when("/user/:uid/library/:lid/share", {
@@ -92,17 +102,6 @@
                 templateUrl: 'views/favorite/templates/search-public.view.client.html',
                 controller: 'YoutubePublicSearchController',
                 controllerAs: 'model'
-            })
-
-            // .when("/user/:uid/library/:lid/widget/member", {
-            //     templateUrl: 'views/widgets/templates/widget-list-member.view.client.html',
-            //     controller: "WidgetListController",
-            //     controllerAs: "model"
-            // })
-            .when("/user/:uid/library/:lid/widget/:wgid", {
-                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
-                controller: "WidgetEditController",
-                controllerAs: "model"
             })
             // .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/search", {
             //     templateUrl: 'views/widgets/templates/widget-flickr-search.view.client.html',

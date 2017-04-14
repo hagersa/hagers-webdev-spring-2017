@@ -3,6 +3,7 @@ module.exports = function (app, FavoriteModel) {
     app.post("/api/favorite", createFavorite);
     app.get("/api/favorite", findFavoriteByVideoId);
     app.get("/api/favorite/:favoriteId", findFavoriteById);
+    app.get("/api/favorite/:userId", findFavoritesForUser);
     app.get("/api/new", findNewFavorites);
     // app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     // app.get("/api/favorite/:videoId", findFavoriteByVideoId);
@@ -35,6 +36,10 @@ module.exports = function (app, FavoriteModel) {
             }, function (error) {
                 res.sendStatus(500);
             });
+    }
+
+    function  findFavoritesForUser(req, res) {
+
     }
 
     function findFavoriteByVideoId (req, res) {
