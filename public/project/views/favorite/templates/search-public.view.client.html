@@ -1,11 +1,6 @@
-<div ng-controller="YoutubeSearchController as model">
+<div ng-controller="YoutubePublicSearchController as model">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/library" class="navbar-link">
-                <span class="glyphicon glyphicon-home"></span>
-            </a>
-        </div>
         <div class="navbar-header">
             <a class="navbar-brand">
                 Youtube Search
@@ -47,20 +42,12 @@
                 allowfullscreen></iframe>
                 </div>
                 <!--<a><img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/></a>-->
-                <div style="padding-top: 4px" id="favorite">
-                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary">
-                        <span  class="glyphicon glyphicon-star"></span>
-                        Add to Favorites
+                <div>
+                    <a class="pull-right">
+                        <span ng-click="model.favoriteVideo(video)" class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
                     </a>
-                    <h5>Title: {{video.snippet.title}}</h5>
                 </div>
-                <!--<div style="display: none" id="unfavorite">-->
-                    <!--<a class="pull-right">-->
-                        <!--<span ng-click="model.unFavoriteVideo(video)" class="glyphicon glyphicon-star sah-glyphicon-center"></span>-->
-                    <!--</a>-->
-                <!--</div>-->
-                <!--<div class="alert alert-success" ng-show="model.notification">{{model.notification}}</div>-->
-
+                <h5>Title: {{video.snippet.title}}</h5>
             <!--</li>-->
             <!--<li class="newsfeed-list-group-item list-group-item">-->
                 <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
@@ -80,37 +67,22 @@
     </div>
 </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container-fluid">
-            <div class="navbar-footer">
-                <div class="row navbar-text text-center">
-                    <!--<div class="col-xs-2 pull-right">-->
-                    <!--<a href="">-->
-                    <!--<span class="glyphicon glyphicon-off"></span>-->
-                    <!--</a>-->
-                    <!--</div>-->
-                    <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/search">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/public">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/newsfeed">
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/profile">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-footer">
+            <div class="row navbar-text text-center">
+                <div class="sah-navbar-text-padding navbar-button pull-right">
+                    <a href="#/register" class="navbar-link">
+                        <span class="btn btn-warning">Register</span></a>
+                </div>
+                <div class="sah-navbar-text-padding navbar-button pull-right">
+                    <a href="#/login" class="navbar-link">
+                        <span class="btn btn-success">Login</span></a>
                 </div>
             </div>
+
         </div>
-    </nav>
+        </div>
+    </div>
+</nav>
 </div>

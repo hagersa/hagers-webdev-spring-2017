@@ -7,6 +7,8 @@
         var vm = this;
         vm.login = login;
 
+
+
         function login(user) {
             console.log("have user in login controller: "+user);
             if (user && user.username && user.password) {
@@ -44,8 +46,8 @@
                     //     console.log("error in login controller");
                     //     vm.error = "user not found";
                     // });
-            } else {
-                vm.error = "username and password required";
+            // } else {
+            //     vm.error = "username and password required";
             }
         }
     }

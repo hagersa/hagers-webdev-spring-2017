@@ -1,88 +1,97 @@
-module.exports = function (app, LibraryModel) {
-    //console.log(PageModel);
+module.exports = function (app, FavoriteModel) {
 
-    app.post("/api/website/:websiteId/page", createPage);
-    app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
-    app.get("/api/page/:pageId", findPageById);
-    app.put("/api/page/:pageId", updatePage);
-    app.delete("/api/page/:pageId", deletePage);
+    app.post("/api/favorite", createFavorite);
+    app.get("/api/favorite", findFavoriteByVideoId);
+    app.get("/api/favorite/:favoriteId", findFavoriteById);
+    app.get("/api/new", findNewFavorites);
+    // app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
+    // app.get("/api/favorite/:videoId", findFavoriteByVideoId);
+    app.put("/api/favorite", updateFavorite);
+    // app.delete("/api/page/:pageId", deletePage);
 
-    var pages = [
-        { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-        { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-        { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-    ];
+    function createFavorite(req, res) {
+            var newFavorite = req.body;
+            //var userId = req.params.userId;
+            // console.log(websiteId);
+            // console.log(newPage);
 
-    function createPage(req, res) {
-            var newPage = req.body;
-            var websiteId = req.params.websiteId;
-            console.log(websiteId);
-            console.log(newPage);
-
-            PageModel
-                .createPage(websiteId, newPage)
+            FavoriteModel
+                .createFavorite(newFavorite)
                 .then(function(response) {
-                    console.log(response);
+                    // console.log(response);
                     res.send(response);
                 }, function (error) {
                     res.sendStatus(500);
                 });
     }
 
-    function findAllPagesForWebsite(req, res) {
-        var websiteId = req.params.websiteId;
-        console.log("In service.server with websiteId: " + websiteId);
-
-        return PageModel.findAllPagesForWebsite(websiteId)
-            .then(function (pageIds) {
-                console.log("have pageIds in service.server: " + pageIds);
-
-                return PageModel.findAllPages(pageIds);
-            })
-            .then(function (pages) {
-                console.log("have websiteObjects in service.server: " + pages);
-                res.send(pages);
-            })
+    function findNewFavorites(req, res) {
+        console.log("in server");
+        FavoriteModel
+            .findNewFavorites()
+            .then(function (favorites) {
+                console.log("have favorites: "+favorites);
+                res.json(favorites);
+            }, function (error) {
+                res.sendStatus(500);
+            });
     }
 
-    function findPageById(req, res){
-        var pageId = req.params.pageId;
-        console.log("have pageId in service.server: "+pageId);
+    function findFavoriteByVideoId (req, res) {
+        var videoId = req.query['videoId'];
+        // console.log(username);
 
-        PageModel
-            .findPageById(pageId)
-            .then(function (page) {
-                res.send(page);
+        FavoriteModel
+            .findFavoriteByVideoId(videoId)
+            .then(function (favorite) {
+                // console.log("in user server findUserByUsername " +user);
+                res.json(favorite);
+            }, function (error) {
+                // console.log("server findUserByUsername caused a problem"+error);
+                res.sendStatus(500)
+            });
+    }
+
+    function findFavoriteById(req, res) {
+        var favoriteId = req.body;
+        // console.log(userId);
+
+        FavoriteModel
+            .findFavoriteById(favoriteId)
+            .then(function (favorite) {
+                res.json(favorite);
             }, function (error) {
                 res.sendStatus(500)
             });
     }
 
-    function updatePage(req, res) {
-        var page = req.body;
-        var pageId = req.params.pageId;
+    //
+    function updateFavorite(req, res) {
+        var favorite = req.body;
+        var favoriteId = favorite._id;
+        //var favoriteId = req.params.favoriteId;
 
-        console.log(pageId);
+        console.log(favoriteId);
 
-        PageModel
-            .updatePage(pageId, page)
+        FavoriteModel
+            .updateFavorite(favoriteId, favorite)
             .then(function(response) {
                 res.send(response);
             }, function (error) {
                 res.sendStatus(500);
             });
     }
-
-    function deletePage(req, res) {
-        var pageId = req.params.pageId;
-        console.log(pageId);
-
-        PageModel
-            .deletePage(pageId)
-            .then(function () {
-                res.sendStatus(200);
-            }, function (error) {
-                res.sendStatus(500)
-            });
-    }
+    //
+    // function deletePage(req, res) {
+    //     var pageId = req.params.pageId;
+    //     console.log(pageId);
+    //
+    //     PageModel
+    //         .deletePage(pageId)
+    //         .then(function () {
+    //             res.sendStatus(200);
+    //         }, function (error) {
+    //             res.sendStatus(500)
+    //         });
+    // }
 };

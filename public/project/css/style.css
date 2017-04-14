@@ -208,9 +208,13 @@ a.navbar-link {
 
 body {
     background-image: url("choral-music.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
+}
+
+.newsfeed-color {
+    color: #ff0000;
 }
 
 #loginForm.ng-submitted .ng-invalid {
-    background-color: red;
+    background-color: pink;
 }

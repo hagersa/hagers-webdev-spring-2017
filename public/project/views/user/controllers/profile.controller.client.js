@@ -61,7 +61,7 @@
 
         function unregisterUser(user) {
             var answer = confirm("Are you sure?");
-            console.log(answer);
+            // console.log(answer);
             if(answer) {
                 OdhecatonUserService
                     .deleteUser(user._id)

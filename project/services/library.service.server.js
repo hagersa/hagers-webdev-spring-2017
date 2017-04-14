@@ -1,7 +1,5 @@
 module.exports = function (app, LibraryModel) {
 
-    //console.log(LibraryModel);
-
     app.post("/api/user/:userId/library", createLibrary);
     app.get("/api/user/:userId/dirLibrary", findAllDirLibrariesForUser);
     app.get("/api/user/:userId/memLibrary", findAllMemLibrariesForUser);

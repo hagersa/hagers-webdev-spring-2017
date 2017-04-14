@@ -10,23 +10,14 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div ng-controller="YoutubePublicSearchController as model" class="container-fluid">
         <div class="input-group sah-button-padding">
-            <input type="text" class="form-control" placeholder="Search Youtube">
+            <input ng-model="model.searchText" type="text" class="form-control" placeholder="Search Youtube">
             <span class="input-group-btn">
-                <a class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </a>
-            </span>
-        </div>
-
-        <div class="input-group sah-button-padding">
-            <input type="text" class="form-control" placeholder="Search IMSLP">
-            <span class="input-group-btn">
-                <a class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </a>
-            </span>
+        <a href="#/user/search/{{model.searchText}}" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
         </div>
     </div>
 

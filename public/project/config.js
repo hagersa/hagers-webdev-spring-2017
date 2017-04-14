@@ -72,13 +72,13 @@
             // social media
             .when("/user/:uid/newsfeed", {
                 templateUrl: 'views/favorite/templates/newsfeed.view.client.html',
-                controller: 'NewsfeedController',
+                controller: 'YoutubeSearchController',
                 controllerAs: 'model'
             })
             // navigation to user's or follower's/followed view-only profile
-            .when("/user/:uid/public", {
+            .when("/user/:uid/favorite/:pid", {
                 templateUrl: 'views/favorite/templates/public-profile.view.client.html',
-                controller: 'PublicController',
+                controller: 'PublicProfileController',
                 controllerAs: 'model'
             })
             // logged in search page
@@ -88,9 +88,9 @@
                 controllerAs: 'model'
             })
             // public search page
-            .when("/user/search", {
-                templateUrl: 'views/favorite/templates/search.view.client.html',
-                controller: 'PublicSearchController',
+            .when("/user/search/:searchText", {
+                templateUrl: 'views/favorite/templates/search-public.view.client.html',
+                controller: 'YoutubePublicSearchController',
                 controllerAs: 'model'
             })
 

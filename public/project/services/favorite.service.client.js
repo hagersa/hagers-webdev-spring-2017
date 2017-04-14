@@ -1,47 +1,47 @@
 (function () {
     angular
         .module("Odhecaton")
-        .factory('PageService', pageService);
+        .factory('FavoriteService', FavoriteService);
 
-    function pageService($http) {
+    function FavoriteService($http) {
         var api = {
-            "createPage": createPage,
-            "findPageById": findPageById,
-            "updatePage": updatePage,
-            "deletePage": deletePage,
-            "findAllPagesForWebsite": findAllPagesForWebsite
+            "createFavorite": createFavorite,
+            "findFavoriteById": findFavoriteById,
+            "findFavoriteByVideoId": findFavoriteByVideoId,
+            "updateFavorite": updateFavorite,
+            "findNewFavorites": findNewFavorites,
+            "findFavoritesForUser": findFavoritesForUser
+            // "deleteFavoriteForUser": deleteFavoriteForUser,
         };
         return api;
 
-        function findAllPagesForWebsite(websiteId) {
-            return $http.get("/api/website/"+websiteId+"/page");
+        function findFavoriteByVideoId(videoId) {
+            return $http.get("/api/favorite/?videoId="+videoId);
         }
 
-        function findPageById(pageId) {
-            return $http.get("/api/page/"+pageId);
+        function findFavoriteById(favoriteId) {
+            return $http.get("/api/favorite/"+favoriteId);
         }
 
-        function createPage(websiteId, page) {
-            return $http.post("/api/website/"+websiteId+"/page", page);
+        function createFavorite(favorite) {
+            return $http.post("/api/favorite", favorite);
         }
 
-        function updatePage(pageId, newPage) {
-            return $http.put("/api/page/"+pageId, newPage);
+        function updateFavorite(newFavorite) {
+            return $http.put("/api/favorite", newFavorite);
         }
 
-        function deletePage(pageId) {
-            return $http.delete("/api/page/"+pageId);
+        function  findNewFavorites() {
+            return $http.get("/api/new");
         }
+
+        function findFavoritesForUser(userId) {
+            return $http.get("api/favorite/"+userId);
+        }
+
+
+        // function deleteFavoriteForUser(favoriteId) {
+        //    return $http.delete("/api/favorite/"+favoriteId);
+        // }
     }
 })();
-
-// This function is redundant, but was used in assignment3
-//"findPageByWebsiteId": findPageByWebsiteId,
-// function findPageByWebsiteId(websiteId) {
-//     for(var p in pages) {
-//         if(pages[p].websiteId === websiteId) {
-//             return angular.copy(pages[p]);
-//         }
-//     }
-//     return null;
-// }

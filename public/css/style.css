@@ -42,6 +42,10 @@ body {
     padding-bottom: 60px;
 }
 
+.list-group.list-group-item.favorite {
+    padding-top: 10px;
+}
+
 .list-group-item {
     border: none;
 }

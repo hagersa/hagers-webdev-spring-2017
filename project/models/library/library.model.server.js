@@ -92,7 +92,7 @@ module.exports = function (odhecatonUserModel) {
                 var email = user.email;
                 // console.log("user email: "+email);
 
-                LibraryModel //.find({$in: { members: email}}, function(err, libraryObjects)
+                LibraryModel
                     .find({members: {$in: [email]}}, function (err, libraryObjects) {
                         // console.log("Found Library objects in model.server: " + libraryObjects);
                         // console.log("in library model find function");

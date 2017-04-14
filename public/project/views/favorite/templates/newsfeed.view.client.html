@@ -1,35 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Newsfeed</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!--<div class="navbar-text pull-left">
-            <a href="../library/library-home-director.view.client.html" class="navbar-link">
-                    <span class="glyphicon glyphicon-chevron-left">
-                    </span>
-            </a>
-        </div>-->
-        <div class="navbar-text pull-right">
-            <a href="../../library/templates/library-home.view.client.html" class="navbar-link">
-                <span class="glyphicon glyphicon-home"></span>
-            </a>
+<div ng-controller="YoutubeSearchController as model">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Trending Now
+                </a>
+            </div>
         </div>
-
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                What's new?
-            </a>
-        </div>
-    </div>
-</nav>
+    </nav>
 
 <div class="container-fluid">
 
@@ -62,50 +45,49 @@
     </ul>
 
     <div>
-    <ul class="list-group">
-        <li class="list-group-item h4">
-            <a href="public-profile.view.client.html">Username123's new favorites</a>
-        </li>
-        <li class="newsfeed-list-group-item list-group-item">
-            <a href="info.view.client.html">Dirait On</a>
-            <a class="pull-right">
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </a>
-            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
-        </li>
-        <li class="newsfeed-list-group-item list-group-item">
-            <a href="info.view.client.html">Ave Maris Stella</a>
-            <a class="pull-right">
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </a>
-            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
-        </li>
+    <ul class="list-group" >
+        <li ng-repeat="favorite in model.favorites" class="newsfeed-list-group-item list-group-item">
+            <div style="padding-bottom: 10px" id="favorite">
+                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary">
+                    <span  class="glyphicon glyphicon-star"></span>
+                    Add to Favorites
+                </a>
+                <h5>Title: {{favorite.title}}</h5>
+            </div>
+            <div style="margin-top: 10px" class="sah-iframe-widget">
+                <iframe id="ytplayer" type="text/html" width="100%"
+                        src="{{model.getYouTubeEmbedUrl(favorite.videoId)}}"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
 
-        <li class="list-group-item h4">
-            <a href="public-profile.view.client.html">Username234's new favorites</a>
-        </li>
-        <li class="newsfeed-list-group-item list-group-item">
-            <a href="info.view.client.html">Jesu, Meine Freude</a>
-            <a class="pull-right">
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </a>
-            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
-        </li>
+            <!--<div>-->
+                <!--<form novalidate name="showUsers" id="showUsers">-->
+                    <!--<div>-->
+                        <!--<button type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-user sah-navbar-text-padding"></span>Show Users</button>-->
+                        <!--<h5 class="danger">{{favorite.users.length}} user saved this video</h5>-->
+                    <!--</div>-->
 
-        <li class="list-group-item h4">
-            <a href="public-profile.view.client.html">Username345 new favorites</a>
-        </li>
-        <li class="newsfeed-list-group-item list-group-item">
-            <a href="info.view.client.html">Lux Aeterna</a>
-            <a class="pull-right">
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </a>
-            <!--div that displays pdf loads info.view.client.html if user clicks on the title above-->
+                    <!--<div ng-if="showUsers.$submitted">-->
+                        <!--<div ng-repeat="user in favorite.users"><a>{{user.username}}</a></div>-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
+
+            <h5 class="danger">{{favorite.users.length}} users saved this video today</h5>
+            <h5>Show Users: <input type="checkbox" ng-model="checkedUser" aria-label="Toggle ngShow"></h5>
+            <div class="check-element animate-show-hide" ng-show="checkedUser" ng-repeat="user in favorite.users"><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></div>
+
+            <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
+            <br/>
+            <div class="check-element animate-show-hide" ng-show="checked">
+                <p>Description: {{favorite.description}}</p>
+                <p>Channel Title: {{favorite.channelTitle}}</p>
+                <p>Date Published: {{favorite.publishedAt}}</p><br/>
+            </div>
         </li>
     </ul>
     </div>
-
-
 </div>
 
 
@@ -113,32 +95,28 @@
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">
-                <div class="col-xs-2 pull-right">
-                    <a href="../../user/templates/login.view.client.html">
-                        <span class="glyphicon glyphicon-off"></span>
-                    </a>
-                </div>
                 <div class="col-xs-2">
-                    <a href="search.view.client.html">
+                    <a href="#/user/{{model.userId}}/search">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="public-profile.view.client.html">
-                        <span class="glyphicon glyphicon-star"></span>
+                    <a href="#/user/{{model.userId}}/public">
+                        <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../social/newsfeed.view.client.html">
+                    <a href="#/user/{{model.userId}}/newsfeed">
                         <span class="glyphicon glyphicon-globe"></span>
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="../../user/templates/profile.view.client.html">
-                        <span class="glyphicon glyphicon-user"></span>
+                    <a href="#/user/{{model.userId}}/profile">
+                        <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </nav>
+</div>

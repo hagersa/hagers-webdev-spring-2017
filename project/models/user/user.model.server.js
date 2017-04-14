@@ -160,7 +160,8 @@ module.exports = function () {
                     aboutMe: user.aboutMe,
                     role: user.role,
                     password: password,
-                    email : user.email},
+                    email : user.email,
+                    favorites: user.favorites},
                 function (err, response) {
             deferred.resolve(response);
         });
