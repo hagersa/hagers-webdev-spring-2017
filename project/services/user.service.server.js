@@ -39,11 +39,40 @@ module.exports = function (app, OdhecatonUserModel) {
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
-    function findFollowersForUser() {
+    function findFollowersForUser(req, res) {
+        var userId = req.params.userId;
 
+        OdhecatonUserModel
+            .findUserById(userId)
+            .then(function (user) {
+                OdhecatonUserModel
+                    .findFollowersForUser(user.followers)
+                    .then(function (followers) {
+                        res.json(followers);
+                    }, function (error) {
+                        res.sendStatus(500);
+                    });
+            }, function (error) {
+                res.sendStatus(500);
+            });
     }
 
-    function findFollowingForUser() {
+    function findFollowingForUser(req, res) {
+        var userId = req.params.userId;
+
+        OdhecatonUserModel
+            .findUserById(userId)
+            .then(function (user) {
+                OdhecatonUserModel
+                    .findFollowingForUser(user.following)
+                    .then(function (following) {
+                        res.json(following);
+                    }, function (error) {
+                        res.sendStatus(500);
+                    });
+            }, function (error) {
+                res.sendStatus(500);
+            });
 
     }
 
@@ -244,13 +273,6 @@ module.exports = function (app, OdhecatonUserModel) {
             });
     }
 
-    function findFollowersForUser(req, res) {
-
-    }
-
-    function findFollowingForUser(req, res) {
-
-    }
 
     function deleteUser(req, res) {
         var userId = req.params.userId;
@@ -265,16 +287,16 @@ module.exports = function (app, OdhecatonUserModel) {
             });
     }
 
-    function update(req, res) {
-        var username = req.query['username'];
-        var password = req.query['password'];
-
-        if(username) {
-            updateUser(req, res);
-        } else {
-            updatePassword(req, res);
-        }
-    }
+    // function update(req, res) {
+    //     var username = req.query['username'];
+    //     var password = req.query['password'];
+    //
+    //     if(username) {
+    //         updateUser(req, res);
+    //     } else {
+    //         updatePassword(req, res);
+    //     }
+    // }
 
     function updateUser(req, res) {
         var user = req.body;

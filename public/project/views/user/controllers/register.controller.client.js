@@ -41,7 +41,7 @@
                     vm.error = "passwords must match";
                 }
             } else {
-                vm.error = "username and password required";
+                // vm.error = "username and password required";
             }
         }
     }

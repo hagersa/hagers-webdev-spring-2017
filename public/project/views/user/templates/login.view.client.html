@@ -62,17 +62,18 @@
                    placeholder="password"
                    required/>
             <span ng-if="loginForm.password.$error.required && loginForm.$submitted">Password is required</span>
-            <button type="submit" ng-click="model.login(user)" class="btn btn-primary btn-block">Login</button>
+            <button style="margin-bottom: 5px" type="submit" ng-click="model.login(user)" class="btn btn-primary btn-block">Login</button>
         </form>
 
-        {{loginForm.username}}
-        <br/>
-        {{loginForm.$submitted}}
+        <!--{{loginForm.username}}-->
+
+        <!--{{loginForm.$submitted}}-->
 
         <a href="/auth/google" class="btn btn-primary btn-block">
             <span class="fa fa-google-plus"></span>
             Google
         </a>
+
 
         <a href="#/register" class="btn btn-warning btn-block">Register</a>
     </div>

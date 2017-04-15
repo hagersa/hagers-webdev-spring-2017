@@ -6,7 +6,6 @@
                     <span class="glyphicon glyphicon-home"></span>
                 </a>
             </div>
-            <!--ng-if for admin vs. user-->
             <div class="navbar-header">
                 <a class="navbar-brand">
                     My Library
@@ -15,10 +14,7 @@
         </div>
     </nav>
 
-    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
-
-    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
-
+    <div class="container-fluid">
     <div class="widget-list">
         <div ng-repeat="widget in model.widgets">
             <div ng-switch="widget.widgetType">
@@ -34,7 +30,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -47,7 +43,7 @@
                         </a>
                     </div>
                     <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/public">
+                        <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </div>

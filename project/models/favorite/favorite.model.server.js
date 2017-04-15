@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function (odhecatonUserModel) {
 
     var api = {
         createFavorite: createFavorite, // ad favoriteId to a users favorites
@@ -6,6 +6,7 @@ module.exports = function () {
         findFavoriteByVideoId: findFavoriteByVideoId,
         findFavoriteById: findFavoriteById, // find a favorite object by its id
         findFavoritesForUser:  findFavoritesForUser,
+        findAllFavorites: findAllFavorites,
         findNewFavorites: findNewFavorites,
         updateFavorite: updateFavorite // update a favorite object
         // deleteFavoriteForUser: deleteFavoriteForUser // deletes favoriteId from user.favorites and userId from favorites.users
@@ -62,9 +63,55 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    function  findFavoritesForUser(userId) {
+    function findAllFavorites(favoriteIds) {
+        // console.log("Have libraryIds in findAllDirLibraries in model.server: "+libraryIds);
 
+        var deferred = q.defer();
+
+        FavoriteModel
+            .find({'_id': { $in: favoriteIds}}, function(err, favoriteObjects) {
+                // console.log("Found Library objects in model.server: "+libraryObjects);
+
+                if(err) {
+                    console.log("error in model");
+                    deferred.reject(err); // reject
+                } else {
+                    console.log("favoriteObjects: "+favoriteObjects);
+                    deferred.resolve(favoriteObjects);
+                }
+            });
+        return deferred.promise;
     }
+
+    function  findFavoritesForUser(userId) {
+            var deferred = q.defer();
+
+            odhecatonUserModel
+                .findUserById(userId)
+                .then(function (user) {
+                    // console.log("found user in findAllLibrariesForUser in model.server"+user);
+                    var favoriteIds = user.favorites;
+                    /// / console.log("found libraryIds in findAllDirLibrariesForUser in model.server"+libraryIds);
+                    deferred.resolve(favoriteIds);
+                }, function (error) {
+                    console.log("error in model finding user");
+
+                });
+            return deferred.promise;
+        }
+        // var deferred = q.defer();
+        //
+        // var favoriteIds = user.favorites;
+        // var favoriteObjects = [];
+        //
+        // for(var f in favoriteIds) {
+        //     FavoriteModel
+        //         .findById(favoriteIds[f], function (err, favorite) {
+        //             favoriteObjects.push(favorite);
+        //         });
+        // }
+        // deferred.resolve(favoriteObjects);
+        // return deferred.promise;
 
     function  findNewFavorites() {
         console.log("in model");

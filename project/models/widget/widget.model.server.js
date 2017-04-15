@@ -29,7 +29,7 @@ module.exports = function (libraryModel) {
             .create(widget, function (err, response) {
                 // console.log(response);
                 if(err) {
-                    deferred.abort(err); // reject
+                    deferred.reject(err); // reject
                 } else {
                     libraryModel
                         .findLibraryById(libraryId)
@@ -55,7 +55,7 @@ module.exports = function (libraryModel) {
                 // console.log("Found widget objects in model.server: "+widgetObjects);
 
                 if(err) {
-                    deferred.abort(err); // reject
+                    deferred.reject(err); // reject
                 } else {
                     deferred.resolve(widgetObjects);
                 }
@@ -116,14 +116,20 @@ module.exports = function (libraryModel) {
             .then(function (library) {
                 // console.log("found page in reorderWidgets in model.server: "+library);
                 console.log("widgets before reorder in reorderWidgets in model.server: "+library.widgets);
+                console.log("whole page before reorder in reorderWidgets in model.server: "+library);
                 console.log("start and end: "+start+" "+end);
 
-                library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
+                var item = library.widgets[start];
+                library.widgets.splice(start, 1);
+                library.widgets.splice(end, 0, item);
+
+                // library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
 
                 library.widgets.save();
 
                 console.log("widgets after reorder in reorderWidgets in model.server: "+library.widgets);
                 console.log("whole page after reorder in reorderWidgets in model.server: "+library);
+
                 library.save();
                 deferred.resolve(library);
             });
@@ -132,11 +138,15 @@ module.exports = function (libraryModel) {
 
     function findWidgetById(widgetId) {
         var deferred = q.defer();
+        console.log("widgetId in model: "+widgetId)
         WidgetModel
             .findById(widgetId, function (err, widget) {
                 if(err) {
-                    deferred.abort(err); // reject
+                    console.log("error in model");
+                    deferred.reject(err); // reject
                 } else {
+                    console.log("success in model");
+                    console.log(widget);
                     deferred.resolve(widget);
                 }
             });

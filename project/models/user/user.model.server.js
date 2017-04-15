@@ -3,6 +3,8 @@ module.exports = function () {
     var api = {
         createUser: createUser,
         findAllUsers: findAllUsers,
+        findFollowersForUser: findFollowersForUser,
+        findFollowingForUser: findFollowingForUser,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
@@ -40,6 +42,42 @@ module.exports = function () {
 
     function findAllUsers() {
         return OdhecatonUserModel.find();
+    }
+
+    function findFollowersForUser(followersIds) {
+        // console.log("Have libraryIds in findAllDirLibraries in model.server: "+libraryIds);
+
+        var deferred = q.defer();
+
+        OdhecatonUserModel
+            .find({'_id': { $in: followersIds}}, function(err, followersObjects) {
+                // console.log("Found Library objects in model.server: "+libraryObjects);
+
+                if(err) {
+                    deferred.reject(err); // reject
+                } else {
+                    deferred.resolve(followersObjects);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function findFollowingForUser(followingIds) {
+        // console.log("Have libraryIds in findAllDirLibraries in model.server: "+libraryIds);
+
+        var deferred = q.defer();
+
+        OdhecatonUserModel
+            .find({'_id': { $in: followingIds}}, function(err, followingObjects) {
+                // console.log("Found Library objects in model.server: "+libraryObjects);
+
+                if(err) {
+                    deferred.reject(err); // reject
+                } else {
+                    deferred.resolve(followingObjects);
+                }
+            });
+        return deferred.promise;
     }
 
     function findUserByGoogleId(googleId) {
@@ -143,15 +181,17 @@ module.exports = function () {
     function updateUser(userId, user) {
         var deferred = q.defer();
 
-        var password;
+        var updatedPassword;
         var bcrypted = bcrypt.hashSync(user.password);
 
         // if password hasn't been updated, don't hash it again
-        if(user.password.length > 20) {
-           password = user.password;
-        } else {
-            password = bcrypted;
-        }
+            if(user.password.length > 20) {
+                updatedPassword = user.password;
+            } else {
+                updatedPassword = bcrypted;
+            }
+
+
 
         OdhecatonUserModel
             .update({_id : userId},
@@ -159,11 +199,17 @@ module.exports = function () {
                     lastName : user.lastName,
                     aboutMe: user.aboutMe,
                     role: user.role,
-                    password: password,
+                    password: updatedPassword,
                     email : user.email,
+                    followers: user.followers,
+                    following: user.following,
                     favorites: user.favorites},
                 function (err, response) {
-            deferred.resolve(response);
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(response);
+            }
         });
         return deferred.promise;
     }

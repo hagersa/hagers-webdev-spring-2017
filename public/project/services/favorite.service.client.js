@@ -36,7 +36,7 @@
         }
 
         function findFavoritesForUser(userId) {
-            return $http.get("api/favorite/"+userId);
+            return $http.get("/api/user/"+userId+"/favorites");
         }
 
 

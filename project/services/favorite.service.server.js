@@ -3,7 +3,7 @@ module.exports = function (app, FavoriteModel) {
     app.post("/api/favorite", createFavorite);
     app.get("/api/favorite", findFavoriteByVideoId);
     app.get("/api/favorite/:favoriteId", findFavoriteById);
-    app.get("/api/favorite/:userId", findFavoritesForUser);
+    app.get("/api/user/:userId/favorites/", findFavoritesForUser);
     app.get("/api/new", findNewFavorites);
     // app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     // app.get("/api/favorite/:videoId", findFavoriteByVideoId);
@@ -39,7 +39,33 @@ module.exports = function (app, FavoriteModel) {
     }
 
     function  findFavoritesForUser(req, res) {
+        var userId = req.params.userId;
 
+        return FavoriteModel.findFavoritesForUser(userId)
+            .then(function (favoriteIds) {
+                console.log("have favoroteIds in service.server: " + favoriteIds);
+
+                return FavoriteModel.findAllFavorites(favoriteIds);
+            })
+            .then(function (favorites) {
+                console.log("have libraryObjects in service.server: " + favorites);
+                res.send(favorites);
+            });
+
+
+        // odhecatonUserModel
+        //     .findUserById(userId)
+        //     .then(function (user) {
+        //         FavoriteModel
+        //             .findFavoritesForUser(user)
+        //             .then(function (favorites) {
+        //                 res.json(favorites);
+        //             }, function (error) {
+        //                 res.sendStatus(500);
+        //             });
+        //     }, function (error) {
+        //         res.sendStatus(500);
+        //     });
     }
 
     function findFavoriteByVideoId (req, res) {

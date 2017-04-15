@@ -16,17 +16,17 @@
 
 <div class="container-fluid">
 
-    <div class="input-group sah-button-padding">
-        <input type="text" class="form-control" placeholder="Search for a user">
-        <span class="input-group-btn">
-        <a class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-    </span>
-    </div>
+    <!--<div class="input-group sah-button-padding">-->
+        <!--<input type="text" class="form-control" placeholder="Search for a user">-->
+        <!--<span class="input-group-btn">-->
+        <!--<a class="btn btn-default" type="button">-->
+            <!--<span class="glyphicon glyphicon-search"></span>-->
+        <!--</a>-->
+    <!--</span>-->
+    <!--</div>-->
 
     <!--ng-if: show matching users if search is initiated, hide newsfeed-->
-    <ul class="list-group">
+    <!--<ul class="list-group">
         <li class="list-group-item h4">
             <a href="public-profile.view.client.html">Search Results</a>
         </li>
@@ -42,7 +42,7 @@
                 <span class="glyphicon glyphicon-star-empty"></span>
             </a>
         </li>
-    </ul>
+    </ul>-->
 
     <div>
     <ul class="list-group" >
@@ -101,7 +101,7 @@
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="#/user/{{model.userId}}/public">
+                    <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </div>

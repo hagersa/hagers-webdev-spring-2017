@@ -10,7 +10,8 @@
         vm.searchVideo = searchVideo;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.favoriteVideo = favoriteVideo;
-        vm.findFavoritesForUser = findFavoritesForUser;
+        vm.favoriteUser = favoriteUser;
+        // vm.findFavoritesForUser = findFavoritesForUser;
 
         function init() {
             OdhecatonUserService
@@ -26,38 +27,62 @@
                 });
 
             // return user object array
-            // OdhecatonUserService
-            //     .findFollowersForUser(vm.user._id)
-            //     .success(function (followers) {
-            //         vm.followers = followers;
-            //     })
-            //     .error(function () {});
-            //
-            // // return user object array
-            // OdhecatonUserService
-            //     .findFollowingForUser(vm.user._id)
-            //     .success(function (following) {
-            //         vm.following = following;
-            //     })
-            //     .error(function () {});
+            OdhecatonUserService
+                .findUserById(vm.followId)
+                .success(function (user) {
+                    vm.user._id = user._id;
 
-            // declare in Service
-            // return favorite object array
+                    OdhecatonUserService
+                        .findFollowersForUser(vm.user._id)
+                        .success(function (followers) {
+                            console.log("followers:");
+                            console.log(followers);
+                            vm.followers = followers;
+                        })
+                        .error(function () {});
+                })
+                .error(function () {
+                    vm.error = 'could not find user';
+                });
+
+            OdhecatonUserService
+                .findUserById(vm.followId)
+                .success(function (user) {
+                    vm.user._id = user._id;
+
+                    OdhecatonUserService
+                        .findFollowingForUser(vm.user._id)
+                        .success(function (following) {
+                            console.log("Following:");
+                            console.log(following);
+                            vm.following = following;
+                        })
+                        .error(function () {});
+                })
+                .error(function () {
+                    vm.error = 'could not find user';
+                });
+
             FavoriteService
                 .findFavoritesForUser(vm.followId)
-                .success(renderFavorites)
-                .error(function () {});
-
+                //.success(renderWebsites);
+                .success(function (response) {
+                    console.log("success");
+                    console.log(vm.userId);
+                    console.log(response);
+                    vm.favorites = response;
+                })
+                .error(function () {
+                    console.log("error");
+                    vm.error = 'could not render favorites';
+                });
 
         } init();
 
-        function renderFavorites(favorites) {
-            vm.favorites = favorites;
-        }
 
-        function findFavoritesForUser(userId) {
-
-        }
+        // function findFavoritesForUser(userId) {
+        //
+        // }
 
         function searchVideo(searchText) {
             YoutubeService
@@ -71,6 +96,89 @@
         function getYouTubeEmbedUrl(videoId) {
             var url = "https://www.youtube.com/embed/"+videoId;
             return $sce.trustAsResourceUrl(url);
+        }
+
+        // function favoriteUser(followId) {
+        //
+        //     console.log("userId I want to follow: "+followId);
+        //     OdhecatonUserService
+        //         .findUserById(followId)
+        //         .then(function (notMe) {
+        //             var follow = notMe.data;
+        //
+        //             console.log("found follow user");
+        //             console.log(follow);
+        //
+        //
+        //             OdhecatonUserService
+        //                 .findUserById(vm.userId)
+        //                 .then(function (isMe) {
+        //                     console.log("me: ");
+        //                     console.log(isMe);
+        //                     var currentUser = isMe.data;
+        //
+        //
+        //                     currentUser.following.push(follow._id);
+        //
+        //                     console.log("following: ");
+        //                     console.log(currentUser.following);
+        //
+        //                     OdhecatonUserService
+        //                         .updateUser(vm.userId, currentUser)
+        //
+        // .then(function (response) {
+        //                             console.log("user I'm following: "+ follow);
+        //                             follow.followers.push(vm.userId);
+        //
+        //                             console.log("follow:");
+        //                             console.log(follow.followers);
+        //
+        //                             console.log("users followers: "+follow.followers);
+        //
+        //                             OdhecatonUserService
+        //                                 .updateUser(follow._id, follow)
+        //                                 .then(function (response) {
+        //                                     console.log("success in controller");
+        //                                 })
+        //                         });
+        //                 });
+        //         });
+        //
+        // }
+
+        function favoriteUser(followId) {
+
+            // console.log("new favorite is: "+newFavorite);
+
+            OdhecatonUserService
+                .findUserById(followId)
+                .then(function (response) {
+
+                    if (response.data != null) {
+                        vm.userImFollowing = response.data;
+
+                        OdhecatonUserService
+                            .findUserById(vm.userId)
+                            .then(function (response) {
+                                vm.thisUser = response.data;
+
+                                vm.thisUser.following.push(vm.userImFollowing._id);
+                                vm.userImFollowing.followers.push(vm.thisUser._id);
+
+                                OdhecatonUserService
+                                    .updateUser(vm.userImFollowing._id, vm.userImFollowing)
+                                    .then(function (response) {
+                                        // add logic to prevent a favorite from being added twice
+                                        OdhecatonUserService
+                                            .updateUser(vm.thisUser._id, vm.thisUser)
+                                            .then(function (response) {
+                                            });
+                                    });
+                            });
+                    } else {
+                       vm.error = "could not add user to Favorites";
+                    }
+                });
         }
 
         function favoriteVideo(video) {

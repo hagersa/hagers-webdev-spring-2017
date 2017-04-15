@@ -80,14 +80,17 @@ module.exports = function (app, WidgetModel) {
 
 
     function findWidgetById(req, res){
+        //var widgetId = req.body;
         var widgetId = req.params.widgetId;
-        // console.log("have widgetId in service.server: "+widgetId);
+        console.log("have widgetId in service.server: "+widgetId);
 
         WidgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
+                console.log("success in server");
                 res.send(widget);
             }, function (error) {
+                console.log("error in server");
                 res.sendStatus(500)
             });
     }

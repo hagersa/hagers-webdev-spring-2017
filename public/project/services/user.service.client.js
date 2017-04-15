@@ -60,7 +60,7 @@
         }
 
         function findFollowingForUser(userId) {
-            return $http.get("/api/user/following/"+userId)
+            return $http.get("/api/user/following/"+userId);
         }
 
         function updateUser(userId, newUser) {

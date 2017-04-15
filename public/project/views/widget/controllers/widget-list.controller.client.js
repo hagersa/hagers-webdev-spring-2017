@@ -24,9 +24,33 @@
 
             // iterate over library.widgets
 
-            WidgetService
-                .findAllWidgetsForLibrary(vm.libraryId)
-                .success(renderWidgets);
+            LibraryService
+                .findLibraryById(vm.libraryId)
+                .success(function (library) {
+                    var widgetIds = library.widgets;
+                    var widgetObjects = [];
+                    console.log(widgetIds);
+                    console.log(widgetObjects);
+
+                    for(var w in widgetIds) {
+                        console.log("widgetId is :" + widgetIds[w]);
+                        WidgetService
+                            .findWidgetById(widgetIds[w])
+                            .success(function (widget) {
+                                console.log("found widget object: "+widget);
+                                widgetObjects.push(widget);
+                                console.log(widgetObjects);
+                            })
+                            .error(function () {
+                                console.log("error in finding widget");
+
+                            });
+                    }
+                    vm.widgets = widgetObjects;
+                })
+                .error(function () {
+
+                });
         } init();
 
         function renderWidgets(widgets) {

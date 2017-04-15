@@ -33,31 +33,26 @@
     <!--</span>-->
     <!--</div>-->
     <div class="container-fluid">
-        <ul class="list-group" ng-repeat="video in model.videoSearchResults.items">
+        <ul style="margin-top: 10px" class="list-group" ng-repeat="video in model.videoSearchResults.items">
             <li class="newsfeed-list-group-item list-group-item">
-                <div class="sah-iframe-widget">
+                <div style="margin-top: 12px" class="sah-iframe-widget">
                 <iframe id="ytplayer" type="text/html" width="100%"
                         src="{{model.getYouTubeEmbedUrl(video.id.videoId)}}"
                         frameborder="0"
                 allowfullscreen></iframe>
                 </div>
-                <!--<a><img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/></a>-->
-                <div>
-                    <a class="pull-right">
-                        <span ng-click="model.favoriteVideo(video)" class="glyphicon glyphicon-star-empty sah-glyphicon-center"></span>
+
+                <div style="padding-top: 4px" id="favorite">
+                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary">
+                        <span  class="glyphicon glyphicon-star"></span>
+                        Add to Favorites
                     </a>
+                    <h5>Title: {{video.snippet.title}}</h5>
                 </div>
-                <h5>Title: {{video.snippet.title}}</h5>
-            <!--</li>-->
-            <!--<li class="newsfeed-list-group-item list-group-item">-->
+
                 <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
                 <br/>
                 <div class="check-element animate-show-hide" ng-show="checked">
-                    <!--<h5>-->
-                        <!--{{video.snippet.title}}-->
-                        <!--&lt;!&ndash;<span ng-click="model.likeMovie(model.movieDetails)" class="glyphicon glyphicon-star-empty"></span>&ndash;&gt;-->
-                    <!--</h5>-->
-                    <!--<img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/>-->
                     <p>Description: {{video.snippet.description}}</p>
                     <p>Channel Title: {{video.snippet.channelTitle}}</p>
                     <p>Date Published: {{video.snippet.publishedAt}}</p><br/>
@@ -69,8 +64,6 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="navbar-footer">
-            <div class="row navbar-text text-center">
                 <div class="sah-navbar-text-padding navbar-button pull-right">
                     <a href="#/register" class="navbar-link">
                         <span class="btn btn-warning">Register</span></a>
@@ -79,9 +72,6 @@
                     <a href="#/login" class="navbar-link">
                         <span class="btn btn-success">Login</span></a>
                 </div>
-            </div>
-
-        </div>
         </div>
     </div>
 </nav>

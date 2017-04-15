@@ -15,19 +15,21 @@
     </nav>
 
 <div class="container-fluid">
-    <h4>
+    <ul class="list-group">
+    <h3>
         About {{model.username}}
-        <a ng-click="model.favoriteUser(model.user)" class="pull-right btn btn-primary">
+        <a ng-if="model.userId !== model.followId" ng-click="model.favoriteUser(model.followId)" class="pull-right btn btn-primary">
             <span  class="glyphicon glyphicon-star"></span>
             Follow {{model.username}}
         </a>
-    </h4>
+    </h3>
     <p>Email address: {{model.email}}</p>
     <p>{{model.aboutMe}}<br></p><br>
+    </ul>
 
-    <h4>{{model.username}}'s Favorites</h4>
-    <ul class="list-group">
-        <li ng-repeat="favorite in model.favorites" class="newsfeed-list-group-item list-group-item">
+    <h3>{{model.username}}'s Favorite Videos</h3>
+    <ul ng-repeat="favorite in model.favorites" class="list-group">
+        <li class="newsfeed-list-group-item list-group-item">
             <div style="padding-bottom: 10px" id="favorite">
                 <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary">
                     <span  class="glyphicon glyphicon-star"></span>
@@ -52,28 +54,26 @@
         </li>
     </ul>
 
-    <h4>Followed by {{model.username}}</h4>
+    <h3>Followed by {{model.username}}</h3>
     <ul class="list-group">
-        <li ng-repeat="follower in model.followers" class="newsfeed-list-group-item list-group-item">
+        <li ng-repeat="f in model.following" class="newsfeed-list-group-item list-group-item">
             <div id="followed">
-                <a ng-click="model.favoriteUser(follower)" class="pull-right btn btn-primary">
-                    <span  class="glyphicon glyphicon-star"></span>
-                    Follow
+                <a ng-click="model.favoriteUser(f)">
+                    <span  class="glyphicon glyphicon-star pull-right"></span>
                 </a>
-                <h5>{{follower.username}}</h5>
+                <a href="#/user/{{model.userId}}/favorite/{{f._id}}">{{f.username}}</a>
             </div>
         </li>
     </ul>
 
-    <h4>Following {{model.username}}</h4>
+    <h3>Following {{model.username}}</h3>
     <ul class="list-group">
-        <li ng-repeat="following in model.following" class="newsfeed-list-group-item list-group-item">
+        <li ng-repeat="f in model.followers" class="newsfeed-list-group-item list-group-item">
             <div id="following">
-                <a ng-click="model.favoriteUser(following)" class="pull-right btn btn-primary">
-                    <span  class="glyphicon glyphicon-star"></span>
-                    Follow
+                <a ng-click="model.favoriteUser(f)">
+                    <span  class="glyphicon glyphicon-star pull-right"></span>
                 </a>
-                <h5>{{following.username}}</h5>
+                <a href="#/user/{{model.userId}}/favorite/{{f._id}}">{{f.username}}</a>
             </div>
         </li>
     </ul>
@@ -89,7 +89,7 @@
                         </a>
                     </div>
                     <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/public">
+                        <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </div>

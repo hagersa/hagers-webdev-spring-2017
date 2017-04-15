@@ -27,6 +27,7 @@
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
+    z-index: 5;
 }
 .sah-iframe-widget iframe {
     position: absolute;
@@ -34,15 +35,16 @@
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 5;
 }
 
 .sah-floating-outer-toolbar {
-    position: fixed;
+    position: absolute;
     padding-left: 30px;
 }
 
 .sah-container-top-padding {
-    padding-top: 70px;
+    padding-top: 65px;
 }
 
 .sah-floating-toolbar {
@@ -216,5 +218,9 @@ body {
 }
 
 #loginForm.ng-submitted .ng-invalid {
+    background-color: pink;
+}
+
+#registerForm.ng-submitted .ng-invalid {
     background-color: pink;
 }

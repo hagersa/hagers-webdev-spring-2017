@@ -16,26 +16,42 @@
 
 <div id="padded-container" class="container-fluid">
         <h2>Join Us!</h2>
+
+    <form novalidate name="registerForm" id="registerForm">
         <input ng-model="user.username"
                type="text"
                class="form-control"
-               placeholder="username"/>
+               name="username"
+               class="form-control"
+               autocomplete="off" autocapitalize="off"
+               placeholder="username"
+               required/>
+        <span ng-show="registerForm.username.$error.required && registerForm.$submitted">Username is required</span>
+
         <input ng-model="user.password"
                type="password"
+               name="password1"
                class="form-control"
-               placeholder="password"/>
+               placeholder="password"
+               required/>
+        <span ng-if="registerForm.password1.$error.required && registerForm.$submitted">Password is required</span>
+
         <input ng-model="user.password2"
                type="password"
+               name="password2"
                class="form-control"
-               placeholder="verify password"/>
+               placeholder="verify password"
+               required/>
+        <span ng-if="registerForm.password2.$error.required && registerForm.$submitted">Please verify your password!</span>
 
     <br><h4>How would you like to use Odhecaton?</h4>
 
         <input ng-model="user.role" type="radio" name="role" value="DIRECTOR" checked> Director (Create Libraries)<br>
         <input ng-model="user.role" type="radio" name="role" value="MEMBER"> Member (View Libraries)<br><br>
 
-        <a ng-click="model.registerUser(user)" class="btn btn-primary btn-block">Register</a>
-        <a href="#/login" class="btn btn-danger btn-block">Cancel</a>
+        <button style="margin-bottom: 5px" type="submit" ng-click="model.registerUser(user)" class="btn btn-primary btn-block">Register</button>
+    </form>
+    <a href="#/login" class="btn btn-danger btn-block sah-button-padding">Cancel</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("Odhecaton")
-        .service("WidgetService", widgetService);
+        .service("WidgetService", WidgetService);
 
-    function widgetService($http) {
+    function WidgetService($http) {
 
         this.createWidget = createWidget;
         this.findWidgetById = findWidgetById;
