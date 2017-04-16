@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="library-create.view.client.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="library-create.view.client.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-create.view.client.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="998">
-              <caret line="50" column="74" lean-forward="false" selection-start-line="50" selection-start-column="74" selection-end-line="50" selection-end-column="74" />
+              <caret line="50" column="78" lean-forward="false" selection-start-line="50" selection-start-column="78" selection-end-line="50" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -100,17 +100,17 @@
         <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-edit.view.client.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="726">
-              <caret line="52" column="74" lean-forward="false" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+              <caret line="52" column="78" lean-forward="false" selection-start-line="52" selection-start-column="78" selection-end-line="52" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="library-share.view.client.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="library-share.view.client.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-share.view.client.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="635">
-              <caret line="49" column="76" lean-forward="false" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
+              <caret line="49" column="82" lean-forward="false" selection-start-line="49" selection-start-column="82" selection-end-line="49" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -210,9 +210,9 @@
         <option value="$PROJECT_DIR$/public/project/views/library/templates/library-home.view.client.html" />
         <option value="$PROJECT_DIR$/public/project/views/favorite/templates/public-profile.view.client.html" />
         <option value="$PROJECT_DIR$/public/project/views/favorite/templates/search-public.view.client.html" />
-        <option value="$PROJECT_DIR$/public/project/views/library/templates/library-create.view.client.html" />
-        <option value="$PROJECT_DIR$/public/project/views/library/templates/library-edit.view.client.html" />
         <option value="$PROJECT_DIR$/public/project/views/library/templates/library-share.view.client.html" />
+        <option value="$PROJECT_DIR$/public/project/views/library/templates/library-edit.view.client.html" />
+        <option value="$PROJECT_DIR$/public/project/views/library/templates/library-create.view.client.html" />
       </list>
     </option>
   </component>
@@ -896,12 +896,12 @@
       <workItem from="1492112354909" duration="4867000" />
       <workItem from="1492140235691" duration="25900000" />
       <workItem from="1492195185892" duration="29328000" />
-      <workItem from="1492302424145" duration="11368000" />
+      <workItem from="1492302424145" duration="11514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="803570000" />
+    <option name="totallyTimeSpent" value="803716000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1377,10 +1377,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-create.view.client.html">
+    <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-share.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="998">
-          <caret line="50" column="74" lean-forward="false" selection-start-line="50" selection-start-column="74" selection-end-line="50" selection-end-column="74" />
+        <state relative-caret-position="635">
+          <caret line="49" column="82" lean-forward="false" selection-start-line="49" selection-start-column="82" selection-end-line="49" selection-end-column="82" />
           <folding />
         </state>
       </provider>
@@ -1388,15 +1388,15 @@
     <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-edit.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
-          <caret line="52" column="74" lean-forward="false" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+          <caret line="52" column="78" lean-forward="false" selection-start-line="52" selection-start-column="78" selection-end-line="52" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-share.view.client.html">
+    <entry file="file://$PROJECT_DIR$/public/project/views/library/templates/library-create.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="49" column="76" lean-forward="false" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
+        <state relative-caret-position="998">
+          <caret line="50" column="78" lean-forward="false" selection-start-line="50" selection-start-column="78" selection-end-line="50" selection-end-column="78" />
           <folding />
         </state>
       </provider>
