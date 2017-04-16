@@ -22,11 +22,19 @@
                type="text"
                class="form-control"
                name="username"
-               class="form-control"
                autocomplete="off" autocapitalize="off"
                placeholder="username"
                required/>
         <span ng-show="registerForm.username.$error.required && registerForm.$submitted">Username is required</span>
+
+        <input ng-model="user.email"
+               type="email"
+               class="form-control"
+               name="email"
+               placeholder="email address"
+               required/>
+        </input>
+        <span ng-if="registerForm.email.$error.required && registerForm.$submitted">Email address is required</span>
 
         <input ng-model="user.password"
                type="password"

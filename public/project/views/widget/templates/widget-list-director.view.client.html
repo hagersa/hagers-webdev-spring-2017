@@ -1,6 +1,12 @@
 <div ng-controller="WidgetListController as model">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+            </div>
             <div class="navbar-text pull-right">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
                     <span class="glyphicon glyphicon-home"></span>
@@ -53,7 +59,13 @@
                     <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
                 </div>
                 <div style="margin-bottom: 10px" ng-switch-when="PDF">
-                    <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>
+                    <!--ng-include = "'views/widget/templates/widget-PDF.view.client.html'"-->
+                    <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-PDF.view.client.html'">
+                    <!--<iframe src="{{model.getTrustedHtml(widget.url)}}"-->
+                            <!--style="width:100%; height:500px;" frameborder="0"></iframe>-->
+                    </div>
+                    <!--<div ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>-->
+                </div>
                 </div>
             </div>
         </div>

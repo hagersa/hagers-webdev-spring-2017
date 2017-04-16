@@ -43,11 +43,10 @@
                 </div>
 
                 <div style="padding-top: 4px" id="favorite">
-                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary">
-                        <span  class="glyphicon glyphicon-star"></span>
-                        Add to Favorites
+                    <a ng-click="model.favoriteVideo(video)">
+                        <span  class="glyphicon glyphicon-star pull-right"></span>
                     </a>
-                    <h5>Title: {{video.snippet.title}}</h5>
+                    <p>Title: {{video.snippet.title}}</p>
                 </div>
 
                 <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>

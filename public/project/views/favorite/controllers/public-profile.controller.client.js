@@ -3,7 +3,7 @@
         .module("Odhecaton")
         .controller("PublicProfileController", PublicProfileController);
 
-    function PublicProfileController($sce, $location, $routeParams, YoutubeService, OdhecatonUserService, FavoriteService) {
+    function PublicProfileController($sce, $location, $routeParams, $rootScope, YoutubeService, OdhecatonUserService, FavoriteService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.followId = $routeParams.pid;
@@ -12,6 +12,7 @@
         vm.favoriteVideo = favoriteVideo;
         vm.favoriteUser = favoriteUser;
         // vm.findFavoritesForUser = findFavoritesForUser;
+        vm.logout = logout;
 
         function init() {
             OdhecatonUserService
@@ -83,6 +84,17 @@
         // function findFavoritesForUser(userId) {
         //
         // }
+
+        function logout(user) {
+            console.log("have user in profile controller logout: "+user);
+            OdhecatonUserService
+                .logout(user)
+                .then(function(response) {
+                    $rootScope.currentUser = null;
+                    console.log("sucess in profile controller logout");
+                    $location.url("/");
+                });
+        }
 
         function searchVideo(searchText) {
             YoutubeService

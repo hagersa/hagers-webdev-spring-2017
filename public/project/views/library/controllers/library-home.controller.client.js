@@ -3,9 +3,10 @@
         .module("Odhecaton")
         .controller("LibraryHomeController", LibraryHomeController);
 
-    function LibraryHomeController(OdhecatonUserService, $routeParams, $location, LibraryService) {
+    function LibraryHomeController(OdhecatonUserService, $routeParams, $rootScope, $location, LibraryService) {
         var vm = this;
         vm.userId = $routeParams.uid;
+        vm.logout = logout;
 
         function init() {
             OdhecatonUserService
@@ -43,6 +44,19 @@
                 });
 
         } init();
+
+
+        function logout(user) {
+            console.log("have user in profile controller logout: "+user);
+            OdhecatonUserService
+                .logout(user)
+                .then(function(response) {
+                    $rootScope.currentUser = null;
+                    console.log("sucess in profile controller logout");
+                    $location.url("/");
+                });
+        }
+
 
         // function renderUser(user) {
         //     console.log("in library home render function: "+user);

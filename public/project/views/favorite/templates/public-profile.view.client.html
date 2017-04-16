@@ -83,6 +83,11 @@
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">
+                    <div class="col-xs-2 pull-right">
+                        <a ng-click="model.logout(model.user)">
+                            <span class="glyphicon glyphicon-off"></span>
+                        </a>
+                    </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/search">
                             <span class="glyphicon glyphicon-search"></span>

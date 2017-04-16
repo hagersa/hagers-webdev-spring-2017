@@ -1,6 +1,12 @@
 <div ng-controller="WidgetEditController as model">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/library/{{model.libraryId}}/widget/director" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+            </div>
             <div class="navbar-text pull-right">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
                     <span class="glyphicon glyphicon-home"></span>
@@ -8,7 +14,7 @@
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand">
-                    Edit My Widget
+                    Edit My {{model.widget.widgetType}} Widget
                 </a>
             </div>
         </div>

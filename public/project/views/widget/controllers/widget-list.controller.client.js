@@ -11,6 +11,7 @@
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
         vm.sort = sort;
+        //vm.myUrl =
 
         function init() {
             OdhecatonUserService
@@ -84,8 +85,11 @@
                 });
         }
 
-        function getTrustedHtml(html) {
-            return $sce.trustAsHtml(html);
+        function getTrustedHtml(url) {
+            // http://docs.google.com/gview?url=http://domain.com/{{widget.url}}&embedded=true
+            // var wholeUrl = "http://docs.google.com/gview?url=http://domain.com"+url+"&embedded=true";
+            //return $sce.trustAsHtml(wholeUrl);
+            return $sce.trustAsResourceUrl(url);
         }
 
         function getYouTubeEmbedUrl(widgetUrl) {
