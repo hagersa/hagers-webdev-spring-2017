@@ -104,6 +104,53 @@ body {
     margin-right: 15px;
 }
 
+.sah-home-page-right-container {
+    /*padding-left: 0px;*/
+    padding-right: 20px;
+    /*top: 0px;*/
+    /*bottom: 0px;*/
+    /*margin-top: 45px;*/
+    /*margin-bottom: 50px;*/
+    /*padding-top: 15px;*/
+    /*overflow: auto;*/
+    /*padding-left: 0px;*/
+    /*border-right-style: solid;*/
+    /*border-right-color: lightgray;*/
+
+}
+
+.sah-home-page-middle-container {
+    /*padding-left: 20px;*/
+    /*padding-right: 0px;*/
+    padding-right: 20px;
+    /*top: 0px;*/
+    /*bottom: 0px;*/
+    /*margin-top: 45px;*/
+    /*margin-bottom: 50px;*/
+    /*padding-top: 15px;*/
+    /*overflow: auto;*/
+    /*padding-left: 0px;*/
+    /*border-right-style: solid;*/
+    /*border-right-color: lightgray;*/
+
+}
+
+.sah-home-page-left-container {
+    padding-left: 20px;
+    /*padding-right: 0px;*/
+    padding-right: 20px;
+    /*top: 0px;*/
+    /*bottom: 0px;*/
+    /*margin-top: 45px;*/
+    /*margin-bottom: 50px;*/
+    /*padding-top: 15px;*/
+    /*overflow: auto;*/
+    /*padding-left: 0px;*/
+    /*border-right-style: solid;*/
+    /*border-right-color: lightgray;*/
+
+}
+
 .sah-container-left-padding {
     padding-left: 30px;
     padding-right: 0px;

@@ -114,23 +114,17 @@ module.exports = function (libraryModel) {
         libraryModel
             .findLibraryById(libraryId)
             .then(function (library) {
-                // console.log("found page in reorderWidgets in model.server: "+library);
                 console.log("widgets before reorder in reorderWidgets in model.server: "+library.widgets);
-                console.log("whole page before reorder in reorderWidgets in model.server: "+library);
                 console.log("start and end: "+start+" "+end);
 
-                var item = library.widgets[start];
-                library.widgets.splice(start, 1);
-                library.widgets.splice(end, 0, item);
-
-                // library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
-
-                library.widgets.save();
+                library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
+                library.markModified('widgets');
+                library.save(function (err, respnse) {
+                    console.log(library);
+                });
 
                 console.log("widgets after reorder in reorderWidgets in model.server: "+library.widgets);
-                console.log("whole page after reorder in reorderWidgets in model.server: "+library);
 
-                library.save();
                 deferred.resolve(library);
             });
         return deferred.promise;

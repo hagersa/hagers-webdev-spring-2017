@@ -26,14 +26,6 @@ module.exports = function (app, WidgetModel) {
             });
     }
 
-    //update to get widgets in correct order, need to find them from the page widget ids
-//     libraryModel
-//         .findById()
-//         .populate('widgets')
-//         .exec(function (library)}
-//         d.resolve(library.widgets)
-// }
-
     function createWidget(req, res) {
         var newWidget = req.body;
         var libraryId = req.params.libraryId;
@@ -180,3 +172,12 @@ module.exports = function (app, WidgetModel) {
             });
     }
 };
+
+
+//update to get widgets in correct order, need to find them from the page widget ids
+//     libraryModel
+//         .findById()
+//         .populate('widgets')
+//         .exec(function (library)}
+//         d.resolve(library.widgets)
+// }

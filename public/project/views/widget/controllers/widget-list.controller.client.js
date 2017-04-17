@@ -23,8 +23,7 @@
                     vm.error = 'could not find user'
                 });
 
-            // iterate over library.widgets
-
+            // iterate over library.widgets for the library
             LibraryService
                 .findLibraryById(vm.libraryId)
                 .success(function (library) {
@@ -52,6 +51,11 @@
                 .error(function () {
 
                 });
+
+            // WidgetService
+            //     .findAllWidgetsForLibrary(vm.libraryId)
+            //     .success(renderWidgets);
+
         } init();
 
         function renderWidgets(widgets) {

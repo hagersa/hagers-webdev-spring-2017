@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Web Dev Course Home Page</title>
+    <title>Sarah Hager Home Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
@@ -13,30 +13,94 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand">
-                CS5610: Web Development
+                Welcome!
             </a>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-<h2>Welcome!</h2>
-    <p>You have reached Sarah Hager's CS5610 Home Page.<br>
-        Here you can view my project, Odhecaton, or visit my assignment implementation.<br>
-        My code is available on GitHub.com<br><br>
-        Thanks for visiting!</p>
-</div>
+    <div class="row conatiner-fluid">
+        <div class="container-fluid sah-home-page-left-container col-sm-4 col-xs-12">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <img src="css/sarah-wide-headshot.jpg" style="width: 100%; height: 100%;">
+                    <h4><b>Sarah Hager</b></h4>
+                    <h5><b>Northeastern University: CCIS</b></h5>
+                        <p>Candidate for M.S. in C.S.<br>
+                            Concentration: Networks<br>
+                            Related Courses:
+                    <ul>
+                    <li>Program Design Paradigms</li>
+                    <li>Web Development</li></ul><br>
 
-<div class="container-fluid">
-<h2>What would you like to do?</h2>
-<ul>
-    <li>
-        <a href="project/index.html">Go to Odhecaton</a>
-    </li>
-    <li>
-        <a href="https://github.com/hagersa/hagers-webdev-spring-2017">View my code repository at GitHub.com</a>
-    </li>
-</ul>
+                    <h5><b>Middlesex Community College</b></h5>
+                    <p>Computer Science Department<br>
+                        Adjunct Faculty<br>
+                        Courses Taught: CSC 101<br>
+                        Rating: 4.45/5.00<br><br>
+
+                    <h5><b>Projects & Code</b></h5>
+                    <div><a href="project/index.html">Project Odhecaton</a></div>
+                    <div><a href="https://github.com/hagersa/hagers-webdev-spring-2017">Sarah's code @ github.com</a></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container-fluid sah-home-page-middle-container col-sm-4 hidden-xs">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h4><b>About Odhecaton</b></h4>
+
+                    <h5><b>Overview</b></h5>
+                    <p>Odhecaton is a web application designed for community choral organizations.<br>
+                        It is intended to make choral directors more effective by providing a platform
+                        to share practice aids, such as sheet music pdfs and video recordings,
+                        with choral members.</p>
+
+                    <h5><b>Why?</b></h5>
+                    <p>Many choral organizations lack a central online location for practice resources,
+                    or do not have a mobile-friendly platform. Odhecaton aims to solve this problem.</p>
+
+                    <h5><b>Details & Documentation</b></h5>
+                    <p>At the moment, Odhecaton uses the <a href="https://developers.google.com/youtube/v3/">Google YouTube Data API</a>
+                    for video support. The <a href="http://imslp.org/">Petrucci Music Library API</a> will be coming soon to extend PDF
+                    upload support.<br>View documentation <a href="https://docs.google.com/a/husky.neu.edu/document/d/1WanLcDIpzq9vx_l2c5taiE4rKFuw0jtHllsJU-8Cvg0/edit?usp=sharing">here</a>.</p>
+
+                    <h5><b>Trivia</b></h5>
+                    <p>Odhecaton is named after <a href="https://en.wikipedia.org/wiki/Harmonice_Musices_Odhecaton">the Odhecaton</a>,
+                    the first book of polyphonic music ever to be printed using moveable type, in 1501 by Ottaviano Petrucci.</p><br>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container-fluid sah-home-page-right-container col-sm-4 hidden-xs">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h4><b>Music</b></h4>
+                    <p>Sarah is a specialist in adult choral education and historical keyboard performance.</p>
+
+                    <h5><b>Adult Choral Education</b></h5>
+                    <p>Sarah has served as the Chancel Choir Director and Organist at
+                        <a href="http://lexumc.org/">Lexington United Methodist Church</a> for the past 6 years,
+                        and continues her work in the adult community at
+                        <a href="http://www.lasellvillage.org/">Lasell Village</a> teaching Music History and Chorus classes.</p>
+
+                    <h5><b>Historical Keyboard Performance</b></h5>
+                    <p>Sarah completed her graduate work in harpsichord, fortepiano, and organ performance
+                    with <a href="https://www.francesconoverfitch.com/">Frances Fitch</a> and <a href="https://www.petersykes.com/">Peter Sykes</a>.
+                    </p>
+                    <p>Listen to Sarah's performance of <a href="https://en.wikipedia.org/wiki/Girolamo_Frescobaldi">Frescobaldi</a>'s <i>Toccata Sesta</i>:</p>
+
+
+                    <audio controls style="display: block; width: 100%">
+                        <source src="uploads/frescobaldi-toccata.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
