@@ -12,6 +12,10 @@
     height: 100%;
 }
 
+.sah-index-custom-color.navbar-default {
+    background-color: darkgrey;
+}
+
 .sah-floating-outer-toolbar {
     position: fixed;
     padding-left: 30px;
@@ -105,50 +109,16 @@ body {
 }
 
 .sah-home-page-right-container {
-    /*padding-left: 0px;*/
     padding-right: 20px;
-    /*top: 0px;*/
-    /*bottom: 0px;*/
-    /*margin-top: 45px;*/
-    /*margin-bottom: 50px;*/
-    /*padding-top: 15px;*/
-    /*overflow: auto;*/
-    /*padding-left: 0px;*/
-    /*border-right-style: solid;*/
-    /*border-right-color: lightgray;*/
-
 }
 
 .sah-home-page-middle-container {
-    /*padding-left: 20px;*/
-    /*padding-right: 0px;*/
     padding-right: 20px;
-    /*top: 0px;*/
-    /*bottom: 0px;*/
-    /*margin-top: 45px;*/
-    /*margin-bottom: 50px;*/
-    /*padding-top: 15px;*/
-    /*overflow: auto;*/
-    /*padding-left: 0px;*/
-    /*border-right-style: solid;*/
-    /*border-right-color: lightgray;*/
-
 }
 
 .sah-home-page-left-container {
     padding-left: 20px;
-    /*padding-right: 0px;*/
     padding-right: 20px;
-    /*top: 0px;*/
-    /*bottom: 0px;*/
-    /*margin-top: 45px;*/
-    /*margin-bottom: 50px;*/
-    /*padding-top: 15px;*/
-    /*overflow: auto;*/
-    /*padding-left: 0px;*/
-    /*border-right-style: solid;*/
-    /*border-right-color: lightgray;*/
-
 }
 
 .sah-container-left-padding {
@@ -180,8 +150,8 @@ body {
     padding-bottom: 5px;
 }
 
-.sah-page-custom-color.navbar-default {
-    background-color: darkgrey;
+.sah-index-custom-color.navbar-default {
+    background-color: #333333;
 }
 
 .sah-ul-style {
@@ -225,5 +195,5 @@ a.navbar-link {
 
 body {
     background-image: url("network.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
