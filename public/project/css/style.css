@@ -160,6 +160,11 @@ body {
     padding-bottom: 5px;
 }
 
+.sah-custom-left-container {
+    padding-left: 0px;
+    padding-right: 2px;
+}
+
 .sah-page-custom-color.navbar-default {
     background-color: darkgrey;
 }
@@ -177,7 +182,7 @@ body {
 }
 
 .sah-glyphicon-edit {
-    color: #ff0000;
+    color: #ff4500;
 }
 
 .navbar-text a {
@@ -222,5 +227,13 @@ body {
 }
 
 #registerForm.ng-submitted .ng-invalid {
+    background-color: pink;
+}
+
+#libraryCreateForm.ng-submitted .ng-invalid {
+    background-color: pink;
+}
+
+#libraryEditForm.ng-submitted .ng-invalid {
     background-color: pink;
 }

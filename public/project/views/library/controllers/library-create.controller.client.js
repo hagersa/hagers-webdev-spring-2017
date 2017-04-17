@@ -44,6 +44,7 @@
             var newLibrary =
                 {_user: vm.userId, name: vm.library.name, group: vm.library.group, description: vm.library.description};
 
+            if(library.name && library.group) {
             LibraryService
                 .createLibrary(vm.userId, newLibrary)
                 .success(function (response) {
@@ -52,6 +53,9 @@
                 .error(function () {
                     vm.error = "could not create library";
                 });
+            } else {
+                vm.error = "name and group are required";
+            }
         }
 
     }

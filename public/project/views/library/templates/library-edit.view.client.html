@@ -34,7 +34,7 @@
                 Created By You
             </div>
 
-            <div class="container-fluid">
+            <div  class="container-fluid sah-custom-left-container">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid sah-custom-left-container">
             <div class="h4">
                 Shared With You
             </div>
@@ -96,14 +96,16 @@
     <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
     <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
-    <form>
+    <form novalidate name="libraryCreateForm" id="libraryCreateForm">
         <div class="form-group">
             <label for="name">Name</label>
             <input ng-model="model.library.name"
                    type="text"
                    class="form-control"
+                   name="name"
                    id="name"
-                   placeholder="Name your new library!">
+                   placeholder="Name your new library!"
+                   required>
         </div>
         <div class="form-group">
             <label for="group">Choral Group</label>
@@ -111,7 +113,9 @@
                    type="text"
                    class="form-control"
                    id="group"
-                   placeholder="What choral group does your library belong to?">
+                   name="group"
+                   placeholder="What choral group does your library belong to?"
+                   required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -119,24 +123,25 @@
                       class="form-control"
                       id="description"
                       rows="4"
-                      placeholder="Describe your libary here..."
-                      required></textarea>
+                      placeholder="Describe your libary here..."></textarea>
         </div>
+
+        <button style="margin-bottom: 5px" type="submit" ng-click="model.updateLibrary(model.library)" class="btn btn-primary btn-block">Save Changes</button>
     </form>
-    <a class="btn btn-success  btn-block" ng-click="model.updateLibrary(model.library)">Save Changes</a>
-    <a class="btn btn-danger  btn-block" href="#/user/{{model.userId}}/library">Cancel</a>
-    <a class="btn btn-danger  btn-block" ng-click="model.deleteLibrary(model.libraryId)">Delete Library</a>
+    <!--<a class="btn btn-success  btn-block" ng-click="model.updateLibrary(model.library)">Save Changes</a>-->
+    <a class="btn btn-warning  btn-block sah-button-padding" href="#/user/{{model.userId}}/library">Cancel</a>
+    <a class="btn btn-danger  btn-block sah-button-padding" ng-click="model.deleteLibrary(model.libraryId)">Delete Library</a>
 </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">
-                    <!--<div class="col-xs-2 pull-right">-->
-                        <!--<a ng-click="model.logout(model.user)">-->
-                            <!--<span class="glyphicon glyphicon-off"></span>-->
-                        <!--</a>-->
-                    <!--</div>-->
+                    <div class="col-xs-2 pull-right">
+                        <a ng-click="model.logout(model.user)">
+                            <span class="glyphicon glyphicon-off"></span>
+                        </a>
+                    </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/search">
                             <span class="glyphicon glyphicon-search"></span>
@@ -144,7 +149,7 @@
                     </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
-                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </div>
                     <div class="col-xs-2">
@@ -154,7 +159,7 @@
                     </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/profile">
-                            <span class="glyphicon glyphicon-"></span>
+                            <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
                 </div>

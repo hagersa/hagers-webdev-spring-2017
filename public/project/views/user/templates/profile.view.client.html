@@ -13,6 +13,12 @@
             </a>
         </div>
 
+        <div class="navbar-text pull-right">
+            <a ng-click="model.logout(model.user)">
+                <span class="glyphicon glyphicon-off"></span>
+            </a>
+        </div>
+
         <!--ng-if for admin vs. user-->
         <div ng-if="model.user.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
                <a href="#/user/{{model.user._id}}/admin" class="navbar-link">
@@ -78,11 +84,6 @@
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">
-                <div class="col-xs-2 pull-right">
-                    <a ng-click="model.logout(model.user)">
-                        <span class="glyphicon glyphicon-off"></span>
-                    </a>
-                </div>
                 <div class="col-xs-2">
                     <a href="#/user/{{model.user._id}}/search">
                         <span class="glyphicon glyphicon-search"></span>

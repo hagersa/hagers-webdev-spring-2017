@@ -173,9 +173,9 @@ module.exports = function (app, OdhecatonUserModel) {
             );
     }
 
-    var firstUser = {username: 'admin', password: 'admin', firstName: 'Sarah', role: 'ADMIN'};
-    firstUser.password = bcrypt.hashSync(firstUser.password);
-    OdhecatonUserModel.createUser(firstUser); //{username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'}
+    // var firstUser = {username: 'adminS', password: 'adminS', firstName: 'Sarah', role: 'ADMIN'};
+    // firstUser.password = bcrypt.hashSync(firstUser.password);
+    // OdhecatonUserModel.createUser(firstUser); //{username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'}
 
     function login(req, res) {
         var user = req.user;

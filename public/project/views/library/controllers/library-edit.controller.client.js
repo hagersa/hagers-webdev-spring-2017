@@ -50,14 +50,18 @@
         }
 
         function updateLibrary(library) {
-            LibraryService
-                .updateLibrary(vm.libraryId, library)
-                .success(function (response) {
-                    $location.url("/user/" + vm.userId + "/library");
-                })
-                .error(function () {
-                    vm.error = "unable to update website";
-                });
+            if(library.name && library.group) {
+                LibraryService
+                    .updateLibrary(vm.libraryId, library)
+                    .success(function (response) {
+                        $location.url("/user/" + vm.userId + "/library");
+                    })
+                    .error(function () {
+                        vm.error = "unable to update website";
+                    });
+            } else {
+                vm.error = "name and group are required"
+            }
         }
 
         function deleteLibrary (libraryId) {

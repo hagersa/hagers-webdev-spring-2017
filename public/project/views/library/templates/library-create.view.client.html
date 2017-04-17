@@ -32,7 +32,7 @@
                 Created By You
             </div>
 
-            <div class="container-fluid">
+            <div class="container-fluid sah-custom-left-container">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
@@ -67,7 +67,7 @@
                 Shared With You
             </div>
 
-            <div class="container-fluid">
+            <div class="container-fluid  sah-custom-left-container">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
@@ -95,37 +95,46 @@
 
     <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
-<form>
+<form novalidate name="libraryCreateForm" id="libraryCreateForm">
     <div class="form-group">
         <label for="name">Name</label>
         <input ng-model="model.library.name"
                type="text"
+               name="name"
                class="form-control"
                id="name"
-               placeholder="Name your new library!">
+               placeholder="Name your new library!"
+               required>
     </div>
+    <span ng-if="libraryCreateForm.name.$error.required && libraryCreateForm.$submitted">Library name is required</span>
+
     <div class="form-group">
         <label for="group">Choral Group</label>
         <input ng-model="model.library.group"
                type="text"
+               name="group"
                class="form-control"
                id="group"
-               placeholder="What choral group does your library belong to?">
+               placeholder="What choral group does your library belong to?"
+               required>
     </div>
+    <span ng-if="libraryCreateForm.group.$error.required && libraryCreateForm.$submitted">Choral Group is required</span>
+
     <div class="form-group">
         <label for="description">Description</label>
         <textarea ng-model="model.library.description"
                   class="form-control"
+                  name="description"
                   id="description"
                   rows="4"
-                  placeholder="Describe your libary here..."
-                  required></textarea>
+                  placeholder="Describe your libary here..."></textarea>
     </div>
+    <button style="margin-bottom: 5px" type="submit" ng-click="model.createLibrary(model.library)" class="btn btn-primary btn-block">Create Your Library</button>
 </form>
-    <a ng-click="model.createLibrary(model.library)"
-       class="btn btn-success  btn-block" >
-        Create
-    </a>
+    <!--<a ng-click="model.createLibrary(model.library)"-->
+       <!--class="btn btn-success  btn-block" >-->
+        <!--Create-->
+    <!--</a>-->
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

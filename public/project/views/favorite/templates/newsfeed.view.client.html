@@ -46,6 +46,7 @@
 
     <div>
     <ul class="list-group" >
+        <li class="newsfeed-list-group-item list-group-item"><div class="sah-left-padding" ng-if="model.favorites.length === 0">Sorry! There are no new favorites to show.</div></li>
         <li ng-repeat="favorite in model.favorites" class="newsfeed-list-group-item list-group-item">
             <div style="padding-bottom: 10px" id="favorite">
                 <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary">

@@ -7,6 +7,12 @@
                     <span class="glyphicon glyphicon-home"></span>
                 </a>
             </div>
+
+            <div class="navbar-text pull-right">
+                <a ng-click="model.logout(model.user)">
+                    <span class="glyphicon glyphicon-off"></span>
+                </a>
+            </div>
             <!--ng-if for admin vs. user-->
             <div ng-if="model.user.role=='ADMIN'" class="sah-navbar-text-padding navbar-button pull-right">
                 <a href="#/user/{{model.userId}}/admin" class="navbar-link">
@@ -83,10 +89,11 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-10 col-sm-5 sah-left-padding">
+                        <div class="col-xs-10 col-sm-5 sah-left-padding" ng-if="model.myLibraries.length === 0">You have no libraries</div>
+                        <div ng-if="model.myLibraries.length > 0" class="col-xs-10 col-sm-5 sah-left-padding">
                             Name
                         </div>
-                    <div class="col-sm-5 hidden-xs">
+                    <div ng-if="model.myLibraries.length > 0" class="col-sm-5 hidden-xs">
                         Choral Group
                     </div>
                 </div>
@@ -109,11 +116,6 @@
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">
-                    <div class="col-xs-2 pull-right">
-                        <a ng-click="model.logout(model.user)">
-                            <span class="glyphicon glyphicon-off"></span>
-                        </a>
-                    </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/search">
                             <span class="glyphicon glyphicon-search"></span>

@@ -82,18 +82,18 @@
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">
-                    <!--<div class="col-xs-2 pull-right">-->
-                    <!--<a href="">-->
-                    <!--<span class="glyphicon glyphicon-off"></span>-->
-                    <!--</a>-->
-                    <!--</div>-->
+                    <div class="col-xs-2 pull-right">
+                        <a ng-click="model.logout(model.user)">
+                            <span class="glyphicon glyphicon-off"></span>
+                        </a>
+                    </div>
                     <div class="col-xs-2">
                         <a href="#/user/{{model.userId}}/search">
                             <span class="glyphicon glyphicon-search"></span>
                         </a>
                     </div>
                     <div class="col-xs-2">
-                        <a href="#/user/{{model.userId}}/public">
+                        <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </div>
@@ -111,4 +111,5 @@
             </div>
         </div>
     </nav>
+
 </div>
