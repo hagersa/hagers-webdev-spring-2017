@@ -1,174 +1,174 @@
 <div ng-controller="LibraryCreateController as model">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/library" class="navbar-link">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
-            </a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/library" class="navbar-link">
-                <span class="glyphicon glyphicon-home"></span>
-            </a>
-        </div>
-
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                Create a New Library
-            </a>
-        </div>
-    </div>
-</nav>
-
-<div class="row container-fluid sah-container-left-padding">
-    <div class="col-sm-4 hidden-xs sah-left-pane">
-        <div class="container-fluid">
-            <div class="h4">
-                <a href="#/user/{{model.userId}}/library/new">
-                    <span class="glyphicon glyphicon-plus-sign pull-right"></span>
                 </a>
-                Created By You
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
             </div>
 
-            <div class="container-fluid sah-custom-left-container">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-sm-12 sah-left-padding">
-                                Name
-                            </div>
-                        </div>
-                    </li>
-                    <li ng-repeat="dirLibrary in model.dirLibraries" class="list-group-item">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/share" class="pull-right">
-                                    <span class="glyphicon glyphicon-share-alt"></span>
-                                </a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}">
-                                    <span class="glyphicon glyphicon-pencil pull-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Create a New Library
+                </a>
             </div>
         </div>
+    </nav>
 
-        <div class="container-fluid">
-            <div class="h4">
-                Shared With You
+    <div class="row container-fluid sah-container-left-padding">
+        <div class="col-sm-4 hidden-xs sah-left-pane">
+            <div class="container-fluid">
+                <div class="h4">
+                    <a href="#/user/{{model.userId}}/library/new">
+                        <span class="glyphicon glyphicon-plus-sign pull-right"></span>
+                    </a>
+                    Created By You
+                </div>
+
+                <div class="container-fluid sah-custom-left-container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="dirLibrary in model.dirLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/share" class="pull-right">
+                                        <span class="glyphicon glyphicon-share-alt"></span>
+                                    </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}">
+                                        <span class="glyphicon glyphicon-pencil pull-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="container-fluid  sah-custom-left-container">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-sm-12 sah-left-padding">
-                                Name
+            <div class="container-fluid">
+                <div class="h4">
+                    Shared With You
+                </div>
+
+                <div class="container-fluid  sah-custom-left-container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li ng-repeat="memLibrary in model.memLibraries" class="list-group-item">
-                        <div class="row">
-                            <div class="col-sm-12 sah-left-padding">
-                                <a href="#/user/{{model.userId}}/library/{{memLibrary._id}}/widget/member">{{memLibrary.name}}</a>
+                        </li>
+                        <li ng-repeat="memLibrary in model.memLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    <a href="#/user/{{model.userId}}/library/{{memLibrary._id}}/widget/member">{{memLibrary.name}}</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
+    <div class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
 
-    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+        <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
 
-    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+        <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
-<form novalidate name="libraryCreateForm" id="libraryCreateForm">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input ng-model="model.library.name"
-               type="text"
-               name="name"
-               class="form-control"
-               id="name"
-               placeholder="Name your new library!"
-               required>
-    </div>
-    <span ng-if="libraryCreateForm.name.$error.required && libraryCreateForm.$submitted">Library name is required</span>
+        <form novalidate name="libraryCreateForm" id="libraryCreateForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input ng-model="model.library.name"
+                       type="text"
+                       name="name"
+                       class="form-control"
+                       id="name"
+                       placeholder="Name your new library!"
+                       required>
+            </div>
+            <span ng-if="libraryCreateForm.name.$error.required && libraryCreateForm.$submitted">Library name is required</span>
 
-    <div class="form-group">
-        <label for="group">Choral Group</label>
-        <input ng-model="model.library.group"
-               type="text"
-               name="group"
-               class="form-control"
-               id="group"
-               placeholder="What choral group does your library belong to?"
-               required>
-    </div>
-    <span ng-if="libraryCreateForm.group.$error.required && libraryCreateForm.$submitted">Choral Group is required</span>
+            <div class="form-group">
+                <label for="group">Choral Group</label>
+                <input ng-model="model.library.group"
+                       type="text"
+                       name="group"
+                       class="form-control"
+                       id="group"
+                       placeholder="What choral group does your library belong to?"
+                       required>
+            </div>
+            <span ng-if="libraryCreateForm.group.$error.required && libraryCreateForm.$submitted">Choral Group is required</span>
 
-    <div class="form-group">
-        <label for="description">Description</label>
-        <textarea ng-model="model.library.description"
-                  class="form-control"
-                  name="description"
-                  id="description"
-                  rows="4"
-                  placeholder="Describe your libary here..."></textarea>
-    </div>
-    <button style="margin-bottom: 5px" type="submit" ng-click="model.createLibrary(model.library)" class="btn btn-primary btn-block">Create Your Library</button>
-</form>
-    <!--<a ng-click="model.createLibrary(model.library)"-->
-       <!--class="btn btn-success  btn-block" >-->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="model.library.description"
+                          class="form-control"
+                          name="description"
+                          id="description"
+                          rows="4"
+                          placeholder="Describe your libary here..."></textarea>
+            </div>
+            <button style="margin-bottom: 5px" type="submit" ng-click="model.createLibrary(model.library)" class="btn btn-primary btn-block">Create Your Library</button>
+        </form>
+        <!--<a ng-click="model.createLibrary(model.library)"-->
+        <!--class="btn btn-success  btn-block" >-->
         <!--Create-->
-    <!--</a>-->
-</div>
+        <!--</a>-->
+    </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-footer">
-            <div class="row navbar-text text-center">
-                <!--<div class="col-xs-2 pull-right">-->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-footer">
+                <div class="row navbar-text text-center">
+                    <!--<div class="col-xs-2 pull-right">-->
                     <!--<a ng-click="model.logout(model.user)">-->
-                        <!--<span class="glyphicon glyphicon-off"></span>-->
+                    <!--<span class="glyphicon glyphicon-off"></span>-->
                     <!--</a>-->
-                <!--</div>-->
-                <div class="col-xs-2">
-                    <a href="#/user/{{model.userId}}/search">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="#/user/{{model.userId}}/newsfeed">
-                        <span class="glyphicon glyphicon-globe"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="#/user/{{model.userId}}/profile">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
+                    <!--</div>-->
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/newsfeed">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/profile">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 </div>

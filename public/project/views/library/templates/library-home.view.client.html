@@ -27,14 +27,14 @@
     </nav>
 
     <div class="container-fluid">
-    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
-    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+        <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+        <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
     </div>
 
     <div ng-if="model.user.role=='DIRECTOR' || model.user.role=='ADMIN'" class="container-fluid">
         <div class="h3">
             <a href="#/user/{{model.userId}}/library/new">
-            <span class="glyphicon glyphicon-plus-sign pull-right sah-glyphicon-padding"></span>
+                <span class="glyphicon glyphicon-plus-sign pull-right sah-glyphicon-padding"></span>
             </a>
             Libraries Created By You
         </div>
@@ -58,7 +58,7 @@
                             <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
                         </div>
                         <!--<div class="col-sm-2 hidden-xs">-->
-                            <!--{{dirLibrary.created | date}}-->
+                        <!--{{dirLibrary.created | date}}-->
                         <!--</div>-->
                         <div class="col-sm-4 hidden-xs sah-left-padding">
                             {{dirLibrary.group}}
@@ -89,26 +89,26 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-10 col-sm-5 sah-left-padding" ng-if="model.myLibraries.length === 0">You have no libraries</div>
-                        <div ng-if="model.myLibraries.length > 0" class="col-xs-10 col-sm-5 sah-left-padding">
+                        <!--<div class="col-xs-10 col-sm-5 sah-left-padding" ng-if="model.myLibraries.length === 0">You have no libraries</div>-->
+                        <div class="col-xs-10 col-sm-5 sah-left-padding">
                             Name
                         </div>
-                    <div ng-if="model.myLibraries.length > 0" class="col-sm-5 hidden-xs">
-                        Choral Group
+                        <div class="col-sm-5 hidden-xs">
+                            Choral Group
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li ng-repeat="library in model.myLibraries" class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-10 col-sm-5 sah-left-padding">
-                        <a href="#/user/{{model.userId}}/library/{{library._id}}/widget/member">{{library.name}}</a>
+                </li>
+                <li ng-repeat="library in model.myLibraries" class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-5 sah-left-padding">
+                            <a href="#/user/{{model.userId}}/library/{{library._id}}/widget/member">{{library.name}}</a>
+                        </div>
+                        <div class="col-sm-5 hidden-xs">
+                            {{library.group}}
+                        </div>
                     </div>
-                    <div class="col-sm-5 hidden-xs">
-                        {{library.group}}
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
         </div>
     </div>
 

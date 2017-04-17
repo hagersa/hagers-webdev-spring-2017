@@ -7,7 +7,7 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         aboutMe: String,
-        email: String,
+        email: {type: String, required: true},
         dirLibraries: [{type:  mongoose.Schema.Types.ObjectId, ref:'LibraryModel'}],
         memLibraries: [{type:  mongoose.Schema.Types.ObjectId, ref:'LibraryModel'}],
         favorites: [{type:  mongoose.Schema.Types.ObjectId, ref:'FavoriteModel'}],
