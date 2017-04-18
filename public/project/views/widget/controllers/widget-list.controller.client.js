@@ -93,6 +93,7 @@
             // http://docs.google.com/gview?url=http://domain.com/{{widget.url}}&embedded=true
             // var wholeUrl = "http://docs.google.com/gview?url=http://domain.com"+url+"&embedded=true";
             //return $sce.trustAsHtml(wholeUrl);
+            // return $sce.trustAsResourceUrl(url);
             return $sce.trustAsResourceUrl(url);
         }
 
