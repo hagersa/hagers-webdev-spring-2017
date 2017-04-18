@@ -1,112 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>More Info</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
+<div ng-controller="InfoController as model">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/library" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    More Info
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<!--<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="../library/library-home-director.view.client.html" class="navbar-link">
-                    <span class="glyphicon glyphicon-chevron-left">
-                    </span>
-            </a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a href="../library/library-home-director.view.client.html" class="navbar-link">
-                <span class="glyphicon glyphicon-home"></span>
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                More Info
-            </a>
-        </div>
-    </div>
-</nav>-->
-
-<div class="container-fluid">
-    <div class="container-fluid">
-    <h2>
-        Dirait On
-        <span class="glyphicon glyphicon-star-empty sah-glyphicon-center pull-right"></span>
-    </h2>
-    <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg" class="info-image-size"/>
-    <p>Dirait-on. Les chansons des roses.<br>
-        Morten Lauridsen<br><br>
-        Chamber Choir of Europe<br>
-        Piano: Morten Lauridsen<br>
-        Conductor: Nicol Matt</p>
+        <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+        <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
     </div>
 
+    <div style="margin-top: 9px" class="container-fluid">
+        <div class="container-fluid sah-home-page-left-container col-sm-6 col-xs-12">
+            <ul class="list-group" >
+                <li style="padding-bottom: 46px; padding-top: 15px" class="list-group-item">
+                    <!--style="display: block; width: 100%"-->
+                    <div class="sah-iframe-widget">
+                        <iframe id="ytplayer" type="text/html" width="100%"
+                                src="{{model.getYouTubeEmbedUrl(model.videoId)}}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                    <!--<h5 class="danger">{{favorite.users.length}} users saved this video today</h5>-->
+                    <div style="padding-top: 4px" id="favorite">
+                        <a ng-click="model.favoriteVideo(model.favorite)" class="pull-right btn btn-primary">
+                            <span  class="glyphicon glyphicon-star"></span>
+                            Add to Favorites
+                        </a>
+                        <!--<h5>Title: {{favorite.title}}</h5>-->
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="list-group visible-xs">
+                <li class="list-group-item">
+                    <div>
+                        <h5><b>More Info</b></h5>
+                        <p>Description: {{model.favorite.description}}</p>
+                        <p>Channel Title: {{model.favorite.channelTitle}}</p>
+                        <p>Date Published: {{model.favorite.publishedAt}}</p><br/>
+                    </div>
+                <li class="list-group-item">
+            </ul>
+        </div>
+
+        <div class="container-fluid sah-home-page-right-container col-sm-6 hidden-xs">
+            <ul class="list-group" >
+                <li class="list-group-item">
+                    <div>
+                        <h5><b>More Info</b></h5>
+                        <p>Description: {{model.favorite.description}}</p>
+                        <p>Channel Title: {{model.favorite.channelTitle}}</p>
+                        <p>Date Published: {{model.favorite.publishedAt}}</p><br/>
+                    </div>
+                <li class="list-group-item">
+            </ul>
+        </div>
+    </div>
+
     <div class="container-fluid">
-        <h4>Users who like this piece:</h4>
         <ul class="list-group">
+            <li  class="list-group-item"><b>Users who have added this video to Favorites</b></li>
+            <li ng-repeat="user in model.favoriteUsers" class="list-group-item newsfeed-list-group-item">
+                <div style="padding-bottom: 10px" id="user">
+                    <a ng-click="model.favoriteUser(user._id)" class="pull-right btn btn-primary">
+                        <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                    <h5><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></h5>
+                </div>
             <li class="list-group-item">
-                Username123
-                <!--<a href="public-profile.view.client.html">Username123</a>-->
-                <a class="pull-right">
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                Username234
-                <!--<a href="public-profile.view.client.html">Username234</a>-->
-                <a class="pull-right">
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                Username345
-                <!--<a href="public-profile.view.client.html">Username345</a>-->
-                <a class="pull-right">
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </a>
-            </li>
         </ul>
     </div>
 
 
-</div>
-
-
-
-<!--
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-footer">
-            <div class="row navbar-text text-center">
-                <div class="col-xs-2 pull-right">
-                    <a href="../user/login.view.client.html">
-                        <span class="glyphicon glyphicon-off"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="../social/search.view.client.html">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="../social/favorites.view.client.html">
-                        <span class="glyphicon glyphicon-star"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="../social/newsfeed.view.client.html">
-                        <span class="glyphicon glyphicon-globe"></span>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="../user/profile.view.client.html">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </a>
+    <nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-footer">
+                <div class="row navbar-text text-center">
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/favorite/{{model.userId}}">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/newsfeed">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="#/user/{{model.userId}}/profile">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</nav>-->
+    </nav>
+</div>

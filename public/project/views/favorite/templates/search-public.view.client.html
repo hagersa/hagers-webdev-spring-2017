@@ -1,11 +1,19 @@
 <div ng-controller="YoutubePublicSearchController as model">
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="sah-mono navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <!--<div class="navbar-header">-->
+            <div class="navbar-button pull-right visible-sm visible-md visible-lg">
+                <a href="#/register" class="navbar-link">
+                    <span class="btn btn-warning">Register</span></a>
+            </div>
+            <div class="sah-navbar-text-padding navbar-button pull-right  visible-sm visible-md visible-lg">
+                <a href="#/login" class="navbar-link">
+                    <span class="btn btn-primary">Login</span></a>
+            </div>
             <a class="navbar-brand">
                 Youtube Search
             </a>
-        </div>
+        <!--</div>-->
     </div>
 </nav>
 
@@ -32,10 +40,9 @@
         <!--</a>-->
     <!--</span>-->
     <!--</div>-->
-    <div class="container-fluid">
-        <ul style="margin-top: 10px" class="list-group" ng-repeat="video in model.videoSearchResults.items">
-            <li class="newsfeed-list-group-item list-group-item">
-                <div style="margin-top: 12px" class="sah-iframe-widget">
+        <ul class="list-group" ng-repeat="video in model.videoSearchResults.items">
+            <li class="newsfeed-list-group-item list-group-item" style="padding-bottom: 50px; padding-top: 15px">
+                <div class="sah-iframe-widget">
                 <iframe id="ytplayer" type="text/html" width="100%"
                         src="{{model.getYouTubeEmbedUrl(video.id.videoId)}}"
                         frameborder="0"
@@ -43,35 +50,45 @@
                 </div>
 
                 <div style="padding-top: 4px" id="favorite">
-                    <a ng-click="model.favoriteVideo(video)">
-                        <span  class="glyphicon glyphicon-star pull-right"></span>
+                    <a ng-click="model.moreInfo()" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
+                        <span  class="glyphicon glyphicon-info-sign"></span>
+                        More Info
                     </a>
-                    <p>Title: {{video.snippet.title}}</p>
+                    <a ng-click="model.moreInfo()" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                        <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
+                    </a>
+                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                        <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
+                    </a>
+                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                        <span  class="glyphicon glyphicon-star"></span>
+                        Add to Favorites
+                    </a>
+                    <!--<p>Title: {{video.snippet.title}}</p>-->
                 </div>
 
-                <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
-                <br/>
-                <div class="check-element animate-show-hide" ng-show="checked">
-                    <p>Description: {{video.snippet.description}}</p>
-                    <p>Channel Title: {{video.snippet.channelTitle}}</p>
-                    <p>Date Published: {{video.snippet.publishedAt}}</p><br/>
-                </div>
+                <!--<h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>-->
+                <!--<br/>-->
+                <!--<div class="check-element animate-show-hide" ng-show="checked">-->
+                    <!--<p>Description: {{video.snippet.description}}</p>-->
+                    <!--<p>Channel Title: {{video.snippet.channelTitle}}</p>-->
+                    <!--<p>Date Published: {{video.snippet.publishedAt}}</p><br/>-->
+                <!--</div>-->
             </li>
         </ul>
-    </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-                <div class="sah-navbar-text-padding navbar-button pull-right">
-                    <a href="#/register" class="navbar-link">
-                        <span class="btn btn-warning">Register</span></a>
-                </div>
-                <div class="sah-navbar-text-padding navbar-button pull-right">
-                    <a href="#/login" class="navbar-link">
-                        <span class="btn btn-success">Login</span></a>
-                </div>
-        </div>
+<nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
+    <!--<div class="container-fluid">-->
+    <div class="sah-navbar-text-padding navbar-button pull-right visible-xs">
+        <a href="#/register" class="navbar-link">
+            <span class="btn btn-warning">Register</span></a>
+    </div>
+    <div class="sah-navbar-text-padding navbar-button pull-right visible-xs">
+        <a href="#/login" class="navbar-link">
+            <span class="btn btn-primary">Login</span></a>
+    </div>
+        <!--</div>-->
     </div>
 </nav>
 </div>

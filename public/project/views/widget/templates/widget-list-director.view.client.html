@@ -1,5 +1,5 @@
 <div ng-controller="WidgetListController as model">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -21,8 +21,8 @@
         </div>
     </nav>
 
-<div class="container-fluid sah-floating-outer-toolbar">
-    <div class="row">
+<div class="container-fluid sah-floating-outer-toolbar" style="margin-left: 8px; margin-right: 8px">
+    <div class="row" style="margin-top: 10px">
         <div class="btn sah-floating-toolbar">
             <a ng-click="model.createWidget('HTML')">
                 <span class="glyphicon glyphicon-text-size sah-glyphicon-edit"></span>
@@ -41,10 +41,10 @@
     </div>
 </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-left: 8px; margin-right: 8px">
     <div class="widget-list sah-container-top-padding" sortable-directive="" callback="model.sort(start, end)">
         <div ng-repeat="widget in model.widgets">
-            <div class="sah-toolbar">
+            <div class="sah-toolbar" style="margin-right: 8px">
                 <a href="#/user/{{model.userId}}/library/{{model.libraryId}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
@@ -72,7 +72,7 @@
     </div>
     </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">

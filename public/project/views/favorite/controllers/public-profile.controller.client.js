@@ -14,6 +14,8 @@
         // vm.findFavoritesForUser = findFavoritesForUser;
         vm.logout = logout;
 
+        console.log(vm.followId);
+
         function init() {
             OdhecatonUserService
                 .findUserById(vm.followId)

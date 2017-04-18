@@ -1,5 +1,5 @@
 <div ng-controller="PublicProfileController as model">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-right">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -29,28 +29,40 @@
 
     <h3>{{model.username}}'s Favorite Videos</h3>
     <ul ng-repeat="favorite in model.favorites" class="list-group">
-        <li class="newsfeed-list-group-item list-group-item">
-            <div style="padding-bottom: 10px" id="favorite">
-                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary">
-                    <span  class="glyphicon glyphicon-star"></span>
-                    Add to Favorites
-                </a>
-                <h5>Title: {{favorite.title}}</h5>
-            </div>
-            <div style="margin-top: 10px" class="sah-iframe-widget">
+        <li style="padding-top: 15px; padding-bottom: 50px;" class="newsfeed-list-group-item list-group-item">
+            <div class="sah-iframe-widget">
                 <iframe id="ytplayer" type="text/html" width="100%"
                         src="{{model.getYouTubeEmbedUrl(favorite.videoId)}}"
                         frameborder="0"
                         allowfullscreen></iframe>
             </div>
+            <div style="padding-top: 4px" id="favorite">
+                <!--{{favorite._id}}-->
+                <a href="#/user/{{model.userId}}/favorite/{{favorite.videoId}}/info" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
+                    <span  class="glyphicon glyphicon-info-sign"></span>
+                    More Info
+                </a>
+                <a href="#/user/{{model.userId}}/favorite/{{favorite.videoId}}/info" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                    <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
+                </a>
+                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                    <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
+                </a>
+                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                    <span  class="glyphicon glyphicon-star"></span>
+                    Add to Favorites
+                </a>
 
-            <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
-            <br/>
-            <div class="check-element animate-show-hide" ng-show="checked">
-                <p>Description: {{favorite.description}}</p>
-                <p>Channel Title: {{favorite.channelTitle}}</p>
-                <p>Date Published: {{favorite.publishedAt}}</p><br/>
+                <!--<h5>Title: {{favorite.title}}</h5>-->
             </div>
+
+            <!--<h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>-->
+            <!--<br/>-->
+            <!--<div class="check-element animate-show-hide" ng-show="checked">-->
+                <!--<p>Description: {{favorite.description}}</p>-->
+                <!--<p>Channel Title: {{favorite.channelTitle}}</p>-->
+                <!--<p>Date Published: {{favorite.publishedAt}}</p><br/>-->
+            <!--</div>-->
         </li>
     </ul>
 
@@ -79,7 +91,7 @@
     </ul>
 </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">

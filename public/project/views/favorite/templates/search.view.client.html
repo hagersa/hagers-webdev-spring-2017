@@ -1,5 +1,5 @@
 <div ng-controller="YoutubeSearchController as model">
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="sah-mono navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
             <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -29,6 +29,7 @@
     </span>
     </div>
 
+
     <!--<div class="input-group sah-button-padding">-->
         <!--<input type="text" class="form-control" placeholder="Search IMSLP">-->
         <!--<span class="input-group-btn">-->
@@ -37,9 +38,9 @@
         <!--</a>-->
     <!--</span>-->
     <!--</div>-->
-    <div class="container-fluid">
+    <!--<div class="container-fluid">-->
         <ul class="list-group" ng-repeat="video in model.videoSearchResults.items">
-            <li class="newsfeed-list-group-item list-group-item">
+            <li class="newsfeed-list-group-item list-group-item"  style="padding-bottom: 50px; padding-top: 15px">
                 <div class="sah-iframe-widget">
                 <iframe id="ytplayer" type="text/html" width="100%"
                         src="{{model.getYouTubeEmbedUrl(video.id.videoId)}}"
@@ -48,37 +49,47 @@
                 </div>
                 <!--<a><img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/></a>-->
                 <div style="padding-top: 4px" id="favorite">
-                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary">
+                    <a href="#/user/{{model.userId}}/favorite/{{video.id.videoId}}/info" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
+                        <span  class="glyphicon glyphicon-info-sign"></span>
+                        More Info
+                    </a>
+                    <a href="#/user/{{model.userId}}/favorite/{{video.id.videoId}}/info" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                        <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
+                    </a>
+                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                        <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
+                    </a>
+                    <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
                         <span  class="glyphicon glyphicon-star"></span>
                         Add to Favorites
                     </a>
-                    <h5>Title: {{video.snippet.title}}</h5>
+
+                    <!--<h5>Title: {{video.snippet.title}}</h5>-->
                 </div>
 
                 <!--<h5 class="danger">{{favorite.users.length}} users saved this video today</h5>-->
                 <!--<h5>Show Users: <input type="checkbox" ng-model="checkedUser" aria-label="Toggle ngShow"></h5>-->
                 <!--<div class="check-element animate-show-hide" ng-show="checkedUser" ng-repeat="user in favorite.users"><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></div>-->
 
-            <!--</li>-->
+            </li>
             <!--<li class="newsfeed-list-group-item list-group-item">-->
-                <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
-                <br/>
-                <div class="check-element animate-show-hide" ng-show="checked">
+                <!--<h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>-->
+                <!--<br/>-->
+                <!--<div class="check-element animate-show-hide" ng-show="checked">-->
                     <!--<h5>-->
                         <!--{{video.snippet.title}}-->
                         <!--&lt;!&ndash;<span ng-click="model.likeMovie(model.movieDetails)" class="glyphicon glyphicon-star-empty"></span>&ndash;&gt;-->
                     <!--</h5>-->
                     <!--<img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/>-->
-                    <p>Description: {{video.snippet.description}}</p>
-                    <p>Channel Title: {{video.snippet.channelTitle}}</p>
-                    <p>Date Published: {{video.snippet.publishedAt}}</p><br/>
-                </div>
-            </li>
+                    <!--<p>Description: {{video.snippet.description}}</p>-->
+                    <!--<p>Channel Title: {{video.snippet.channelTitle}}</p>-->
+                    <!--<p>Date Published: {{video.snippet.publishedAt}}</p><br/>-->
+            <!--</li>-->
         </ul>
-    </div>
+    <!--</div>-->
 </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">

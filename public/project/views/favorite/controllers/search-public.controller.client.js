@@ -10,6 +10,7 @@
         vm.searchVideo = searchVideo;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.favoriteVideo = favoriteVideo;
+        vm.moreInfo = moreInfo;
 
         function init() {
                 vm.searchTitle = vm.searchText;
@@ -33,6 +34,13 @@
 
         function favoriteVideo(video) {
             var answer = confirm("Please login to create favorites.");
+            if(answer) {
+                $location.url('/');
+            }
+        }
+
+        function moreInfo() {
+            var answer = confirm("Please login to view more info.");
             if(answer) {
                 $location.url('/');
             }

@@ -1,5 +1,5 @@
 <div ng-controller="YoutubeSearchController as model">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-right">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -43,23 +43,33 @@
             </a>
         </li>
     </ul>-->
-
-    <div>
-    <ul class="list-group" >
-        <li class="newsfeed-list-group-item list-group-item"><div class="sah-left-padding" ng-if="model.favorites.length === 0">Sorry! There are no new favorites to show.</div></li>
-        <li ng-repeat="favorite in model.favorites" class="newsfeed-list-group-item list-group-item">
-            <div style="padding-bottom: 10px" id="favorite">
-                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary">
-                    <span  class="glyphicon glyphicon-star"></span>
-                    Add to Favorites
-                </a>
-                <h5>Title: {{favorite.title}}</h5>
-            </div>
-            <div style="margin-top: 10px" class="sah-iframe-widget">
+    <!--<div class="container-fluid">-->
+        <!--<li class="newsfeed-list-group-item list-group-item">-->
+            <!--<div class="sah-left-padding" ng-if="model.favorites.length === 0">No new videos available</div>-->
+        <!--</li>-->
+    <ul class="list-group" ng-repeat="favorite in model.favorites">
+        <li style="padding-bottom: 16px; padding-top: 15px" class="newsfeed-list-group-item list-group-item">
+            <!--<div class="sah-left-padding" ng-if="model.favorites.length === 0">Sorry! No new favorites</div>-->
+            <div class="sah-iframe-widget">
                 <iframe id="ytplayer" type="text/html" width="100%"
                         src="{{model.getYouTubeEmbedUrl(favorite.videoId)}}"
                         frameborder="0"
                         allowfullscreen></iframe>
+            </div>
+            <div style="padding-top: 4px" id="favorite">
+                <a href="#/user/{{model.userId}}/favorite/{{favorite.videoId}}/info" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
+                    <span  class="glyphicon glyphicon-info-sign"></span>
+                    More Info
+                </a>
+                <a href="#/user/{{model.userId}}/favorite/{{favorite.videoId}}/info" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                    <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
+                </a>
+                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                    <span  class="glyphicon glyphicon-star"></span>
+                    Add to Favorites
+                </a>
+                <h5 class="danger">{{favorite.users.length}} users saved this video today</h5>
+                <!--<h5>Title: {{favorite.title}}</h5>-->
             </div>
 
             <!--<div>-->
@@ -75,24 +85,24 @@
                 <!--</form>-->
             <!--</div>-->
 
-            <h5 class="danger">{{favorite.users.length}} users saved this video today</h5>
-            <h5>Show Users: <input type="checkbox" ng-model="checkedUser" aria-label="Toggle ngShow"></h5>
-            <div class="check-element animate-show-hide" ng-show="checkedUser" ng-repeat="user in favorite.users"><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></div>
 
-            <h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>
-            <br/>
-            <div class="check-element animate-show-hide" ng-show="checked">
-                <p>Description: {{favorite.description}}</p>
-                <p>Channel Title: {{favorite.channelTitle}}</p>
-                <p>Date Published: {{favorite.publishedAt}}</p><br/>
-            </div>
+            <!--<h5>Show Users: <input type="checkbox" ng-model="checkedUser" aria-label="Toggle ngShow"></h5>-->
+            <!--<div class="check-element animate-show-hide" ng-show="checkedUser" ng-repeat="user in favorite.users"><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></div>-->
+
+            <!--<h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>-->
+            <!--<br/>-->
+            <!--<div class="check-element animate-show-hide" ng-show="checked">-->
+                <!--<p>Description: {{favorite.description}}</p>-->
+                <!--<p>Channel Title: {{favorite.channelTitle}}</p>-->
+                <!--<p>Date Published: {{favorite.publishedAt}}</p><br/>-->
+            <!--</div>-->
         </li>
     </ul>
-    </div>
+    <!--</div>-->
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">

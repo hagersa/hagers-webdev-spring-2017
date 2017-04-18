@@ -3,11 +3,13 @@
 
     <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
 
+    <div style="margin-bottom: 10px; margin-top: 5px">
     <div ng-model="model.widget.text" class="sah-button-padding"
          text-angular
          ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
         ['indent','outdent'],['html']]">
+    </div>
     </div>
 
     <a ng-click="model.updateWidget(model.widget)"

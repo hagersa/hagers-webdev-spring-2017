@@ -1,5 +1,5 @@
 <div ng-controller="WidgetListController as model">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -20,7 +20,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-left: 8px; margin-right: 8px">
     <div class="widget-list">
         <div ng-repeat="widget in model.widgets">
             <div ng-switch="widget.widgetType">
@@ -40,7 +40,7 @@
     </div>
 
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">

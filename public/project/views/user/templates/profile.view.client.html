@@ -1,5 +1,5 @@
 <div ng-controller="profileController as model">
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="sah-mono navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
        <!-- <div class="navbar-text pull-left">
             <a href="../library/director-library-home-director.view.client.html" class="navbar-link">
@@ -9,13 +9,13 @@
         </div>-->
         <div class="navbar-text pull-right">
             <a href="#/user/{{model.user._id}}/library" class="navbar-link">
-                <span class="glyphicon glyphicon-home"></span>
+                <span class="glyphicon glyphicon-home" style="padding-left: 5px"></span>
             </a>
         </div>
 
         <div class="navbar-text pull-right">
             <a ng-click="model.logout(model.user)">
-                <span class="glyphicon glyphicon-off"></span>
+                <span class="glyphicon glyphicon-off" style="padding-right: 5px"></span>
             </a>
         </div>
 
@@ -26,7 +26,7 @@
         </div>
         <div class="navbar-header">
             <a class="navbar-brand">
-                Profile
+                View & Edit Your Profile
             </a>
         </div>
     </div>
@@ -42,7 +42,12 @@
 
     <form>
         <!--cannot edit username once created!-->
-        <label>Welcome, {{model.user.username}}</label>
+        <h4><b>Welcome, {{model.user.username}}!</b></h4>
+
+        <div class="form-group">
+            <label for="username">Username (view only)</label>
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" readonly>
+        </div>
         <div class="form-group">
             <label for="first-name">First Name</label>
             <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Enter first name...">
@@ -56,8 +61,8 @@
             <textarea ng-model="model.user.aboutMe" class="form-control" id="about-me" rows="4" placeholder="A few words about yourself..." required></textarea>
         </div>
         <div class="form-group">
-            <label for="email">Email address</label>
-            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="Enter email address...">
+            <label for="email">Email address (view only)</label>
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" readonly>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -80,7 +85,7 @@
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">

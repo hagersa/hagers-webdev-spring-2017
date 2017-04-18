@@ -85,10 +85,20 @@
                 controller: 'YoutubeSearchController',
                 controllerAs: 'model'
             })
+            // .when("/user/:uid/newsfeed/:vid", {
+            //     templateUrl: 'views/favorite/templates/info.view.client.html',
+            //     controller: 'InfoController',
+            //     controllerAs: 'model'
+            // })
             // navigation to user's or follower's/followed view-only profile
             .when("/user/:uid/favorite/:pid", {
                 templateUrl: 'views/favorite/templates/public-profile.view.client.html',
                 controller: 'PublicProfileController',
+                controllerAs: 'model'
+            })
+            .when("/user/:uid/favorite/:fid/info", {
+                templateUrl: 'views/favorite/templates/info.view.client.html',
+                controller: 'InfoController',
                 controllerAs: 'model'
             })
             // logged in search page
@@ -97,6 +107,11 @@
                 controller: 'YoutubeSearchController',
                 controllerAs: 'model'
             })
+            // .when("/user/:uid/search/:vid", {
+            //     templateUrl: 'views/favorite/templates/info.view.client.html',
+            //     controller: 'InfoController',
+            //     controllerAs: 'model'
+            // })
             // public search page
             .when("/user/search/:searchText", {
                 templateUrl: 'views/favorite/templates/search-public.view.client.html',
