@@ -71,10 +71,10 @@
         <ul class="list-group">
             <li  class="list-group-item"><b>Users who have added this video to Favorites</b></li>
             <li ng-repeat="user in model.favoriteUsers" class="list-group-item newsfeed-list-group-item">
-                <div style="padding-bottom: 10px" id="user">
-                    <a ng-click="model.favoriteUser(user._id)" class="pull-right btn btn-primary">
+                <div style="padding-bottom: 6px" id="user">
+                    <a  ng-if="model.userId !== user._id" ng-click="model.favoriteUser(user._id)" class="pull-right btn btn-primary">
                         <span  class="glyphicon glyphicon-star"></span>Follow</a>
-                    <h5><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></h5>
+                    <h5><a href="#/user/{{model.userId}}/favorite/{{user._id}}"><font size="4">{{user.username}}</font></a></h5>
                 </div>
             <li class="list-group-item">
         </ul>

@@ -49,11 +49,14 @@
                 </div>
                 <!--<a><img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/></a>-->
                 <div style="padding-top: 4px" id="favorite">
-                    <a href="#/user/{{model.userId}}/favorite/{{video.id.videoId}}/info" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
+                    {{video}}
+                    <!--href="#/user/{{model.userId}}/favorite/{{video.id.videoId}}/info"-->
+                    <a ng-click="model.viewInfo(video)" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
                         <span  class="glyphicon glyphicon-info-sign"></span>
                         More Info
+
                     </a>
-                    <a href="#/user/{{model.userId}}/favorite/{{video.id.videoId}}/info" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                    <a ng-click="model.viewInfo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
                         <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
                     </a>
                     <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">

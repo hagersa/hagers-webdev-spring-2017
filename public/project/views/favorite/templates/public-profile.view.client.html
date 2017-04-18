@@ -45,10 +45,17 @@
                 <a href="#/user/{{model.userId}}/favorite/{{favorite.videoId}}/info" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
                     <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
                 </a>
-                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                <a ng-if="model.userId === model.followId" ng-click="model.removeFavorite(favorite)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                    <span  class="glyphicon glyphicon-remove" style="padding-top: 4px"></span>
+                </a>
+                <a ng-if="model.userId === model.followId" ng-click="model.removeFavorite(favorite)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                    <span  class="glyphicon glyphicon-remove" ></span>
+                    Remove
+                </a>
+                <a ng-if="model.userId !== model.followId" ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
                     <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
                 </a>
-                <a ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                <a ng-if="model.userId !== model.followId" ng-click="model.favoriteVideo(favorite)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
                     <span  class="glyphicon glyphicon-star"></span>
                     Add to Favorites
                 </a>
@@ -68,25 +75,33 @@
 
     <h3>Followed by {{model.username}}</h3>
     <ul class="list-group">
-        <li ng-repeat="f in model.following" class="newsfeed-list-group-item list-group-item">
-            <div id="followed">
-                <a ng-click="model.favoriteUser(f)">
-                    <span  class="glyphicon glyphicon-star pull-right"></span>
-                </a>
-                <a href="#/user/{{model.userId}}/favorite/{{f._id}}">{{f.username}}</a>
+        <li ng-repeat="f in model.following" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
+            <div style="padding-bottom: 4px; padding-top: 4px" id="followed">
+                <a ng-if="model.userId === model.followId" ng-click="model.removeUser(f)" class="pull-right btn btn-danger">
+                    <span  class="glyphicon glyphicon-remove"></span>Remove</a>
+                <a ng-if="model.userId !== model.followId" ng-click="model.favoriteUser(f)" class="pull-right btn btn-primary">
+                    <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
             </div>
         </li>
     </ul>
 
     <h3>Following {{model.username}}</h3>
     <ul class="list-group">
-        <li ng-repeat="f in model.followers" class="newsfeed-list-group-item list-group-item">
-            <div id="following">
-                <a ng-click="model.favoriteUser(f)">
-                    <span  class="glyphicon glyphicon-star pull-right"></span>
-                </a>
-                <a href="#/user/{{model.userId}}/favorite/{{f._id}}">{{f.username}}</a>
+        <li ng-repeat="f in model.followers" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
+            <div style="padding-bottom: 4px; padding-top: 4px" id="following">
+                <a ng-click="model.favoriteUser(f._id)" class="pull-right btn btn-primary">
+                    <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
             </div>
+            <!---->
+            <!--<div id="following">-->
+                <!--<a ng-click="model.favoriteUser(f)">-->
+                    <!--<span  class="glyphicon glyphicon-star pull-right"></span>-->
+                <!--</a>-->
+
+                <!---->
+            <!--</div>-->
         </li>
     </ul>
 </div>

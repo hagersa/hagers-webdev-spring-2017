@@ -9,6 +9,7 @@
         vm.searchVideo = searchVideo;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.favoriteVideo = favoriteVideo;
+        vm.viewInfo = viewInfo;
         // vm.newVideos;
         // vm.showNewFavorites = showNewFavorites;
         // vm.videosForUser = videosForUser;
@@ -59,60 +60,45 @@
             vm.favorites = favorites;
         }
 
-        // function renderFavorites(favorites) {
-        //     console.log("in rendering");
-        //     vm.newVideos = favorites;
-        // }
+        <!--href="#/user/{{model.userId}}/favorite/{{video.id.videoId}}/info"-->
+        function viewInfo(video) {
+            console.log("video object from search: "+video);
 
-        // FavoriteService
-        //     .findNewFavorites()
-        //     .success(function (response) {
-        //         console.log("response: "+response);
-        //         vm.newVideos = response;
-        //     })
-        //     .error(function () {
-        //         console.log("ERROR!");
-        //     });
+            var newFavorite = {
+                videoId: video.id.videoId,
+                title: video.snippet.title,
+                description: video.snippet.description,
+                channelTitle: video.snippet.channelTitle,
+                publishedAt: video.snippet.publishedAt
+            };
+            console.log("newFavorite vide: "+newFavorite);
 
-        // function renderUsers(users) {
-        //     vm.users = users;
-        // }
+            FavoriteService
+                .findFavoriteByVideoId(newFavorite.videoId)
+                .then(function (response) {
+                    if (response.data != null) {
+                        console.log("data != null");
+                        var thisFavorite = response.data;
+                        $location.url("/user/"+vm.userId+"/favorite/"+thisFavorite.videoId+"/info");
+                    } else {
+                        console.log("data == null");
+                        FavoriteService
+                            .createFavorite(newFavorite)
+                            .then(function (response) {
+                                var myFavorite = response.data;
 
-        // function videosForUser(favorites) {
-        //     vm.index = (favorites.length - 1);
-        //     if(vm.index > 0) {
-        //         vm.fave = favorites[vm.index];
-        //
-        //         FavoriteService
-        //             .findFavoriteById(vm.fave._id)
-        //             .success(function (response) {
-        //                 vm.userVideo = response;
-        //             })
-        //             .error(function (response) {
-        //                 vm.error = "oops, something went wrong!";
-        //             });
-        //     }
-        // }
-
-        // function showNewFavorites() {
-        //     vm.newFavoritesUsers = [];
-        //
-        //     OdhecatonUserService
-        //         .findAllUsers()
-        //         .success(function (users) {
-        //             console.log(users);
-        //             // for(user in users) {
-        //                 // if(r.favorites.length > 0) {
-        //                     vm.newFavoritesUsers = users;
-        //                 // }
-        //             // }
-        //             return vm.newFavoritesUsers;
-        //         })
-        //         .error(function () {
-        //             vm.error = "no users with favorites";
-        //         });
-        //
-        // }
+                                console.log("created fave: "+myFavorite);
+                                if (myFavorite == null) {
+                                    console.log("no success creating favorite");
+                                } else {
+                                    var favoriteVideoId = myFavorite.videoId;
+                                    console.log("fave id: "+favoriteVideoId);
+                                    $location.url("/user/"+vm.userId+"/favorite/"+favoriteVideoId+"/info");
+                                }
+                            });
+                    }
+                });
+        }
 
         function searchVideo(searchText) {
             YoutubeService

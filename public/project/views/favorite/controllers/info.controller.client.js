@@ -57,7 +57,7 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        function favoriteVideo(videoId) {
+        function favoriteVideo(video) {
 
             var newFavorite = {
                 videoId: video.videoId,

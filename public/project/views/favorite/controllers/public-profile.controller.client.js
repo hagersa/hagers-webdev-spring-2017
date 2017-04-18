@@ -13,6 +13,8 @@
         vm.favoriteUser = favoriteUser;
         // vm.findFavoritesForUser = findFavoritesForUser;
         vm.logout = logout;
+        vm.removeFavorite = removeFavorite;
+        vm.removeUser = removeUser;
 
         console.log(vm.followId);
 
@@ -82,11 +84,6 @@
 
         } init();
 
-
-        // function findFavoritesForUser(userId) {
-        //
-        // }
-
         function logout(user) {
             console.log("have user in profile controller logout: "+user);
             OdhecatonUserService
@@ -112,53 +109,26 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        // function favoriteUser(followId) {
-        //
-        //     console.log("userId I want to follow: "+followId);
-        //     OdhecatonUserService
-        //         .findUserById(followId)
-        //         .then(function (notMe) {
-        //             var follow = notMe.data;
-        //
-        //             console.log("found follow user");
-        //             console.log(follow);
-        //
-        //
-        //             OdhecatonUserService
-        //                 .findUserById(vm.userId)
-        //                 .then(function (isMe) {
-        //                     console.log("me: ");
-        //                     console.log(isMe);
-        //                     var currentUser = isMe.data;
-        //
-        //
-        //                     currentUser.following.push(follow._id);
-        //
-        //                     console.log("following: ");
-        //                     console.log(currentUser.following);
-        //
-        //                     OdhecatonUserService
-        //                         .updateUser(vm.userId, currentUser)
-        //
-        // .then(function (response) {
-        //                             console.log("user I'm following: "+ follow);
-        //                             follow.followers.push(vm.userId);
-        //
-        //                             console.log("follow:");
-        //                             console.log(follow.followers);
-        //
-        //                             console.log("users followers: "+follow.followers);
-        //
-        //                             OdhecatonUserService
-        //                                 .updateUser(follow._id, follow)
-        //                                 .then(function (response) {
-        //                                     console.log("success in controller");
-        //                                 })
-        //                         });
-        //                 });
-        //         });
-        //
-        // }
+        function removeUser(userFollowing) {
+            var followingId = userFollowing._id;
+            var following = vm.user.following;
+            var index = following.indexOf(followingId);
+
+            if(index > -1) {
+                following.splice(index, 1);
+                vm.user.following = following;
+            }
+
+            OdhecatonUserService
+                .updateUser(vm.userId, vm.user)
+                .success(function (response) {
+                    console.log("success removing user: "+response.favorites);
+                    $location.url("/user/"+vm.userId+"/favorite/"+vm.userId);
+                })
+                .error(function (response) {
+                    console.log("error removing user");
+                });
+        }
 
         function favoriteUser(followId) {
 
@@ -192,6 +162,27 @@
                     } else {
                        vm.error = "could not add user to Favorites";
                     }
+                });
+        }
+
+        function removeFavorite(favorite) {
+            var favoriteId = favorite._id;
+            var userFavorites = vm.user.favorites;
+            var index = userFavorites.indexOf(favoriteId);
+
+            if(index > -1) {
+                userFavorites.splice(index, 1);
+                vm.user.favorites = userFavorites;
+            }
+
+            OdhecatonUserService
+                .updateUser(vm.userId, vm.user)
+                .success(function (response) {
+                    console.log("success removing favorite: "+response.favorites);
+                    $location.url("/user/"+vm.userId+"/favorite/"+vm.userId);
+                })
+                .error(function (response) {
+                    console.log("error removing favorite");
                 });
         }
 
