@@ -3,7 +3,7 @@
         .module("Odhecaton")
         .controller("WidgetListController", WidgetListController);
 
-    function WidgetListController($sce, OdhecatonUserService, $routeParams, $location, LibraryService, WidgetService) {
+    function WidgetListController($sce, $routeParams, $location, OdhecatonUserService, LibraryService, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.libraryId = $routeParams.lid;
@@ -28,25 +28,25 @@
                 .findLibraryById(vm.libraryId)
                 .success(function (library) {
                     var widgetIds = library.widgets;
-                    var widgetObjects = [];
-                    console.log(widgetIds);
-                    console.log(widgetObjects);
-
-                    for(var w in widgetIds) {
-                        console.log("widgetId is :" + widgetIds[w]);
-                        WidgetService
-                            .findWidgetById(widgetIds[w])
-                            .success(function (widget) {
-                                console.log("found widget object: "+widget);
-                                widgetObjects.push(widget);
-                                console.log(widgetObjects);
-                            })
-                            .error(function () {
-                                console.log("error in finding widget");
-
-                            });
-                    }
-                    vm.widgets = widgetObjects;
+                    // var widgetObjects = [];
+                    // console.log(widgetIds);
+                    // console.log(widgetObjects);
+                    //
+                    // for(var w in widgetIds) {
+                    //     console.log("widgetId is :" + widgetIds[w]);
+                    //     WidgetService
+                    //         .findWidgetById(widgetIds[w])
+                    //         .success(function (widget) {
+                    //             console.log("found widget object: "+widget);
+                    //             widgetObjects.push(widget);
+                    //             console.log(widgetObjects);
+                    //         })
+                    //         .error(function () {
+                    //             console.log("error in finding widget");
+                    //
+                    //         });
+                    // }
+                    vm.widgets = library.widgets;//widgetObjects;
                 })
                 .error(function () {
 

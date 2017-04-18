@@ -19,6 +19,26 @@ module.exports = function (libraryModel) {
 
     return api;
 
+    function reorderWidget(libraryId, start, end) {
+        var deferred = q.defer();
+
+        libraryModel
+            .findLibraryById(libraryId)
+            .then(function (library) {
+                console.log("widgets before reorder in reorderWidgets in model.server: "+library.widgets);
+                console.log("start and end: "+start+" "+end);
+
+                library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
+                library.markModified('widgets');
+                library.save(function (err, respnse) {
+                    console.log(library);
+                    console.log("widgets after reorder in reorderWidgets in model.server: "+library.widgets);
+                    deferred.resolve(library);
+                });
+            });
+        return deferred.promise;
+    }
+
     function createWidget(libraryId, widget) {
         var deferred = q.defer();
         // console.log(libraryId);
@@ -107,32 +127,9 @@ module.exports = function (libraryModel) {
         return deferred.promise;
     }
 
-
-    function reorderWidget(libraryId, start, end) {
-        var deferred = q.defer();
-
-        libraryModel
-            .findLibraryById(libraryId)
-            .then(function (library) {
-                console.log("widgets before reorder in reorderWidgets in model.server: "+library.widgets);
-                console.log("start and end: "+start+" "+end);
-
-                library.widgets.splice(end, 0, library.widgets.splice(start, 1)[0]);
-                library.markModified('widgets');
-                library.save(function (err, respnse) {
-                    console.log(library);
-                });
-
-                console.log("widgets after reorder in reorderWidgets in model.server: "+library.widgets);
-
-                deferred.resolve(library);
-            });
-        return deferred.promise;
-    }
-
     function findWidgetById(widgetId) {
         var deferred = q.defer();
-        console.log("widgetId in model: "+widgetId)
+        // console.log("widgetId in model: "+widgetId);
         WidgetModel
             .findById(widgetId, function (err, widget) {
                 if(err) {

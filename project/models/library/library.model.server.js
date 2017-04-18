@@ -109,10 +109,13 @@ module.exports = function (odhecatonUserModel) {
         return deferred.promise;
     }
 
+
     function findLibraryById(libraryId) {
         var deferred = q.defer();
         LibraryModel
-            .findById(libraryId, function (err, library) {
+            .findById(libraryId)
+            .populate('widgets')
+            .exec(function(err, library) {
                 if(err) {
                     deferred.reject(err); // reject
                 } else {
@@ -121,6 +124,20 @@ module.exports = function (odhecatonUserModel) {
             });
         return deferred.promise;
     }
+
+
+    // function findLibraryById(libraryId) {
+    //     var deferred = q.defer();
+    //     LibraryModel
+    //         .findById(libraryId, function (err, library) {
+    //             if(err) {
+    //                 deferred.reject(err); // reject
+    //             } else {
+    //                 deferred.resolve(library);
+    //             }
+    //         });
+    //     return deferred.promise;
+    // }
 
     function deleteLibrary(libraryId) {
         var deferred = q.defer();

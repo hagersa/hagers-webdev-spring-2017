@@ -8,7 +8,7 @@ module.exports = function () {
         group: String,
         members: [{type: String}],
         //members: [{type:  mongoose.Schema.Types.ObjectId, ref:'OdhecatonUserModel'}],
-        widgets: [{type:  mongoose.Schema.Types.ObjectId, ref:'OdhecatonWidgetModel'}],
+        widgets: [{type:  mongoose.Schema.Types.ObjectId, ref:'WidgetModel'}],
         dateCreated: {type:Date, default: Date.now}
     }, {collection: 'odhecaton.library'});
 
