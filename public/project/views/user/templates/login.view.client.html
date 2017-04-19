@@ -1,6 +1,4 @@
-<div ng-controller="loginController as model" class="container">
-
-    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
+<nav class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand">
@@ -10,21 +8,44 @@
         </div>
     </nav>
 
-    <div ng-controller="YoutubePublicSearchController as model" class="container-fluid">
-        <div class="input-group sah-button-padding">
-            <input ng-model="model.searchText" type="text" class="form-control" placeholder="Search Youtube">
-            <span class="input-group-btn">
-        <a href="#/user/search/{{model.searchText}}" class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-    </span>
+    <div ng-controller="NewsfeedController as model" class="row container-fluid sah-container-left-padding">
+        <div class="col-sm-4 hidden-xs sah-left-pane">
+
+            <div class="container-fluid">
+                <h4>Trending now</h4>
+            </div>
+
+            <div class="container-fluid">
+                <ul class="list-group" ng-repeat="favorite in model.favorites">
+                    <li style="padding-bottom: 16px; padding-top: 15px" class="newsfeed-list-group-item list-group-item">
+                        <div class="sah-iframe-widget">
+                            <iframe id="youtubeplayer" type="text/html" width="100%"
+                                    src="{{model.getYouTubeEmbedUrl(favorite.videoId)}}"
+                                    frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div style="padding-top: 4px" id="fave">
+                            <h5 class="danger">{{favorite.users.length}} users saved this today</h5>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <!--div for showing search results-->
-    <div></div>
+<div class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
+    <div ng-controller="YoutubePublicSearchController as model">
+        <div class="input-group sah-button-padding">
+            <input ng-model="model.searchText" type="text" class="form-control" placeholder="Search Youtube">
+            <span class="input-group-btn">
+                <a href="#/user/search/{{model.searchText}}" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span></a>
+            </span>
+        </div>
+    </div>
 
-    <div id="padded-container" class="container-fluid">
+    <div ng-controller="loginController as model"  id="padded-container">
         <h3>
             Welcome to Odhecaton!
         </h3>
@@ -32,6 +53,7 @@
         <p>
         Odhecaton is home to choral directors and singers alike.<br>
         </p>
+
         <ul class="sah-ul-style">
             <li>Create and access libraries of video recordings and sheet music.</li>
             <li>Share your libraries, search for new resources, and save your favorites as you search.</li>
@@ -78,6 +100,8 @@
         <a href="#/register" class="btn btn-warning btn-block">Register</a>
     </div>
 
+    </div>
+
     <nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-footer">
@@ -89,4 +113,3 @@
             </div>
         </div>
     </nav>
-</div>

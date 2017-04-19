@@ -88,9 +88,9 @@
             <li ng-repeat="f in model.following" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
                 <div style="padding-bottom: 4px; padding-top: 4px" id="followed">
                     <a ng-if="model.userId === model.followId" ng-click="model.removeUser(f)" class="pull-right btn btn-danger">
-                        <span  class="glyphicon glyphicon-remove"></span>Remove</a>
-                    <a ng-if="model.userId !== model.followId" ng-click="model.favoriteUser(f)" class="pull-right btn btn-primary">
-                        <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                        <span style="padding-right: 3px" class="glyphicon glyphicon-remove"></span>Remove</a>
+                    <a ng-if="model.userId !== model.followId && model.userId !== f._id" ng-click="model.favoriteUser(f)" class="pull-right btn btn-primary">
+                        <span style="padding-right: 3px" class="glyphicon glyphicon-star"></span>Follow</a>
                     <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
                 </div>
             </li>
@@ -100,8 +100,8 @@
         <ul class="list-group">
             <li ng-repeat="f in model.followers" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
                 <div style="padding-bottom: 4px; padding-top: 4px" id="following">
-                    <a ng-click="model.favoriteUser(f._id)" class="pull-right btn btn-primary">
-                        <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                    <a ng-if="model.userId !== f._id" ng-click="model.favoriteUser(f._id)" class="pull-right btn btn-primary">
+                        <span style="padding-right: 3px" class="glyphicon glyphicon-star"></span>Follow</a>
                     <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
                 </div>
                 <!---->
@@ -134,10 +134,10 @@
                 <a href="#/user/{{model.userId}}/favorite/{{favorite.videoId}}/info" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
                     <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
                 </a>
-                <a ng-if="model.userId === model.followId" ng-click="model.removeFavorite(favorite)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                <a ng-if="model.userId === model.followId" ng-click="model.removeFavorite(favorite)" class="pull-right btn btn-danger visible-xs" style="margin-left: 5px">
                     <span  class="glyphicon glyphicon-remove" style="padding-top: 4px"></span>
                 </a>
-                <a ng-if="model.userId === model.followId" ng-click="model.removeFavorite(favorite)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                <a ng-if="model.userId === model.followId" ng-click="model.removeFavorite(favorite)" class="pull-right btn btn-danger visible-sm visible-md visible-lg">
                     <span  class="glyphicon glyphicon-remove" ></span>
                     Remove
                 </a>
