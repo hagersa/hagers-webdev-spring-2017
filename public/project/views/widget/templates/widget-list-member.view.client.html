@@ -24,14 +24,14 @@
     <div class="widget-list">
         <div ng-repeat="widget in model.widgets">
             <div ng-switch="widget.widgetType">
-                <div ng-switch-when="HTML">
+                <div style="margin-bottom: 10px" ng-switch-when="HTML">
                     <div ng-include = "'views/widget/templates/widget-HTML.view.client.html'"></div>
                 </div>
                 <!--ng-bind-html="getTrustedHtml"-->
-                <div style="margin-bottom: 10px" ng-switch-when="YOUTUBE" class="sah-iframe-widget">
-                    <div  ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
+                <div style="margin-bottom: 10px" ng-switch-when="YOUTUBE">
+                    <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
                 </div>
-                <div ng-switch-when="PDF" class="sah-iframe-widget">
+                <div style="margin-bottom: 10px" ng-switch-when="PDF" class="sah-iframe-widget">
                     <div ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>
                 </div>
             </div>

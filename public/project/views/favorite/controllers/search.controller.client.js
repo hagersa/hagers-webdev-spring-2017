@@ -29,31 +29,6 @@
                 .findNewFavorites()
                 .success(renderFavorites)
                 .error(function () {});
-
-            // FavoriteService
-            //     .findNewFavorites()
-            //     .success(function (favorites) {
-            //         console.log("in controller");
-            //         vm.newVideos = favorites;
-            //     })
-            //     .error(function () {
-            //         vm.error = "unable to render users";
-            //     });
-
-
-
-            // OdhecatonUserService
-            //     .findUserById(vm.userId)
-            //     .success(renderUser)
-            //     .error(function () {});
-
-            // OdhecatonUserService
-            //     .findAllUsers()
-            //     .success(renderUsers)
-            //     .error(function () {});
-            //
-            // showNewFavorites();
-
         } init();
 
         function renderFavorites(favorites) {
