@@ -1,5 +1,5 @@
 <div ng-controller="WidgetListController as model">
-    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
+    <nav ng-controller="WidgetListController as model" class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -21,58 +21,128 @@
         </div>
     </nav>
 
-<div class="container-fluid sah-floating-outer-toolbar" style="margin-left: 8px; margin-right: 8px">
-    <div class="row" style="margin-top: 10px">
-        <div class="btn sah-floating-toolbar">
-            <a ng-click="model.createWidget('HTML')">
-                <span class="glyphicon glyphicon-text-size sah-glyphicon-edit"></span>
-            </a>
-        </div>
-        <div class="btn sah-floating-toolbar">
-            <a ng-click="model.createWidget('PDF')">
-                <span class="glyphicon glyphicon-music sah-glyphicon-edit"></span>
-            </a>
-        </div>
-        <div class="btn sah-floating-toolbar">
-            <a ng-click="model.createWidget('YOUTUBE')">
-                <span class="glyphicon glyphicon-facetime-video sah-glyphicon-edit"></span>
-            </a>
-        </div>
-    </div>
-</div>
+    <div ng-controller="LibraryHomeController as model" class="row container-fluid sah-container-left-padding">
+        <div class="col-sm-4 hidden-xs sah-left-pane">
+            <div class="container-fluid">
+                <div class="h4">
+                    <a href="#/user/{{model.userId}}/library/new">
+                        <span class="glyphicon glyphicon-plus-sign pull-right"></span>
+                    </a>
+                    Created By You
+                </div>
 
-    <div class="container-fluid" style="margin-left: 8px; margin-right: 8px">
-    <div class="widget-list sah-container-top-padding" sortable-directive="" callback="model.sort(start, end)">
-        <div ng-repeat="widget in model.widgets">
-            <div class="sah-toolbar" style="margin-right: 8px;">
-                <a href="#/user/{{model.userId}}/library/{{model.libraryId}}/widget/{{widget._id}}">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <span class="glyphicon glyphicon-align-justify"></span>
+                <div class="container-fluid sah-custom-left-container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="dirLibrary in model.dirLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/share" class="pull-right">
+                                        <span class="glyphicon glyphicon-share-alt"></span>
+                                    </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}">
+                                        <span class="glyphicon glyphicon-pencil pull-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div ng-switch="widget.widgetType">
-                <div style="margin-bottom: 10px" ng-switch-when="HTML">
-                    <div ng-include = "'views/widget/templates/widget-HTML.view.client.html'"></div>
+            <div class="container-fluid">
+                <div class="h4">
+                    Shared With You
                 </div>
-                <div style="margin-bottom: 10px" ng-switch-when="YOUTUBE" >
-                    <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
+
+                <div class="container-fluid  sah-custom-left-container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="memLibrary in model.memLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    <a href="#/user/{{model.userId}}/library/{{memLibrary._id}}/widget/member">{{memLibrary.name}}</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div style="margin-bottom: 10px" ng-switch-when="PDF">
-                    <!--ng-include = "'views/widget/templates/widget-PDF.view.client.html'"-->
-                    <div ng-include = "'views/widget/templates/widget-PDF.view.client.html'">
-                    <!--<iframe src="{{model.getTrustedHtml(widget.url)}}"-->
-                            <!--style="width:100%; height:500px;" frameborder="0"></iframe>-->
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="WidgetListController as model" class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
+        <div class="sah-floating-outer-toolbar">
+            <div class="row" style="margin-top: 10px">
+                <div class="btn sah-floating-toolbar">
+                    <a ng-click="model.createWidget('HTML')">
+                        <span class="glyphicon glyphicon-text-size sah-glyphicon-edit"></span>
+                    </a>
+                </div>
+                <div class="btn sah-floating-toolbar">
+                    <a ng-click="model.createWidget('PDF')">
+                        <span class="glyphicon glyphicon-music sah-glyphicon-edit"></span>
+                    </a>
+                </div>
+                <div class="btn sah-floating-toolbar">
+                    <a ng-click="model.createWidget('YOUTUBE')">
+                        <span class="glyphicon glyphicon-facetime-video sah-glyphicon-edit"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--style="margin-left: 8px; margin-right: 8px"-->
+        <!--class="container-fluid"-->
+        <div >
+            <div class="widget-list sah-container-top-padding" sortable-directive="" callback="model.sort(start, end)">
+                <div ng-repeat="widget in model.widgets">
+                    <div class="sah-toolbar" style="margin-right: 12px;">
+                        <a href="#/user/{{model.userId}}/library/{{model.libraryId}}/widget/{{widget._id}}">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-align-justify"></span>
                     </div>
-                    <!--<div ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>-->
-                </div>
+
+                    <div ng-switch="widget.widgetType">
+                        <div style="margin-bottom: 10px" ng-switch-when="HTML">
+                            <div ng-include = "'views/widget/templates/widget-HTML.view.client.html'"></div>
+                        </div>
+                        <div style="margin-bottom: 10px" ng-switch-when="YOUTUBE" >
+                            <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
+                        </div>
+                        <div style="margin-bottom: 10px" ng-switch-when="PDF">
+                            <!--ng-include = "'views/widget/templates/widget-PDF.view.client.html'"-->
+                            <div ng-include = "'views/widget/templates/widget-PDF.view.client.html'">
+                                <!--<iframe src="{{model.getTrustedHtml(widget.url)}}"-->
+                                <!--style="width:100%; height:500px;" frameborder="0"></iframe>-->
+                            </div>
+                            <!--<div ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>-->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
-<nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
+<nav ng-controller="WidgetListController as model" class="sah-mono navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">

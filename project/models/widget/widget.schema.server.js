@@ -8,6 +8,7 @@ module.exports = function () {
         placeholder: String,
         url: String,
         info: String,
+        recording: String,
         width: String,
         height: String,
         size: Number,

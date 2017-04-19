@@ -1,5 +1,5 @@
-<div ng-controller="NewsfeedController as model">
-    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
+<div>
+    <nav ng-controller="NewsfeedController as model" class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-right">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -14,42 +14,47 @@
         </div>
     </nav>
 
-<div class="container-fluid">
+    <div ng-controller="YoutubeSearchController as model" class="row container-fluid sah-container-left-padding">
+        <div class="col-sm-4 hidden-xs sah-left-pane">
+            <div class="container-fluid">
+            <!--<div class="container-fluid">-->
+                <div class="input-group sah-button-padding">
+                    <input ng-model="model.searchTitle" type="text" class="form-control" placeholder="Search Youtube">
+                    <span class="input-group-btn">
+                        <a class="btn btn-default" type="button">
+                            <span ng-click="model.searchVideo(model.searchTitle)" class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </span>
+                </div>
 
-    <!--<div class="input-group sah-button-padding">-->
-        <!--<input type="text" class="form-control" placeholder="Search for a user">-->
-        <!--<span class="input-group-btn">-->
-        <!--<a class="btn btn-default" type="button">-->
-            <!--<span class="glyphicon glyphicon-search"></span>-->
-        <!--</a>-->
-    <!--</span>-->
-    <!--</div>-->
+                <ul class="list-group" ng-repeat="video in model.videoSearchResults.items">
+                    <li class="newsfeed-list-group-item list-group-item"  style="padding-bottom: 50px; padding-top: 15px">
+                        <div class="sah-iframe-widget">
+                            <iframe id="youtubeplayer" type="text/html" width="100%"
+                                    src="{{model.getYouTubeEmbedUrl(video.id.videoId)}}"
+                                    frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <!--<a><img ng-src="{{video.snippet.thumbnails.default.url}}" class="list-image-size"/></a>-->
+                        <div style="padding-top: 4px" id="fave">
+                            <a ng-click="model.viewInfo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                                <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
+                            </a>
+                            <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                                <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            <!--</div>-->
+            </div>
+        </div>
+    </div>
 
-    <!--ng-if: show matching users if search is initiated, hide newsfeed-->
-    <!--<ul class="list-group">
-        <li class="list-group-item h4">
-            <a href="public-profile.view.client.html">Search Results</a>
-        </li>
-        <li class="newsfeed-list-group-item list-group-item">
-            <a href="public-profile.view.client.html">Username123</a>
-            <a class="pull-right">
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </a>
-        </li>
-        <li class="newsfeed-list-group-item list-group-item">
-            <a href="public-profile.view.client.html">Username234</a>
-            <a class="pull-right">
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </a>
-        </li>
-    </ul>-->
-    <!--<div class="container-fluid">-->
-        <!--<li class="newsfeed-list-group-item list-group-item">-->
-            <!--<div class="sah-left-padding" ng-if="model.favorites.length === 0">No new videos available</div>-->
-        <!--</li>-->
+    <div ng-controller="NewsfeedController as model" class="col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding">
+<!--<div class="container-fluid">-->
     <ul class="list-group" ng-repeat="favorite in model.favorites">
         <li style="padding-bottom: 16px; padding-top: 15px" class="newsfeed-list-group-item list-group-item">
-            <!--<div class="sah-left-padding" ng-if="model.favorites.length === 0">Sorry! No new favorites</div>-->
             <div class="sah-iframe-widget">
                 <iframe id="ytplayer" type="text/html" width="100%"
                         src="{{model.getYouTubeEmbedUrl(favorite.videoId)}}"
@@ -72,40 +77,17 @@
                     <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
                 </a>
                 <h5 class="danger">{{favorite.users.length}} users saved this video today</h5>
-                <!--<h5>Title: {{favorite.title}}</h5>-->
             </div>
 
-            <!--<div>-->
-                <!--<form novalidate name="showUsers" id="showUsers">-->
-                    <!--<div>-->
-                        <!--<button type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-user sah-navbar-text-padding"></span>Show Users</button>-->
-                        <!--<h5 class="danger">{{favorite.users.length}} user saved this video</h5>-->
-                    <!--</div>-->
-
-                    <!--<div ng-if="showUsers.$submitted">-->
-                        <!--<div ng-repeat="user in favorite.users"><a>{{user.username}}</a></div>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-
-
-            <!--<h5>Show Users: <input type="checkbox" ng-model="checkedUser" aria-label="Toggle ngShow"></h5>-->
-            <!--<div class="check-element animate-show-hide" ng-show="checkedUser" ng-repeat="user in favorite.users"><a href="#/user/{{model.userId}}/favorite/{{user._id}}">{{user.username}}</a></div>-->
-
-            <!--<h5>Show Details: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"></h5>-->
-            <!--<br/>-->
-            <!--<div class="check-element animate-show-hide" ng-show="checked">-->
-                <!--<p>Description: {{favorite.description}}</p>-->
-                <!--<p>Channel Title: {{favorite.channelTitle}}</p>-->
-                <!--<p>Date Published: {{favorite.publishedAt}}</p><br/>-->
-            <!--</div>-->
         </li>
     </ul>
-    <!--</div>-->
-</div>
+<!--</div>-->
+    </div>
 
 
-<nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
+
+
+<nav ng-controller="NewsfeedController as model" class="sah-mono navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
             <div class="row navbar-text text-center">

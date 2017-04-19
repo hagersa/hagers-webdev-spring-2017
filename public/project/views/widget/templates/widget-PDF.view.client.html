@@ -2,12 +2,22 @@
     <!--This browser does not support PDFs. Please download the PDF to view it: <a href="{{widget.url}}">Download PDF</a>-->
 <!--</iframe>-->
 <ul class="list-group" style="padding-top: 0px">
-    <li class="list-group-item">
+    <li class="list-group-item" style="padding-bottom: 80px">
+        <div style="float: left">
         <img ng-src="http://www.the-exponent.com/test2/wp-content/uploads/2010/11/sheet-music-500x288.jpg" style="height: 70px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px"/>
-        <a style="padding-right: 8px" href="{{widget.url}}" target="_blank">
-            <span style="padding-right: 4px" class="glyphicon glyphicon-link"></span> Open PDF</a>
-        <a href="{{widget.info}}" target="_blank">
-            <span  class="glyphicon glyphicon-info-sign"></span>  More Info</a>
+        </div>
+            <div style="float: left; padding-top: 6px">
+                <div>
+                    <a style="padding-right: 8px" href="{{widget.url}}" target="_blank">
+                        <span style="padding-right: 4px" class="glyphicon glyphicon-link"></span> Open PDF</a></div>
+                <div>
+                    <a href="{{widget.info}}" target="_blank">
+                        <span style="padding-right: 8px"  class="glyphicon glyphicon-info-sign"></span>More Info</a></div>
+                <div>
+                    <a href="{{widget.recording}}" target="_blank">
+                        <span style="padding-right: 6px"  class="glyphicon glyphicon-volume-up"></span> Recording</a></div>
+            </div>
+        </div>
     </li>
 </ul>
 

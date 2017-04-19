@@ -1,5 +1,5 @@
-<div ng-controller="WidgetListController as model">
-    <nav class="sah-mono navbar navbar-default navbar-fixed-top">
+<div>
+    <nav ng-controller="WidgetListController as model" class="sah-mono navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/library" class="navbar-link">
@@ -20,27 +20,94 @@
         </div>
     </nav>
 
-    <div class="container-fluid" style="margin-left: 8px; margin-right: 8px">
-    <div class="widget-list">
-        <div ng-repeat="widget in model.widgets">
-            <div ng-switch="widget.widgetType">
-                <div style="margin-bottom: 10px" ng-switch-when="HTML">
-                    <div ng-include = "'views/widget/templates/widget-HTML.view.client.html'"></div>
+    <div ng-controller="LibraryHomeController as model" class="row container-fluid sah-container-left-padding">
+        <div class="col-sm-4 hidden-xs sah-left-pane">
+            <div ng-if="model.user.role=='DIRECTOR' || model.user.role=='ADMIN'" class="container-fluid">
+                <div class="h4">
+                    <a href="#/user/{{model.userId}}/library/new">
+                        <span class="glyphicon glyphicon-plus-sign pull-right"></span>
+                    </a>
+                    Created By You
                 </div>
-                <!--ng-bind-html="getTrustedHtml"-->
-                <div style="margin-bottom: 10px" ng-switch-when="YOUTUBE">
-                    <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
+
+                <div class="container-fluid sah-custom-left-container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="dirLibrary in model.dirLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/widget/director">{{dirLibrary.name}}</a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}/share" class="pull-right">
+                                        <span class="glyphicon glyphicon-share-alt"></span>
+                                    </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="#/user/{{model.userId}}/library/{{dirLibrary._id}}">
+                                        <span class="glyphicon glyphicon-pencil pull-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div style="margin-bottom: 10px" ng-switch-when="PDF" class="sah-iframe-widget">
-                    <div ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="h4">
+                    Shared With You
+                </div>
+
+                <div class="container-fluid  sah-custom-left-container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    Name
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="memLibrary in model.memLibraries" class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 sah-left-padding">
+                                    <a href="#/user/{{model.userId}}/library/{{memLibrary._id}}/widget/member">{{memLibrary.name}}</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+
+    <div ng-controller="WidgetListController as model" class="container-fluid col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding" style="margin-left: 8px; margin-right: 8px">
+        <div class="widget-list" style="margin-left: 12px">
+            <div ng-repeat="widget in model.widgets">
+                <div ng-switch="widget.widgetType">
+                    <div style="margin-bottom: 10px" ng-switch-when="HTML">
+                        <div ng-include = "'views/widget/templates/widget-HTML.view.client.html'"></div>
+                    </div>
+                    <!--ng-bind-html="getTrustedHtml"-->
+                    <div style="margin-bottom: 10px" ng-switch-when="YOUTUBE">
+                        <div class="sah-iframe-widget" ng-include = "'views/widget/templates/widget-YOUTUBE.view.client.html'"></div>
+                    </div>
+                    <div style="margin-bottom: 10px" ng-switch-when="PDF" class="sah-iframe-widget">
+                        <div ng-include = "'views/widget/templates/widget-PDF.view.client.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
-    <nav class="sah-mono navbar navbar-default navbar-fixed-bottom">
+    <nav ng-controller="WidgetListController as model" class="sah-mono navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-footer">
                 <div class="row navbar-text text-center">

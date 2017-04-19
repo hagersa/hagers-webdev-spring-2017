@@ -105,7 +105,7 @@ module.exports = function (libraryModel) {
 
         if(widget.widgetType === "PDF") {
             WidgetModel
-                .update({_id : widgetId}, {url: widget.url, info: widget.info},
+                .update({_id : widgetId}, {url: widget.url, info: widget.info, recording: widget.recording},
                     function (err, response) {
                         deferred.resolve(response);
                     });
