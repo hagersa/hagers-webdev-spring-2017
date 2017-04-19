@@ -83,7 +83,40 @@
     <p>{{model.aboutMe}}<br></p><br>
     </ul>
 
-    <h3>{{model.username}}'s Favorite Videos</h3>
+        <h3>Followed by {{model.username}}</h3>
+        <ul class="list-group">
+            <li ng-repeat="f in model.following" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
+                <div style="padding-bottom: 4px; padding-top: 4px" id="followed">
+                    <a ng-if="model.userId === model.followId" ng-click="model.removeUser(f)" class="pull-right btn btn-danger">
+                        <span  class="glyphicon glyphicon-remove"></span>Remove</a>
+                    <a ng-if="model.userId !== model.followId" ng-click="model.favoriteUser(f)" class="pull-right btn btn-primary">
+                        <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                    <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
+                </div>
+            </li>
+        </ul>
+
+        <h3>Following {{model.username}}</h3>
+        <ul class="list-group">
+            <li ng-repeat="f in model.followers" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
+                <div style="padding-bottom: 4px; padding-top: 4px" id="following">
+                    <a ng-click="model.favoriteUser(f._id)" class="pull-right btn btn-primary">
+                        <span  class="glyphicon glyphicon-star"></span>Follow</a>
+                    <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
+                </div>
+                <!---->
+                <!--<div id="following">-->
+                <!--<a ng-click="model.favoriteUser(f)">-->
+                <!--<span  class="glyphicon glyphicon-star pull-right"></span>-->
+                <!--</a>-->
+
+                <!---->
+                <!--</div>-->
+            </li>
+        </ul>
+
+
+        <h3>{{model.username}}'s Favorite Videos</h3>
     <ul ng-repeat="favorite in model.favorites" class="list-group">
         <li style="padding-top: 15px; padding-bottom: 50px;" class="newsfeed-list-group-item list-group-item">
             <div class="sah-iframe-widget">
@@ -128,39 +161,7 @@
             <!--</div>-->
         </li>
     </ul>
-
-    <h3>Followed by {{model.username}}</h3>
-    <ul class="list-group">
-        <li ng-repeat="f in model.following" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
-            <div style="padding-bottom: 4px; padding-top: 4px" id="followed">
-                <a ng-if="model.userId === model.followId" ng-click="model.removeUser(f)" class="pull-right btn btn-danger">
-                    <span  class="glyphicon glyphicon-remove"></span>Remove</a>
-                <a ng-if="model.userId !== model.followId" ng-click="model.favoriteUser(f)" class="pull-right btn btn-primary">
-                    <span  class="glyphicon glyphicon-star"></span>Follow</a>
-                <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
-            </div>
-        </li>
-    </ul>
-
-    <h3>Following {{model.username}}</h3>
-    <ul class="list-group">
-        <li ng-repeat="f in model.followers" class="newsfeed-list-group-item list-group-item" style="padding-bottom: 10px; padding-top: 3px">
-            <div style="padding-bottom: 4px; padding-top: 4px" id="following">
-                <a ng-click="model.favoriteUser(f._id)" class="pull-right btn btn-primary">
-                    <span  class="glyphicon glyphicon-star"></span>Follow</a>
-                <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
-            </div>
-            <!---->
-            <!--<div id="following">-->
-                <!--<a ng-click="model.favoriteUser(f)">-->
-                    <!--<span  class="glyphicon glyphicon-star pull-right"></span>-->
-                <!--</a>-->
-
-                <!---->
-            <!--</div>-->
-        </li>
-    </ul>
-<!--</div>-->
+        <!--</div>-->
 
     <nav  ng-controller="PublicProfileController as model" class="sah-mono navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
