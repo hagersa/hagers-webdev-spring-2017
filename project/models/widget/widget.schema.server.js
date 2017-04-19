@@ -4,10 +4,10 @@ module.exports = function () {
     var WidgetSchema = mongoose.Schema({
         _library: {type:  mongoose.Schema.Types.ObjectId, ref:'LibraryModel'},
         widgetType: String,
-        name: String,
         text: String,
         placeholder: String,
         url: String,
+        info: String,
         width: String,
         height: String,
         size: Number,

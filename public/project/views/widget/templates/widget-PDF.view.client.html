@@ -1,7 +1,15 @@
-<iframe src="{{model.getTrustedHtml(widget.url)}}" width="100%" height="100vh">
-    This browser does not support PDFs. Please download the PDF to view it: <a href="{{widget.url}}">Download PDF</a>
-</iframe>
-
+<!--<iframe src="{{model.getTrustedHtml(widget.url)}}" width="100%" height="100vh">-->
+    <!--This browser does not support PDFs. Please download the PDF to view it: <a href="{{widget.url}}">Download PDF</a>-->
+<!--</iframe>-->
+<ul class="list-group" style="padding-top: 0px">
+    <li class="list-group-item">
+        <img ng-src="http://www.the-exponent.com/test2/wp-content/uploads/2010/11/sheet-music-500x288.jpg" style="height: 70px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px"/>
+        <a style="padding-right: 8px" href="{{widget.url}}" target="_blank">
+            <span style="padding-right: 4px" class="glyphicon glyphicon-link"></span> Open PDF</a>
+        <a href="{{widget.info}}" target="_blank">
+            <span  class="glyphicon glyphicon-info-sign"></span>  More Info</a>
+    </li>
+</ul>
 
 
 <!--<a href="{{widget.url}}">Download PDF</a>-->

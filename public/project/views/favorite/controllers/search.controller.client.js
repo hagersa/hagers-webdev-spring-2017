@@ -95,6 +95,8 @@
             //
             // x.style.display = 'none';
             // y.style.display = 'block';
+
+
             var newFavorite = {
                 videoId: video.id.videoId,
                 title: video.snippet.title,

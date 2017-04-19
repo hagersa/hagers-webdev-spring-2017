@@ -82,7 +82,7 @@
             // social media
             .when("/user/:uid/newsfeed", {
                 templateUrl: 'views/favorite/templates/newsfeed.view.client.html',
-                controller: 'YoutubeSearchController',
+                controller: 'NewsfeedController',
                 controllerAs: 'model'
             })
             // .when("/user/:uid/newsfeed/:vid", {
