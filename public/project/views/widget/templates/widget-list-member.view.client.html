@@ -20,8 +20,8 @@
         </div>
     </nav>
 
-    <div ng-controller="LibraryHomeController as model" class="row container-fluid sah-container-left-padding">
-        <div class="col-sm-4 hidden-xs sah-left-pane">
+    <div class="row container-fluid sah-container-left-padding">
+        <div ng-controller="LibraryHomeController as model" class="col-sm-4 hidden-xs sah-left-pane">
             <div ng-if="model.user.role=='DIRECTOR' || model.user.role=='ADMIN'" class="container-fluid">
                 <div class="h4">
                     <a href="#/user/{{model.userId}}/library/new">
@@ -85,6 +85,55 @@
                 </div>
             </div>
         </div>
+
+        <div ng-controller="YoutubeSearchController as model" class="col-sm-4 hidden-xs sah-left-pane">
+            <div class="container-fluid">
+                <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+                <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+            </div>
+
+            <!--<div class="container-fluid">-->
+            <div class="input-group sah-button-padding">
+                <input ng-model="model.searchTitle" type="text" class="form-control" placeholder="Search Youtube">
+                <span class="input-group-btn">
+                <a class="btn btn-default" type="button">
+            <span ng-click="model.searchVideo(model.searchTitle)" class="glyphicon glyphicon-search"></span></a>
+            </span>
+            </div>
+
+            <ul class="list-group" ng-repeat="video in model.videoSearchResults.items">
+                <li class="newsfeed-list-group-item list-group-item"  style="padding-bottom: 50px; padding-top: 15px">
+                    <div class="sah-iframe-widget">
+                        <iframe id="ytplayer" type="text/html" width="100%"
+                                src="{{model.getYouTubeEmbedUrl(video.id.videoId)}}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+
+                    <div style="padding-top: 4px" id="favorite">
+                        <a ng-click="model.viewInfo(video)" class="pull-right btn btn-primary visible-sm visible-md visible-lg" style="margin-left: 5px">
+                            <span  class="glyphicon glyphicon-info-sign"></span>
+                            More Info
+
+                        </a>
+                        <a ng-click="model.viewInfo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                            <span  class="glyphicon glyphicon-info-sign" style="padding-top: 4px"></span>
+                        </a>
+                        <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-xs" style="margin-left: 5px">
+                            <span  class="glyphicon glyphicon-star" style="padding-top: 4px"></span>
+                        </a>
+                        <a ng-click="model.favoriteVideo(video)" class="pull-right btn btn-primary visible-sm visible-md visible-lg">
+                            <span  class="glyphicon glyphicon-star"></span>
+                            Add to Favorites
+                        </a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
     </div>
 
     <div ng-controller="WidgetListController as model" class="container-fluid col-sm-8 col-xs-12 sah-right-pane sah-container-right-padding" style="margin-left: 8px; margin-right: 8px">
