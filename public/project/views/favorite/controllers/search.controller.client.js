@@ -14,6 +14,7 @@
         // vm.showNewFavorites = showNewFavorites;
         // vm.videosForUser = videosForUser;
 
+
         function init() {
             OdhecatonUserService
                 .findUserById(vm.userId)

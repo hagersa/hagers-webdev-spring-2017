@@ -15,8 +15,28 @@
         vm.logout = logout;
         vm.removeFavorite = removeFavorite;
         vm.removeUser = removeUser;
+        vm.searchForUser = searchForUser;
 
         console.log(vm.followId);
+
+        // vm.foundUser;
+        // vm.searchUsername
+
+        function searchForUser(username) {
+            OdhecatonUserService
+                .findUserByUsername(username)
+                .then(function (response) {
+                    if(response.data !== null) {
+                        // console.log("found user");
+                        vm.foundUser = response.data;
+                        // vm.message=vm.foundUser.username + " success!";
+                        // console.log("user: "+vm.foundUser.username);
+                        $location.url("/user/"+vm.userId+"/favorite/"+vm.foundUser._id);
+                    } else {
+                        vm.error="Sorry, user not found";
+                    }
+            });
+        }
 
         function init() {
             OdhecatonUserService

@@ -26,6 +26,60 @@
         </div>
     </nav>
 
+    <div>
+        <div class="container-fluid"><h2>Find & Edit a User</h2></div>
+        <div class="container-fluid">
+    <div class="input-group sah-button-padding">
+        <input ng-model="model.searchUsername" type="text" class="form-control" placeholder="Search by username...">
+        <span class="input-group-btn">
+        <a class="btn btn-default" type="button">
+            <span ng-click="model.searchForUser(model.searchUsername)" class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+    </div>
+    </div>
+
+    <div class="container-fluid">
+    <div>
+        <div class="alert alert-danger" ng-show="model.searchError">{{model.searchError}}</div>
+    </div>
+    </div>
+
+    <div class="container-fluid">
+    <table class="sah-table-style">
+        <tr class="sah-row-style">
+            <th class="sah-table-item">Username</th>
+            <th class="sah-table-item visible-lg visible-md">Last Name</th>
+            <th class="sah-table-item visible-lg visible-md">First Name</th>
+            <th class="sah-table-item visible-lg visible-md">Email</th>
+            <th class="sah-table-item">Password</th>
+            <th class="sah-table-item">Role</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="sah-row-style">
+            <td class="sah-table-item"><input ng-model="model.foundUser.username" type="text" class="form-control"/></td>
+            <td class="sah-table-item visible-lg visible-md"><input ng-model="model.foundUser.lastName" type="text" class="form-control"/></td>
+            <td class="sah-table-item visible-lg visible-md"><input ng-model="model.foundUser.firstName" type="text" class="form-control"/></td>
+            <td class="sah-table-item visible-lg visible-md"><input ng-model="model.foundUser.email" type="text" class="form-control"/></td>
+            <td class="sah-table-item"><input ng-model="model.foundUser.password" type="text" class="form-control"/></td>
+            <td class="sah-table-item">
+                <select ng-model="model.foundUser.role">
+                    <option value='{{model.foundUser.role}}'>{{model.foundUser.role}}</option>
+                    <option ng-if="model.foundUser.role !=='ADMIN'" value='ADMIN'>ADMIN</option>
+                    <option ng-if="model.foundUser.role !=='DIRECTOR'" value='DIRECTOR'>DIRECTOR</option>
+                    <option ng-if="model.foundUser.role !=='MEMBER'" value='MEMBER'>MEMBER</option>
+                </select></td>
+            <td> <a><span ng-click="model.update(model.foundUser)" class="glyphicon glyphicon-ok pull-right"></span></a></td>
+            <td>
+                <a class="danger"><span ng-click="model.unregisterUser(model.foundUser)" class="glyphicon glyphicon-remove pull-right"></span></a>
+            </td>
+        </tr>
+    </table>
+    </div>
+
+
     <div class="container-fluid">
         <h2>View & Edit All Users</h2>
 

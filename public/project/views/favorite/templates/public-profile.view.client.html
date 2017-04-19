@@ -15,6 +15,23 @@
     </nav>
 
 <div class="container-fluid">
+    <!--<ul  class="list-group">-->
+
+    <div class="input-group sah-button-padding">
+        <input ng-model="model.searchUsername" type="text" class="form-control" placeholder="Find a friend by username...">
+        <span class="input-group-btn">
+        <a class="btn btn-default" type="button">
+            <span ng-click="model.searchForUser(model.searchUsername)" class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+
+    <div>
+    <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+    <div class="alert alert-success" ng-show="model.message">{{model.message}}</div>
+    </div>
+
+
     <ul class="list-group">
     <h3>
         About {{model.username}}
