@@ -185,11 +185,11 @@ module.exports = function () {
         var bcrypted = bcrypt.hashSync(user.password);
 
         // if password hasn't been updated, don't hash it again
-            if(user.password.length > 20) {
-                updatedPassword = user.password;
-            } else {
-                updatedPassword = bcrypted;
-            }
+        if(user.password.length > 20) {
+            updatedPassword = user.password;
+        } else {
+            updatedPassword = bcrypted;
+        }
 
 
 
@@ -205,14 +205,15 @@ module.exports = function () {
                     following: user.following,
                     favorites: user.favorites},
                 function (err, response) {
-            if(err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(response);
-            }
-        });
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(response);
+                    }
+                });
         return deferred.promise;
     }
+
 
     // function updatePassword(userId, password) {
     //     var deferred = q.defer();

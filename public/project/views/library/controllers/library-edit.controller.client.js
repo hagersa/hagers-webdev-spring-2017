@@ -21,6 +21,10 @@
                 .findAllDirLibrariesForUser(vm.userId)
                 .success(renderDirLibraries);
 
+            LibraryService
+                .findAllMemLibrariesForUser(vm.userId)
+                .success(renderMemLibraries);
+
             // LibraryService
             //     .findAllMemLibrariesForUser(vm.userId)
             //     .success(renderMemLibraries);
