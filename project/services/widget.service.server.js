@@ -45,8 +45,6 @@ module.exports = function (app, WidgetModel) {
         WidgetModel
             .createWidget(libraryId, newWidget)
             .then(function (response) {
-                // console.log(response);
-                // console.log("the widgetType in service.server is: "+response.widgetType);
                 res.send(response);
             }, function (error) {
                 res.sendStatus(500);
@@ -56,55 +54,47 @@ module.exports = function (app, WidgetModel) {
 
     function findAllWidgetsForLibrary(req, res) {
         var libraryId = req.params.libraryId;
-        // console.log("In service.server with pageId: " + libraryId);
 
         return WidgetModel.findAllWidgetsForLibrary(libraryId)
             .then(function (widgetIds) {
-                // console.log("have widgetIds in service.server: " + widgetIds);
-
                 return WidgetModel.findAllWidgets(widgetIds);
             })
             .then(function (widgets) {
-                // console.log("have widgetObjects in service.server: " + widgets);
                 res.send(widgets);
             })
     }
 
 
     function findWidgetById(req, res){
-        //var widgetId = req.body;
+
         var widgetId = req.params.widgetId;
-        console.log("have widgetId in service.server: "+widgetId);
 
         WidgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
-                console.log("success in server");
                 res.send(widget);
             }, function (error) {
-                console.log("error in server");
                 res.sendStatus(500)
             });
     }
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        // console.log(widgetId);
 
         WidgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
-                // console.log("widget in service.server: "+widget);
+
                 WidgetModel
                     .getOwnerLibrary(widget)
                     .then(function (library) {
-                        // console.log("have page in service.server: "+library);
+
                         var index = library.widgets.indexOf(widgetId);
-                        // console.log("index is: "+index);
+
                         if (index > -1) {
                             library.widgets.splice(index, 1);
                         }
-                        // console.log("updated library.widgets: "+library.widgets);
+
                         library.save();
 
                         WidgetModel
@@ -121,8 +111,6 @@ module.exports = function (app, WidgetModel) {
     function updateWidget(req, res) {
         var widget = req.body;
         var widgetId = req.params.widgetId;
-
-        // console.log(widgetId);
 
         WidgetModel
             .updateWidget(widgetId, widget)

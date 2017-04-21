@@ -5,21 +5,15 @@ module.exports = function (app, FavoriteModel) {
     app.get("/api/favorite/:favoriteId", findFavoriteById);
     app.get("/api/user/:userId/favorites/", findFavoritesForUser);
     app.get("/api/new", findNewFavorites);
-    // app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
-    // app.get("/api/favorite/:videoId", findFavoriteByVideoId);
     app.put("/api/favorite", updateFavorite);
-    // app.delete("/api/page/:pageId", deletePage);
 
     function createFavorite(req, res) {
             var newFavorite = req.body;
-            //var userId = req.params.userId;
-            // console.log(websiteId);
-            // console.log(newPage);
+
 
             FavoriteModel
                 .createFavorite(newFavorite)
                 .then(function(response) {
-                    // console.log(response);
                     res.send(response);
                 }, function (error) {
                     res.sendStatus(500);
@@ -51,41 +45,22 @@ module.exports = function (app, FavoriteModel) {
                 console.log("have libraryObjects in service.server: " + favorites);
                 res.send(favorites);
             });
-
-
-        // odhecatonUserModel
-        //     .findUserById(userId)
-        //     .then(function (user) {
-        //         FavoriteModel
-        //             .findFavoritesForUser(user)
-        //             .then(function (favorites) {
-        //                 res.json(favorites);
-        //             }, function (error) {
-        //                 res.sendStatus(500);
-        //             });
-        //     }, function (error) {
-        //         res.sendStatus(500);
-        //     });
     }
 
     function findFavoriteByVideoId (req, res) {
         var videoId = req.query['videoId'];
-        // console.log(username);
 
         FavoriteModel
             .findFavoriteByVideoId(videoId)
             .then(function (favorite) {
-                // console.log("in user server findUserByUsername " +user);
                 res.json(favorite);
             }, function (error) {
-                // console.log("server findUserByUsername caused a problem"+error);
                 res.sendStatus(500)
             });
     }
 
     function findFavoriteById(req, res) {
         var favoriteId = req.body;
-        // console.log(userId);
 
         FavoriteModel
             .findFavoriteById(favoriteId)
@@ -96,7 +71,6 @@ module.exports = function (app, FavoriteModel) {
             });
     }
 
-    //
     function updateFavorite(req, res) {
         var favorite = req.body;
         var favoriteId = favorite._id;
@@ -112,17 +86,4 @@ module.exports = function (app, FavoriteModel) {
                 res.sendStatus(500);
             });
     }
-    //
-    // function deletePage(req, res) {
-    //     var pageId = req.params.pageId;
-    //     console.log(pageId);
-    //
-    //     PageModel
-    //         .deletePage(pageId)
-    //         .then(function () {
-    //             res.sendStatus(200);
-    //         }, function (error) {
-    //             res.sendStatus(500)
-    //         });
-    // }
 };

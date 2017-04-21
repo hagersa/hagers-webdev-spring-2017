@@ -2,14 +2,12 @@ module.exports = function (odhecatonUserModel) {
 
     var api = {
         createFavorite: createFavorite, // ad favoriteId to a users favorites
-        // findAllFavoritesForUser: findAllFavoritesForUser, // return the list of favorites for a user
         findFavoriteByVideoId: findFavoriteByVideoId,
         findFavoriteById: findFavoriteById, // find a favorite object by its id
         findFavoritesForUser:  findFavoritesForUser,
         findAllFavorites: findAllFavorites,
         findNewFavorites: findNewFavorites,
         updateFavorite: updateFavorite // update a favorite object
-        // deleteFavoriteForUser: deleteFavoriteForUser // deletes favoriteId from user.favorites and userId from favorites.users
     };
 
 
@@ -22,15 +20,14 @@ module.exports = function (odhecatonUserModel) {
     return api;
 
     function createFavorite(favorite) {
-        // console.log("have new user in model.server: "+user);
+
         var deferred = q.defer();
-        // console.log(user);
+
         FavoriteModel
             .create(favorite, function (err, response) {
                 if(err) {
                     deferred.reject(err); // reject
                 } else {
-                    // console.log("success creating user in model.server: "+user);
                     deferred.resolve(response);
                 }
             });
@@ -41,7 +38,6 @@ module.exports = function (odhecatonUserModel) {
         var deferred = q.defer();
         FavoriteModel
             .findById(favoriteId, function (err, favorite) {
-                // check that promise is returned first
                 deferred.resolve(favorite);
             });
         return deferred.promise;
@@ -49,14 +45,12 @@ module.exports = function (odhecatonUserModel) {
 
     function findFavoriteByVideoId(videoId) {
 
-        // console.log('in model'+username);
         var deferred = q.defer();
         FavoriteModel
             .findOne({videoId: videoId}, function (err, favorite) {
                 if(err) {
                     deferred.reject(err); // reject
                 } else {
-                    // console.log("in model.server"+user);
                     deferred.resolve(favorite);
                 }
             });
@@ -70,13 +64,9 @@ module.exports = function (odhecatonUserModel) {
 
         FavoriteModel
             .find({'_id': { $in: favoriteIds}}, function(err, favoriteObjects) {
-                // console.log("Found Library objects in model.server: "+libraryObjects);
-
                 if(err) {
-                    console.log("error in model");
                     deferred.reject(err); // reject
                 } else {
-                    console.log("favoriteObjects: "+favoriteObjects);
                     deferred.resolve(favoriteObjects);
                 }
             });
@@ -89,9 +79,8 @@ module.exports = function (odhecatonUserModel) {
             odhecatonUserModel
                 .findUserById(userId)
                 .then(function (user) {
-                    // console.log("found user in findAllLibrariesForUser in model.server"+user);
                     var favoriteIds = user.favorites;
-                    /// / console.log("found libraryIds in findAllDirLibrariesForUser in model.server"+libraryIds);
+
                     deferred.resolve(favoriteIds);
                 }, function (error) {
                     console.log("error in model finding user");
@@ -99,23 +88,8 @@ module.exports = function (odhecatonUserModel) {
                 });
             return deferred.promise;
         }
-        // var deferred = q.defer();
-        //
-        // var favoriteIds = user.favorites;
-        // var favoriteObjects = [];
-        //
-        // for(var f in favoriteIds) {
-        //     FavoriteModel
-        //         .findById(favoriteIds[f], function (err, favorite) {
-        //             favoriteObjects.push(favorite);
-        //         });
-        // }
-        // deferred.resolve(favoriteObjects);
-        // return deferred.promise;
 
     function  findNewFavorites() {
-        console.log("in model");
-        //return FavoriteModel.find();
         var deferred = q.defer();
 
         FavoriteModel
@@ -130,33 +104,18 @@ module.exports = function (odhecatonUserModel) {
     }
 
     function updateFavorite(favoriteId, favorite) {
-        // console.log("in library.model.server");
-        // console.log("library: "+library);
-        // console.log("libraryId: "+libraryId);
-
         var deferred = q.defer();
         FavoriteModel
             .update({_id : favoriteId},
                 {users: favorite.users},
                 function (err, response) {
                     if(err) {
-                        console.log("error in update function");
                         deferred.reject(err); // reject
                     } else {
-                        console.log("success in update function");
                         deferred.resolve(response);
                     }
 
                 });
         return deferred.promise;
     }
-
-    // function findAllFavoritesForUser () {
-    //
-    // }
-
-    // function deleteFavoriteForUser () {
-    //
-    // }
-
 };

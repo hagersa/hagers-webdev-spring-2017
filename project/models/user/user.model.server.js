@@ -125,16 +125,10 @@ module.exports = function () {
 
     // updated to check that the password is correct
     function findUserByCredentials(username, password) {
-        // console.log("in model.server: "+username);
-        // console.log("in model.server: "+password);
-        // console.log("in model.server: "+bcrypt.hashSync(password));
 
         var deferred = q.defer();
         OdhecatonUserModel
             .findOne({username: username}, function (err, user) {
-            // console.log("err: "+err);
-            // console.log("user: "+user);
-            //     console.log("in model.server: "+bcrypt.compareSync(password, user.password));
 
             if (user && (user != null)) {
                 if(user && bcrypt.compareSync(password, user.password)) {  //&& bcrypt.compareSync(password, user.password
@@ -150,20 +144,6 @@ module.exports = function () {
             } else {
                 deferred.reject(err);
             }
-
-
-            // if(err) {
-            //     console.log("error1 in model.server findUserByCredentials: "+ user);
-            //     deferred.reject(err);
-            // } else {
-            //     if(user && bcrypt.compareSync(password, user.password)) {  //&& bcrypt.compareSync(password, user.password
-            //         console.log("in model.server findUserByCredentials: "+ user);
-            //         deferred.resolve(user);
-            //     } else {
-            //         console.log("error2 in model.server findUserByCredentials: "+ user);
-            //         deferred.reject(err);
-            //     }
-            // }
             });
         return deferred.promise;
     }
