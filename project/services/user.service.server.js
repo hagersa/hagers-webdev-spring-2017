@@ -11,7 +11,7 @@ module.exports = function (app, OdhecatonUserModel) {
     var googleConfig = {
         clientID : process.env.GOOGLE_CLIENT_ID,
         clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL : 'https://hagers-webdev-spring-2017.herokuapp.com/auth/google/callback' //'http://localhost:3000/auth/google/callback' 'https://hagers-webdev-spring-2017.herokuapp.com/auth/google/callback'
+        callbackURL : 'http://localhost:3000/auth/google/callback' // 'https://hagers-webdev-spring-2017.herokuapp.com/auth/google/callback''https://hagers-webdev-spring-2017.herokuapp.com/auth/google/callback'
     };
 
     app.get("/api/user", findUser);
@@ -93,6 +93,13 @@ module.exports = function (app, OdhecatonUserModel) {
                             firstName: profile.name.givenName,
                             lastName: profile.name.familyName,
                             email: email,
+                            password: "google", //this
+                            followers: [], //this
+                            following: [], //this
+                            favorites: [], //this
+                            aboutMe: "", //this
+                            dirLibraries: [], //this
+                            memLibraries: [], //this
                             google: {
                                 id: profile.id,
                                 token: token // used to check if authentication is still valid
@@ -173,9 +180,9 @@ module.exports = function (app, OdhecatonUserModel) {
             );
     }
 
-    // var firstUser = {username: 'adminS', password: 'adminS', firstName: 'Sarah', role: 'ADMIN'};
-    // firstUser.password = bcrypt.hashSync(firstUser.password);
-    // OdhecatonUserModel.createUser(firstUser); //{username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'}
+    var firstUser = {username: 'new', password: 'new', firstName: 'Sarah', role: 'ADMIN', email: 'sarah@sarah.com'};
+    firstUser.password = bcrypt.hashSync(firstUser.password);
+    OdhecatonUserModel.createUser(firstUser); //{username: 'sarah', password: 'sarah', firstName: 'Sarah', role: 'ADMIN'}
 
     function login(req, res) {
         var user = req.user;
@@ -287,17 +294,6 @@ module.exports = function (app, OdhecatonUserModel) {
             });
     }
 
-    // function update(req, res) {
-    //     var username = req.query['username'];
-    //     var password = req.query['password'];
-    //
-    //     if(username) {
-    //         updateUser(req, res);
-    //     } else {
-    //         updatePassword(req, res);
-    //     }
-    // }
-
     function updateUser(req, res) {
         var user = req.body;
         var userId = req.params.userId;
@@ -311,24 +307,6 @@ module.exports = function (app, OdhecatonUserModel) {
                 res.sendStatus(500);
             });
     }
-
-    // function updatePassword(req, res) {
-    //      var password = req.body;
-    //      var userId = req.params.userId;
-    //
-    //      console.log("have password in server: "+password);
-    //     console.log("have userId in server: "+userId);
-    //
-    //      OdhecatonUserModel
-    //          .updatePassword(userId, password)
-    //          .then(function(response) {
-    //              console.log("success updating password in server: "+response);
-    //              res.json(response);
-    //          }, function (error) {
-    //              console.log("error updating password in server: "+response);
-    //              res.sendStatus(500);
-    //          });
-    // }
 
     function createUser(req, res) {
         var newUser = req.body;

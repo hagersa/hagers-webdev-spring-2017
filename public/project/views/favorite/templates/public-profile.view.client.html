@@ -89,7 +89,7 @@
                 <div style="padding-bottom: 4px; padding-top: 4px" id="followed">
                     <a ng-if="model.userId === model.followId" ng-click="model.removeUser(f)" class="pull-right btn btn-danger">
                         <span style="padding-right: 3px" class="glyphicon glyphicon-remove"></span>Remove</a>
-                    <a ng-if="model.userId !== model.followId && model.userId !== f._id" ng-click="model.favoriteUser(f)" class="pull-right btn btn-primary">
+                    <a ng-if="model.userId !== model.followId && model.userId !== f._id" ng-click="model.favoriteUser(f._id)" class="pull-right btn btn-primary">
                         <span style="padding-right: 3px" class="glyphicon glyphicon-star"></span>Follow</a>
                     <a href="#/user/{{model.userId}}/favorite/{{f._id}}"><font size="4">{{f.username}}</font></a>
                 </div>

@@ -10,7 +10,6 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         findEmailForUser: findEmailForUser,
         updateUser: updateUser,
-        //updatePassword: updatePassword,
         deleteUser: deleteUser,
         findUserByGoogleId: findUserByGoogleId
     };
@@ -213,28 +212,4 @@ module.exports = function () {
                 });
         return deferred.promise;
     }
-
-
-    // function updatePassword(userId, password) {
-    //     var deferred = q.defer();
-    //
-    //     var bcrypted = bcrypt.hashSync(password);
-    //
-    //     console.log("non encrypted password: "+password);
-    //     console.log("encrypted password: "+bcrypted);
-    //
-    //     OdhecatonUserModel
-    //         .update({_id : userId},
-    //             { password : bcrypted },
-    //             function (err, response) {
-    //                 if(err) {
-    //                     console.log("error updating password in model");
-    //                     deferred.reject(err); // reject
-    //                 } else {
-    //                     console.log("success updating password in model: "+bcrypted);
-    //                     deferred.resolve(response);
-    //                 }
-    //             });
-    //     return deferred.promise;
-    // }
 };
